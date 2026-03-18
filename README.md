@@ -1,12 +1,17 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,50:1e293b,100:334155&height=170&section=header&text=Deon%20Quek&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=AI%20%7C%20Backend%20%7C%20Data%20Products&descAlignY=55" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,50:1e293b,100:334155&height=190&section=header&text=Deon%20Quek&fontSize=44&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=AI%20Systems%20%7C%20Backend%20Engineering%20%7C%20Data%20Products&descAlignY=58" width="100%" />
 
 ### Building practical AI systems, data products, and backend-heavy software
 
 <p>
   <a href="https://github.com/joyboy257"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
   <a href="https://www.linkedin.com/in/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+</p>
+
+<p>
+  <img src="https://github-readme-stats.vercel.app/api?username=joyboy257&show_icons=true&hide_border=true&rank_icon=github&include_all_commits=true" height="165" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=joyboy257&layout=compact&hide_border=true" height="165" />
 </p>
 
 </div>
@@ -17,7 +22,7 @@
 
 I’m a Computer Science student specialising in **AI / Machine Learning**, with a strong interest in building software that is **useful, testable, and grounded in real operating problems**.
 
-Most of my work lives at the intersection of:
+Most of my work sits at the intersection of:
 
 - **AI orchestration and agentic workflows**
 - **Backend systems and APIs**
@@ -29,7 +34,7 @@ I like turning messy workflows into software that people can actually use.
 
 ---
 
-## What I’m focused on
+## Current focus
 
 Right now, I’m spending a lot of time building **AI-native systems** that go beyond demos:
 
@@ -45,10 +50,14 @@ I care a lot about building systems that are not just clever, but **clear, relia
 
 ## Featured work
 
+<table>
+<tr>
+<td width="50%" valign="top">
+
 ### 🔒 Mirai *(private project)*
 A WhatsApp-native, multi-tenant operations platform built as a serious monorepo with service apps, shared packages, operator UI, infra, and deep testing workflows.
 
-**Focus areas**
+**Highlights**
 - AI orchestration runtime
 - human-in-the-loop controls
 - tenant isolation and RBAC
@@ -56,6 +65,24 @@ A WhatsApp-native, multi-tenant operations platform built as a serious monorepo 
 - proof-oriented engineering
 
 > Public architecture summary coming soon.
+
+</td>
+<td width="50%" valign="top">
+
+### ✨ Orbeliss *(private project)*
+A social media management platform built for collaborative publishing, scheduling, analytics, and team-based workflows.
+
+**Highlights**
+- multi-team collaboration and role management
+- scheduling and publishing workflows
+- analytics and audit trails
+- Next.js, TypeScript, Prisma stack
+- product-oriented SaaS execution
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
 
 ### 📊 [AMI — AWHL Market Intelligence](https://github.com/joyboy257/ami-awhl)
 A competitive intelligence platform for tracking wellness competitors in Singapore.
@@ -67,23 +94,45 @@ A competitive intelligence platform for tracking wellness competitors in Singapo
 - scores competitors across multiple dimensions
 - surfaces evidence-backed insights in a dashboard
 
+</td>
+<td width="50%" valign="top">
+
 ### ♠️ [PokerAI](https://github.com/joyboy257/pokerai-public)
 A Texas Hold’em reinforcement learning project focused on training and evaluating an RL-based poker agent.
 
-**Focus areas**
+**Highlights**
 - self-play environments
 - benchmarking against baselines
 - performance tracking
 - experimentation and evaluation
 
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
 ### ⚡ [Customer Data API](https://github.com/joyboy257/cust_data_api)
 A FastAPI-based REST API for exploratory analysis on customer data from Excel and database sources.
 
-**Focus areas**
+**Highlights**
 - backend API design
 - structured JSON outputs
 - business-facing analytics
 - practical data tooling
+
+</td>
+<td width="50%" valign="top">
+
+### 🚧 What I enjoy building
+- AI systems with real operational value
+- data and intelligence pipelines
+- backend platforms with clear guardrails
+- internal tools that improve execution
+- software that connects technical depth with product thinking
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -146,6 +195,6 @@ I also spend a lot of time thinking about:
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:334155,100:0f172a&height=100&section=footer" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:334155,100:0f172a&height=110&section=footer" width="100%" />
 
 </div>
