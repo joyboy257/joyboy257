@@ -2,11 +2,12 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,50:1e293b,100:334155&height=190&section=header&text=Deon%20Quek&fontSize=44&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=AI%20Systems%20%7C%20Backend%20Engineering%20%7C%20Data%20Products&descAlignY=58" width="100%" />
 
-### Building practical AI systems, data products, and backend-heavy software
+### Building AI-native software, automation systems, and data products that solve real operating problems
 
 <p>
   <a href="https://github.com/joyboy257"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
-  <a href="https://www.linkedin.com/in/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+  <a href="https://www.linkedin.com/in/deonquek"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+  <a href="https://usemirai.app"><img src="https://img.shields.io/badge/Mirai-0F172A?style=for-the-badge&logo=vercel&logoColor=white" /></a>
 </p>
 
 <p>
@@ -20,31 +21,32 @@
 
 ## About me
 
-I’m a Computer Science student specialising in **AI / Machine Learning**, with a strong interest in building software that is **useful, testable, and grounded in real operating problems**.
+I’m a Computer Science student specialising in **Artificial Intelligence and Machine Learning**, focused on building practical systems that connect AI, backend engineering, product thinking, and business operations.
 
-Most of my work sits at the intersection of:
+My strongest work sits at the intersection of:
 
 - **AI orchestration and agentic workflows**
-- **Backend systems and APIs**
-- **Data and intelligence pipelines**
-- **Product-minded engineering**
-- **Operational reliability, testing, and guardrails**
+- **Multi-tenant backend systems and APIs**
+- **Automation, scraping, and intelligence pipelines**
+- **Data products and operational dashboards**
+- **Human-in-the-loop workflows, guardrails, and reliability**
 
-I like turning messy workflows into software that people can actually use.
+I’m most interested in software that moves beyond demos: systems that are useful, testable, observable, and designed around real users.
 
 ---
 
 ## Current focus
 
-Right now, I’m spending a lot of time building **AI-native systems** that go beyond demos:
+Right now, I’m building and experimenting with AI-native platforms that combine:
 
-- human-in-the-loop approval flows
-- multi-tenant backend logic
-- deterministic workflows and idempotency
-- contract tests and execution guardrails
-- data products that support real business decisions
+- deterministic backend workflows
+- LLM-assisted orchestration
+- human approval and escalation flows
+- tenant-safe SaaS architecture
+- data pipelines for competitive and operational intelligence
+- product interfaces that non-technical users can actually operate
 
-I care a lot about building systems that are not just clever, but **clear, reliable, and production-minded**.
+I care about building systems that are not just clever, but **clear, reliable, and production-minded**.
 
 ---
 
@@ -54,30 +56,37 @@ I care a lot about building systems that are not just clever, but **clear, relia
 <tr>
 <td width="50%" valign="top">
 
-### 🔒 Mirai *(private project)*
-A WhatsApp-native, multi-tenant operations platform built as a serious monorepo with service apps, shared packages, operator UI, infra, and deep testing workflows.
+### 🚀 [Mirai](https://github.com/joyboy257/mirai)
+**WhatsApp-native, multi-tenant Revenue OS for SMB operators.**
+
+Mirai combines deterministic backend workflows, tenant-safe APIs, operator tooling, and AI-assisted orchestration inside a production-oriented `pnpm` monorepo.
 
 **Highlights**
-- AI orchestration runtime
-- human-in-the-loop controls
-- tenant isolation and RBAC
-- backend contracts and execution safety
-- proof-oriented engineering
+- service-oriented architecture: API gateway, core backend, workers, realtime inbox, AI orchestrator
+- multi-tenant backend logic with explicit tenancy rules
+- operator dashboard and public marketing site
+- contract tests, security gates, governance checks, and E2E workflows
+- AI assists orchestration while backend data remains the system of record
 
-> Public architecture summary coming soon.
+**Stack:** TypeScript, NestJS, Next.js, PostgreSQL, Redis, Docker, pnpm, AI orchestration
 
 </td>
 <td width="50%" valign="top">
 
-### ✨ Orbeliss *(private project)*
-A social media management platform built for collaborative publishing, scheduling, analytics, and team-based workflows.
+### 🏍️ [Mototiam](https://github.com/joyboy257/mototiam)
+**Motorcycle deal finder platform for Singapore.**
+
+A full-stack scraping and alerting system that monitors Carousell motorcycle listings, scores deal quality, stores structured data, and alerts users when strong opportunities appear.
 
 **Highlights**
-- multi-team collaboration and role management
-- scheduling and publishing workflows
-- analytics and audit trails
-- Next.js, TypeScript, Prisma stack
-- product-oriented SaaS execution
+- Carousell scraping pipeline
+- dynamic deal scoring and filtering logic
+- PostgreSQL data storage
+- FastAPI backend and REST API
+- Next.js dashboard for listings and top deals
+- Telegram bot for real-time deal alerts
+
+**Stack:** Python, FastAPI, PostgreSQL, BeautifulSoup, Next.js, Telegram Bot API
 
 </td>
 </tr>
@@ -85,50 +94,74 @@ A social media management platform built for collaborative publishing, schedulin
 <td width="50%" valign="top">
 
 ### 📊 [AMI — AWHL Market Intelligence](https://github.com/joyboy257/ami-awhl)
-A competitive intelligence platform for tracking wellness competitors in Singapore.
+**Competitive intelligence platform for the Singapore wellness market.**
 
-**What it does**
-- discovers competitor domains
-- crawls websites
-- extracts pricing, offers, and CTAs
-- scores competitors across multiple dimensions
-- surfaces evidence-backed insights in a dashboard
+AMI gives a live, evidence-backed view of competitor pricing, offers, SEO footprint, CTAs, and market movements.
+
+**Highlights**
+- competitor domain discovery from search results
+- website crawling and content extraction
+- pricing, offer, CTA, and SEO signal extraction
+- 0–100 competitor scoring model
+- executive dashboard with market maps, battlecards, offer analysis, and change radar
+- daily automation workflows for freshness and monitoring
+
+**Stack:** PostgreSQL, n8n, Next.js, Tailwind CSS, SQL, automation workflows
 
 </td>
 <td width="50%" valign="top">
 
-### ♠️ [PokerAI](https://github.com/joyboy257/pokerai-public)
-A Texas Hold’em reinforcement learning project focused on training and evaluating an RL-based poker agent.
+### ✨ [Orbeliss](https://github.com/joyboy257/orbeliss)
+**Social media management and scheduling platform.**
+
+A collaborative publishing platform for teams managing content across social media channels, with scheduling, platform integrations, analytics, and role-based team workflows.
 
 **Highlights**
-- self-play environments
-- benchmarking against baselines
-- performance tracking
-- experimentation and evaluation
+- authentication with credentials and Google OAuth
+- TikTok OAuth integration and connected accounts
+- post composer with media upload and scheduling
+- publishing infrastructure with audit logs
+- analytics, history, pagination, and error reporting
+- multi-team collaboration with ADMIN, EDITOR, and VIEWER roles
+
+**Stack:** Next.js 14, TypeScript, Prisma, Tailwind CSS, NextAuth.js
 
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 
-### ⚡ [Customer Data API](https://github.com/joyboy257/cust_data_api)
-A FastAPI-based REST API for exploratory analysis on customer data from Excel and database sources.
+### ♠️ [PokerAI](https://github.com/joyboy257/pokerai-public)
+**Reinforcement learning project for No-Limit Texas Hold’em.**
+
+A final-year AI project focused on training and evaluating an RL poker agent named Abel through self-play and benchmarking.
 
 **Highlights**
-- backend API design
-- structured JSON outputs
-- business-facing analytics
-- practical data tooling
+- Q-learning based agent updates
+- self-play training framework
+- scripted benchmark opponent, Kane
+- performance metrics tracking
+- evaluation visualizations and logs
+- curriculum-learning oriented experimentation
+
+**Stack:** Python, Reinforcement Learning, Q-learning, simulation, metrics, visualisation
 
 </td>
 <td width="50%" valign="top">
 
-### 🚧 What I enjoy building
-- AI systems with real operational value
-- data and intelligence pipelines
-- backend platforms with clear guardrails
-- internal tools that improve execution
-- software that connects technical depth with product thinking
+### 🧠 [AgentOS](https://github.com/joyboy257/agentos)
+**Concept-stage AI employee / agent harness.**
+
+A product exploration around making persistent, durable AI agents accessible to non-technical business users through natural-language setup, visual monitoring, memory, and escalation flows.
+
+**Highlights**
+- natural-language-to-agent deployment concept
+- visual agent harness and reasoning traces
+- persistent memory and judgment loop design
+- escalation-first human-in-the-loop model
+- roadmap for Gmail, Calendar, and business data integrations
+
+**Stack:** AI agents, product systems design, workflow orchestration, agent UX
 
 </td>
 </tr>
@@ -136,13 +169,22 @@ A FastAPI-based REST API for exploratory analysis on customer data from Excel an
 
 ---
 
+## More projects worth checking
+
+- **[Customer Data API](https://github.com/joyboy257/cust_data_api)** — FastAPI REST API for customer data analysis from Excel and database sources.
+- **[Onyx AI](https://github.com/joyboy257/Onyx-AI)** — AI and automation experiments connected to business operations and agency workflows.
+- **[AMI](https://github.com/joyboy257/ami)** — market intelligence and automation work related to competitive monitoring.
+
+---
+
 ## How I like to build
 
 - start from the real operating problem
 - prefer clear contracts over magic
-- use AI to accelerate work, but keep humans in the loop
-- bias toward systems that are observable, testable, and explainable
-- treat documentation as part of the product
+- use AI to accelerate work, but keep humans in the loop where judgment matters
+- design for observability, repeatability, and explainability
+- treat documentation and proof artifacts as part of the product
+- connect technical depth with commercial and product context
 
 ---
 
@@ -164,9 +206,10 @@ A FastAPI-based REST API for exploratory analysis on customer data from Excel an
 </p>
 
 **Core:** Python, TypeScript, SQL, JavaScript  
-**Backend:** FastAPI, NestJS, PostgreSQL, REST APIs  
-**AI / ML:** TensorFlow, RL experimentation, LLM workflows, LangChain / LangGraph familiarity  
-**Frontend:** Next.js, React, Tailwind CSS  
+**Backend:** FastAPI, NestJS, PostgreSQL, REST APIs, Prisma  
+**AI / ML:** Reinforcement Learning, Q-learning, LLM workflows, LangChain / LangGraph familiarity  
+**Frontend:** Next.js, React, Tailwind CSS, shadcn/ui  
+**Data / Automation:** scraping, n8n, workflow automation, dashboards, Looker Studio  
 **Tooling:** Docker, GitHub, CI gates, contract tests, monorepo workflows
 
 ---
@@ -176,9 +219,10 @@ A FastAPI-based REST API for exploratory analysis on customer data from Excel an
 I’m especially interested in roles where I can work on:
 
 - AI systems that support real business decisions
+- backend-heavy product engineering
 - data and intelligence pipelines
 - agentic workflows with strong guardrails
-- backend and product problems with meaningful complexity
+- full-stack SaaS products with meaningful operational complexity
 
 ---
 
@@ -187,8 +231,8 @@ I’m especially interested in roles where I can work on:
 I also spend a lot of time thinking about:
 
 - product strategy
-- operating systems for teams
 - GTM and commercial thinking
+- operating systems for teams
 - how AI should fit into real workflows, not just sit on top as a novelty layer
 
 ---
