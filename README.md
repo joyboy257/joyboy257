@@ -1,167 +1,108 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,50:1e293b,100:334155&height=190&section=header&text=Deon%20Quek&fontSize=44&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=AI%20Systems%20%7C%20Backend%20Engineering%20%7C%20Data%20Products&descAlignY=58" width="100%" />
+# Deon Quek
 
-### Building AI-native software, automation systems, and data products that solve real operating problems
+### Building autonomous AI systems, research infrastructure, and production-grade software
 
-<p>
-  <a href="https://github.com/joyboy257"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
-  <a href="https://www.linkedin.com/in/deonquek"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-  <a href="https://usemirai.app"><img src="https://img.shields.io/badge/Mirai-0F172A?style=for-the-badge&logo=vercel&logoColor=white" /></a>
-</p>
+Singapore · Computer Science (AI/ML) · Applied AI / Software Engineering
 
-<p>
-  <img src="https://github-readme-stats.vercel.app/api?username=joyboy257&show_icons=true&hide_border=true&rank_icon=github&include_all_commits=true" height="165" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=joyboy257&layout=compact&hide_border=true" height="165" />
-</p>
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/joyboy257)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/deonquek)
+[![Mirai](https://img.shields.io/badge/Mirai-usemirai.app-111827?style=flat-square)](https://usemirai.app)
 
 </div>
 
 ---
 
-## About me
+## What I build
 
-I’m a Computer Science student specialising in **Artificial Intelligence and Machine Learning**, focused on building practical systems that connect AI, backend engineering, product thinking, and business operations.
+I build systems that let software **reason, act, verify, and improve** across real workflows.
 
-My strongest work sits at the intersection of:
+My current work sits at the intersection of:
 
-- **AI orchestration and agentic workflows**
-- **Multi-tenant backend systems and APIs**
-- **Automation, scraping, and intelligence pipelines**
-- **Data products and operational dashboards**
-- **Human-in-the-loop workflows, guardrails, and reliability**
+- autonomous and multi-agent engineering
+- production AI architecture and evaluation
+- deterministic testing and replayable systems
+- quantitative research infrastructure
+- knowledge systems and workflow automation
+- backend-heavy product engineering
 
-I’m most interested in software that moves beyond demos: systems that are useful, testable, observable, and designed around real users.
-
----
-
-## Current focus
-
-Right now, I’m building and experimenting with AI-native platforms that combine:
-
-- deterministic backend workflows
-- LLM-assisted orchestration
-- human approval and escalation flows
-- tenant-safe SaaS architecture
-- data pipelines for competitive and operational intelligence
-- product interfaces that non-technical users can actually operate
-
-I care about building systems that are not just clever, but **clear, reliable, and production-minded**.
+I care most about software that survives contact with reality: observable, reproducible, testable, and useful to the people operating it.
 
 ---
 
-## Featured work
+## Current systems
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### 🚀 [Mirai](https://github.com/joyboy257/mirai)
-**WhatsApp-native, multi-tenant Revenue OS for SMB operators.**
+### [Mirai](https://github.com/joyboy257/mirai)
 
-Mirai combines deterministic backend workflows, tenant-safe APIs, operator tooling, and AI-assisted orchestration inside a production-oriented `pnpm` monorepo.
+**Chat-first AI workspace and autonomous engineering system.**
 
-**Highlights**
-- service-oriented architecture: API gateway, core backend, workers, realtime inbox, AI orchestrator
-- multi-tenant backend logic with explicit tenancy rules
-- operator dashboard and public marketing site
-- contract tests, security gates, governance checks, and E2E workflows
-- AI assists orchestration while backend data remains the system of record
+Built around agent orchestration, worker handoffs, persistent operational context, evaluation gates, and production workflows. The goal is not another chatbot; it is an interface through which people and agents can operate software systems together.
 
-**Stack:** TypeScript, NestJS, Next.js, PostgreSQL, Redis, Docker, pnpm, AI orchestration
+**Focus:** multi-agent coordination, tool use, human escalation, durable workflows, verification, agent UX
 
 </td>
 <td width="50%" valign="top">
 
-### 🏍️ [Mototiam](https://github.com/joyboy257/mototiam)
-**Motorcycle deal finder platform for Singapore.**
+### Trading Desk
 
-A full-stack scraping and alerting system that monitors Carousell motorcycle listings, scores deal quality, stores structured data, and alerts users when strong opportunities appear.
+**Laptop-first autonomous quantitative research platform.**
 
-**Highlights**
-- Carousell scraping pipeline
-- dynamic deal scoring and filtering logic
-- PostgreSQL data storage
-- FastAPI backend and REST API
-- Next.js dashboard for listings and top deals
-- Telegram bot for real-time deal alerts
+A research system for falsifiable market hypotheses, deterministic backtesting, temporal-graph evidence, replayable simulations, and model-independent verification. Current research includes liquidation dynamics, forced market participants, market microstructure, and systematic setup discovery.
 
-**Stack:** Python, FastAPI, PostgreSQL, BeautifulSoup, Next.js, Telegram Bot API
+**Focus:** Python, event replay, evidence ledgers, backtesting, causal research, deterministic simulation
 
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 
-### 📊 [AMI — AWHL Market Intelligence](https://github.com/joyboy257/ami-awhl)
-**Competitive intelligence platform for the Singapore wellness market.**
+### ARCO Control Tower
 
-AMI gives a live, evidence-backed view of competitor pricing, offers, SEO footprint, CTAs, and market movements.
+**Production workflow and document-intelligence infrastructure for legal operations.**
 
-**Highlights**
-- competitor domain discovery from search results
-- website crawling and content extraction
-- pricing, offer, CTA, and SEO signal extraction
-- 0–100 competitor scoring model
-- executive dashboard with market maps, battlecards, offer analysis, and change radar
-- daily automation workflows for freshness and monitoring
+Designed for high-volume intake, file processing, workflow orchestration, queueing, idempotency, auditability, concurrency, and safe human escalation across n8n, PostgreSQL, cloud services, and messaging interfaces.
 
-**Stack:** PostgreSQL, n8n, Next.js, Tailwind CSS, SQL, automation workflows
+**Focus:** workflow reliability, document intelligence, deployment architecture, operations, testing under real user behaviour
 
 </td>
 <td width="50%" valign="top">
 
-### ✨ [Orbeliss](https://github.com/joyboy257/orbeliss)
-**Social media management and scheduling platform.**
+### [DreamCraft](https://github.com/joyboy257/dreamcraft)
 
-A collaborative publishing platform for teams managing content across social media channels, with scheduling, platform integrations, analytics, and role-based team workflows.
+**Natural language to playable 3D worlds.**
 
-**Highlights**
-- authentication with credentials and Google OAuth
-- TikTok OAuth integration and connected accounts
-- post composer with media upload and scheduling
-- publishing infrastructure with audit logs
-- analytics, history, pagination, and error reporting
-- multi-team collaboration with ADMIN, EDITOR, and VIEWER roles
+A browser-based generative game system that turns dream descriptions into explorable voxel environments with procedural entities, structures, physics profiles, dialogue, quests, and runtime-created game modes.
 
-**Stack:** Next.js 14, TypeScript, Prisma, Tailwind CSS, NextAuth.js
+**Focus:** generative systems, procedural worlds, agent orchestration, WebGL, game systems
 
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 
-### ♠️ [PokerAI](https://github.com/joyboy257/pokerai-public)
-**Reinforcement learning project for No-Limit Texas Hold’em.**
+### Knowledge Systems
 
-A final-year AI project focused on training and evaluating an RL poker agent named Abel through self-play and benchmarking.
+**An OSS, integration-first knowledge platform.**
 
-**Highlights**
-- Q-learning based agent updates
-- self-play training framework
-- scripted benchmark opponent, Kane
-- performance metrics tracking
-- evaluation visualizations and logs
-- curriculum-learning oriented experimentation
+Exploring a Glean-like product with Onyx-style connectors, stronger knowledge modelling, simple ingestion, agent-accessible interfaces, and an LLM layer grounded in permissions, provenance, freshness, and evidence.
 
-**Stack:** Python, Reinforcement Learning, Q-learning, simulation, metrics, visualisation
+**Focus:** RAG, connectors, permissions, provenance, retrieval quality, knowledge UX
 
 </td>
 <td width="50%" valign="top">
 
-### 🧠 [AgentOS](https://github.com/joyboy257/agentos)
-**Concept-stage AI employee / agent harness.**
+### Agentic Product Infrastructure
 
-A product exploration around making persistent, durable AI agents accessible to non-technical business users through natural-language setup, visual monitoring, memory, and escalation flows.
+**Systems for agents to build and operate software safely.**
 
-**Highlights**
-- natural-language-to-agent deployment concept
-- visual agent harness and reasoning traces
-- persistent memory and judgment loop design
-- escalation-first human-in-the-loop model
-- roadmap for Gmail, Calendar, and business data integrations
+Across my projects, I design evidence ledgers, phase gates, independent review loops, reproducible builds, worker orchestration, and explicit authorization boundaries so autonomous engineering can move quickly without becoming unverifiable.
 
-**Stack:** AI agents, product systems design, workflow orchestration, agent UX
+**Focus:** agentic engineering, governance, evals, CI, release gates, reproducibility
 
 </td>
 </tr>
@@ -169,76 +110,73 @@ A product exploration around making persistent, durable AI agents accessible to 
 
 ---
 
-## More projects worth checking
+## Selected public projects
 
-- **[Customer Data API](https://github.com/joyboy257/cust_data_api)** — FastAPI REST API for customer data analysis from Excel and database sources.
-- **[Onyx AI](https://github.com/joyboy257/Onyx-AI)** — AI and automation experiments connected to business operations and agency workflows.
-- **[AMI](https://github.com/joyboy257/ami)** — market intelligence and automation work related to competitive monitoring.
-
----
-
-## How I like to build
-
-- start from the real operating problem
-- prefer clear contracts over magic
-- use AI to accelerate work, but keep humans in the loop where judgment matters
-- design for observability, repeatability, and explainability
-- treat documentation and proof artifacts as part of the product
-- connect technical depth with commercial and product context
+- **[Mirai](https://github.com/joyboy257/mirai)** — chat-first AI workspace and agent operating environment
+- **[DreamCraft](https://github.com/joyboy257/dreamcraft)** — generative browser-based 3D world engine
+- **[Mototiam](https://github.com/joyboy257/mototiam)** — motorcycle listing intelligence, scoring, and alerts for Singapore
+- **[AMI — AWHL Market Intelligence](https://github.com/joyboy257/ami-awhl)** — evidence-backed competitive intelligence platform
+- **[PokerAI](https://github.com/joyboy257/pokerai-public)** — reinforcement-learning research for No-Limit Texas Hold'em
 
 ---
 
-## Tech stack
+## Engineering principles
 
-<p>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="42" height="42" alt="Python" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="42" height="42" alt="TypeScript" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="42" height="42" alt="JavaScript" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="42" height="42" alt="PostgreSQL" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" width="42" height="42" alt="FastAPI" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg" width="42" height="42" alt="NestJS" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" width="42" height="42" alt="TensorFlow" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="42" height="42" alt="React" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="42" height="42" alt="Next.js" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="42" height="42" alt="Docker" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="42" height="42" alt="Git" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="42" height="42" alt="GitHub" />
-</p>
+```text
+Evidence over assumptions.
+Deterministic systems over fragile demos.
+Verification before expansion.
+Clear contracts over hidden magic.
+Automation by default, judgment by design.
+```
 
-**Core:** Python, TypeScript, SQL, JavaScript  
-**Backend:** FastAPI, NestJS, PostgreSQL, REST APIs, Prisma  
-**AI / ML:** Reinforcement Learning, Q-learning, LLM workflows, LangChain / LangGraph familiarity  
-**Frontend:** Next.js, React, Tailwind CSS, shadcn/ui  
-**Data / Automation:** scraping, n8n, workflow automation, dashboards, Looker Studio  
-**Tooling:** Docker, GitHub, CI gates, contract tests, monorepo workflows
+I treat specifications, tests, evals, replay artifacts, security boundaries, and deployment evidence as part of the product—not paperwork added after the build.
 
 ---
 
-## What I’m looking for
+## Technology
 
-I’m especially interested in roles where I can work on:
+**Languages**  
+Python · TypeScript · JavaScript · SQL · C++ · Rust
 
-- AI systems that support real business decisions
-- backend-heavy product engineering
-- data and intelligence pipelines
-- agentic workflows with strong guardrails
-- full-stack SaaS products with meaningful operational complexity
+**AI and research**  
+LLM systems · agent orchestration · MCP · RAG · embeddings · evaluation systems · PyTorch · scikit-learn · reinforcement learning
+
+**Backend and data**  
+FastAPI · NestJS · Node.js · PostgreSQL · Redis · Prisma · Supabase · REST APIs · event-driven workflows
+
+**Frontend and product**  
+Next.js · React · Tailwind CSS · shadcn/ui · Three.js · WebGL
+
+**Infrastructure and automation**  
+Docker · GitHub Actions · Linux · Vercel · DigitalOcean · n8n · CI/CD · contract testing · browser QA
 
 ---
 
-## Beyond code
+## Currently researching
 
-I also spend a lot of time thinking about:
+- agentic engineering and multi-agent coordination
+- LLM evaluation and reliability
+- temporal and provenance-aware knowledge graphs
+- quantitative market structure and forced participant behaviour
+- deterministic simulation and replay systems
+- integration-first knowledge products
+- production architecture for autonomous software teams
 
-- product strategy
-- GTM and commercial thinking
-- operating systems for teams
-- how AI should fit into real workflows, not just sit on top as a novelty layer
+---
+
+## Roles
+
+I am interested in graduate and early-career opportunities in **Applied AI, AI/ML Engineering, Software Engineering, and Forward-Deployed Engineering** in Singapore or remotely.
+
+The best fit is a team solving difficult operational problems with strong engineering discipline—not simply wrapping an API around a prompt.
 
 ---
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:334155,100:0f172a&height=110&section=footer" width="100%" />
+![GitHub stats](https://github-readme-stats.vercel.app/api?username=joyboy257&show_icons=true&hide_border=true&rank_icon=github&include_all_commits=true)
+
+**Build systems that make the next system easier to build.**
 
 </div>
