@@ -14,6 +14,24 @@ Singapore · Computer Science (AI/ML) · Applied AI / Software Engineering
 
 ---
 
+## Featured engineering case study
+
+<p align="center">
+  <a href="https://github.com/joyboy257/mirai-showcase">
+    <img src="https://raw.githubusercontent.com/joyboy257/mirai-showcase/main/assets/hero.svg" width="100%" alt="Mirai engineering showcase" />
+  </a>
+</p>
+
+**[Explore the public Mirai engineering showcase →](https://github.com/joyboy257/mirai-showcase)**
+
+A recruiter-facing product and architecture case study covering the chat-first workspace, persistent business agents, Atlas developer platform, governed execution, multi-tenant security, evaluation engineering, and selected internal certification evidence.
+
+`500/500 evaluation iterations` · `37 → 92/100 quality score` · `49 governed tools` · `201/201 active safety cases`
+
+The production monorepo remains private; the showcase exposes the engineering decisions and proof without publishing sensitive implementation or operational material.
+
+---
+
 ## What I build
 
 I build systems that let software **reason, act, verify, and improve** across real workflows.
@@ -37,7 +55,7 @@ I care most about software that survives contact with reality: observable, repro
 <tr>
 <td width="50%" valign="top">
 
-### [Mirai](https://github.com/joyboy257/mirai)
+### [Mirai](https://github.com/joyboy257/mirai-showcase)
 
 **Chat-first AI workspace and autonomous engineering system.**
 
@@ -112,7 +130,7 @@ Across my projects, I design evidence ledgers, phase gates, independent review l
 
 ## Selected public projects
 
-- **[Mirai](https://github.com/joyboy257/mirai)** — chat-first AI workspace and agent operating environment
+- **[Mirai Showcase](https://github.com/joyboy257/mirai-showcase)** — public product, architecture, and engineering case study for Mirai
 - **[DreamCraft](https://github.com/joyboy257/dreamcraft)** — generative browser-based 3D world engine
 - **[Mototiam](https://github.com/joyboy257/mototiam)** — motorcycle listing intelligence, scoring, and alerts for Singapore
 - **[AMI — AWHL Market Intelligence](https://github.com/joyboy257/ami-awhl)** — evidence-backed competitive intelligence platform
