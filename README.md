@@ -165,6 +165,25 @@ Docker · GitHub Actions · Linux · Vercel · DigitalOcean · n8n · CI/CD · c
 
 ---
 
+## Shipping activity
+
+<div align="center">
+
+[![Deon's GitHub activity graph](https://github-readme-activity-graph.vercel.app/graph?username=joyboy257&theme=github-compact&hide_border=true&area=true)](https://github.com/joyboy257)
+
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=joyboy257&theme=github_dark" width="100%" alt="Deon's GitHub contribution summary" />
+
+<p>
+  <img src="https://streak-stats.demolab.com?user=joyboy257&theme=github-dark-blue&hide_border=true" height="165" alt="GitHub contribution streak" />
+  <img src="https://github-readme-stats.vercel.app/api?username=joyboy257&show_icons=true&hide_border=true&rank_icon=github&include_all_commits=true&theme=github_dark" height="165" alt="GitHub statistics" />
+</p>
+
+</div>
+
+> Public GitHub activity is only part of the work: several production, client, and research systems are developed in private repositories.
+
+---
+
 ## Roles
 
 I am interested in graduate and early-career opportunities in **Applied AI, AI/ML Engineering, Software Engineering, and Forward-Deployed Engineering** in Singapore or remotely.
@@ -174,8 +193,6 @@ The best fit is a team solving difficult operational problems with strong engine
 ---
 
 <div align="center">
-
-![GitHub stats](https://github-readme-stats.vercel.app/api?username=joyboy257&show_icons=true&hide_border=true&rank_icon=github&include_all_commits=true)
 
 **Build systems that make the next system easier to build.**
 
