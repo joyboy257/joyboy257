@@ -14,7 +14,7 @@ Singapore · Computer Science (AI/ML) · Applied AI / Software Engineering
 
 ---
 
-## Featured engineering case study
+## Featured engineering case studies
 
 <p align="center">
   <a href="https://github.com/joyboy257/mirai-showcase">
@@ -29,6 +29,18 @@ A recruiter-facing product and architecture case study covering the chat-first w
 `500/500 evaluation iterations` · `37 → 92/100 quality score` · `49 governed tools` · `201/201 active safety cases`
 
 The production monorepo remains private; the showcase exposes the engineering decisions and proof without publishing sensitive implementation or operational material.
+
+<p align="center">
+  <a href="https://github.com/joyboy257/joyboy257/tree/main/amethyst-showcase">
+    <img src="https://raw.githubusercontent.com/joyboy257/joyboy257/main/amethyst-showcase/assets/hero.svg" width="100%" alt="Amethyst engineering showcase" />
+  </a>
+</p>
+
+**[Explore the Amethyst engineering showcase →](https://github.com/joyboy257/joyboy257/tree/main/amethyst-showcase)**
+
+A recruiter-facing case study for governed company intelligence: evidence, point-in-time context, policy-enforced approvals, explicit learning writeback, lifecycle controls, and evidence-gated deployment.
+
+`CBR-PROD-00–07 complete` · `200/200 health and readiness` · `40-second rollback` · `external pilot deliberately disabled`
 
 ---
 
