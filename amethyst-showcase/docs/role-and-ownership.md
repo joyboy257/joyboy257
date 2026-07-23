@@ -2,29 +2,46 @@
 
 ## My role
 
-I owned the product and engineering direction for Amethyst Company Brain, including:
+I acted as product architect and lead engineer for Amethyst's Company Brain program.
 
-- defining the distinction between evidence, candidate knowledge, approved knowledge, and reusable context;
-- designing the approval, policy, learning, and writeback lifecycles;
-- specifying transaction and idempotency invariants;
-- defining workspace isolation, observability, deletion, backup, restore, and release boundaries;
-- decomposing work into bounded implementation and verification tasks;
-- reviewing evidence and deciding whether a capability was implemented, tested, deployable, or authorized for use;
-- retaining release authority for deployment and external access.
+I owned:
 
-## Use of coding agents
+- problem framing and product direction;
+- domain boundaries between Company Memory and Company Brain;
+- the claim, entity, metric, policy, context, approval, and learning models;
+- API and transaction invariants;
+- workspace-isolation and fail-closed requirements;
+- test, evidence, and release acceptance criteria;
+- production-readiness sequencing;
+- disclosure and claim boundaries;
+- final release authority.
 
-Coding agents were used as implementation and verification workers. They produced code, tests, documentation, and bounded reviews against explicit contracts.
+## How AI coding agents were used
 
-Agents did not independently decide:
+Coding agents handled bounded implementation and verification work packets. They were not delegated product or release authority.
 
-- product scope;
-- architectural authority;
-- claim truthfulness;
-- customer-data access;
-- production rollout;
-- external pilot authorization.
+A typical work packet contained:
+
+- one scoped objective;
+- exact allowed and prohibited paths;
+- implementation requirements;
+- tests and negative cases;
+- evidence outputs;
+- rollback or stop conditions;
+- an independent review step.
+
+Agents contributed code, tests, documentation, audits, and repeated verification. I retained responsibility for architecture, scope, contradiction resolution, acceptance, and deployment authorization.
 
 ## Why this matters
 
-The project demonstrates agentic engineering without treating generated output as self-validating. Completion required executable evidence, independent review, explicit boundaries, and a human release decision.
+Using AI to produce code is not the distinctive claim. The engineering work is creating a system in which agent output remains reviewable, testable, evidence-bound, and unable to promote itself into production merely by declaring completion.
+
+## Human decisions retained
+
+- product positioning and user model;
+- architecture and data-authority boundaries;
+- security and privacy tradeoffs;
+- whether evidence was strong enough to close a work item;
+- whether a release candidate could enter protected staging;
+- whether internal production could be authorized;
+- whether customer pilot or live provider effects could be enabled.
