@@ -103,13 +103,13 @@ A browser-based generative game system that turns dream descriptions into explor
 <tr>
 <td width="50%" valign="top">
 
-### Knowledge Systems
+### [Amethyst](https://github.com/joyboy257/joyboy257/tree/main/amethyst-showcase)
 
-**An OSS, integration-first knowledge platform.**
+**Governed company intelligence for AI-assisted work.**
 
-Exploring a Glean-like product with Onyx-style connectors, stronger knowledge modelling, simple ingestion, agent-accessible interfaces, and an LLM layer grounded in permissions, provenance, freshness, and evidence.
+Company Brain turns source evidence into approved claims, policies, metrics, entities, and point-in-time context packets. It adds two-phase learning writeback, policy-enforced approvals, immutable receipts, kill switches, recovery controls, and evidence-gated production deployment.
 
-**Focus:** RAG, connectors, permissions, provenance, retrieval quality, knowledge UX
+**Focus:** applied AI, human-in-the-loop governance, context engineering, idempotency, audit, observability, backup and rollback
 
 </td>
 <td width="50%" valign="top">
@@ -131,6 +131,7 @@ Across my projects, I design evidence ledgers, phase gates, independent review l
 ## Selected public projects
 
 - **[Mirai Showcase](https://github.com/joyboy257/mirai-showcase)** — public product, architecture, and engineering case study for Mirai
+- **[Amethyst Showcase](https://github.com/joyboy257/joyboy257/tree/main/amethyst-showcase)** — governed AI context, approvals, learning writeback, recovery, and production controls
 - **[DreamCraft](https://github.com/joyboy257/dreamcraft)** — generative browser-based 3D world engine
 - **[Mototiam](https://github.com/joyboy257/mototiam)** — motorcycle listing intelligence, scoring, and alerts for Singapore
 - **[AMI — AWHL Market Intelligence](https://github.com/joyboy257/ami-awhl)** — evidence-backed competitive intelligence platform
