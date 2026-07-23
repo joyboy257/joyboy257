@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" role="img" aria-labelledby="title desc">
+<title id="title">Amethyst governed context and learning flow</title><desc id="desc">Evidence moves through governance into point-in-time context, AI work, proof, and reviewed learning.</desc>
+<defs><linearGradient id="bg" x1="0" x2="1"><stop stop-color="#0b0911"/><stop offset="1" stop-color="#120d1b"/></linearGradient><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#8b5cf6"/></marker></defs>
+<rect width="1280" height="320" rx="24" fill="url(#bg)"/><rect x="1" y="1" width="1278" height="318" rx="23" fill="none" stroke="#fff" stroke-opacity=".08"/>
+<g font-family="Inter, ui-sans-serif, system-ui, sans-serif">
+  <text x="64" y="58" fill="#fafafa" font-size="25" font-weight="650">From evidence to reusable organizational truth</text>
+  <text x="64" y="88" fill="#8b8b98" font-size="15">Models can propose. Governed state transitions decide what becomes context.</text>
+  <g transform="translate(58 128)">
+    <g><rect width="174" height="112" rx="16" fill="#17131f" stroke="#fff" stroke-opacity=".1"/><circle cx="28" cy="28" r="9" fill="#60a5fa"/><text x="48" y="34" fill="#fafafa" font-size="15" font-weight="650">Evidence</text><text x="20" y="66" fill="#9ca3af" font-size="12">Sources · documents</text><text x="20" y="86" fill="#9ca3af" font-size="12">chunks · provenance</text></g>
+    <line x1="184" y1="56" x2="226" y2="56" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow)"/>
+    <g transform="translate(236)"><rect width="174" height="112" rx="16" fill="#1a1325" stroke="#8b5cf6" stroke-opacity=".35"/><circle cx="28" cy="28" r="9" fill="#a78bfa"/><text x="48" y="34" fill="#fafafa" font-size="15" font-weight="650">Govern</text><text x="20" y="66" fill="#9ca3af" font-size="12">Claims · policy</text><text x="20" y="86" fill="#9ca3af" font-size="12">review · approval</text></g>
+    <line x1="420" y1="56" x2="462" y2="56" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow)"/>
+    <g transform="translate(472)"><rect width="174" height="112" rx="16" fill="#17131f" stroke="#fff" stroke-opacity=".1"/><circle cx="28" cy="28" r="9" fill="#c4b5fd"/><text x="48" y="34" fill="#fafafa" font-size="15" font-weight="650">Compile</text><text x="20" y="66" fill="#9ca3af" font-size="12">Point-in-time packet</text><text x="20" y="86" fill="#9ca3af" font-size="12">gaps · stale · conflicts</text></g>
+    <line x1="656" y1="56" x2="698" y2="56" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow)"/>
+    <g transform="translate(708)"><rect width="174" height="112" rx="16" fill="#17131f" stroke="#fff" stroke-opacity=".1"/><circle cx="28" cy="28" r="9" fill="#fbbf24"/><text x="48" y="34" fill="#fafafa" font-size="15" font-weight="650">Act</text><text x="20" y="66" fill="#9ca3af" font-size="12">AI mission · draft</text><text x="20" y="86" fill="#9ca3af" font-size="12">result · proof</text></g>
+    <line x1="892" y1="56" x2="934" y2="56" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow)"/>
+    <g transform="translate(944)"><rect width="232" height="112" rx="16" fill="#102018" stroke="#22c55e" stroke-opacity=".28"/><circle cx="28" cy="28" r="9" fill="#22c55e"/><text x="48" y="34" fill="#fafafa" font-size="15" font-weight="650">Learn safely</text><text x="20" y="66" fill="#9ca3af" font-size="12">Candidate → approval</text><text x="20" y="86" fill="#9ca3af" font-size="12">→ explicit writeback</text></g>
+  </g>
+</g></svg>
