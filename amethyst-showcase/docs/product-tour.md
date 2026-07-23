@@ -1,45 +1,92 @@
-# Product Tour
+# Amethyst Product Tour
 
-Use synthetic data only when recording or capturing these views.
+## The 90-second recruiter path
 
-## Recommended recruiter path
+### 1. Start at Company Brain
 
-### 1. Company Brain overview
+Show the operator overview:
 
-Show the workspace containing sources, documents, claims, entities, metrics, policies, attention items, and context packets.
+- connected sources and sync health;
+- governed claims and their statuses;
+- stale or conflicting knowledge;
+- attention items requiring review;
+- compiled context packets.
 
-**Message:** Raw evidence and governed knowledge are separate product concepts.
+**Explain:** source evidence and approved organizational truth are different product objects.
 
-### 2. Source and document inspection
+### 2. Inspect a source document
 
-Open a synthetic source and document. Show freshness, chunks, provenance, and related governed objects.
+Open a document and its right context panel:
 
-**Message:** The system preserves evidence rather than converting every extracted statement directly into truth.
+- provenance and source identity;
+- freshness and synchronization state;
+- chunks and token estimates;
+- claim links and evidence excerpts;
+- derived relationships.
 
-### 3. Point-in-time context packet
+**Explain:** the system keeps the evidence inspectable rather than replacing it with a model summary.
 
-Open one compiled packet and show approved claims, policy decisions, missing context, stale information, contradictions, and lineage.
+### 3. Open a context packet
 
-**Message:** The context behind a task remains inspectable after source data changes.
+Show a persisted packet containing:
 
-### 4. Approval packet
+- approved claims;
+- policies and policy decisions;
+- missing context;
+- stale context;
+- contradictions;
+- mission or surface scope;
+- compiler version and packet identity.
 
-Show the proposed change, evidence, policy effect, risk, required action, and decision receipt.
+**Explain:** the AI receives a point-in-time snapshot, so later source changes do not rewrite the context behind an earlier decision.
 
-**Message:** Policy is enforced by the backend; approval is not a cosmetic UI convention.
+### 4. Review a learning approval packet
 
-### 5. Learning writeback
+Show:
 
-Show a completed result becoming a learning candidate, then approval, followed by the separate writeback action.
+- the mission and result;
+- proof and evidence;
+- the proposed claim;
+- conflicts and policy decision;
+- approval, denial, and explicit writeback effects.
 
-**Message:** An AI workflow cannot silently teach the organization.
+**Explain:** approval does not silently update Company Brain. Writeback is a separate idempotent action.
 
-## Screenshot checklist
+### 5. Show operational readiness
 
-1. `brain-overview.png`
-2. `document-provenance.png`
-3. `context-packet.png`
-4. `approval-packet.png`
-5. `learning-writeback.png`
+Open the capabilities or observability surface:
 
-Remove or replace all workspace IDs, user emails, source excerpts, provider names, host details, and internal identifiers before publishing.
+- mutation, learning-writeback, and source-sync gates;
+- context compilation telemetry;
+- pending approval age;
+- source health and attention depth;
+- backup, restore, canary, and rollback status.
+
+**Explain:** the system can fail closed and remain inspectable before broader use is authorized.
+
+## Product surfaces represented in this showcase
+
+| Surface | What it proves |
+| --- | --- |
+| Company Brain overview | Product coherence across evidence, governed truth, and attention |
+| Source/document panel | Provenance, freshness, chunks, and inspectable evidence |
+| Context packet panel | Point-in-time, mission-scoped AI context |
+| Approval packet | Human authority, policy, proof, and two-phase learning |
+| Creative preflight | Governed context reaching an AI-assisted workflow |
+| Observability | Operational health without content leakage |
+| Lifecycle controls | Deletion, export, backup, restore, and recovery |
+| Release gates | Deployment and rollback are separate authority states |
+
+## Recommended screenshots
+
+Use synthetic demo data only. Capture at 1440×900 unless otherwise noted:
+
+1. `company-brain-overview.png`
+2. `document-evidence-panel.png`
+3. `context-packet-lineage.png`
+4. `learning-approval-packet.png`
+5. `creative-preflight.png`
+6. `observability-and-capabilities.png`
+7. `mobile-source-sheet.png` at 390×844
+
+Before publishing, inspect every image for names, document text, credentials, host details, and internal identifiers.
