@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc">
+  <title id="title">Amethyst — governed company intelligence for AI work</title>
+  <desc id="desc">A dark purple Amethyst banner showing evidence, approval, context compilation, and proof.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#09080f"/>
+      <stop offset="0.55" stop-color="#120d1d"/>
+      <stop offset="1" stop-color="#09090b"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.46"/>
+      <stop offset="0.48" stop-color="#8b5cf6" stop-opacity="0.13"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#c4b5fd" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur40" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="40"/></filter>
+    <filter id="blur12" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="12"/></filter>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M 36 0 L 0 0 0 36" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"/></pattern>
+  </defs>
+  <rect width="1280" height="520" rx="28" fill="url(#bg)"/>
+  <rect width="1280" height="520" rx="28" fill="url(#grid)"/>
+  <ellipse cx="1010" cy="250" rx="330" ry="300" fill="url(#glow)" filter="url(#blur40)"/>
+  <rect x="1" y="1" width="1278" height="518" rx="27" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
+  <g transform="translate(76 62)">
+    <g>
+      <circle cx="31" cy="31" r="29" fill="#a78bfa" opacity="0.14" filter="url(#blur12)"/>
+      <path d="M31 4 L55 20 L46 51 L16 51 L7 20 Z" fill="#f5f3ff"/>
+      <path d="M31 4 L31 51 M7 20 L55 20 M16 51 L31 20 L46 51" fill="none" stroke="#8b5cf6" stroke-width="2.4" stroke-linejoin="round"/>
+    </g>
+    <text x="82" y="41" fill="#fafafa" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="31" font-weight="680" letter-spacing="6">AMETHYST</text>
+  </g>
+  <g transform="translate(76 158)">
+    <text fill="#fafafa" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="48" font-weight="650" letter-spacing="-1.8">
+      <tspan x="0" y="0">Governed company intelligence</tspan>
+      <tspan x="0" y="60">for AI work.</tspan>
+    </text>
+    <text x="0" y="150" fill="#a1a1aa" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="21">Evidence, approval, point-in-time context,</text>
+    <text x="0" y="182" fill="#a1a1aa" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="21">and recoverable learning for operational AI.</text>
+    <g transform="translate(0 221)">
+      <rect width="158" height="42" rx="21" fill="#8b5cf6" fill-opacity="0.15" stroke="#c4b5fd" stroke-opacity="0.38"/>
+      <circle cx="21" cy="21" r="4" fill="#22c55e"/><text x="36" y="27" fill="#ede9fe" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600">Evidence-bound</text>
+      <rect x="172" width="184" height="42" rx="21" fill="#ffffff" fill-opacity="0.035" stroke="#ffffff" stroke-opacity="0.09"/>
+      <circle cx="193" cy="21" r="4" fill="#c4b5fd"/><text x="208" y="27" fill="#e4e4e7" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600">Human authority</text>
+      <rect x="370" width="164" height="42" rx="21" fill="#ffffff" fill-opacity="0.035" stroke="#ffffff" stroke-opacity="0.09"/>
+      <circle cx="391" cy="21" r="4" fill="#fbbf24"/><text x="406" y="27" fill="#e4e4e7" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600">Rollback-ready</text>
+    </g>
+  </g>
+  <g transform="translate(790 86)">
+    <rect width="408" height="350" rx="24" fill="#111016" stroke="#ffffff" stroke-opacity="0.1"/>
+    <rect x="24" y="24" width="360" height="46" rx="12" fill="#0b0a0f" stroke="#ffffff" stroke-opacity="0.07"/>
+    <circle cx="45" cy="47" r="5" fill="#22c55e"/>
+    <text x="62" y="52" fill="#d4d4d8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">mission: launch Q3 campaign</text>
+    <g transform="translate(24 94)">
+      <rect width="360" height="54" rx="14" fill="#8b5cf6" fill-opacity="0.1" stroke="#8b5cf6" stroke-opacity="0.38"/>
+      <circle cx="29" cy="27" r="12" fill="#8b5cf6" fill-opacity="0.22"/><text x="25" y="32" fill="#c4b5fd" font-family="Inter, sans-serif" font-size="14" font-weight="700">1</text>
+      <text x="52" y="23" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="650">Ground</text><text x="52" y="41" fill="#71717a" font-family="Inter, sans-serif" font-size="12">Sources + provenance + freshness</text>
+      <rect y="66" width="360" height="54" rx="14" fill="#ffffff" fill-opacity="0.025" stroke="#ffffff" stroke-opacity="0.07"/>
+      <circle cx="29" cy="93" r="12" fill="#ffffff" fill-opacity="0.05"/><text x="25" y="98" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14" font-weight="700">2</text>
+      <text x="52" y="89" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="650">Govern</text><text x="52" y="107" fill="#71717a" font-family="Inter, sans-serif" font-size="12">Policy + review + approval</text>
+      <rect y="132" width="360" height="54" rx="14" fill="#ffffff" fill-opacity="0.025" stroke="#ffffff" stroke-opacity="0.07"/>
+      <circle cx="29" cy="159" r="12" fill="#ffffff" fill-opacity="0.05"/><text x="25" y="164" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="14" font-weight="700">3</text>
+      <text x="52" y="155" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="650">Compile</text><text x="52" y="173" fill="#71717a" font-family="Inter, sans-serif" font-size="12">Point-in-time context packet</text>
+      <rect y="198" width="360" height="54" rx="14" fill="#22c55e" fill-opacity="0.075" stroke="#22c55e" stroke-opacity="0.24"/>
+      <circle cx="29" cy="225" r="12" fill="#22c55e" fill-opacity="0.16"/><path d="M23 225l4 4 8-9" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="52" y="221" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="650">Learn safely</text><text x="52" y="239" fill="#71717a" font-family="Inter, sans-serif" font-size="12">Proof + approval + explicit writeback</text>
+    </g>
+  </g>
+  <rect x="80" y="487" width="1120" height="1" fill="url(#line)"/>
+</svg>
