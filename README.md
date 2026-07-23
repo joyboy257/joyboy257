@@ -31,12 +31,12 @@ A recruiter-facing product and architecture case study covering the chat-first w
 The production monorepo remains private; the showcase exposes the engineering decisions and proof without publishing sensitive implementation or operational material.
 
 <p align="center">
-  <a href="https://github.com/joyboy257/joyboy257/tree/main/amethyst-showcase">
-    <img src="https://raw.githubusercontent.com/joyboy257/joyboy257/main/amethyst-showcase/assets/hero.svg" width="100%" alt="Amethyst engineering showcase" />
+  <a href="https://github.com/joyboy257/amethyst-showcase">
+    <img src="https://raw.githubusercontent.com/joyboy257/amethyst-showcase/main/assets/hero.svg" width="100%" alt="Amethyst engineering showcase" />
   </a>
 </p>
 
-**[Explore the Amethyst engineering showcase →](https://github.com/joyboy257/joyboy257/tree/main/amethyst-showcase)**
+**[Explore the Amethyst engineering showcase →](https://github.com/joyboy257/amethyst-showcase)**
 
 A recruiter-facing case study for governed company intelligence: evidence, point-in-time context, policy-enforced approvals, explicit learning writeback, lifecycle controls, and evidence-gated deployment.
 
@@ -115,7 +115,7 @@ A browser-based generative game system that turns dream descriptions into explor
 <tr>
 <td width="50%" valign="top">
 
-### [Amethyst](https://github.com/joyboy257/joyboy257/tree/main/amethyst-showcase)
+### [Amethyst](https://github.com/joyboy257/amethyst-showcase)
 
 **Governed company intelligence for AI-assisted work.**
 
@@ -143,7 +143,7 @@ Across my projects, I design evidence ledgers, phase gates, independent review l
 ## Selected public projects
 
 - **[Mirai Showcase](https://github.com/joyboy257/mirai-showcase)** — public product, architecture, and engineering case study for Mirai
-- **[Amethyst Showcase](https://github.com/joyboy257/joyboy257/tree/main/amethyst-showcase)** — governed AI context, approvals, learning writeback, recovery, and production controls
+- **[Amethyst Showcase](https://github.com/joyboy257/amethyst-showcase)** — governed AI context, approvals, learning writeback, recovery, and production controls
 - **[DreamCraft](https://github.com/joyboy257/dreamcraft)** — generative browser-based 3D world engine
 - **[Mototiam](https://github.com/joyboy257/mototiam)** — motorcycle listing intelligence, scoring, and alerts for Singapore
 - **[AMI — AWHL Market Intelligence](https://github.com/joyboy257/ami-awhl)** — evidence-backed competitive intelligence platform
