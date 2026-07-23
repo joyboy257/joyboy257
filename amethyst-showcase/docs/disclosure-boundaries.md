@@ -1,21 +1,44 @@
 # Disclosure Boundaries
 
-This public case study may include:
+This public case study is designed for recruiters and engineering reviewers. It is not a source release and must not expose customer, infrastructure, or security-sensitive material.
 
-- product concepts and synthetic UI examples;
-- sanitized architecture diagrams;
-- generalized technology choices;
-- internally verified test and deployment categories;
-- explicit statements about what remained unauthorized.
+## Safe to publish
 
-It must not include:
+- synthetic product screenshots;
+- high-level architecture and data flow;
+- generic technology choices;
+- abstracted test categories;
+- internal aggregate deployment evidence;
+- role and ownership description;
+- explicit maturity and authorization boundaries.
 
-- private source code;
-- customer names, content, files, or identifiers;
-- credentials, environment values, account IDs, host IDs, or network details;
-- concrete production URLs or operational access instructions;
-- incident records or security-sensitive runbooks;
-- private commercial plans;
-- claims that internal tests prove customer outcomes.
+## Do not publish
 
-Before publishing any new asset, review both visible text and metadata. Screenshots must use synthetic data and should be cropped to the smallest useful surface.
+- customer names, content, documents, or screenshots;
+- credentials, secrets, tokens, keys, cookies, or environment values;
+- host IDs, IP addresses, network topology, SSH material, or private URLs;
+- database paths, operational identifiers, or raw incident evidence;
+- concrete approval comments or evidence quotes;
+- private commit hashes, workflow-run IDs, or deployment identifiers;
+- unreleased commercial strategy;
+- details that weaken operational security.
+
+## Claims policy
+
+Use precise maturity language:
+
+- **implemented** means source exists and was reviewed;
+- **tested** means named checks were executed against the relevant version;
+- **deployed internally** does not mean customer pilot;
+- **production-ready** is not used without the applicable release authority;
+- **external pilot** and **customer outcome** claims require separate evidence.
+
+## Screenshot checklist
+
+Before adding any image:
+
+1. use synthetic fixtures only;
+2. inspect every visible string at full resolution;
+3. remove names, emails, document text, IDs, URLs, and timestamps that reveal operations;
+4. inspect browser chrome, terminal history, tabs, and notifications;
+5. bind the screenshot description to what it actually proves.
