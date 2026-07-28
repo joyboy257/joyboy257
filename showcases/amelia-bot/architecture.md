@@ -1,258 +1,267 @@
-# Amelia Bot — Architecture Case Study
+# Amelia Bot — Current Production and Hardening Architecture
 
 <p align="center">
-  <img src="assets/authority-model.svg" alt="Amelia Bot authority model" width="100%" />
+  <img src="assets/authority-model.svg" alt="Amelia Bot current production architecture and PostgreSQL-centred hardening target" width="100%" />
 </p>
 
-## System objective
+## Evidence language used in this document
 
-Amelia Bot turns informal staff requests and incoming documents into controlled operational work while preserving a strict separation between:
+| Label | Meaning |
+| --- | --- |
+| **Production current** | Observed in the active workflow estate and part of the staff-used operating path. |
+| **Architecture direction** | Accepted target boundary for remediation, but not proof that production has been cut over. |
+| **Test-verified inactive** | Proven in source-controlled tests or an isolated database and represented by an inactive n8n workflow with no production callers. |
+| **Planned / unresolved** | Diagnosed requirement that still needs implementation, runtime proof, or cutover authority. |
 
-1. **source intent** from people and providers;
-2. **probabilistic interpretation** from an LLM;
-3. **deterministic validation and workflow policy**;
-4. **authoritative PostgreSQL state**;
-5. **human authority and external side effects**.
+This distinction is central to the case study. Amelia's production path and its cleaner target architecture are not the same thing yet.
 
-The central rule is:
+## Current production objective
 
-> **The model may interpret, classify, and draft. Deterministic controllers and PostgreSQL decide whether business state changes.**
+The active system helps staff turn Telegram intake messages and uploaded files into organised case operations:
 
-## High-level topology
+- capture and parse intake details;
+- maintain a working intake/session context;
+- accept and stage files;
+- support lifecycle and status commands;
+- move intended files into final Google Drive folders;
+- enrich finalised cases with extracted context and file-checklist information;
+- append operational tracking and PostgreSQL KB records;
+- return staff-facing Telegram outcomes.
 
-```text
-Staff messages · commands · attachments · provider events
-                         │
-                         ▼
-              Messaging and event ingress
-                         │
-                         ▼
-                   n8n orchestration
-       correlation · routing · bounded controller calls
-                         │
-            ┌────────────┼────────────┐
-            ▼            ▼            ▼
-       LLM parser   deterministic   human review
-     typed candidates  validation    and approval
-            └────────────┼────────────┘
-                         ▼
-              PostgreSQL authority
-       state · transactions · ledgers · idempotency
-                         │
-                         ▼
-             Controlled provider effects
-             Gmail · Google Drive · Telegram
-                         │
-                         ▼
-            Outcome evidence and reconciliation
-```
+The current system is a collection of cooperating n8n workflows rather than one clean service boundary.
 
-n8n coordinates the workflow, but it is not the canonical store and does not independently decide whether a durable mutation committed.
-
-## Authority layers
-
-### 1. Source intent
-
-Source inputs include:
-
-- staff commands and free-form messages;
-- attachments and document events;
-- email and storage-provider responses;
-- retries, redelivery, and timeout recovery events.
-
-These inputs are evidence of intent or provider behaviour. They are not authoritative workflow state.
-
-### 2. Bounded LLM interpretation
-
-The model is used for tasks where language ambiguity is the main difficulty:
-
-- intent classification;
-- candidate field extraction;
-- document and message classification;
-- summary drafting;
-- clarification-question generation.
-
-Model output must be typed and bounded before deterministic validation. The LLM cannot:
-
-- confirm canonical identity;
-- authorize or commit a state transition;
-- bypass a review requirement;
-- decide that an external action succeeded;
-- silently repair a policy or schema failure.
-
-### 3. Deterministic controllers
-
-Controllers own repeatable rules such as:
-
-- current-context and canonical-record resolution;
-- legal state transitions;
-- required-field and schema validation;
-- file acceptance and ingress policy;
-- permission and approval requirements;
-- retry, rejection, reconciliation, and escalation decisions.
-
-This layer converts a model proposal into one of four outcomes:
+## Current production topology
 
 ```text
-accept for authoritative commit
-request clarification
-require human review
-reject with an explicit reason
+Staff Telegram messages, commands and files
+                    │
+                    ▼
+         Main Telegram Intake workflow
+     parsing · aliases · routing · command policy
+                    │
+       ┌────────────┼──────────────┬────────────────┐
+       ▼            ▼              ▼                ▼
+Process Intake   State Manager   File acceptance   Status/context
+session start    draft/lifecycle ingress/jobs      support
+and temp Drive   state/SQL       duplicate handling
+       └────────────┼──────────────┘
+                    ▼
+          Staged-file finalisation
+ case resolution · Drive movement · receipts · upserts
+                    │
+                    ▼
+          Post-finalisation enrichment
+  AI extraction · police-report context · file checklist
+                    │
+          ┌─────────┼──────────┐
+          ▼         ▼          ▼
+    Google Drive  Sheets   PostgreSQL KB
+    actual files  tracker  cases/documents/events
+                    │
+                    ▼
+            Telegram outcome
 ```
 
-### 4. PostgreSQL authority
+### Current production truth
 
-PostgreSQL is the operational source of truth for:
+- **Main remains authoritative** for Telegram parsing and routing.
+- **n8n workflows still contain substantial application logic**, including dynamic SQL and large Code-node responsibilities.
+- **Google Drive stores the actual files.**
+- **Google Sheets remains an operational tracker.**
+- **PostgreSQL KB records link cases, documents, extracted facts, events, and review decisions**, but the complete production estate has not yet converged on PostgreSQL as its sole transaction authority.
+- **n8n execution history is operational evidence, not sufficient proof of a canonical business mutation.**
 
-- active sessions and canonical matters;
-- lifecycle state and transition history;
-- file-ingress records;
-- operation keys and payload fingerprints;
-- mutation outcomes and provider references;
-- conflicts, uncertain effects, and reconciliation state;
-- durable evidence required before completion is acknowledged.
+## Current workflow responsibilities
 
-A successful n8n execution or provider response does not replace a committed database record.
+| Production area | Responsibilities observed in the active estate |
+| --- | --- |
+| **Main intake** | Telegram update parsing, aliases, command identity, routing, state-changing policy, summary interpretation, and file normalisation. |
+| **Process intake** | Caller/session handling, working-session reservation or load, temporary Drive-folder creation, and persistence. |
+| **Intake state manager** | Start, load, update, cancel, claim, stage, failure, reconciliation, status, and projection SQL. |
+| **File acceptance and ingress** | Delivery/file identity checks, ingress receipt, file event creation, and processing-job registration. |
+| **Staged-file finalisation** | Case resolution, ledger loading, Drive movement, provider receipts, document upsert, and session finalisation. |
+| **Enrichment** | AI-assisted extraction, police-report context, and file-checklist interpretation after finalisation. |
+| **Tracking and KB** | Google Sheets updates plus PostgreSQL cases, documents, extractions, and event records. |
 
-### 5. Human authority and external effects
+## State model: distributed, not unified
 
-Human review is required when:
+The production estate supports capabilities such as:
 
-- more than one record or person is a plausible match;
-- required context remains missing;
-- a document cannot be safely classified or routed;
-- a requested action is consequential or externally visible;
-- internal state and provider state disagree;
-- the system cannot prove whether a prior effect completed.
+- new intake and current-context handling;
+- draft summary updates;
+- file receipt, staging, and finalisation;
+- hold, pending, resume, drop, and cancel commands;
+- status, failure, recovery, and reconciliation paths;
+- terminal finalised, cancelled, or superseded conditions.
 
-External effects remain controlled operations whose provider identifiers and outcomes are recorded for retry and reconciliation.
+These behaviours are currently spread across Main, support workflows, the state manager, file workflows, and finalisation logic. This showcase does **not** claim that one canonical production state machine already governs every path.
 
-## Core state groups
+That fragmentation is one of the central problems the refactor is addressing.
 
-| Group | Representative states | Authority |
+## Current AI boundary
+
+AI is used for bounded interpretation and enrichment, including:
+
+- extracting structured context from finalised case material;
+- interpreting police-report or document content;
+- producing file-checklist and missing-document context;
+- candidate classification and summary assistance where appropriate.
+
+The actual files remain in Google Drive. Staff and deterministic workflow rules retain authority over final case handling and externally visible actions.
+
+The public showcase does not claim that every intake decision is made by an LLM or that all model output already passes through one universal typed contract.
+
+## Accepted hardening direction
+
+The governing target is:
+
+```text
+PostgreSQL
+= durable business state, transaction authority, idempotency, evidence,
+  receipts, reconciliation and recovery
+
+n8n
+= bounded orchestration, dispatch and provider adapters
+
+Telegram / Google Drive / email / Sheets
+= external interfaces and side-effect systems
+```
+
+The purpose is not merely to move large Code nodes into child workflows. Hidden application services and generated SQL must become small source-controlled modules and versioned PostgreSQL functions with explicit authority.
+
+## Hardening topology
+
+```text
+Telegram update
+      │
+      ▼
+Deterministic edge normalisation and command routing
+      │
+      ▼
+Bounded domain controller
+      │
+      ├── deterministic parser / validation
+      ├── PostgreSQL function for durable transition
+      └── provider-send-disabled result contract
+      │
+      ▼
+Existing provider workflow performs the approved side effect
+      │
+      ▼
+Provider receipt and durable reconciliation evidence
+```
+
+## Actual hardening status
+
+| Component | Status | What is true |
 | --- | --- | --- |
-| **Intake** | context resolution, new intake, draft summary, awaiting confirmation | Deterministic controller with staff confirmation |
-| **Matter lifecycle** | active, hold, pending, resumed, dropped, cancelled, completed | PostgreSQL state machine |
-| **File ingress** | received, registered, staged, classified, accepted, review required, failed | Ingress ledger and deterministic validation |
-| **External effect** | queued, attempted, delivered, retryable, uncertain, permanently failed | Durable effect and reconciliation record |
-| **Exception handling** | ambiguous identity, invalid payload, provider disagreement, manual review | Explicit escalation state |
+| **Deterministic source toolchain** | Implemented | Exact workflow export, source extraction, deterministic generation, validation/comparison, deployment preview, and rollback payloads exist. |
+| **Telegram edge shadow** | Verified, non-authoritative | A normaliser, registry router, and shadow orchestrator passed a 69-case parity corpus with zero unexpected differences and zero side-effect violations. Main remains authoritative. |
+| **New Case Controller** | Inactive candidate | Generated and validated; no production callers; not cut over. |
+| **Summary Controller** | Test-verified inactive | PostgreSQL summary functions passed isolated transaction tests; live workflow is inactive with zero callers and zero executions. |
+| **File Intake Controller** | Inactive candidate | Generated and validated; duplicate and provider-receipt runtime proof remains a later slice. |
+| **Existing Case File Controller** | Inactive candidate | Generated and validated; current `/sendfile` movement remains in the existing staged-file workflow. |
+| **Lifecycle Controller** | Inactive candidate | Generated and validated; concurrent lifecycle transition proof and production cutover remain outstanding. |
+| **Finalisation decomposition** | Unresolved later work | Existing staged-file movement and finalisation remain heavy application services. |
 
-## Write path
+## Verified summary-slice authority
 
-A consequential write follows this sequence:
+Only the replacement summary parsing/save slice currently has isolated PostgreSQL runtime proof.
 
-1. Receive an input with correlation context.
-2. Produce a typed interpretation when language processing is required.
-3. Resolve the canonical scope and current state.
-4. Validate permissions, transition rules, required fields, and provider policy.
-5. Stop for clarification or human authority when necessary.
-6. Reserve an idempotent operation inside the database boundary.
-7. Perform the bounded provider effect when applicable.
-8. Record provider and outcome evidence.
-9. Commit canonical state or uncertain-effect status.
-10. Return a confirmed result, replay, conflict, or visible escalation.
+The verified contract includes:
 
-Completion is never inferred solely from a model statement or an orchestration node finishing.
+- a first save creates version 1;
+- a legitimate edit creates the next version;
+- exact replay returns the original version without another mutation;
+- key, transport, command, operation, and bound-session collisions are blocked;
+- stale state, wrong scope, wrong target, and malformed parsed summaries are blocked;
+- concurrent edits receive distinct versions;
+- writes are allowed only in permitted intake states;
+- terminal, cancelled, or superseded states reject edits;
+- failures leave no partial summary version, binding, or session mutation.
 
-## Idempotency contract
+The generated controller is deliberately provider-send-disabled. It contains no Telegram sender or Google Drive node.
 
-Each durable operation is represented by fields equivalent to:
+### What this does not prove
 
-```text
-operation_key
-payload_fingerprint
-operation_type
-canonical_scope
-status
-provider_reference
-result_payload
-created_at
-completed_at
-```
+It does not prove that:
 
-Expected behaviour:
+- production Main uses the replacement controller;
+- every production operation has the same exact-replay contract;
+- file ingress and finalisation are already protected by content-hash deduplication and high-water marks;
+- all provider partial-success paths are reconciled safely;
+- the complete estate has one canonical PostgreSQL ledger;
+- production cutover is authorised.
 
-| Input | Behaviour |
-| --- | --- |
-| New key + valid payload | Reserve and execute the operation |
-| Same key + same payload + committed result | Replay the recorded result |
-| Same key + different payload | Reject as an idempotency conflict |
-| Existing uncertain provider effect | Reconcile before another external effect |
-| Database authority unavailable | Do not claim completion |
+## Idempotency: current truth versus target
 
-The contract protects against repeated staff actions, webhook redelivery, workflow retries, and ambiguous partial success.
+### Current production
 
-## Provider partial-success model
+The live workflow estate contains deduplication, ledgers, status, and reconciliation logic across multiple workflows and data surfaces. Live inspection found that command identity, file identity, state, provider effects, and finalisation ownership are not yet represented by one universal operation contract.
 
-An external provider can accept an operation while the local workflow times out before recording the acknowledgement.
+### Target contract
 
-The safe response is not to retry blindly.
+The stabilisation programme aims for:
 
 ```text
-provider result known       → record and complete
-provider result definitely failed → retry under policy
-provider result uncertain   → reconcile by provider reference
-no durable reservation      → stop before effect where possible
+one business operation
+→ one canonical PostgreSQL identity
+→ one consistent state result
+→ at most one external side effect
+→ durable provider receipt
+→ deterministic replay result
+→ bounded recovery
+→ auditable terminal state
 ```
 
-Uncertain effects remain visible operational states until evidence resolves them.
+For file intake, later work must distinguish:
 
-## Integration responsibilities
+- raw Telegram-delivery identity;
+- Telegram-file identity;
+- canonical evidence identity;
+- file-content identity;
+- revised or intentionally repeated evidence.
 
-### Telegram or messaging interface
+For finalisation, a high-water mark must define which files belong to one send/finalise request under concurrent arrival.
 
-- Accept staff requests, commands, corrections, and attachments.
-- Return missing-information prompts, confirmations, outcomes, or escalation notices.
-- Never serve as the canonical workflow store.
+These are accepted reliability requirements, not completed production claims.
 
-### n8n
+## Provider partial success
 
-- Coordinate bounded controllers and provider calls.
-- Carry correlation and idempotency identifiers.
-- Expose orchestration history for debugging.
-- Keep mutation authority out of giant, opaque code nodes.
+The target behaviour is:
 
-### Gmail and Google Drive
+```text
+known provider success  → record receipt and complete
+known provider failure  → retry under policy
+uncertain provider state → reconcile before another effect
+missing durable intent   → stop before effect where possible
+```
 
-- Perform provider-specific email and file operations.
-- Return stable provider identifiers and results.
-- Remain behind validation, retry, and exception boundaries.
+The stabilisation programme explicitly forbids blind resends when provider outcome is unknown. Full provider-interruption certification remains outstanding for later slices.
 
-### PostgreSQL
+## Observability and evidence
 
-- Enforce state and transaction invariants.
-- Own operation reservation, exact replay, and conflict detection.
-- Preserve evidence for audit and reconciliation.
+| Surface | Current use | Limitation |
+| --- | --- | --- |
+| **n8n execution history** | Trace node paths, provider calls, errors, retries, and duration. | Does not independently prove durable business completion. |
+| **State/ledger tables** | Track intake, file, job, notification, or KB state depending on the workflow. | Authority is still distributed and needs convergence. |
+| **Google Drive metadata** | Proves file and folder provider results. | Must be reconciled with internal state after uncertain effects. |
+| **Google Sheets** | Operational tracking used by the team. | Is not the intended long-term canonical database. |
+| **PostgreSQL KB** | Links cases, documents, extractions, and normalised events. | Full estate convergence and cutover remain incomplete. |
+| **Source-control evidence** | Exact generated workflows, tests, comparisons, manifests, and rollback artefacts. | Proves the candidate and its provenance, not production adoption by itself. |
 
-## Observability model
+## Safe cutover rule
 
-Different evidence surfaces answer different questions:
+No replacement slice should enter the production path merely because:
 
-| Surface | Question answered |
-| --- | --- |
-| n8n execution history | Which orchestration steps ran, failed, retried, or timed out? |
-| PostgreSQL operation ledger | What was authoritatively reserved, committed, replayed, or rejected? |
-| File-ingress records | Was a file received, classified, routed, held, or rejected? |
-| Provider reference | Which email, storage, or message effect corresponds to the operation? |
-| Human-review state | Which ambiguity remains unresolved and who must decide? |
+- the workflow validates;
+- a local test passes;
+- an inactive n8n execution succeeds;
+- generated and live definitions look similar;
+- no immediate error appears.
 
-No single surface is treated as complete evidence by itself.
-
-## Failure posture
-
-The system prefers a visible, recoverable escalation over silent best effort.
-
-| Failure | Safe behaviour |
-| --- | --- |
-| Malformed model output | Reject or boundedly repair the schema; do not write state |
-| Duplicate delivery | Replay the committed result or reject a changed payload |
-| Stale state | Reject the transition and return the current authoritative state |
-| Provider timeout | Record uncertain state and reconcile before another effect |
-| Invalid file | Preserve ingress evidence and return rejection or review state |
-| Missing context | Ask for clarification or route to human review |
-| Database unavailable | Stop before effects where possible and never report completion |
-| Provider/database disagreement | Preserve both references and open reconciliation |
+A slice requires bounded runtime proof, current-versus-candidate parity, zero unintended provider effects, an exact rollback version, and explicit release authority.
 
 ## Confidentiality boundary
 
-This document describes reusable engineering patterns. It excludes the client's identity, customer data, private terminology, production identifiers, credentials, raw workflow exports, proprietary rules, and infrastructure topology.
+This document describes the verified system shape and programme status. It excludes the client's identity, customer data, private terminology, production identifiers, credentials, raw workflow exports, proprietary Code nodes, and infrastructure topology.
