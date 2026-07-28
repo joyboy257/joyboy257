@@ -50,9 +50,9 @@ A recruiter-facing case study for governed company intelligence: evidence, point
 
 **[Explore the Amelia Bot production workflow showcase →](https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot)**
 
-A confidential-client-safe production case study covering staff intake, persistent matter state, document ingress, n8n orchestration, PostgreSQL authority, idempotency, human escalation, and a real failure converted into a permanent guardrail.
+A confidential-client-safe case study of a staff-used Telegram and n8n intake workflow, Google Drive finalisation, AI enrichment, operational tracking, and PostgreSQL KB records—plus the evidence-led hardening programme that followed. The current Main workflow remains authoritative; the first PostgreSQL-centred replacement slice is test-verified but inactive.
 
-`live staff adoption` · `production workflow` · `PostgreSQL authority` · `no unsupported ROI claims`
+`live staff adoption` · `production n8n workflow` · `summary slice test-verified` · `production cutover not claimed`
 
 ---
 
@@ -105,11 +105,11 @@ A research system for falsifiable market hypotheses, deterministic backtesting, 
 
 ### [Amelia Bot](https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot)
 
-**Production AI-assisted workflow and document-operations system for a private professional-services client.**
+**Staff-used production workflow and controlled architecture-hardening programme for a private professional-services client.**
 
-Designed for intake, structured summary capture, matter-state operations, file ingress, workflow orchestration, idempotency, auditability, retries, and safe human escalation across n8n, PostgreSQL, cloud services, and messaging interfaces.
+The live system uses Telegram and n8n for intake, working state, file staging, Google Drive finalisation, AI-assisted enrichment, tracking, and PostgreSQL KB records. I later led the deterministic source, shadow, rollback, and PostgreSQL-centred refactor work without presenting inactive candidates as a completed production cutover.
 
-**Focus:** workflow reliability, document intelligence, deterministic authority, operations, testing under real user behaviour
+**Focus:** workflow reliability, production debugging, n8n provenance, PostgreSQL transactions, shadow parity, rollback, and evidence-bounded claims
 
 </td>
 <td width="50%" valign="top">
@@ -156,7 +156,7 @@ Across my projects, I design evidence ledgers, phase gates, independent review l
 
 - **[Mirai Showcase](https://github.com/joyboy257/mirai-showcase)** — public product, architecture, and engineering case study for Mirai
 - **[Amethyst Showcase](https://github.com/joyboy257/amethyst-showcase)** — governed AI context, approvals, learning writeback, recovery, and production controls
-- **[Amelia Bot Showcase](https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot)** — sanitised production workflow, idempotency, human escalation, and engineering evidence
+- **[Amelia Bot Showcase](https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot)** — staff-used production workflow, current-versus-target architecture, shadow evidence, and a test-verified inactive replacement slice
 - **[DreamCraft](https://github.com/joyboy257/dreamcraft)** — generative browser-based 3D world engine
 - **[Mototiam](https://github.com/joyboy257/mototiam)** — motorcycle listing intelligence, scoring, and alerts for Singapore
 - **[AMI — AWHL Market Intelligence](https://github.com/joyboy257/ami-awhl)** — evidence-backed competitive intelligence platform
