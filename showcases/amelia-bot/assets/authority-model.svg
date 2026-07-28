@@ -1,75 +1,117 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560" role="img" aria-labelledby="title desc">
-  <title id="title">Amelia Bot authority model</title>
-  <desc id="desc">A dark recruiter-safe system diagram separating LLM interpretation, deterministic rules, PostgreSQL authority, human review, and external effects.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="680" viewBox="0 0 1280 680" role="img" aria-labelledby="title desc">
+  <title id="title">Amelia Bot current production and target authority model</title>
+  <desc id="desc">A dark recruiter-safe diagram comparing the current distributed n8n production estate with the PostgreSQL-centred hardening target, including the test-verified inactive summary slice.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#090a0c"/><stop offset="1" stop-color="#12100c"/></linearGradient>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#71717a"/></marker>
     <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0L0 0 0 34" fill="none" stroke="#ffffff" stroke-opacity="0.025"/></pattern>
   </defs>
-  <rect width="1280" height="560" rx="28" fill="url(#bg)"/>
-  <rect width="1280" height="560" rx="28" fill="url(#grid)"/>
-  <rect x="1" y="1" width="1278" height="558" rx="27" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
-  <text x="56" y="62" fill="#fafafa" font-family="Inter, sans-serif" font-size="27" font-weight="700">Authority is explicit at every boundary</text>
-  <text x="56" y="91" fill="#71717a" font-family="Inter, sans-serif" font-size="14">Probabilistic interpretation is useful. It is never the final write authority.</text>
+  <rect width="1280" height="680" rx="28" fill="url(#bg)"/>
+  <rect width="1280" height="680" rx="28" fill="url(#grid)"/>
+  <rect x="1" y="1" width="1278" height="678" rx="27" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
 
-  <g transform="translate(56 138)">
-    <rect width="210" height="160" rx="20" fill="#151519" stroke="#ffffff" stroke-opacity="0.08"/>
-    <circle cx="34" cy="36" r="15" fill="#60a5fa" fill-opacity="0.16"/><text x="29" y="42" fill="#93c5fd" font-family="Inter, sans-serif" font-size="15" font-weight="700">1</text>
-    <text x="58" y="41" fill="#fafafa" font-family="Inter, sans-serif" font-size="16" font-weight="700">Source intent</text>
-    <text x="20" y="78" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13">Staff messages</text>
-    <text x="20" y="101" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13">Email and attachments</text>
-    <text x="20" y="124" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13">Provider events</text>
-    <rect x="20" y="137" width="170" height="4" rx="2" fill="#60a5fa" fill-opacity="0.5"/>
+  <text x="56" y="54" fill="#fafafa" font-family="Inter, sans-serif" font-size="27" font-weight="700">Production truth and hardening target are different states</text>
+  <text x="56" y="83" fill="#71717a" font-family="Inter, sans-serif" font-size="14">The active estate remains n8n-centred. PostgreSQL authority is being introduced slice by slice.</text>
 
-    <path d="M220 80H270" stroke="#71717a" stroke-width="2" marker-end="url(#arrow)"/>
+  <g transform="translate(56 118)">
+    <rect width="1168" height="224" rx="22" fill="#111113" stroke="#ffffff" stroke-opacity="0.09"/>
+    <rect x="20" y="18" width="214" height="34" rx="17" fill="#22c55e" fill-opacity="0.1" stroke="#22c55e" stroke-opacity="0.25"/>
+    <text x="39" y="40" fill="#86efac" font-family="Inter, sans-serif" font-size="12" font-weight="700">CURRENT PRODUCTION</text>
+    <text x="256" y="40" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="12">Staff-used · Main remains authoritative · authority distributed across workflows and data surfaces</text>
 
-    <rect x="280" width="210" height="160" rx="20" fill="#17140f" stroke="#f59e0b" stroke-opacity="0.24"/>
-    <circle cx="314" cy="36" r="15" fill="#f59e0b" fill-opacity="0.18"/><text x="309" y="42" fill="#fbbf24" font-family="Inter, sans-serif" font-size="15" font-weight="700">2</text>
-    <text x="338" y="41" fill="#fafafa" font-family="Inter, sans-serif" font-size="16" font-weight="700">LLM interpretation</text>
-    <text x="300" y="78" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13">Intent classification</text>
-    <text x="300" y="101" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13">Candidate fields</text>
-    <text x="300" y="124" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13">Draft summaries</text>
-    <text x="300" y="146" fill="#fde68a" font-family="Inter, sans-serif" font-size="11" font-weight="650">PROPOSES ONLY</text>
+    <g transform="translate(24 74)">
+      <rect width="176" height="118" rx="17" fill="#151519" stroke="#ffffff" stroke-opacity="0.08"/>
+      <circle cx="28" cy="29" r="13" fill="#60a5fa" fill-opacity="0.16"/><text x="24" y="34" fill="#93c5fd" font-family="Inter, sans-serif" font-size="13" font-weight="700">1</text>
+      <text x="51" y="34" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="700">Telegram</text>
+      <text x="18" y="64" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Commands · messages</text>
+      <text x="18" y="84" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Files · staff corrections</text>
+      <text x="18" y="104" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Staff-facing outcomes</text>
 
-    <path d="M500 80H550" stroke="#71717a" stroke-width="2" marker-end="url(#arrow)"/>
+      <path d="M184 59H221" stroke="#71717a" stroke-width="2" marker-end="url(#arrow)"/>
 
-    <rect x="560" width="210" height="160" rx="20" fill="#141416" stroke="#ffffff" stroke-opacity="0.08"/>
-    <circle cx="594" cy="36" r="15" fill="#a78bfa" fill-opacity="0.16"/><text x="589" y="42" fill="#c4b5fd" font-family="Inter, sans-serif" font-size="15" font-weight="700">3</text>
-    <text x="618" y="41" fill="#fafafa" font-family="Inter, sans-serif" font-size="16" font-weight="700">Deterministic rules</text>
-    <text x="580" y="78" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13">Identity and state</text>
-    <text x="580" y="101" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13">Schema and file policy</text>
-    <text x="580" y="124" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13">Permissions and retries</text>
-    <text x="580" y="146" fill="#c4b5fd" font-family="Inter, sans-serif" font-size="11" font-weight="650">VALIDATES</text>
+      <rect x="232" width="214" height="118" rx="17" fill="#17140f" stroke="#f59e0b" stroke-opacity="0.26"/>
+      <circle cx="260" cy="29" r="13" fill="#f59e0b" fill-opacity="0.18"/><text x="256" y="34" fill="#fbbf24" font-family="Inter, sans-serif" font-size="13" font-weight="700">2</text>
+      <text x="283" y="34" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="700">Main + n8n estate</text>
+      <text x="250" y="64" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Parsing · routing · policy</text>
+      <text x="250" y="84" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Session · lifecycle · files</text>
+      <text x="250" y="104" fill="#fde68a" font-family="Inter, sans-serif" font-size="11" font-weight="650">CURRENT AUTHORITY</text>
 
-    <path d="M780 80H830" stroke="#71717a" stroke-width="2" marker-end="url(#arrow)"/>
+      <path d="M454 59H491" stroke="#71717a" stroke-width="2" marker-end="url(#arrow)"/>
 
-    <rect x="840" width="210" height="160" rx="20" fill="#0f1711" stroke="#22c55e" stroke-opacity="0.22"/>
-    <circle cx="874" cy="36" r="15" fill="#22c55e" fill-opacity="0.16"/><text x="869" y="42" fill="#86efac" font-family="Inter, sans-serif" font-size="15" font-weight="700">4</text>
-    <text x="898" y="41" fill="#fafafa" font-family="Inter, sans-serif" font-size="16" font-weight="700">PostgreSQL authority</text>
-    <text x="860" y="78" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13">Transactions and ledgers</text>
-    <text x="860" y="101" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13">Idempotency and conflicts</text>
-    <text x="860" y="124" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13">Canonical outcome evidence</text>
-    <text x="860" y="146" fill="#86efac" font-family="Inter, sans-serif" font-size="11" font-weight="650">COMMITS</text>
+      <rect x="502" width="198" height="118" rx="17" fill="#151519" stroke="#ffffff" stroke-opacity="0.08"/>
+      <circle cx="530" cy="29" r="13" fill="#a78bfa" fill-opacity="0.16"/><text x="526" y="34" fill="#c4b5fd" font-family="Inter, sans-serif" font-size="13" font-weight="700">3</text>
+      <text x="553" y="34" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="700">Provider workflows</text>
+      <text x="520" y="64" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Temporary + final Drive</text>
+      <text x="520" y="84" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Email · Sheets · receipts</text>
+      <text x="520" y="104" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">AI enrichment</text>
 
-    <path d="M1060 80H1110" stroke="#71717a" stroke-width="2" marker-end="url(#arrow)"/>
+      <path d="M708 59H745" stroke="#71717a" stroke-width="2" marker-end="url(#arrow)"/>
 
-    <rect x="1120" width="104" height="160" rx="20" fill="#151519" stroke="#ffffff" stroke-opacity="0.08"/>
-    <circle cx="1153" cy="36" r="15" fill="#ffffff" fill-opacity="0.06"/><text x="1148" y="42" fill="#d4d4d8" font-family="Inter, sans-serif" font-size="15" font-weight="700">5</text>
-    <text x="1138" y="76" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="700">External</text>
-    <text x="1138" y="98" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="700">effect</text>
-    <text x="1138" y="128" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Email</text>
-    <text x="1138" y="145" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Drive</text>
+      <rect x="756" width="192" height="118" rx="17" fill="#0f1711" stroke="#22c55e" stroke-opacity="0.2"/>
+      <circle cx="784" cy="29" r="13" fill="#22c55e" fill-opacity="0.16"/><text x="780" y="34" fill="#86efac" font-family="Inter, sans-serif" font-size="13" font-weight="700">4</text>
+      <text x="807" y="34" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="700">PostgreSQL KB</text>
+      <text x="774" y="64" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Cases · documents</text>
+      <text x="774" y="84" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Extractions · events</text>
+      <text x="774" y="104" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Not sole authority yet</text>
+
+      <rect x="968" width="152" height="118" rx="17" fill="#171719" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="986" y="28" fill="#fbbf24" font-family="Inter, sans-serif" font-size="11" font-weight="700">KNOWN LIMIT</text>
+      <text x="986" y="55" fill="#fafafa" font-family="Inter, sans-serif" font-size="13" font-weight="650">Business truth is</text>
+      <text x="986" y="75" fill="#fafafa" font-family="Inter, sans-serif" font-size="13" font-weight="650">distributed across</text>
+      <text x="986" y="97" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">n8n · tables · Sheets</text>
+      <text x="986" y="113" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Drive · KB records</text>
+    </g>
   </g>
 
-  <g transform="translate(336 344)">
-    <rect width="608" height="150" rx="22" fill="#111113" stroke="#ffffff" stroke-opacity="0.09"/>
-    <circle cx="36" cy="38" r="15" fill="#f59e0b" fill-opacity="0.18"/><path d="M36 27v14M36 47v2" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
-    <text x="62" y="43" fill="#fafafa" font-family="Inter, sans-serif" font-size="17" font-weight="700">Human authority interrupts the path when proof is insufficient</text>
-    <g transform="translate(24 72)">
-      <rect width="128" height="44" rx="12" fill="#ffffff" fill-opacity="0.035" stroke="#ffffff" stroke-opacity="0.08"/><text x="17" y="27" fill="#d4d4d8" font-family="Inter, sans-serif" font-size="12">Ambiguous match</text>
-      <rect x="140" width="134" height="44" rx="12" fill="#ffffff" fill-opacity="0.035" stroke="#ffffff" stroke-opacity="0.08"/><text x="158" y="27" fill="#d4d4d8" font-family="Inter, sans-serif" font-size="12">Missing context</text>
-      <rect x="286" width="142" height="44" rx="12" fill="#ffffff" fill-opacity="0.035" stroke="#ffffff" stroke-opacity="0.08"/><text x="303" y="27" fill="#d4d4d8" font-family="Inter, sans-serif" font-size="12">Uncertain effect</text>
-      <rect x="440" width="144" height="44" rx="12" fill="#f59e0b" fill-opacity="0.08" stroke="#f59e0b" stroke-opacity="0.2"/><text x="457" y="27" fill="#fde68a" font-family="Inter, sans-serif" font-size="12">Consequential write</text>
+  <path d="M640 354V385" stroke="#71717a" stroke-width="2" stroke-dasharray="6 7" marker-end="url(#arrow)"/>
+  <text x="656" y="374" fill="#71717a" font-family="Inter, sans-serif" font-size="11">CONTROLLED MIGRATION — NOT A CUTOVER CLAIM</text>
+
+  <g transform="translate(56 398)">
+    <rect width="1168" height="224" rx="22" fill="#111113" stroke="#f59e0b" stroke-opacity="0.2"/>
+    <rect x="20" y="18" width="202" height="34" rx="17" fill="#f59e0b" fill-opacity="0.1" stroke="#f59e0b" stroke-opacity="0.25"/>
+    <text x="39" y="40" fill="#fbbf24" font-family="Inter, sans-serif" font-size="12" font-weight="700">HARDENING TARGET</text>
+    <text x="244" y="40" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="12">Source-controlled · provider-send-disabled candidates · PostgreSQL functions introduced by bounded slice</text>
+
+    <g transform="translate(24 74)">
+      <rect width="188" height="118" rx="17" fill="#151519" stroke="#ffffff" stroke-opacity="0.08"/>
+      <circle cx="28" cy="29" r="13" fill="#60a5fa" fill-opacity="0.16"/><text x="24" y="34" fill="#93c5fd" font-family="Inter, sans-serif" font-size="13" font-weight="700">1</text>
+      <text x="51" y="34" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="700">Deterministic edge</text>
+      <text x="18" y="64" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Normalise Telegram</text>
+      <text x="18" y="84" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Registry command route</text>
+      <text x="18" y="104" fill="#86efac" font-family="Inter, sans-serif" font-size="11" font-weight="650">SHADOW VERIFIED</text>
+
+      <path d="M196 59H233" stroke="#71717a" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <rect x="244" width="204" height="118" rx="17" fill="#17140f" stroke="#f59e0b" stroke-opacity="0.26"/>
+      <circle cx="272" cy="29" r="13" fill="#f59e0b" fill-opacity="0.18"/><text x="268" y="34" fill="#fbbf24" font-family="Inter, sans-serif" font-size="13" font-weight="700">2</text>
+      <text x="295" y="34" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="700">Bounded controller</text>
+      <text x="262" y="64" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Typed request + result</text>
+      <text x="262" y="84" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">No direct provider send</text>
+      <text x="262" y="104" fill="#fbbf24" font-family="Inter, sans-serif" font-size="11" font-weight="650">INACTIVE CANDIDATES</text>
+
+      <path d="M456 59H493" stroke="#71717a" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <rect x="504" width="214" height="118" rx="17" fill="#0f1711" stroke="#22c55e" stroke-opacity="0.22"/>
+      <circle cx="532" cy="29" r="13" fill="#22c55e" fill-opacity="0.16"/><text x="528" y="34" fill="#86efac" font-family="Inter, sans-serif" font-size="13" font-weight="700">3</text>
+      <text x="555" y="34" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="700">PostgreSQL function</text>
+      <text x="522" y="64" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Transaction · state guards</text>
+      <text x="522" y="84" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Replay · collision handling</text>
+      <text x="522" y="104" fill="#86efac" font-family="Inter, sans-serif" font-size="11" font-weight="650">SUMMARY SLICE TEST-VERIFIED</text>
+
+      <path d="M726 59H763" stroke="#71717a" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <rect x="774" width="190" height="118" rx="17" fill="#151519" stroke="#ffffff" stroke-opacity="0.08"/>
+      <circle cx="802" cy="29" r="13" fill="#a78bfa" fill-opacity="0.16"/><text x="798" y="34" fill="#c4b5fd" font-family="Inter, sans-serif" font-size="13" font-weight="700">4</text>
+      <text x="825" y="34" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="700">Provider adapter</text>
+      <text x="792" y="64" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Existing Drive / Telegram</text>
+      <text x="792" y="84" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Receipt + reconciliation</text>
+      <text x="792" y="104" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">Later cutover slice</text>
+
+      <rect x="984" width="136" height="118" rx="17" fill="#171719" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="1001" y="28" fill="#fbbf24" font-family="Inter, sans-serif" font-size="11" font-weight="700">STATUS</text>
+      <text x="1001" y="55" fill="#fafafa" font-family="Inter, sans-serif" font-size="13" font-weight="650">Main unchanged</text>
+      <text x="1001" y="76" fill="#fafafa" font-family="Inter, sans-serif" font-size="13" font-weight="650">Zero callers</text>
+      <text x="1001" y="98" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">No production cutover</text>
     </g>
   </g>
 </svg>
