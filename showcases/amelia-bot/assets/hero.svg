@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc">
+  <title id="title">Amelia Bot — governed production workflow automation</title>
+  <desc id="desc">A dark amber recruiter banner showing staff intake, deterministic authority, human approval, and durable receipts.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090a0c"/>
+      <stop offset="0.55" stop-color="#151109"/>
+      <stop offset="1" stop-color="#09090b"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#f59e0b" stop-opacity="0.42"/>
+      <stop offset="0.5" stop-color="#f59e0b" stop-opacity="0.11"/>
+      <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f59e0b" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#fde68a" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur40" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="40"/></filter>
+    <filter id="blur12" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="12"/></filter>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0L0 0 0 36" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"/></pattern>
+  </defs>
+  <rect width="1280" height="520" rx="28" fill="url(#bg)"/>
+  <rect width="1280" height="520" rx="28" fill="url(#grid)"/>
+  <ellipse cx="1010" cy="250" rx="340" ry="300" fill="url(#glow)" filter="url(#blur40)"/>
+  <rect x="1" y="1" width="1278" height="518" rx="27" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
+
+  <g transform="translate(76 62)">
+    <circle cx="31" cy="31" r="29" fill="#f59e0b" opacity="0.18" filter="url(#blur12)"/>
+    <rect x="5" y="5" width="52" height="52" rx="16" fill="#fff7ed"/>
+    <path d="M17 44L30.5 15 44 44M22 34h17" fill="none" stroke="#d97706" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="48" cy="14" r="6" fill="#22c55e" stroke="#fff7ed" stroke-width="2"/>
+    <text x="82" y="41" fill="#fafafa" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="31" font-weight="680" letter-spacing="5">AMELIA BOT</text>
+  </g>
+
+  <g transform="translate(76 158)">
+    <text fill="#fafafa" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="46" font-weight="650" letter-spacing="-1.6">
+      <tspan x="0" y="0">AI-assisted operations</tspan>
+      <tspan x="0" y="58">that survive real work.</tspan>
+    </text>
+    <text x="0" y="146" fill="#a1a1aa" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="21">Models interpret. PostgreSQL decides.</text>
+    <text x="0" y="178" fill="#a1a1aa" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="21">Staff retain authority. Every effect leaves evidence.</text>
+    <g transform="translate(0 218)">
+      <rect width="166" height="42" rx="21" fill="#f59e0b" fill-opacity="0.14" stroke="#fbbf24" stroke-opacity="0.4"/>
+      <circle cx="21" cy="21" r="4" fill="#22c55e"/><text x="36" y="27" fill="#fef3c7" font-family="Inter, sans-serif" font-size="14" font-weight="600">Live staff adoption</text>
+      <rect x="180" width="196" height="42" rx="21" fill="#ffffff" fill-opacity="0.035" stroke="#ffffff" stroke-opacity="0.09"/>
+      <circle cx="201" cy="21" r="4" fill="#fbbf24"/><text x="216" y="27" fill="#e4e4e7" font-family="Inter, sans-serif" font-size="14" font-weight="600">PostgreSQL authority</text>
+      <rect x="390" width="176" height="42" rx="21" fill="#ffffff" fill-opacity="0.035" stroke="#ffffff" stroke-opacity="0.09"/>
+      <circle cx="411" cy="21" r="4" fill="#60a5fa"/><text x="426" y="27" fill="#e4e4e7" font-family="Inter, sans-serif" font-size="14" font-weight="600">Human escalation</text>
+    </g>
+  </g>
+
+  <g transform="translate(790 78)">
+    <rect width="410" height="366" rx="24" fill="#111113" stroke="#ffffff" stroke-opacity="0.1"/>
+    <rect x="24" y="22" width="362" height="48" rx="12" fill="#0b0b0d" stroke="#ffffff" stroke-opacity="0.07"/>
+    <circle cx="46" cy="46" r="5" fill="#22c55e"/>
+    <text x="64" y="51" fill="#d4d4d8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">operation: intake / synthetic-042</text>
+
+    <g transform="translate(24 92)">
+      <rect width="362" height="50" rx="13" fill="#f59e0b" fill-opacity="0.09" stroke="#f59e0b" stroke-opacity="0.34"/>
+      <circle cx="26" cy="25" r="11" fill="#f59e0b" fill-opacity="0.2"/><text x="22" y="30" fill="#fbbf24" font-family="Inter, sans-serif" font-size="13" font-weight="700">1</text>
+      <text x="50" y="21" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="650">Interpret request</text><text x="50" y="38" fill="#71717a" font-family="Inter, sans-serif" font-size="12">Typed intent + candidate fields</text>
+
+      <rect y="62" width="362" height="50" rx="13" fill="#ffffff" fill-opacity="0.025" stroke="#ffffff" stroke-opacity="0.07"/>
+      <circle cx="26" cy="87" r="11" fill="#ffffff" fill-opacity="0.05"/><text x="22" y="92" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13" font-weight="700">2</text>
+      <text x="50" y="83" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="650">Validate + resolve</text><text x="50" y="100" fill="#71717a" font-family="Inter, sans-serif" font-size="12">State rules + identity + permissions</text>
+
+      <rect y="124" width="362" height="50" rx="13" fill="#ffffff" fill-opacity="0.025" stroke="#ffffff" stroke-opacity="0.07"/>
+      <circle cx="26" cy="149" r="11" fill="#ffffff" fill-opacity="0.05"/><text x="22" y="154" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13" font-weight="700">3</text>
+      <text x="50" y="145" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="650">Confirm or escalate</text><text x="50" y="162" fill="#71717a" font-family="Inter, sans-serif" font-size="12">Staff authority stays explicit</text>
+
+      <rect y="186" width="362" height="50" rx="13" fill="#22c55e" fill-opacity="0.075" stroke="#22c55e" stroke-opacity="0.24"/>
+      <circle cx="26" cy="211" r="11" fill="#22c55e" fill-opacity="0.16"/><path d="M20 211l4 4 8-9" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="50" y="207" fill="#fafafa" font-family="Inter, sans-serif" font-size="14" font-weight="650">Commit + receipt</text><text x="50" y="224" fill="#71717a" font-family="Inter, sans-serif" font-size="12">Idempotent state and outcome evidence</text>
+    </g>
+  </g>
+
+  <rect x="80" y="487" width="1120" height="1" fill="url(#line)"/>
+</svg>
