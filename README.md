@@ -42,6 +42,12 @@ A recruiter-facing case study for governed company intelligence: evidence, point
 
 `CBR-PROD-00–07 complete` · `200/200 health and readiness` · `40-second rollback` · `external pilot deliberately disabled`
 
+### [Amelia Bot - sanitised production workflow showcase →](https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot)
+
+A confidential-client-safe case study covering production intake, matter state, document ingress, n8n orchestration, PostgreSQL authority, idempotency, human escalation, and a failure converted into a permanent guardrail.
+
+`live staff adoption` · `production workflow` · `no unsupported ROI claims`
+
 ---
 
 ## What I build
@@ -91,13 +97,13 @@ A research system for falsifiable market hypotheses, deterministic backtesting, 
 <tr>
 <td width="50%" valign="top">
 
-### ARCO Control Tower
+### [Amelia Bot](https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot)
 
-**Production workflow and document-intelligence infrastructure for legal operations.**
+**Production AI-assisted workflow and document-operations system for a private professional-services client.**
 
-Designed for high-volume intake, file processing, workflow orchestration, queueing, idempotency, auditability, concurrency, and safe human escalation across n8n, PostgreSQL, cloud services, and messaging interfaces.
+Designed for intake, structured summary capture, matter-state operations, file ingress, workflow orchestration, idempotency, auditability, retries, and safe human escalation across n8n, PostgreSQL, cloud services, and messaging interfaces.
 
-**Focus:** workflow reliability, document intelligence, deployment architecture, operations, testing under real user behaviour
+**Focus:** workflow reliability, document intelligence, deterministic authority, operations, testing under real user behaviour
 
 </td>
 <td width="50%" valign="top">
@@ -144,6 +150,7 @@ Across my projects, I design evidence ledgers, phase gates, independent review l
 
 - **[Mirai Showcase](https://github.com/joyboy257/mirai-showcase)** — public product, architecture, and engineering case study for Mirai
 - **[Amethyst Showcase](https://github.com/joyboy257/amethyst-showcase)** — governed AI context, approvals, learning writeback, recovery, and production controls
+- **[Amelia Bot Showcase](https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot)** — sanitised production workflow, idempotency, human escalation, and engineering evidence
 - **[DreamCraft](https://github.com/joyboy257/dreamcraft)** — generative browser-based 3D world engine
 - **[Mototiam](https://github.com/joyboy257/mototiam)** — motorcycle listing intelligence, scoring, and alerts for Singapore
 - **[AMI — AWHL Market Intelligence](https://github.com/joyboy257/ami-awhl)** — evidence-backed competitive intelligence platform
