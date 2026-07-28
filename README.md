@@ -42,11 +42,17 @@ A recruiter-facing case study for governed company intelligence: evidence, point
 
 `CBR-PROD-00–07 complete` · `200/200 health and readiness` · `40-second rollback` · `external pilot deliberately disabled`
 
-### [Amelia Bot - sanitised production workflow showcase →](https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot)
+<p align="center">
+  <a href="https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot">
+    <img src="https://raw.githubusercontent.com/joyboy257/joyboy257/main/showcases/amelia-bot/assets/hero.svg" width="100%" alt="Amelia Bot production workflow showcase" />
+  </a>
+</p>
 
-A confidential-client-safe case study covering production intake, matter state, document ingress, n8n orchestration, PostgreSQL authority, idempotency, human escalation, and a failure converted into a permanent guardrail.
+**[Explore the Amelia Bot production workflow showcase →](https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot)**
 
-`live staff adoption` · `production workflow` · `no unsupported ROI claims`
+A confidential-client-safe production case study covering staff intake, persistent matter state, document ingress, n8n orchestration, PostgreSQL authority, idempotency, human escalation, and a real failure converted into a permanent guardrail.
+
+`live staff adoption` · `production workflow` · `PostgreSQL authority` · `no unsupported ROI claims`
 
 ---
 
