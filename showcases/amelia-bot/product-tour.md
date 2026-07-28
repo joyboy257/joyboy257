@@ -1,86 +1,115 @@
 # Amelia Bot Product Tour
 
-## The 90-second recruiter path
+## The 90-second truthful recruiter path
 
-### 1. Start with the operator journey
+### 1. Start with what actually ran
 
 Open [`assets/operator-workflow.svg`](assets/operator-workflow.svg).
 
-Show how a staff member:
+Explain the current production path:
 
-- submits an informal request and attachment;
-- receives a structured draft rather than an unbounded chatbot answer;
-- confirms the interpretation before a consequential state change;
-- receives a committed result backed by operation and evidence identifiers.
+- staff send Telegram commands, intake details, and files;
+- Main parses and routes the update;
+- intake and state workflows manage the working session and temporary Drive folder;
+- file workflows register, stage, and finalise documents;
+- finalisation moves files into the final Google Drive structure;
+- AI-assisted enrichment extracts case context and file-checklist information;
+- Google Sheets and PostgreSQL KB records are updated;
+- Telegram returns the staff-facing result.
 
-**Explain:** the chat surface is an operating interface. It is not the source of truth.
+**Say:** “This was not a demo. Staff used this workflow for real operational work.”
 
-### 2. Follow the authority boundary
+### 2. Show the architecture honestly
 
 Open [`assets/authority-model.svg`](assets/authority-model.svg).
 
-Walk through:
+The top row shows the **current production estate**:
 
-- source intent from staff and providers;
-- bounded LLM interpretation;
-- deterministic validation and policy;
-- PostgreSQL transactions, ledgers, and idempotency;
-- controlled provider effects;
-- human interruption whenever proof or context is insufficient.
+- Main and existing n8n workflows remain authoritative;
+- substantial application logic still lives in Code nodes and SQL-generating workflows;
+- Drive stores the actual files;
+- Sheets is an operational tracker;
+- PostgreSQL KB stores durable case, document, extraction, and event records, but it is not yet the sole authority for every production operation.
 
-**Explain:** the model proposes. Deterministic systems validate. PostgreSQL commits. Staff retain authority.
+The bottom row shows the **hardening target**:
 
-### 3. Show the workflow states
+- deterministic Telegram edge;
+- bounded source-controlled domain controllers;
+- versioned PostgreSQL transaction functions;
+- existing provider workflows behind explicit receipts and rollback boundaries.
 
-Return to the state diagram in the main README.
+**Say:** “The clean architecture is a controlled migration target, not a retroactive description of the first production version.”
 
-Highlight:
+### 3. Explain why hardening was necessary
 
-- new intake and existing-context resolution;
-- draft summary and staff confirmation;
-- file ingress and review;
-- active, hold, pending, resumed, dropped, cancelled, and completed states;
-- explicit escalation rather than hidden best-effort behaviour.
+Return to the current-production section in the README.
 
-**Explain:** a real workflow needs recoverable states, not a single prompt-response loop.
+Highlight that a few workflows had accumulated many responsibilities:
 
-### 4. Explain the duplicate-delivery failure
+- Main mixed parsing, command policy, summary interpretation, and file normalisation;
+- the state manager mixed lifecycle, failure, reconciliation, status, and dynamic SQL;
+- finalisation mixed case resolution, Drive movement, receipts, upserts, and terminal state changes.
+
+**Say:** “The product worked, but n8n execution success alone could not prove that one canonical business operation had occurred exactly once.”
+
+### 4. Show what is actually verified
 
 Open [`engineering-evidence.md`](engineering-evidence.md).
 
-Show the failure-to-prevention example:
+Show two bounded proofs:
 
-- the same operation can arrive through user retry, provider redelivery, or workflow retry;
-- orchestration history alone cannot decide whether the effect is new, committed, or uncertain;
-- the database reserves an idempotency key and payload fingerprint;
-- exact duplicates replay the recorded result;
-- conflicting payloads are rejected;
-- uncertain partial success is reconciled before retry.
+#### Telegram edge shadow
 
-**Explain:** the failure became a durable contract and regression class, not a one-off patch.
+- 69-case corpus;
+- zero unexpected differences;
+- zero side-effect violations;
+- Main still authoritative;
+- cutover blocked.
 
-### 5. Close with the production claim
+#### Summary parsing/save slice
+
+- isolated PostgreSQL 16 transaction proof;
+- exact replay and collision rejection;
+- concurrency-safe versioning;
+- stale and terminal-state guards;
+- no partial writes;
+- inactive controller with zero callers and zero executions.
+
+**Say:** “I can defend these results precisely, but I do not generalise them into a whole-system production guarantee.”
+
+### 5. Close with the outcome and the limitation
 
 The strongest defensible outcome is:
 
 > Amelia Bot was deployed for a private client and adopted by staff for real operational work.
 
-Do not claim an audited revenue, cost-saving, accuracy, or time-saving number unless supporting measurements are later collected.
+The strongest defensible engineering claim is:
 
-## What this showcase proves
+> I stabilised and source-controlled a complex live n8n estate, built no-side-effect shadow and rollback controls, and test-verified the first PostgreSQL-authoritative replacement slice without changing the production path.
 
-| Surface | What it demonstrates |
+Do not claim:
+
+- audited revenue or time saving;
+- whole-system exactly-once behaviour;
+- full PostgreSQL authority in production;
+- production cutover of the replacement controllers;
+- advanced document intelligence as part of the adopted bot.
+
+## What each surface proves
+
+| Surface | What it proves |
 | --- | --- |
-| Synthetic operator journey | Product UX, confirmation, state visibility, and evidence-backed completion |
-| Authority model | Separation of probabilistic reasoning, deterministic rules, human authority, and durable state |
-| Workflow state machine | Long-running operational design beyond a chatbot interaction |
-| Engineering evidence | Negative cases, replay behaviour, observability, and failure conversion |
-| Disclosure boundaries | Ability to communicate production engineering without exposing client material |
+| Synthetic production journey | The real high-level intake, Drive finalisation, enrichment, tracking, and staff-feedback path |
+| Current-versus-target diagram | Ability to distinguish production reality from architecture direction |
+| Live-estate inspection | The scale and hidden-service problem inside the active n8n system |
+| Telegram shadow evidence | Behavioural parity without production side effects |
+| Summary-slice evidence | Bounded PostgreSQL transaction, replay, concurrency, and state-guard proof |
+| Disclosure boundaries | Ability to discuss client production work without exposing confidential material |
 
 ## Recommended interview sequence
 
-1. Spend 20 seconds on the business problem.
-2. Spend 25 seconds on the operator journey.
-3. Spend 25 seconds on the authority diagram.
-4. Spend 15 seconds on the idempotency failure and prevention.
-5. Close with live staff adoption and the next measurement layer.
+1. Spend 20 seconds on the live staff workflow.
+2. Spend 20 seconds on the current n8n architecture.
+3. Spend 20 seconds on the hidden-authority problem you diagnosed.
+4. Spend 20 seconds on the shadow and summary-slice evidence.
+5. Close with live staff adoption and what remains unproven.
