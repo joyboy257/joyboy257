@@ -1,31 +1,33 @@
-# Amelia Bot — 100-Second Demo Script
+# Amelia Bot — 110-Second Truthful Demo Script
 
-## 0–15 seconds — The operating problem
+## 0–20 seconds — What ran in production
 
-“Staff were coordinating intake, matter state, files, email, and cloud storage across separate systems. Informal messages were easy to understand as a human, but dangerous to treat as authoritative machine instructions.”
+Show the hero and production-path diagram.
 
-Show the hero and the business-problem section.
+> “Amelia Bot is the sanitised name for a Telegram-centred intake and document-operations workflow I built for a private professional-services client. Staff used it for real work. Telegram was the operating interface; n8n Main and several sub-workflows handled sessions, files, lifecycle commands, Drive finalisation, enrichment, tracking, and PostgreSQL KB records.”
 
-## 15–40 seconds — The staff experience
+## 20–45 seconds — The actual workflow
 
-Open the synthetic operator journey.
+Follow the arrows in the production-path diagram.
 
-“Amelia turns a staff request into a typed draft, identifies missing context, and requires confirmation before consequential state changes. The final response includes committed state and evidence identifiers rather than an unsupported success message.”
+> “A staff message or file enters Main, which parses and routes it. Intake workflows create or load the working session and temporary Drive folder. File workflows register and stage documents. Finalisation resolves the case, moves the intended files into the final Drive structure, records results, and triggers AI-assisted enrichment. Sheets and PostgreSQL KB records capture operational context before Telegram returns the outcome.”
 
-## 40–65 seconds — Engineering authority
+## 45–65 seconds — The architecture problem
 
-Open the authority-model diagram.
+Open the current-versus-target diagram.
 
-“The LLM interprets intent and drafts structured candidates. Deterministic rules resolve identity, validate state and permissions, and enforce file policy. PostgreSQL owns transactions, idempotency, and the final record. Ambiguity or uncertain provider state stops at a human boundary.”
+> “The system worked, but it had grown too much hidden application logic inside n8n. Main combined parsing and policy, the state manager combined lifecycle and dynamic SQL, and finalisation combined Drive movement, receipts, upserts, and terminal state. A green workflow execution was not enough to prove one canonical business operation had completed exactly once.”
 
-## 65–85 seconds — Failure converted into prevention
+## 65–90 seconds — What I hardened and actually proved
 
-Open the engineering-evidence document.
+Open the engineering-evidence page.
 
-“A repeated event could arrive through user retry, provider redelivery, or workflow retry. I moved mutation authority to a database-backed idempotency contract: exact repeats replay the recorded result, changed payloads conflict, and uncertain partial success is reconciled before another external effect.”
+> “I established deterministic source and rollback tooling for the workflow estate, then built a no-side-effect Telegram shadow. Its 69-case corpus had zero unexpected differences and zero side-effect violations, but Main stayed authoritative. I also decomposed intake into five inactive controllers. Only summary parsing and save has reached isolated transaction proof: exact replay, collision rejection, concurrency-safe versions, state guards, and no partial writes.”
 
-## 85–100 seconds — Outcome and honesty boundary
+## 90–105 seconds — The honesty boundary
 
-“Amelia crossed the line from prototype to production and achieved live staff adoption. I do not claim an audited time or revenue saving yet. The next layer is instrumenting active usage, cycle time, manual touches, exceptions, rework, and completion.”
+> “The cleaner PostgreSQL-authoritative architecture is not fully cut over. The Summary Controller is inactive with zero callers and zero executions. Lifecycle, new-case, file-ingress, existing-case, and finalisation slices still require runtime parity and release evidence.”
 
-Close on the recruiter quick-scan table.
+## 105–110 seconds — Outcome
+
+> “The business outcome I can defend is live staff adoption. I do not claim audited ROI or whole-system exactly-once behaviour. What this project demonstrates is that I can ship operational AI workflows, diagnose their real failure boundaries, and improve them without confusing a target architecture with production truth.”
