@@ -1,154 +1,265 @@
-# Amelia Bot — Engineering Evidence
+# Amelia Bot — Engineering Evidence and Claim Boundaries
 
-## Evidence posture
+## Public claim posture
 
-The public production claim is deliberately narrow:
+The production outcome claim is deliberately narrow:
 
 > **Amelia Bot ran in production for a private client and achieved live staff adoption.**
 
-No audited revenue, cost-saving, time-saving, or accuracy figure is claimed. The showcase distinguishes implementation, testing, production use, adoption, and measured business impact as separate evidence states.
+The architecture claim is equally precise:
+
+> **The active system remains an n8n-centred workflow estate. I later established a source-controlled, PostgreSQL-centred hardening programme; only the summary parsing/save replacement slice is currently test-verified and inactive.**
+
+No audited revenue, cost-saving, time-saving, accuracy, or whole-system exactly-once claim is made.
 
 ## Claim ladder
 
 | Claim | Current status | Evidence posture |
 | --- | --- | --- |
-| Workflow architecture exists | **Supported** | Explicit states, controllers, integrations, authority boundaries, and failure rules |
-| Reliability controls exist | **Supported** | Idempotency, ledgers, validation, review, retry, and reconciliation design |
-| Workflow ran with real providers | **Supported** | Production use across messaging, email, storage, n8n, and PostgreSQL |
-| Staff used it for real work | **Supported** | Live staff adoption |
-| Quantified hours or cost saved | **Not yet measured** | Requires instrumentation and an agreed baseline |
-| Independently verified ROI | **Not claimed** | No external audit or controlled outcome study |
+| Telegram-centred intake and file-finalisation workflow exists | **Production current** | Live workflow inspection and staff use |
+| Staff use the workflow for real operational work | **User-confirmed production outcome** | Live staff adoption; no quantitative adoption analytics yet |
+| Current Main remains authoritative | **Production current** | Live inspection of Main and callers |
+| Google Drive stores actual files | **Production current** | Finalisation and KB design evidence |
+| Google Sheets remains an operational tracker | **Production current** | Current intake/KB integration design |
+| PostgreSQL KB stores cases, documents, extractions, and normalised events | **Implemented in the estate** | Schema/workflow design and live intake state/KB workflow inspection |
+| PostgreSQL is the sole authority for every production mutation | **Not yet true** | Accepted target architecture; production authority remains distributed |
+| Telegram edge replacement has behavioural parity | **Verified shadow** | 69-case corpus, zero unexpected differences, no side effects |
+| Five bounded replacement controllers exist | **Verified inactive candidates** | Generated definitions validate; no production callers or provider sends |
+| Summary parsing/save has database transaction proof | **TEST_VERIFIED inactive** | Isolated PostgreSQL 16 proof plus regression suite |
+| Lifecycle, new-case, file-ingress, existing-case, and finalisation replacements are production-ready | **Not yet proven** | Later slices require runtime, parity, rollback, and canary evidence |
+| Whole-system exact replay and partial-success reconciliation are live | **Not claimed** | Target reliability contract; only bounded pieces are verified |
+| Advanced document intelligence is part of the adopted production bot | **Not claimed** | Separate read-only-first programme |
+| Quantified business impact | **Not measured** | Requires instrumentation and an agreed baseline |
 
-This distinction prevents a deployed system from being presented as a measured commercial result without evidence.
+## Live production estate inspection
 
-## Scenario coverage
+A read-only inspection of the intake-related production path found:
 
-Representative workflow paths include:
-
-### Intake and context
-
-- new-intake creation;
-- current-context and canonical-record resolution;
-- missing-information clarification;
-- structured summary drafting;
-- correction and staff confirmation.
-
-### Matter-state operations
-
-- active-state updates;
-- hold and pending;
-- resume;
-- drop and cancel;
-- completion;
-- invalid or stale transition attempts.
-
-### File operations
-
-- attachment acceptance;
-- ingress registration;
-- temporary staging;
-- classification and routing;
-- existing-record file operations;
-- invalid, unsupported, or ambiguous files;
-- manual-review escalation.
-
-### External effects
-
-- email and storage operations;
-- provider acknowledgement;
-- timeout and retry;
-- partial provider success;
-- uncertain effect and reconciliation;
-- durable outcome recording.
-
-## Negative cases are expected workload
-
-The reliability programme treats failure inputs as ordinary production conditions:
-
-| Failure class | Expected proof |
-| --- | --- |
-| Duplicate message or webhook | Exact replay does not create another effect |
-| Repeated button press or staff retry | The same operation key returns the committed result |
-| Key reused with changed payload | The operation is rejected as a conflict |
-| Stale state | The transition is rejected against canonical current state |
-| Malformed model output | No authoritative mutation occurs |
-| Missing required context | Clarification or human review is requested |
-| Invalid file | Ingress evidence is retained and the file is rejected or escalated |
-| Provider timeout | The effect becomes uncertain rather than silently successful |
-| Partial external success | Reconciliation occurs before another provider write |
-| Database unavailable | Completion is not reported |
-
-## Authority checks
-
-Verification asks whether:
-
-- PostgreSQL, rather than an n8n code node, owns the final mutation decision;
-- LLM output must satisfy a typed contract and deterministic validation;
-- the model cannot authorize identity, state, or completion;
-- a true duplicate returns the previously committed result;
-- a conflicting duplicate is rejected;
-- an external action is not reported as complete without durable evidence;
-- ambiguous cases stop at a visible human-review boundary;
-- internal and provider disagreement remains a reconciliation state rather than hidden success.
-
-## Operational evidence surfaces
-
-| Surface | Evidence provided | Limitation |
+| Area | Observed shape | Application responsibility concentrated there |
 | --- | --- | --- |
-| **n8n execution history** | Node path, provider calls, errors, retries, and orchestration timing | Does not independently prove a canonical mutation committed |
-| **PostgreSQL operation ledger** | Reservation, fingerprint, state transition, result, replay, conflict, and reconciliation status | Does not replace provider-specific evidence for an external effect |
-| **File-ingress records** | Receipt, classification, routing, rejection, and review state | Does not reveal confidential document content publicly |
-| **Provider references** | Correlation between the internal operation and email, storage, or messaging effect | Can remain uncertain after timeout and require reconciliation |
-| **Human-review state** | Preserves unresolved ambiguity and decision ownership | Demonstrates a safe stop, not automatic completion |
+| **Main intake** | 53 enabled nodes, 86 valid connections, zero validation errors | Parsing, aliases, command identity, state-changing policy, summary interpretation, and file normalisation |
+| **Process intake** | 15-node workflow | Caller checks, session reservation, temporary Drive-folder creation and persistence |
+| **Intake state manager** | Small node graph with a very large workflow definition | Start, load, update, cancel, claim, stage, failure, reconciliation, status, and projection SQL |
+| **Staged-file finalisation** | 28-node workflow | Case resolution, ledger loading, Drive movement, receipts, document upsert, and session finalisation |
+| **File acceptance / ingress** | Dedicated production workflows | Duplicate classification, ingress receipt, file events, and processing-job registration |
+| **Status / context support** | Dedicated support workflows | Session merge, State Manager delegation, and command guards |
 
-Evidence is strongest when these surfaces agree. Disagreement becomes a visible operational state.
+This evidence supports two conclusions:
 
-## Failure converted into permanent prevention
+1. the product is real and operationally substantial;
+2. the current architecture still contains hidden application services and distributed authority.
 
-### Observed risk
+## Production capability evidence
 
-The same requested write could reach the workflow through a staff retry, provider redelivery, or n8n retry. A provider could also accept an effect while the workflow timed out before persisting the acknowledgement.
+### Intake and tracking
 
-Without an explicit authority contract, the system could not safely distinguish:
+The production path includes:
 
-- a new operation;
-- an exact replay;
-- a changed request reusing the same key;
-- a completed provider effect with missing local acknowledgement;
-- a genuinely failed effect that was safe to retry.
+- Telegram intake messages and file uploads;
+- working-session creation and loading;
+- temporary Google Drive staging;
+- summary and intake-state handling;
+- lifecycle and status commands;
+- final Drive folder creation and file movement;
+- Google Sheets operational updates;
+- PostgreSQL case, document, extraction, and event records.
 
-### Root cause
+### Post-finalisation enrichment
 
-Mutation ownership, payload identity, replay behaviour, and partial-success reconciliation were not sufficiently explicit at the authoritative database boundary.
+The enrichment path carries structured outputs equivalent to:
 
-### Permanent prevention
+- case context;
+- finalisation result;
+- police-report extraction;
+- file checklist;
+- missing-document and readiness information.
 
-1. Bind every durable operation to an idempotency key and payload fingerprint.
-2. Reserve the operation inside the PostgreSQL transaction boundary.
-3. Return the recorded result for an exact committed replay.
-4. Reject the same key when its payload differs.
-5. Persist provider reference and outcome evidence before reporting completion.
-6. Mark uncertain partial effects for reconciliation rather than blind retry.
-7. Keep duplicate, retry, stale-state, malformed-output, and partial-success cases in regression coverage.
+The evidence does not imply that every classification or naming capability in the later document-intelligence programme is already live.
 
-### Why the prevention is durable
+## Deterministic source and provenance evidence
 
-The fix is not dependent on one n8n execution path or one provider. It defines behaviour at the authoritative operation boundary, so every caller receives the same replay, conflict, and reconciliation semantics.
+A source-control pipeline was established for the workflow estate:
+
+```text
+exact published export
+→ source extraction
+→ deterministic generation
+→ validation and comparison
+→ deployment preview
+→ rollback payloads
+```
+
+The accepted baseline covered:
+
+- **83 exact active workflows**;
+- **834 nodes**;
+- **1,457,590 baseline bytes**;
+- **150 safe credential references**;
+- **zero pinned-data exports**.
+
+These figures demonstrate the scale of the controlled workflow estate. They do not prove that every workflow has been refactored or certified.
+
+## Telegram edge shadow evidence
+
+The target Telegram edge was designed as a non-authoritative, no-side-effect shadow.
+
+### Corpus
+
+| Category | Cases |
+| --- | ---: |
+| Every canonical command | 43 |
+| Every registered alias | 9 |
+| Supported media families | 5 |
+| Group identity | 1 |
+| Ordinary non-command text | 1 |
+| Summary-like text | 1 |
+| Unknown or typo commands | 2 |
+| Callback queries | 2 |
+| Reply-specific command | 1 |
+| Malformed updates | 4 |
+| **Total** | **69** |
+
+### Results
+
+- full parity pass: **31**;
+- blocked by known registry gaps: **30**;
+- judge-reviewable intended differences: **8**;
+- unexpected failures: **0**;
+- unexpected differences: **0**;
+- no-side-effect violations: **0**;
+- focused Telegram-edge regression tests: **30 / 30 passed**.
+
+The verdict remained `CUTOVER_BLOCKED` because parity evidence and safe shadow execution are not production release authority.
+
+## Inactive controller evidence
+
+Five bounded replacement workflows were created:
+
+- New Case Controller;
+- Summary Controller;
+- File Intake Controller;
+- Existing Case File Controller;
+- Intake Lifecycle Controller.
+
+Shared safety posture:
+
+- all are inactive;
+- no production workflow calls them;
+- provider sends are disabled in their result contracts;
+- none contains a Telegram sender or Google Drive node;
+- current production workflows remain unchanged.
+
+The base controller package had **13 passing tests, zero failures, and one deliberately skipped disposable-database test** before the summary slice was separately runtime-tested.
+
+## Summary parsing/save: exact verified slice
+
+The summary replacement slice was tested in an isolated disposable PostgreSQL 16 environment with:
+
+- no network;
+- no published ports;
+- TCP disabled;
+- temporary in-memory storage;
+- no persistent volume;
+- exact down migration;
+- zero object or container residue after proof.
+
+### Verified semantics
+
+- eight active organisation/law-firm registry entries;
+- first save creates version 1;
+- a legitimate edit creates version 2;
+- exact replay returns the original version without another mutation;
+- key, transport, command, operation, and bound-session collisions are blocked;
+- stale state, wrong scope, wrong target, and malformed summaries are blocked;
+- concurrent edits receive distinct versions;
+- writes are limited to permitted working states;
+- terminal, cancelled, finalised, or superseded sessions reject edits;
+- failures leave no partial summary version, binding, or session mutation.
+
+### Verification results
+
+| Gate | Result |
+| --- | ---: |
+| Summary static and policy tests | **21 passed** |
+| Disposable PostgreSQL transaction proof | **1 passed** |
+| Telegram edge tests | **30 / 30 passed** |
+| Repository test suite | **326 / 326 passed** |
+| Lint | **PASS** |
+| Typecheck | **PASS** |
+| Production build | **PASS** |
+| Secret scan | **0 worktree findings; 0 Git-history findings** |
+
+### Runtime status
+
+The live Summary Controller is:
+
+- inactive;
+- unarchived;
+- valid with zero workflow errors;
+- represented by a nine-node source-controlled workflow;
+- observed with zero execution records;
+- proven to have zero callers;
+- paired with a captured pre-change history version and rollback package.
+
+It has not been connected to Main, the state manager, Telegram, Drive, Sheets, email, or production database rows.
+
+## Failure converted into an evidence-led remediation programme
+
+### Observed problem
+
+The same logical work could be represented differently across:
+
+- Telegram delivery identity;
+- command identity;
+- workflow-local retries;
+- file identity;
+- session state;
+- provider results;
+- Google Drive metadata;
+- Sheets rows;
+- PostgreSQL KB rows and events.
+
+Large n8n Code nodes and SQL-generating workflows made it difficult to prove which component owned the final mutation or whether a retry was safe.
+
+### Containment implemented
+
+- froze and exported the exact workflow estate;
+- built deterministic source generation and comparison;
+- created rollback artefacts before candidate changes;
+- used shadow-only Telegram paths with mutation and provider sends disabled;
+- created inactive, zero-caller domain controllers;
+- required exact claim states such as static-verified, test-verified, runtime-verified, or blocked.
+
+### Prevention proven so far
+
+For the summary slice only, PostgreSQL now proves exact replay, collision rejection, concurrency-safe versioning, state guards, and no partial writes.
+
+### Prevention still outstanding
+
+Later slices still need to prove:
+
+- concurrent lifecycle commands and pointer invariants;
+- new-case reservation and deterministic supersession;
+- separate transport, Telegram-file, content, and business identities;
+- real duplicate suppression rather than duplicate recording only;
+- finalisation high-water marks under concurrent file arrival;
+- uncertain provider-effect reconciliation;
+- production-path shadow parity and controlled canaries;
+- convergence on one durable ledger across the full estate.
 
 ## Production outcome
 
-The strongest current outcome is **live staff adoption for real operational work**.
+The strongest current business outcome is **live staff adoption for real operational work**.
 
-This matters because the workflow crossed the boundary from a demonstration into an operating system involving:
+This proves that the workflow crossed from demonstration into actual operation involving staff behaviour, provider integrations, persistent records, errors, and remediation.
 
-- real staff behaviour and corrections;
-- persistent state across interactions;
-- real messaging, email, and storage integrations;
-- duplicate, retry, and exception paths;
-- production debugging and remediation;
-- human authority over ambiguous or consequential cases.
+It does not prove:
 
-The claim remains narrower than “fully autonomous” or “proven ROI.”
+- fully autonomous operation;
+- whole-system production certification;
+- exactly-once behaviour across every workflow;
+- audited financial impact;
+- external validation of productivity or accuracy.
 
 ## Next measurement layer
 
@@ -158,24 +269,22 @@ A production analytics layer should define and record:
 | --- | --- |
 | **Active adoption** | Unique staff using the workflow over a defined period |
 | **Eligible workflow volume** | Requests that could reasonably be completed through Amelia |
-| **Cycle time** | Time from intake to confirmed operational state |
-| **Manual touches** | Human interventions required per request or matter |
-| **Exception rate** | Percentage of runs entering review, uncertain, or failed states |
-| **Rework rate** | Requests corrected or repeated after initial completion |
+| **Intake-to-finalisation cycle time** | Time from first intake to confirmed finalisation |
+| **Manual touches** | Human interventions required per request or case |
+| **Exception rate** | Percentage entering review, reconciliation, or failure states |
+| **Rework rate** | Requests corrected or repeated after an earlier outcome |
 | **Completion rate** | Eligible workflows reaching a confirmed terminal outcome |
-| **Provider-reconciliation rate** | External effects requiring uncertainty resolution |
+| **Duplicate-suppression rate** | Repeated deliveries safely prevented from producing another effect |
+| **Provider-reconciliation rate** | Effects requiring uncertainty resolution |
 
 These metrics are a measurement plan, not retrospective claims.
 
-## Interview-safe evidence
+## Interview-safe explanation
 
-The following can be shown or discussed without exposing client material:
+A precise answer to “What actually ran in production?” is:
 
-- synthetic state and architecture diagrams;
-- generic controller and idempotency contracts;
-- failure classes and permanent-prevention reasoning;
-- sanitised test categories and acceptance criteria;
-- the distinction between orchestration history and database authority;
-- the production adoption claim and its measurement limitations.
+> The live system used Telegram as the staff interface and n8n Main plus several sub-workflows for intake, session state, file staging, Drive finalisation, enrichment, tracking, and PostgreSQL KB records. Staff used that system for real work. The later PostgreSQL-authoritative controller architecture is a hardening programme; its Telegram edge is shadow-verified and its summary slice is transaction-tested, but neither has replaced Main in production.
 
-Raw workflows, private messages, client files, identifiers, provider metadata, credentials, production endpoints, and confidential incident payloads remain excluded.
+## Confidentiality boundary
+
+The public evidence excludes raw workflow definitions, client data, source messages, files, private terminology, credentials, workflow IDs, production endpoints, database rows, and incident payloads. Counts and contracts are published only where they communicate engineering scale and evidence state without exposing client material.
