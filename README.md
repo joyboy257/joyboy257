@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/github-hero.jpg" width="100%" alt="Black RWB-style Porsche 964 among Roman ruins — original concept artwork" />
+  <img src="assets/github-hero.png" width="100%" alt="Black RWB-style Porsche 964 among Roman ruins — original concept artwork" />
 </p>
 
 <div align="center">
