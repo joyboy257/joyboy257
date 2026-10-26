@@ -218,162 +218,96 @@ limits:"Not proof of current always-on scraper reliability or commercial adoptio
 link:null,image:null,mood:"MARKETPLACE / DATA"
 }
 ];
-const folders={
- featured:{label:"SELECTED WORK",list:["mirai","amelia","soleil","slate","corpa","workos"]},
- delivery:{label:"CLIENT DELIVERY",list:["amelia","ami","corpa","mototiam"]},
- ai:{label:"AI SYSTEMS",list:["mirai","amethyst","verticals","agentos","atlas","workos","sole","openbrain","heidi","rustyindex"]},
- products:{label:"PRODUCTS",list:["soleil","slate","corpa","workos","dreamcraft","propframe","singnote","openbrain","mototiam"]},
- research:{label:"RESEARCH",list:["heidi","rustyindex","pokerai","tradedesk","dreamcraft"]},
- all:{label:"ALL PROJECTS",list:projects.map(p=>p.id)}
-};
-const $=selector=>document.querySelector(selector);
-const $$=selector=>Array.from(document.querySelectorAll(selector));
-const byId=Object.fromEntries(projects.map(p=>[p.id,p]));
-let firstPaint=true;
-let currentFolder="featured",currentLens="all",currentProject="mirai",currentTab="overview",focusWindow="finder",zTop=80,toastTimer=null;
-function escapeHtml(x){return String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function appToast(message){const toast=$("#toast");toast.textContent=message;toast.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.hidden=true,2400);}
-function showWindow(name){
- const el=$("#"+name+"-window");if(!el)return;
- el.hidden=false;el.classList.remove("minimized");focusWin(name);
- if(name==="terminal")setTimeout(()=>$("#terminal-command").focus(),80);
+
+
+const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
+const byID=Object.fromEntries(projects.map(p=>[p.id,p]));
+const sets={featured:["mirai","amelia","soleil","slate","workos","corpa"],delivery:["amelia","ami","corpa","mototiam"],ai:["mirai","amethyst","verticals","agentos","atlas","workos","heidi","rustyindex","sole","openbrain"],products:["soleil","slate","corpa","workos","dreamcraft","propframe","singnote","openbrain"],research:["heidi","rustyindex","pokerai","tradedesk"],all:projects.map(p=>p.id)};
+const state={locked:true,app:"",group:"featured",project:"mirai",tab:"case",stack:[],gesture:null,phoneGesture:null,drag:null,dragged:false,preventClick:0};
+const mobile=()=>matchMedia("(max-width:720px)").matches;
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const link=(url,label)=>url&&/^https:\/\/(github\.com|usemirai\.app|www\.linkedin\.com)\//.test(url)?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(label)+' ↗</a>':"";
+function clock(){const d=new Date();const hm=new Intl.DateTimeFormat("en-SG",{hour:"2-digit",minute:"2-digit",hour12:false}).format(d);
+ $("#lock-time").textContent=hm;$("#lock-status-time").textContent=hm;$("#phone-time").textContent=hm;
+ $("#lock-date").textContent=new Intl.DateTimeFormat("en-SG",{weekday:"long",day:"numeric",month:"long"}).format(d);
+ $("#phone-weekday").textContent=new Intl.DateTimeFormat("en-SG",{weekday:"short"}).format(d).toUpperCase();$("#phone-day").textContent=d.getDate();
+ $("#mac-time").textContent=new Intl.DateTimeFormat("en-SG",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit",hour12:false}).format(d);
 }
-function focusWin(name){focusWindow=name;const el=$("#"+name+"-window");if(!el)return;el.style.zIndex=++zTop;$$(".os-window").forEach(w=>w.classList.toggle("active-window",w===el));}
-function openApp(name){if(["finder","about","brief","terminal","photos","safari","notes"].includes(name)){showWindow(name);return;}appToast("Application not found.");}
-function performAction(name,target){const el=$("#"+target+"-window");if(!el)return;if(name==="close")el.hidden=true;else if(name==="minimize")el.classList.add("minimized");else if(name==="maximize")el.classList.toggle("maximized");}
-function renderFolder(name){
- currentFolder=folders[name]?name:"featured";
- const folder=folders[currentFolder];
- $$(".side-item[data-folder]").forEach(b=>b.classList.toggle("selected",b.dataset.folder===currentFolder));
- $("#folder-breadcrumb").textContent="DESKTOP / "+folder.label;
- const items=folder.list.map(id=>byId[id]).filter(Boolean).filter(p=>currentLens==="all"||p.flags.includes(currentLens));
- $("#list-count").textContent=items.length+" PROJECTS / OPEN TO INSPECT";
- $("#project-list").innerHTML=items.map(p=>'<button role="option" aria-selected="'+String(p.id===currentProject)+'" class="file-row '+(p.id===currentProject?'selected':'')+'" data-project="'+p.id+'"><span class="file-glyph '+(p.tone||'')+'">'+PortfolioIcons.file(p.glyph,p.tone)+'</span><span class="file-row-copy"><strong>'+escapeHtml(p.name)+'</strong><small>'+escapeHtml(p.scope)+' · '+escapeHtml(p.stage.split(" / ")[0])+'</small></span></button>').join('');
- if(!items.some(p=>p.id===currentProject)){if(items[0])currentProject=items[0].id;}
- if(!items.length){$("#project-list").innerHTML='<p class="spotlight-empty">No projects in this category for this role.</p>';return;}
- renderProject(currentProject);
+clock();setInterval(clock,30000);
+const lockEl=$("#lock-screen");
+function setLock(value){state.locked=value;lockEl.hidden=!value;$("#mac-shell").inert=value;$("#iphone-shell").inert=value;
+ try{if(value)sessionStorage.removeItem("deon-unlocked");else sessionStorage.setItem("deon-unlocked","yes")}catch{}
 }
-function renderProject(id){
- const p=byId[id];if(!p)return;currentProject=id;showWindow("finder");
- $$(".file-row").forEach(b=>{const hit=b.dataset.project===id;b.classList.toggle("selected",hit);b.setAttribute("aria-selected",String(hit));});
- $("#project-kicker").textContent=p.scope+" / "+p.mood;
- $("#project-title").textContent=p.name;
- $("#project-deck").textContent=p.summary;
- $("#project-facts").innerHTML=p.facts.map(s=>"<span>"+escapeHtml(s)+"</span>").join("");
- if(!firstPaint){const url=new URL(window.location.href);url.searchParams.set("project",id);history.replaceState(null,"",url.pathname+url.search+url.hash);}
- const visual=$("#project-visual");visual.innerHTML="";
- const fallback=document.createElement("div");fallback.className="visual-fallback";fallback.textContent=p.name.toUpperCase();visual.append(fallback);
- const tag=document.createElement("span");tag.className="visual-tag";tag.textContent=p.stage;visual.append(tag);
- if(p.image){const img=document.createElement("img");img.src=p.image;img.loading="lazy";img.alt=p.name+" project evidence image";img.addEventListener("load",()=>fallback.hidden=true);img.addEventListener("error",()=>{img.remove();fallback.hidden=false});visual.insertBefore(img,fallback);}
- const website=$("#project-website"), demo=$("#project-demo");
- website.hidden=!p.website;if(p.website)website.href=p.website;
- demo.hidden=!p.demo;if(p.demo)demo.href=p.demo;
- const link=$("#project-primary");
- if(p.link){link.href=p.link;link.textContent=p.linkLabel||"OPEN PUBLIC EVIDENCE ↗";link.hidden=false;}else{link.hidden=true;}
- renderTab();
+function unlock(dest){if(!state.locked)return;lockEl.classList.add("unlocking");setTimeout(()=>{lockEl.classList.remove("unlocking");lockEl.style.removeProperty("--drag-y");lockEl.style.removeProperty("--drag-opacity");setLock(false);if(dest)open(dest.app,dest.id);},410)}
+$("#unlock").addEventListener("click",()=>unlock());
+$$("[data-unlock-app],[data-unlock-project]").forEach(b=>b.addEventListener("click",()=>{if(Date.now()-state.preventClick>520)unlock({app:b.dataset.unlockProject?"project":b.dataset.unlockApp,id:b.dataset.unlockProject})}));
+const start=(x,y,kind)=>{if(state.locked)state.gesture={x,y,kind,at:performance.now()}};
+const move=(x,y,prevent)=>{const g=state.gesture;if(!g||!state.locked)return;const dy=y-g.y;if(dy< -10&&-dy>Math.abs(x-g.x)*.8){lockEl.style.setProperty("--drag-y",Math.max(-55,dy*.33)+"px");lockEl.style.setProperty("--drag-opacity",Math.max(.62,1+dy/380));if(prevent)prevent()}};
+const finish=(x,y)=>{const g=state.gesture;state.gesture=null;if(!g||!state.locked)return;const dy=g.y-y,dx=Math.abs(x-g.x);if((dy>65||dy>40&&performance.now()-g.at<300)&&dy>dx*1.1){state.preventClick=Date.now();unlock()}else{lockEl.style.removeProperty("--drag-y");lockEl.style.removeProperty("--drag-opacity")}};
+lockEl.addEventListener("pointerdown",e=>{if(e.pointerType!=="touch"&&e.button===0)start(e.clientX,e.clientY,"pointer")},true);
+window.addEventListener("pointermove",e=>{if(state.gesture?.kind==="pointer")move(e.clientX,e.clientY)},true);
+window.addEventListener("pointerup",e=>{if(state.gesture?.kind==="pointer")finish(e.clientX,e.clientY)},true);
+lockEl.addEventListener("touchstart",e=>{const t=e.changedTouches[0];if(t)start(t.clientX,t.clientY,"touch")},{capture:true,passive:true});
+lockEl.addEventListener("touchmove",e=>{const t=e.changedTouches[0];if(t&&state.gesture?.kind==="touch")move(t.clientX,t.clientY,()=>{if(e.cancelable)e.preventDefault()})},{capture:true,passive:false});
+window.addEventListener("touchend",e=>{const t=e.changedTouches[0];if(t&&state.gesture?.kind==="touch")finish(t.clientX,t.clientY)},true);
+window.addEventListener("touchcancel",()=>{state.gesture=null;lockEl.style.removeProperty("--drag-y")},true);
+let wheel=0,wheelAt=0;lockEl.addEventListener("wheel",e=>{if(e.cancelable)e.preventDefault();if(performance.now()-wheelAt>400)wheel=0;wheelAt=performance.now();wheel=Math.max(0,wheel+e.deltaY);if(wheel>100){wheel=0;unlock()}},{passive:false});
+const tabs=()=>[["case","The Case"],["engineering","Engineering"],["proof","Proof + Limits"]].map(([k,v])=>'<button data-tab="'+k+'" class="'+(state.tab===k?'selected':'')+'">'+v+'</button>').join("");
+function caseView(p){if(!p)return "<p>Not found.</p>";
+ const body=state.tab==="case"?'<h3>THE PROBLEM</h3><p>'+esc(p.challenge)+'</p><h3>MY CONTRIBUTION</h3><p>'+esc(p.contribution)+'</p>':state.tab==="engineering"?'<h3>IMPLEMENTATION</h3><ul>'+p.engineering.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul>':'<h3>VERIFIED EVIDENCE</h3><p>'+esc(p.proof)+'</p><h3>LIMITS AND READINESS</h3><p>'+esc(p.limits)+'</p>';
+ const urls=link(p.website,"Product website")+link(p.demo,"Interactive demo")+link(p.link,p.linkLabel||"Engineering case");
+ return '<article class="case-pane"><span class="case-overline">'+esc(p.scope)+' / '+esc(p.stage)+'</span><h2>'+esc(p.name)+'</h2><p class="case-lede">'+esc(p.summary)+'</p><div class="case-hero">'+(p.image?'<img src="'+esc(p.image)+'" alt="'+esc(p.name)+' public illustration" onerror="this.remove()" loading="lazy">':'')+'<span>'+esc(p.name)+'</span></div><div class="case-facts">'+p.facts.map(x=>'<span>'+esc(x)+'</span>').join("")+'</div><nav class="case-tabs">'+tabs()+'</nav><div class="case-text">'+body+'</div>'+(urls?'<div class="case-links">'+urls+'</div>':'<p class="private-note">Private source · No public code link available</p>')+'</article>';
 }
-function renderTab(){
- $$(".file-tab").forEach(b=>{const active=b.dataset.tab===currentTab;b.classList.toggle("on",active);b.setAttribute("aria-selected",String(active));});
- const p=byId[currentProject];let html="";
- if(currentTab==="overview"){
-  html='<h3>THE REAL PROBLEM</h3><p>'+escapeHtml(p.challenge)+'</p><h3>WHAT I OWNED</h3><p>'+escapeHtml(p.contribution)+'</p><h3>TOOLS</h3><p>'+p.tags.map(t=>'<span class="skill-token">'+escapeHtml(t)+'</span>').join(' ')+'</p>';
- }else if(currentTab==="engineering"){
-  html='<h3>IMPLEMENTATION NOTES</h3><ul>'+p.engineering.map(x=>"<li>"+escapeHtml(x)+"</li>").join("")+'</ul><h3>THE APPROACH</h3><p>Inspect the boundaries and trade-offs, not just the feature list.</p>';
- }else{
-  html='<h3>WHAT THE REPOSITORY SUPPORTS</h3><p>'+escapeHtml(p.proof)+'</p><h3>WHAT IT DOES NOT PROVE</h3><p class="honesty">'+escapeHtml(p.limits)+'</p>';
- }
- $("#tab-content").innerHTML=html;
+function fileRows(ids){return ids.map(id=>byID[id]).filter(Boolean).map(p=>'<button data-project="'+p.id+'" class="file-row '+(state.project===p.id?'selected':'')+'"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="./icons.svg#document"></use></svg><span><strong>'+esc(p.name)+'</strong><small>'+esc(p.scope)+' · '+esc(p.stage.split(" / ")[0])+'</small></span></button>').join("")}
+function finder(){
+ if(mobile())return '<div class="app-doc"><span class="overline">FILES / ENGINEERING WORK</span><h2>Projects</h2><p>Explore 21 engineering case files, from real client delivery to local agent runtimes.</p><div class="finder-list">'+fileRows(sets.all)+'</div></div>';
+ const cats=[["featured","Favorites"],["delivery","Client delivery"],["ai","AI systems"],["products","Products"],["research","Research"],["all","All projects"]];
+ return '<div class="finder-layout"><aside class="finder-sidebar"><p class="finder-group">Favorites</p>'+cats.map(([k,v])=>'<button data-group="'+k+'" class="finder-side-button '+(state.group===k?'selected':'')+'"><svg viewBox="0 0 64 64"><use href="./icons.svg#folder"></use></svg>'+v+'</button>').join("")+'</aside><div class="finder-main"><header class="finder-top"><h2>'+esc(cats.find(x=>x[0]===state.group)[1])+'</h2><span>'+sets[state.group].length+' files</span></header><div class="finder-split"><div class="finder-list">'+fileRows(sets[state.group])+'</div>'+caseView(byID[state.project])+'</div></div></div>';
 }
-function openProject(id){
- const p=byId[id];if(!p)return;
- if(!folders[currentFolder].list.includes(id)){currentFolder="all";$("#folder-breadcrumb").textContent="DESKTOP / ALL PROJECTS";}
- if(currentLens!=="all"&&!p.flags.includes(currentLens)){currentLens="all";$$(".lens").forEach(b=>b.classList.toggle("active",b.dataset.lens==="all"));}
- currentProject=id;currentTab="overview";renderFolder(currentFolder);showWindow("finder");
-}
-function selectLens(lens){currentLens=lens;$$(".lens").forEach(b=>b.classList.toggle("active",b.dataset.lens===lens));renderFolder(currentFolder);}
-function spotlightOpen(){const s=$("#spotlight");s.hidden=false;$("#spotlight-input").value="";searchRender("");setTimeout(()=>$("#spotlight-input").focus(),0);}
-function spotlightClose(){$("#spotlight").hidden=true;}
-function matchesSearch(p,q){const hay=[p.name,p.summary,p.scope,p.tags.join(" "),p.stage,p.challenge].join(" ").toLowerCase();return hay.includes(q.toLowerCase());}
-function searchRender(q){
- const matches=projects.filter(p=>matchesSearch(p,q)).slice(0,12);
- $("#spotlight-results").innerHTML=matches.length?matches.map(p=>'<button class="spotlight-result" data-search-project="'+p.id+'"><span class="file-glyph '+p.tone+'">'+PortfolioIcons.file(p.glyph,p.tone)+'</span><span><b>'+escapeHtml(p.name)+'</b><small>'+escapeHtml(p.scope)+' / '+escapeHtml(p.summary.slice(0,100))+'</small></span></button>').join(""):'<p class="spotlight-empty">No matching projects. Try a language, tool or problem.</p>';
-}
-function submitTerminal(input){
- const out=$("#terminal-output");const command=String(input).trim();if(!command)return;
- const line=document.createElement("p");line.textContent="deon@portfolio % "+command;out.append(line);
- let reply="";
- const words=command.toLowerCase().split(/\s+/);
- if(words[0]==="help")reply="help · whoami · ls · open <project> · stack · contact · clear";
- else if(words[0]==="whoami")reply="Deon Quek / Applied AI & Software Engineer / Singapore\nFounder-led platforms, real client automation, native app systems and testable implementations.";
- else if(words[0]==="ls")reply=projects.map(p=>p.name).join("  ·  ");
- else if(words[0]==="stack")reply="Python, TypeScript, Rust, Swift, PostgreSQL, Redis, React, Tauri, Metal, Docker, MCP, evaluation systems";
- else if(words[0]==="contact")reply="LinkedIn: https://www.linkedin.com/in/deonquek\nGitHub: https://github.com/joyboy257";
- else if(words[0]==="open"){
-  const query=words.slice(1).join(" ");const found=projects.find(p=>p.id===query||p.name.toLowerCase().includes(query)&&query);
-  if(found){openProject(found.id);reply="Opened "+found.name+" in Finder."; }else reply="Project not found. Type ls for names.";
- }else if(words[0]==="clear"){out.replaceChildren();return;}else reply="Unknown command. Type help.";
- const p=document.createElement("p");p.textContent=reply;out.append(p);out.scrollTop=out.scrollHeight;
-}
-function copyToClipboard(value,message){
- if(!navigator.clipboard || !navigator.clipboard.writeText){appToast("Clipboard unavailable in this browser");return;}
- navigator.clipboard.writeText(value).then(()=>appToast(message)).catch(()=>appToast("Clipboard access denied"));
-}
-function tickClock(){const now=new Date();$("#desktop-time").textContent=new Intl.DateTimeFormat("en-SG",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit",hour12:false}).format(now).toUpperCase();}
-function installDrag(){
- $$(".window-titlebar").forEach(header=>{
-  let start=null;
-  header.addEventListener("pointerdown",e=>{
-   if(e.target.closest("button"))return;
-   const name=header.dataset.drag,el=$("#"+name+"-window");if(!el||matchMedia("(max-width:720px)").matches||el.classList.contains("maximized"))return;
-   focusWin(name);
-   const rect=el.getBoundingClientRect();
-   start={x:e.clientX,y:e.clientY,left:rect.left,top:rect.top};header.setPointerCapture(e.pointerId);
-  });
-  header.addEventListener("pointermove",e=>{
-   if(!start)return;
-   const x=Math.max(8,Math.min(innerWidth-140,start.left+(e.clientX-start.x)));
-   const y=Math.max(40,Math.min(innerHeight-125,start.top+(e.clientY-start.y)));
-   const el=$("#"+header.dataset.drag+"-window");el.style.left=x+"px";el.style.top=y+"px";
-  });
-  header.addEventListener("pointerup",()=>start=null);
-  header.addEventListener("pointercancel",()=>start=null);
- });
-}
+function documentView(name,heading,content){return '<div class="app-doc"><span class="overline">'+name+'</span><h2>'+heading+'</h2><div class="app-paper">'+content+'</div></div>'}
+function notes(){return documentView("NOTES / MY APPROACH","Notes to self.",'<p><strong>Models propose. Systems authorize.</strong> Business state needs deterministic boundaries.</p><p><strong>The difficult part begins beyond the demo.</strong> Error handling, permissions, retries, and integrations are product features.</p><p><strong>Keep the receipts.</strong> Idempotency, provenance, evaluation, and rollback should be inspectable.</p><p><strong>Make it useful.</strong> Software matters when people can actually use it.</p><p>— Deon</p>')}
+function readme(){return documentView("READ ME FIRST / RECRUITERS","Hey, I am Deon.",'<p><strong>Applied AI and Software Engineer in Singapore.</strong> I build systems beyond model prompts.</p><p><strong>Mirai:</strong> Founder and lead engineer of a multi-tenant AI operating platform, with governed tools, services and evaluations.</p><p><strong>Amelia Bot:</strong> Real client staff use the Telegram/document workflow. The new version is staged behind 69 shadow tests, not falsely claimed deployed.</p><p><strong>Engineering range:</strong> Swift and Metal, Rust local-first memory, Python, TypeScript, PostgreSQL, Redis, React, and developer tooling.</p><p>My case studies distinguish what is shipped, internally evaluated, and experimental.</p>')+'<div class="case-links">'+link("https://www.linkedin.com/in/deonquek","Get in touch")+link("https://github.com/joyboy257","View code")+'</div>'}
+function photos(){return '<div class="app-doc"><span class="overline">PHOTOS / SELECTED WORK</span><h2>Work, in pictures.</h2><p>Public project imagery and sanitized systems diagrams.</p><div class="photo-grid">'+projects.filter(p=>p.image).slice(0,11).map(p=>'<button data-project="'+p.id+'"><img src="'+esc(p.image)+'" alt="'+esc(p.name)+' screenshot" loading="lazy" onerror="this.style.display=\'none\'"><span>'+esc(p.name)+'</span></button>').join("")+'</div></div>'}
+function browser(){const destinations=[["https://usemirai.app/","Mirai","Product website"],["https://usemirai.app/demo","Mirai demo","Product demo"],["https://github.com/joyboy257/mirai-showcase","Architecture","Engineering case"],["https://github.com/joyboy257","GitHub","Public code"],["https://www.linkedin.com/in/deonquek","LinkedIn","Get in touch"]];return '<div class="app-doc"><span class="overline">SAFARI / FAVORITES</span><h2>Favorites</h2><p>Explore the products and engineering evidence.</p><div class="app-links">'+destinations.map(([u,n,d])=>'<a target="_blank" rel="noopener noreferrer" href="'+u+'">'+n+' ↗<span>'+d+'</span></a>').join("")+'</div></div>'}
+function about(){return documentView("ABOUT THIS MAC / OWNER","Deon Quek",'<p>AI and software engineer based in Singapore. I work across systems design, product engineering, agents, native apps, and real integrations.</p><p>Founder and lead engineer of Mirai, plus production client automation, research software, and developer tools.</p><p>Python · TypeScript · PostgreSQL · React · Rust · Swift · Metal · Redis · Docker · MCP.</p>')+'<div class="case-links">'+link("https://www.linkedin.com/in/deonquek","LinkedIn")+link("https://github.com/joyboy257","GitHub")+'</div>'}
+function content(){if(state.app==="finder")return finder();if(state.app==="project")return caseView(byID[state.project]);if(state.app==="notes")return notes();if(state.app==="photos")return photos();if(state.app==="browser")return browser();if(state.app==="calendar")return readme();if(state.app==="about")return about();if(state.app==="contact")return documentView("CONTACT / SINGAPORE","Let us talk.",'<p>Interested in Applied AI, Forward-Deployed Engineering, and Software Engineering.</p>')+'<div class="case-links">'+link("https://www.linkedin.com/in/deonquek","Connect")+'</div>';if(state.app==="terminal")return '<div class="terminal-panel"><p>deon@macbook ~ % whoami</p><p class="term-green">Deon Quek · Applied AI & Software Engineer</p><p>Try opening a project through Finder or Spotlight (⌘K).</p></div>';return finder()}
+const title=()=>({finder:"Finder",project:byID[state.project]?.name,notes:"Notes",photos:"Photos",browser:"Safari",calendar:"Calendar",about:"About",contact:"Contact",terminal:"Terminal"})[state.app]||"Finder";
+function render(){if(mobile()){const pane=$("#phone-app");pane.hidden=false;$("#phone-app-name").textContent=title();$("#phone-app-body").innerHTML=content();$("#phone-app-body").scrollTop=0;}else{const w=$("#mac-window");w.hidden=false;w.classList.remove("minimized");$("#mac-window-name").textContent=title();$("#active-app-name").textContent=title();$("#mac-window-content").innerHTML=content();}}
+function open(app,id){if(state.locked){unlock({app,id});return;}if(mobile()&&!$("#phone-app").hidden)state.stack.push([state.app,state.project]);state.app=app;state.project=id||state.project;state.tab="case";render();if(id&&byID[id]){const url=new URL(location.href);url.searchParams.set("project",id);history.replaceState(null,"",url);}}
+function close(){state.app="";state.stack=[];$("#phone-app").hidden=true;$("#mac-window").hidden=true;$("#mac-window").classList.remove("minimized");const url=new URL(location.href);url.searchParams.delete("project");history.replaceState(null,"",url);}
+function back(){if(state.stack.length){const [app,id]=state.stack.pop();state.app=app;state.project=id;state.tab="case";render()}else close()}
+const matches=q=>projects.filter(p=>[p.name,p.summary,p.scope,p.tags.join(" ")].join(" ").toLowerCase().includes(q.toLowerCase())).slice(0,12);
+function searching(q){$("#search-results").innerHTML=matches(q).map(p=>'<button class="search-result" data-project="'+p.id+'"><svg viewBox="0 0 64 64"><use href="./icons.svg#document"></use></svg><span><strong>'+esc(p.name)+'</strong><small>'+esc(p.summary.slice(0,90))+'</small></span></button>').join("")||'<p>No results.</p>'}
+function search(){if(state.locked)return;$("#spotlight").hidden=false;$("#spotlight-input").value="";searching("");$("#spotlight-input").focus()}
+function endSearch(){$("#spotlight").hidden=true}
+$("#desktop-search").addEventListener("click",search);
+$("#spotlight-input").addEventListener("input",e=>searching(e.target.value));
+$("#spotlight-close").addEventListener("click",endSearch);
+$("#spotlight").addEventListener("click",e=>{if(e.target===$("#spotlight"))endSearch()});
+$("#mac-close").addEventListener("click",close);
+$("#mac-min").addEventListener("click",()=>$("#mac-window").classList.add("minimized"));
+$("#mac-full").addEventListener("click",()=>$("#mac-window").classList.toggle("maximized"));
+$("#phone-back").addEventListener("click",back);
+$("#phone-home").addEventListener("click",close);
+$("#home-indicator").addEventListener("click",close);
 document.addEventListener("click",e=>{
- const action=e.target.closest("[data-window-action]");if(action){performAction(action.dataset.windowAction,action.dataset.target);return;}
- const app=e.target.closest("[data-app]");if(app){openApp(app.dataset.app);return;}
- const start=e.target.closest("[data-start-project]");if(start){openProject(start.dataset.startProject);if(matchMedia("(max-width:720px)").matches)$("#finder-window").scrollIntoView({behavior:"smooth",block:"start"});return;}
- const folder=e.target.closest("[data-folder]");if(folder){showWindow("finder");currentProject=folders[folder.dataset.folder]?.list[0]||"mirai";currentTab="overview";renderFolder(folder.dataset.folder);if(matchMedia("(max-width:720px)").matches)$("#finder-window").scrollIntoView({behavior:"smooth",block:"start"});return;}
- const project=e.target.closest("[data-project]");if(project){currentTab="overview";renderProject(project.dataset.project);return;}
- const tab=e.target.closest("[data-tab]");if(tab){currentTab=tab.dataset.tab;renderTab();return;}
- const lens=e.target.closest("[data-lens]");if(lens){selectLens(lens.dataset.lens);return;}
- const found=e.target.closest("[data-search-project]");if(found){spotlightClose();openProject(found.dataset.searchProject);return;}
- if(e.target===$("#spotlight"))spotlightClose();
- const windowEl=e.target.closest(".os-window");if(windowEl)focusWin(windowEl.dataset.window);
+ const t=e.target.closest("[data-tab]");if(t){state.tab=t.dataset.tab;render();return}
+ const g=e.target.closest("[data-group]");if(g){state.group=g.dataset.group;state.project=sets[state.group][0];render();return}
+ const p=e.target.closest("[data-project]");if(p){endSearch();open("project",p.dataset.project);return}
+ const a=e.target.closest("[data-app]");if(a){open(a.dataset.app,a.dataset.project);return}
 });
-$("#finder-search").addEventListener("click",spotlightOpen);
-$("#spotlight-toggle").addEventListener("click",spotlightOpen);
-$("#spotlight-input").addEventListener("input",e=>searchRender(e.target.value.trim()));
-$("#terminal-form").addEventListener("submit",e=>{e.preventDefault();const input=$("#terminal-command");submitTerminal(input.value);input.value="";});
-$("#copy-project").addEventListener("click",()=>{
- const p=byId[currentProject];const summary=p.name+": "+p.summary+"\nMy contribution: "+p.contribution+"\nEngineering: "+p.engineering.join(" ")+"\nEvidence: "+p.proof+"\nLimits: "+p.limits+(p.link?"\n"+p.link:"");
- copyToClipboard(summary,"Project summary copied");
+document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();search();return}if(e.key==="Escape"){if(!$("#spotlight").hidden)endSearch();else if(mobile())back();else close()}if(state.locked&&["ArrowUp","PageUp"].includes(e.key)){e.preventDefault();unlock()}});
+/* Desktop draggable title bar */
+$("#mac-window-drag").addEventListener("pointerdown",e=>{
+ if(mobile()||e.target.closest("button")||$("#mac-window").classList.contains("maximized"))return;
+ const rect=$("#mac-window").getBoundingClientRect();state.drag={x:e.clientX,y:e.clientY,left:rect.left,top:rect.top};e.currentTarget.setPointerCapture(e.pointerId);
 });
-$("#copy-brief").addEventListener("click",()=>{
- const text="Deon Quek — Singapore-based Applied AI & Software Engineer. Founder/lead engineer of Mirai, a multi-tenant AI business platform; built Amelia Bot, staff-used automation for a professional-services client. Also built native Swift/Metal iOS work, Rust local agent systems, governed knowledge tools and product engineering projects. Engineering evidence: https://github.com/joyboy257/mirai-showcase; https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot";
- copyToClipboard(text,"Recruiter summary copied");
-});
-document.addEventListener("keydown",e=>{
- if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#spotlight").hidden?spotlightOpen():spotlightClose();return;}
- if(e.key==="Escape"){if(!$("#spotlight").hidden){spotlightClose();return;}if(focusWindow!=="finder"){const w=$("#"+focusWindow+"-window");if(w)w.hidden=true;focusWin("finder");}return;}
- if($("#spotlight").hidden&&focusWindow==="finder"&&!["INPUT","TEXTAREA"].includes(document.activeElement?.tagName)&&(e.key==="ArrowDown"||e.key==="ArrowUp")){
-  e.preventDefault();
-  const entries=folders[currentFolder].list.map(id=>byId[id]).filter(p=>currentLens==="all"||p.flags.includes(currentLens));
-  const index=entries.findIndex(p=>p.id===currentProject);
-  const next=entries[(index+(e.key==="ArrowDown"?1:-1)+entries.length)%entries.length];
-  if(next){currentTab="overview";renderProject(next.id);}
- }
-});
-installDrag();renderFolder("featured");firstPaint=false;tickClock();setInterval(tickClock,30000);
-const requested=new URLSearchParams(location.search).get("project");if(requested&&byId[requested])openProject(requested);
-const lens=new URLSearchParams(location.search).get("role");if(["ai","fde","swe"].includes(lens))selectLens(lens);
+$("#mac-window-drag").addEventListener("pointermove",e=>{if(!state.drag)return;const w=$("#mac-window");w.style.transform="none";w.style.left=Math.max(0,Math.min(innerWidth-130,state.drag.left+e.clientX-state.drag.x))+"px";w.style.top=Math.max(31,Math.min(innerHeight-100,state.drag.top+e.clientY-state.drag.y))+"px"});
+$("#mac-window-drag").addEventListener("pointerup",()=>state.drag=null);
+$("#mac-window-drag").addEventListener("pointercancel",()=>state.drag=null);
+/* Mobile home swipe and edge-back */
+$("#iphone-shell").addEventListener("touchstart",e=>{if(state.locked)return;const t=e.changedTouches[0];state.phoneGesture=t?{x:t.clientX,y:t.clientY,mode:t.clientX<22?"back":t.clientY>innerHeight-58?"home":""}:null},{passive:true});
+$("#iphone-shell").addEventListener("touchend",e=>{const g=state.phoneGesture,t=e.changedTouches[0];state.phoneGesture=null;if(!g||!t)return;if(g.mode==="back"&&t.clientX-g.x>70&&Math.abs(t.clientY-g.y)<75)back();if(g.mode==="home"&&g.y-t.clientY>55)close()},{passive:true});
+const request=new URLSearchParams(location.search).get("project");
+let seen=false;try{seen=sessionStorage.getItem("deon-unlocked")==="yes"}catch{}
+if(seen||request&&byID[request]){setLock(false);if(request&&byID[request])open("project",request)}else setLock(true);
