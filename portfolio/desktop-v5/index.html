@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#cdd9dc">
+<meta name="description" content="Deon Quek — Applied AI & Software Engineer. Explore real engineering work as an interactive desktop: AI platforms, client delivery, native software, developer tools, and research.">
+<meta property="og:title" content="Deon Quek / Desktop Portfolio">
+<meta property="og:description" content="An interactive engineering desktop, not another project-card website. Explore code, hard decisions and real project evidence.">
+<title>Deon's Desktop — Engineering Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<a href="#finder-projects" class="skip-link">Skip to projects</a>
+<div id="desktop" class="desktop">
+  <header class="menubar" aria-label="Desktop menu">
+    <div class="menu-left">
+      <button type="button" class="menu-logo" data-app="about" aria-label="About Deon">◈</button>
+      <span class="menu-app">DEON / DESKTOP</span>
+      <button type="button" data-app="finder">Projects</button>
+      <button type="button" data-app="about">About</button>
+      <button type="button" data-app="terminal">Terminal</button>
+      <button type="button" data-app="brief">Recruiter brief</button>
+    </div>
+    <div class="menu-right"><button type="button" id="spotlight-toggle" title="Search (⌘K)" aria-label="Search projects">⌕ <span>Search</span></button><span class="menu-online"><i></i> OPEN TO OPPORTUNITIES</span><time id="desktop-time">MON 26 OCT</time></div>
+  </header>
+  <main id="home" class="desktop-main">
+    <div class="wallpaper-wordmark" aria-hidden="true"><span>DEON</span><span>QUEK.</span></div>
+    <section class="desktop-intro" aria-labelledby="desktop-heading">
+      <p class="intro-index">PERSONAL WORKSTATION / EDITION 2026.10</p>
+      <h1 id="desktop-heading">I build the software<br>behind ambitious AI.</h1>
+      <p>Engineer across agents, backends, product interfaces and real-world automation. Explore the work like a filesystem: open a folder, inspect the decisions, follow the code.</p>
+    </section>
+    <div class="desktop-icons" id="desktop-icons" aria-label="Desktop folders">
+      <button type="button" class="desktop-icon" data-folder="featured"><span class="folder-art mint"></span><span>01 — SELECTED WORK</span></button>
+      <button type="button" class="desktop-icon" data-folder="delivery"><span class="folder-art blush"></span><span>02 — CLIENT DELIVERY</span></button>
+      <button type="button" class="desktop-icon" data-folder="ai"><span class="folder-art blue"></span><span>03 — AI SYSTEMS</span></button>
+      <button type="button" class="desktop-icon" data-folder="products"><span class="folder-art lilac"></span><span>04 — PRODUCTS</span></button>
+      <button type="button" class="desktop-icon" data-folder="research"><span class="folder-art gold"></span><span>05 — RESEARCH</span></button>
+      <button type="button" class="desktop-icon" data-app="brief"><span class="file-art"><b>PDF</b><small>CV</small></span><span>RECRUITER BRIEF</span></button>
+    </div>
+    <div class="wallpaper-footnote">PRIVATE PROJECTS: CLAIMS ARE SCOPE-BOUNDED · DEMOS, CODE AND EVALUATIONS ARE DIFFERENT PROOF TYPES</div>
+  </main>
+
+  <section class="os-window finder-window active-window" id="finder-window" aria-label="Project explorer" data-window="finder">
+    <header class="window-titlebar" data-drag="finder">
+      <div class="traffic"><button type="button" class="traffic-close" data-window-action="close" data-target="finder" aria-label="Close projects"></button><button type="button" class="traffic-min" data-window-action="minimize" data-target="finder" aria-label="Minimize projects"></button><button type="button" class="traffic-max" data-window-action="maximize" data-target="finder" aria-label="Maximize projects"></button></div>
+      <span class="window-caption">⌁ PROJECT EXPLORER</span><span class="window-tools"><button type="button" id="finder-search" title="Search projects">⌕</button><span>LIST + PREVIEW</span></span>
+    </header>
+    <div class="finder-shell" id="finder-projects">
+      <aside class="finder-sidebar" aria-label="Project categories">
+        <div class="sidebar-heading">FAVORITES</div>
+        <button type="button" class="side-item selected" data-folder="featured"><span class="side-folder mint"></span> Selected work <span>6</span></button>
+        <button type="button" class="side-item" data-folder="delivery"><span class="side-folder blush"></span> Real delivery</button>
+        <div class="sidebar-heading second">COLLECTIONS</div>
+        <button type="button" class="side-item" data-folder="ai"><span class="side-folder blue"></span> AI systems</button>
+        <button type="button" class="side-item" data-folder="products"><span class="side-folder lilac"></span> Products</button>
+        <button type="button" class="side-item" data-folder="research"><span class="side-folder gold"></span> Research</button>
+        <button type="button" class="side-item" data-folder="all"><span class="side-folder grey"></span> All projects</button>
+        <div class="sidebar-divider"></div><div class="sidebar-heading">SHORTCUTS</div>
+        <button type="button" class="side-item" data-app="about">◎ &nbsp; About me</button>
+        <button type="button" class="side-item" data-app="brief">▤ &nbsp; Recruiter brief</button>
+        <button type="button" class="side-item" data-app="terminal">&gt;_ &nbsp; Terminal</button>
+        <div class="sidebar-bottom">LOCAL SIMULATION<br>NO DATA LEAVES THIS SITE</div>
+      </aside>
+      <div class="finder-content">
+        <div class="finder-breadcrumb"><span id="folder-breadcrumb">HOME / SELECTED WORK</span><div class="finder-filter"><button type="button" class="lens active" data-lens="all">ALL</button><button type="button" class="lens" data-lens="ai">AI</button><button type="button" class="lens" data-lens="fde">FDE</button><button type="button" class="lens" data-lens="swe">SWE</button></div></div>
+        <div class="finder-body"><div class="file-list-pane"><div class="list-colheads"><span>NAME</span><span>STATUS</span></div><div class="file-list" id="project-list" role="listbox" aria-label="Projects"></div><div class="file-list-foot" id="list-count">6 ITEMS / SELECT A FILE</div></div>
+          <article class="preview-pane" id="preview-pane" aria-live="polite">
+            <div class="preview-visual" id="project-visual"></div>
+            <div class="preview-scroll">
+              <div class="preview-kicker" id="project-kicker">CASE FILE</div>
+              <h2 id="project-title">Mirai</h2><p class="project-deck" id="project-deck"></p>
+              <div class="proof-ribbon" id="project-facts"></div>
+              <div class="file-tabs" role="tablist" aria-label="Project detail tabs">
+                <button type="button" class="file-tab on" role="tab" aria-selected="true" data-tab="overview">THE CASE</button>
+                <button type="button" class="file-tab" role="tab" aria-selected="false" data-tab="engineering">ENGINEERING</button>
+                <button type="button" class="file-tab" role="tab" aria-selected="false" data-tab="evidence">PROOF + LIMITS</button>
+              </div>
+              <div id="tab-content" class="tab-content" role="tabpanel"></div>
+            </div>
+            <footer class="preview-actions"><a id="project-primary" href="#" target="_blank" rel="noopener noreferrer">OPEN EVIDENCE ↗</a><button type="button" id="copy-project">COPY PROJECT SUMMARY</button></footer>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="os-window utility-window" id="about-window" aria-label="About Deon" hidden data-window="about"><header class="window-titlebar" data-drag="about"><div class="traffic"><button type="button" class="traffic-close" data-window-action="close" data-target="about" aria-label="Close about"></button><button type="button" class="traffic-min" data-window-action="minimize" data-target="about" aria-label="Minimize about"></button><button type="button" class="traffic-max" data-window-action="maximize" data-target="about" aria-label="Maximize about"></button></div><span class="window-caption">ABOUT THIS ENGINEER</span></header>
+    <div class="utility-content about-layout"><div class="avatar-block"><span>DQ<span>.</span></span><small>PERSONAL WORKSTATION<br>SINGAPORE · 2026</small></div><div><p class="window-overline">DEON QUEK / APPLIED AI & SOFTWARE ENGINEER</p><h2>Builder of systems.<br><em>Not just demos.</em></h2><p>I've founded and engineered a multi-tenant AI platform, delivered automation into a real client workflow, and built across Swift/Metal, Rust, Python, TypeScript and full-stack product systems. I care about evidence, permissions, reliability and the last mile of making software useful.</p><div class="about-pills"><span>PYTHON</span><span>TYPESCRIPT</span><span>POSTGRESQL</span><span>REACT</span><span>RUST</span><span>SWIFT / METAL</span><span>AGENTS + MCP</span></div><div class="about-actions"><a href="https://github.com/joyboy257" target="_blank" rel="noopener noreferrer">GITHUB ↗</a><a href="https://www.linkedin.com/in/deonquek" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a><button type="button" data-app="brief">RECRUITER BRIEF ↗</button></div></div></div>
+  </section>
+  <section class="os-window utility-window brief-window" id="brief-window" aria-label="Recruiter brief" hidden data-window="brief"><header class="window-titlebar" data-drag="brief"><div class="traffic"><button type="button" class="traffic-close" data-window-action="close" data-target="brief" aria-label="Close brief"></button><button type="button" class="traffic-min" data-window-action="minimize" data-target="brief" aria-label="Minimize brief"></button><button type="button" class="traffic-max" data-window-action="maximize" data-target="brief" aria-label="Maximize brief"></button></div><span class="window-caption">READ ME FIRST.txt</span></header>
+    <div class="utility-content brief-content"><div class="note-head">HIRING NOTES / 1 OF 1 <span>READ TIME / 60 SEC</span></div><h2>Why interview Deon?</h2><p><strong>AI systems:</strong> Founder and lead engineer of Mirai, a multi-tenant AI business platform with governed execution and documented internal evaluations.</p><p><strong>Client delivery:</strong> Built Amelia Bot, a Telegram/document workflow used by staff; investigated reliability and produced a 69-case shadow replay.</p><p><strong>Engineering range:</strong> Native Metal rendering and StoreKit in Soleil; Rust/SQLite memory in WorkOS; deterministic Singapore compliance rules in Corpa; public developer tools and generative software.</p><p><strong>How I work:</strong> Take ownership of architecture, integration, testing, verification and recovery—while clearly separating experiments, internal gates and real production.</p><div class="brief-links"><button id="copy-brief" type="button">COPY THIS BRIEF</button><a href="https://github.com/joyboy257/mirai-showcase" target="_blank" rel="noopener noreferrer">MIRAI PROOF ↗</a><a href="https://www.linkedin.com/in/deonquek" target="_blank" rel="noopener noreferrer">CONTACT ↗</a></div></div>
+  </section>
+  <section class="os-window utility-window terminal-window" id="terminal-window" aria-label="Interactive portfolio terminal" hidden data-window="terminal"><header class="window-titlebar" data-drag="terminal"><div class="traffic"><button type="button" class="traffic-close" data-window-action="close" data-target="terminal" aria-label="Close terminal"></button><button type="button" class="traffic-min" data-window-action="minimize" data-target="terminal" aria-label="Minimize terminal"></button><button type="button" class="traffic-max" data-window-action="maximize" data-target="terminal" aria-label="Maximize terminal"></button></div><span class="window-caption">deon@portfolio — zsh</span></header><div class="terminal-body" id="terminal-output"><p>deon@portfolio — this is a simulated portfolio terminal, not a real shell.</p><p>Type <b>help</b> for commands, or <b>open mirai</b> to inspect a project.</p></div><form id="terminal-form" class="terminal-input"><label for="terminal-command">deon@portfolio %</label><input id="terminal-command" autocomplete="off" spellcheck="false" aria-label="Terminal command" /></form></section>
+  <div id="spotlight" class="spotlight-overlay" hidden><section class="spotlight-box" role="dialog" aria-modal="true" aria-labelledby="spotlight-title"><div class="spotlight-heading"><label id="spotlight-title" for="spotlight-input">⌕ &nbsp; QUICK FIND</label><span>ESC TO CLOSE</span></div><input id="spotlight-input" type="search" autocomplete="off" placeholder="Search projects, languages, skills…" aria-label="Search portfolio"><div class="spotlight-results" id="spotlight-results"></div></section></div>
+  <nav class="dock" aria-label="Desktop applications"><button type="button" data-app="finder" aria-label="Projects Finder"><span class="dock-icon dock-finder">◧</span><small>Finder</small></button><button type="button" data-app="brief" aria-label="Recruiter brief"><span class="dock-icon dock-brief">▤</span><small>Brief</small></button><button type="button" data-app="about" aria-label="About Deon"><span class="dock-icon dock-about">DQ</span><small>About</small></button><button type="button" data-app="terminal" aria-label="Terminal"><span class="dock-icon dock-terminal">&gt;_</span><small>Terminal</small></button><span class="dock-sep"></span><a href="https://github.com/joyboy257" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><span class="dock-icon dock-github">GH</span><small>GitHub</small></a><a href="https://www.linkedin.com/in/deonquek" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><span class="dock-icon dock-linkedin">in</span><small>LinkedIn</small></a></nav>
+  <div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
+</div>
+<script src="./app.js" defer></script>
+</body></html>
