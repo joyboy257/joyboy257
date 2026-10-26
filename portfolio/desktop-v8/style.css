@@ -19,7 +19,7 @@ svg{display:block}
    built from original CSS shapes rather than reference or Apple wallpaper artwork. */
 .mac-shell{
  background-color:#7991a2;
- background-image:linear-gradient(120deg,rgba(18,39,58,.16),rgba(34,52,60,.02) 60%,rgba(18,39,58,.15)),url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2400&q=84");
+ background-image:linear-gradient(120deg,rgba(18,39,58,.16),rgba(34,52,60,.02) 60%,rgba(18,39,58,.15)),url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2400&q=84"),linear-gradient(145deg,#7f9db0,#d7b9a8);
  background-size:cover;
  background-position:center 51%;
 }
@@ -212,7 +212,7 @@ svg{display:block}
  .mac-shell{display:none}
  .iphone-shell{display:flex;flex-direction:column;position:relative;overflow:hidden;color:#fff;
   background-color:#53758c;
-  background-image:linear-gradient(180deg,rgba(19,36,51,.33),rgba(19,36,51,.1) 60%,rgba(20,34,47,.27)),url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2400&q=84");
+  background-image:linear-gradient(180deg,rgba(19,36,51,.33),rgba(19,36,51,.1) 60%,rgba(20,34,47,.27)),url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2400&q=84"),radial-gradient(ellipse at 35% 74%,#b2c6c2,#456e91 76%);
   background-size:cover;background-position:49% center}
  .iphone-shell:after{content:none}
  .phone-status{height:calc(59px + var(--safe-top));flex:0 0 auto;display:flex;align-items:flex-start;justify-content:space-between;padding:calc(17px + var(--safe-top)) 28px 0;position:relative;z-index:10;font-size:15px;font-weight:660;text-shadow:0 1px 4px #33537840}
