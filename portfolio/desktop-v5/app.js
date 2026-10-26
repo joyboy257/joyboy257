@@ -247,7 +247,7 @@ function renderFolder(name){
  $("#folder-breadcrumb").textContent="DESKTOP / "+folder.label;
  const items=folder.list.map(id=>byId[id]).filter(Boolean).filter(p=>currentLens==="all"||p.flags.includes(currentLens));
  $("#list-count").textContent=items.length+" PROJECTS / OPEN TO INSPECT";
- $("#project-list").innerHTML=items.map(p=>'<button role="option" aria-selected="'+String(p.id===currentProject)+'" class="file-row '+(p.id===currentProject?'selected':'')+'" data-project="'+p.id+'"><span class="file-glyph '+(p.tone||'')+'">'+escapeHtml(p.glyph)+'</span><span class="file-row-copy"><strong>'+escapeHtml(p.name)+'</strong><small>'+escapeHtml(p.scope)+' · '+escapeHtml(p.stage.split(" / ")[0])+'</small></span></button>').join('');
+ $("#project-list").innerHTML=items.map(p=>'<button role="option" aria-selected="'+String(p.id===currentProject)+'" class="file-row '+(p.id===currentProject?'selected':'')+'" data-project="'+p.id+'"><span class="file-glyph '+(p.tone||'')+'">'+PortfolioIcons.file(p.glyph,p.tone)+'</span><span class="file-row-copy"><strong>'+escapeHtml(p.name)+'</strong><small>'+escapeHtml(p.scope)+' · '+escapeHtml(p.stage.split(" / ")[0])+'</small></span></button>').join('');
  if(!items.some(p=>p.id===currentProject)){if(items[0])currentProject=items[0].id;}
  if(!items.length){$("#project-list").innerHTML='<p class="spotlight-empty">No projects in this category for this role.</p>';return;}
  renderProject(currentProject);
@@ -295,7 +295,7 @@ function spotlightClose(){$("#spotlight").hidden=true;}
 function matchesSearch(p,q){const hay=[p.name,p.summary,p.scope,p.tags.join(" "),p.stage,p.challenge].join(" ").toLowerCase();return hay.includes(q.toLowerCase());}
 function searchRender(q){
  const matches=projects.filter(p=>matchesSearch(p,q)).slice(0,12);
- $("#spotlight-results").innerHTML=matches.length?matches.map(p=>'<button class="spotlight-result" data-search-project="'+p.id+'"><span class="file-glyph '+p.tone+'">'+escapeHtml(p.glyph)+'</span><span><b>'+escapeHtml(p.name)+'</b><small>'+escapeHtml(p.scope)+' / '+escapeHtml(p.summary.slice(0,100))+'</small></span></button>').join(""):'<p class="spotlight-empty">No matching projects. Try a language, tool or problem.</p>';
+ $("#spotlight-results").innerHTML=matches.length?matches.map(p=>'<button class="spotlight-result" data-search-project="'+p.id+'"><span class="file-glyph '+p.tone+'">'+PortfolioIcons.file(p.glyph,p.tone)+'</span><span><b>'+escapeHtml(p.name)+'</b><small>'+escapeHtml(p.scope)+' / '+escapeHtml(p.summary.slice(0,100))+'</small></span></button>').join(""):'<p class="spotlight-empty">No matching projects. Try a language, tool or problem.</p>';
 }
 function submitTerminal(input){
  const out=$("#terminal-output");const command=String(input).trim();if(!command)return;
@@ -312,6 +312,10 @@ function submitTerminal(input){
   if(found){openProject(found.id);reply="Opened "+found.name+" in Finder."; }else reply="Project not found. Type ls for names.";
  }else if(words[0]==="clear"){out.replaceChildren();return;}else reply="Unknown command. Type help.";
  const p=document.createElement("p");p.textContent=reply;out.append(p);out.scrollTop=out.scrollHeight;
+}
+function copyToClipboard(value,message){
+ if(!navigator.clipboard || !navigator.clipboard.writeText){appToast("Clipboard unavailable in this browser");return;}
+ navigator.clipboard.writeText(value).then(()=>appToast(message)).catch(()=>appToast("Clipboard access denied"));
 }
 function tickClock(){const now=new Date();$("#desktop-time").textContent=new Intl.DateTimeFormat("en-SG",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit",hour12:false}).format(now).toUpperCase();}
 function installDrag(){
@@ -352,11 +356,11 @@ $("#spotlight-input").addEventListener("input",e=>searchRender(e.target.value.tr
 $("#terminal-form").addEventListener("submit",e=>{e.preventDefault();const input=$("#terminal-command");submitTerminal(input.value);input.value="";});
 $("#copy-project").addEventListener("click",()=>{
  const p=byId[currentProject];const summary=p.name+": "+p.summary+"\nMy contribution: "+p.contribution+"\nEngineering: "+p.engineering.join(" ")+"\nEvidence: "+p.proof+"\nLimits: "+p.limits+(p.link?"\n"+p.link:"");
- navigator.clipboard?.writeText(summary).then(()=>appToast("Project summary copied")).catch(()=>appToast("Clipboard unavailable"));
+ copyToClipboard(summary,"Project summary copied");
 });
 $("#copy-brief").addEventListener("click",()=>{
  const text="Deon Quek — Singapore-based Applied AI & Software Engineer. Founder/lead engineer of Mirai, a multi-tenant AI business platform; built Amelia Bot, staff-used automation for a professional-services client. Also built native Swift/Metal iOS work, Rust local agent systems, governed knowledge tools and product engineering projects. Engineering evidence: https://github.com/joyboy257/mirai-showcase; https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot";
- navigator.clipboard?.writeText(text).then(()=>appToast("Recruiter summary copied")).catch(()=>appToast("Clipboard unavailable"));
+ copyToClipboard(text,"Recruiter summary copied");
 });
 document.addEventListener("keydown",e=>{
  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#spotlight").hidden?spotlightOpen():spotlightClose();return;}
