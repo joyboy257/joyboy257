@@ -317,3 +317,17 @@ body{font-family:var(--font);-webkit-font-smoothing:antialiased}
  .ios-dock{height:65px;bottom:8px}
  .ios-dock button,.ios-dock button svg{width:46px;height:46px}
 }
+
+@media(max-width:720px){
+  .ios-home-header{margin:0 0 21px;min-height:31px;display:flex;align-items:center}
+  .ios-home-eyebrow{font-size:12px;font-weight:570;letter-spacing:0;text-transform:none;opacity:.85}
+  .visually-hidden{
+   position:absolute!important;width:1px!important;height:1px!important;
+   padding:0!important;margin:-1px!important;overflow:hidden!important;
+   clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;
+  }
+  #lockscreen .lock-top{position:relative;justify-content:center}
+  #lockscreen .lock-top-brand,#lockscreen .lock-top-right{display:none}
+  #lockscreen .lock-padlock{display:block;width:22px;height:22px;color:rgba(255,255,255,.91);filter:drop-shadow(0 1px 3px rgba(20,33,63,.18))}
+}
+@media(min-width:721px){#lockscreen .lock-padlock{display:none}}
