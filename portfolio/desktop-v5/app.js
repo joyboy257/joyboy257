@@ -3,13 +3,13 @@
 const projects=[
 {
 id:"mirai",name:"Mirai",group:"ai",glyph:"MI",tone:"",rank:1,flags:["ai","fde","swe"],stage:"ACTIVE / PRIVATE CORE",scope:"FOUNDING ENGINEERING",tags:["TypeScript","PostgreSQL","Redis","Agents","MCP"],facts:["49 governed tools","201/201 safety cases","500/500 eval iterations"],
-summary:"Multi-tenant AI business operating platform, engineered beyond the chat interface.",
+summary:"Mirai is a WhatsApp-first Revenue OS for service operators: customer conversations, Atlas AI, bookings, loyalty and governed business actions.",
 challenge:"An agent can propose business actions. How do you keep tenant data, permissions, asynchronous state and tool effects trustworthy when models are probabilistic?",
 contribution:"Founder and lead engineer across product direction, system architecture, backend and agent runtime, developer APIs, evaluation and delivery.",
 engineering:["Tool invocation guard checks immutable binding revisions, tenancy, permission scope and approval immediately before execution.","Transactional outbox persists events alongside business changes; idempotent enqueue prevents duplicate effects on retry.","Core services, orchestrators and workers separate model decisions from canonical business state.","MiraiEval provides release-evidence paths and capability-level gates."],
 proof:"The public case study records a July 2026 internal 500-iteration evaluation, 49 governed tools and 201/201 active safety cases. Recent engineering PRs also address deployment promotion and avoiding false-positive tests.",
 limits:"Internal test and system-readiness figures are not external adoption or performance claims. Production monorepo remains private; some vertical-slice release gates are blocked or staged.",
-link:"https://github.com/joyboy257/mirai-showcase",linkLabel:"PUBLIC ENGINEERING CASE ↗",
+link:"https://github.com/joyboy257/mirai-showcase",linkLabel:"ENGINEERING CASE ↗",website:"https://usemirai.app/",demo:"https://usemirai.app/demo",
 image:"https://raw.githubusercontent.com/joyboy257/mirai-showcase/main/assets/operator-home.png",mood:"ENGINEERED / GOVERNED"
 },
 {
@@ -264,6 +264,9 @@ function renderProject(id){
  const fallback=document.createElement("div");fallback.className="visual-fallback";fallback.textContent=p.name.toUpperCase();visual.append(fallback);
  const tag=document.createElement("span");tag.className="visual-tag";tag.textContent=p.stage;visual.append(tag);
  if(p.image){const img=document.createElement("img");img.src=p.image;img.loading="lazy";img.alt=p.name+" project evidence image";img.addEventListener("load",()=>fallback.hidden=true);img.addEventListener("error",()=>{img.remove();fallback.hidden=false});visual.insertBefore(img,fallback);}
+ const website=$("#project-website"), demo=$("#project-demo");
+ website.hidden=!p.website;if(p.website)website.href=p.website;
+ demo.hidden=!p.demo;if(p.demo)demo.href=p.demo;
  const link=$("#project-primary");
  if(p.link){link.href=p.link;link.textContent=p.linkLabel||"OPEN PUBLIC EVIDENCE ↗";link.hidden=false;}else{link.hidden=true;}
  renderTab();
