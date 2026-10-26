@@ -354,3 +354,24 @@ button { -webkit-tap-highlight-color: transparent; }
 @media (prefers-reduced-motion: reduce){
   .dock-icon,.os-window,.desktop-icon{transition:none!important;}
 }
+
+/* Tight desktop widths: collapse Finder's sidebar rather than crushing case-study content. */
+@media (min-width:721px) and (max-width:940px) {
+  .finder-shell{grid-template-columns:1fr;}
+  .finder-sidebar{display:none;}
+  .finder-body{grid-template-columns:clamp(140px,32%,190px) minmax(0,1fr);}
+  .file-row{grid-template-columns:30px 1fr;gap:7px;}
+  .file-glyph,.document-vector{width:29px;height:32px;}
+  .document-monogram{width:29px;top:18px;font-size:7px;}
+  .preview-visual{height:110px;}
+  .preview-scroll{padding:12px 14px;}
+  .preview-scroll h2{font-size:30px;}
+  .preview-actions a,.preview-actions button{font-size:9px;padding:8px 9px;}
+  .window-tools>span{display:none;}
+}
+/* Keep keyboard focus crisp for users who do not use a mouse. */
+.dock button:focus-visible,.dock a:focus-visible,.desktop-icon:focus-visible,
+.side-item:focus-visible,.file-row:focus-visible{outline:2px solid #277fba;outline-offset:2px;}
+@media (prefers-reduced-transparency: reduce){
+  .menubar,.window-titlebar,.dock,.spotlight-box{backdrop-filter:none;-webkit-backdrop-filter:none;background:#f2f7f7;}
+}
