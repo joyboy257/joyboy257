@@ -17,4 +17,45 @@
 <symbol id="code" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="m8 7-5 5 5 5m8-10 5 5-5 5"/></g></symbol>
 <symbol id="photos" viewBox="0 0 64 64"><rect x="5" y="5" width="54" height="54" rx="13" fill="#FBFAF7"/><g transform="translate(32 32)"><ellipse ry="16" rx="7" cy="-9" fill="#EF7581"/><ellipse ry="16" rx="7" cy="-9" fill="#E9B85F" transform="rotate(45)"/><ellipse ry="16" rx="7" cy="-9" fill="#B2CF6C" transform="rotate(90)"/><ellipse ry="16" rx="7" cy="-9" fill="#65C6AE" transform="rotate(135)"/><ellipse ry="16" rx="7" cy="-9" fill="#6CB6E1" transform="rotate(180)"/><ellipse ry="16" rx="7" cy="-9" fill="#8997D5" transform="rotate(225)"/><ellipse ry="16" rx="7" cy="-9" fill="#C6A4D9" transform="rotate(270)"/><ellipse ry="16" rx="7" cy="-9" fill="#EA8AB1" transform="rotate(315)"/><circle r="5.7" fill="#F2F1D4"/></g></symbol>
 <symbol id="safari" viewBox="0 0 64 64"><rect x="5" y="5" width="54" height="54" rx="13" fill="#4B9EE5"/><circle cx="32" cy="32" r="22" fill="#E6F6FC"/><circle cx="32" cy="32" r="19" fill="#72B9ED"/><circle cx="32" cy="32" r="17" fill="none" stroke="#D7EFFB" stroke-width="1.5"/><path d="m27 38 18-22-9 26-10 5z" fill="#E75267"/><path d="m27 38 18-22-14 16-5 15z" fill="#FFFFFF"/><circle cx="32" cy="32" r="3" fill="#F7FEFF"/></symbol>
+
+<symbol id="files-app" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#318BE3"/>
+  <path d="M7 9h50v46H7z" fill="#3D9DEE" opacity=".38"/>
+  <path d="M9 21a4 4 0 0 1 4-4h12l5 5h21a4 4 0 0 1 4 4v22a5 5 0 0 1-5 5H14a5 5 0 0 1-5-5Z" fill="#E7F6FF"/>
+  <path d="M9 29a5 5 0 0 1 5-5h36a5 5 0 0 1 5 5v19a5 5 0 0 1-5 5H14a5 5 0 0 1-5-5Z" fill="#CDEBFF"/>
+  <path d="M13 30h38" stroke="#FFFFFF" stroke-width="2" opacity=".85"/>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="13.5" fill="none" stroke="#FFFFFF" stroke-opacity=".28"/>
+</symbol>
+<symbol id="brief-app" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#F6F4EC"/>
+  <rect x="2" y="2" width="60" height="18" rx="14" fill="#EDA84F"/>
+  <path d="M2 15h60v6H2Z" fill="#EDA84F"/>
+  <path d="M17 28h30v4H17zm0 9h24v3H17zm0 8h30v3H17z" fill="#D0D2CC"/>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="13.5" fill="none" stroke="#C7BD9E" stroke-opacity=".26"/>
+</symbol>
+<symbol id="engineering-app" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#24282F"/>
+  <rect x="7" y="8" width="50" height="48" rx="9" fill="#121820"/>
+  <path d="m18 24 9 8-9 8m17 0h12" fill="none" stroke="#F7FAFF" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="50" cy="15" r="3" fill="#74D8A5"/>
+</symbol>
+<symbol id="about-app" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#E1E6E6"/>
+  <path d="M7 48c4-9 13-15 25-15s21 6 25 15v9H7Z" fill="#9EAEB2"/>
+  <circle cx="32" cy="24" r="13" fill="#AFBEC1"/>
+  <path d="M7 55h50" stroke="#FEFEFE" opacity=".7"/>
+</symbol>
+<symbol id="contact-app" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#3E9EDB"/>
+  <rect x="11" y="18" width="42" height="30" rx="5" fill="#F6FCFF"/>
+  <path d="m12 20 20 14 20-14" fill="none" stroke="#74BDE6" stroke-width="3"/>
+  <path d="M11 45 27 33m26 12L37 33" fill="none" stroke="#B7DBF4" stroke-width="2.5"/>
+</symbol>
+<symbol id="mirai-app" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#173B44"/>
+  <path d="M9 45V19l12 18 11-18 11 18 12-18v26" fill="none" stroke="#BDE3D4" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M9 45V19l12 18" fill="none" stroke="#7EBDB5" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="50" cy="13" r="3" fill="#E2FAEF"/>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="13.5" fill="none" stroke="#DFF4E5" stroke-opacity=".22"/>
+</symbol>
 </defs></svg>
