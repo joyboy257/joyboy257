@@ -18,16 +18,16 @@ svg{display:block}
 /* Common cinematic wallpaper. Inspired by the calm photo-led Macintosh experience;
    built from original CSS shapes rather than reference or Apple wallpaper artwork. */
 .mac-shell{
- background:
- radial-gradient(ellipse 90% 60% at 70% 98%,rgba(234,190,150,.8),transparent 78%),
- radial-gradient(ellipse 70% 65% at 12% 4%,rgba(217,224,231,.8),transparent 77%),
- linear-gradient(140deg,#7d9bb6 0%,#a9bfcb 39%,#dec7bf 80%,#b2bcc6 100%);
+ background-color:#7991a2;
+ background-image:linear-gradient(120deg,rgba(18,39,58,.16),rgba(34,52,60,.02) 60%,rgba(18,39,58,.15)),url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2400&q=84");
+ background-size:cover;
+ background-position:center 51%;
 }
 .mac-shell:before,.iphone-shell:before{
  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
  background:radial-gradient(ellipse 56% 56% at 53% 45%,#d0e6e4aa,transparent 75%);
 }
-.mac-shell:after{content:"";position:absolute;inset:20% -20% -40% 13%;z-index:-1;border-radius:48% 41% 39% 54%;transform:rotate(-18deg);background:linear-gradient(150deg,#ffffff25,#7ca4b878,transparent 80%);filter:blur(16px);pointer-events:none}
+.mac-shell:after{content:none}
 .mac-menubar{
  position:absolute;top:0;left:0;right:0;height:31px;z-index:140;
  display:flex;align-items:center;justify-content:space-between;
@@ -211,10 +211,10 @@ svg{display:block}
  html,body,.os{height:100dvh;min-height:0}
  .mac-shell{display:none}
  .iphone-shell{display:flex;flex-direction:column;position:relative;overflow:hidden;color:#fff;
-  background:radial-gradient(ellipse 80% 67% at 15% 100%,#edb6a59c,transparent 73%),
-  radial-gradient(ellipse 87% 76% at 89% 14%,#8ab0c3c2,transparent 80%),
-  linear-gradient(144deg,#5679a8 0%,#4f7ea4 44%,#98babb 100%)}
- .iphone-shell:after{content:"";position:absolute;z-index:0;left:-22%;top:22%;height:79%;width:142%;pointer-events:none;transform:rotate(-25deg);border-radius:44% 68% 32% 56%;background:linear-gradient(105deg,transparent 12%,#dfebeb27 30%,#d4f5f144 48%,transparent 78%);filter:blur(22px)}
+  background-color:#53758c;
+  background-image:linear-gradient(180deg,rgba(19,36,51,.33),rgba(19,36,51,.1) 60%,rgba(20,34,47,.27)),url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2400&q=84");
+  background-size:cover;background-position:49% center}
+ .iphone-shell:after{content:none}
  .phone-status{height:calc(59px + var(--safe-top));flex:0 0 auto;display:flex;align-items:flex-start;justify-content:space-between;padding:calc(17px + var(--safe-top)) 28px 0;position:relative;z-index:10;font-size:15px;font-weight:660;text-shadow:0 1px 4px #33537840}
  .dynamic-island{position:absolute;top:calc(10px + var(--safe-top));left:50%;transform:translateX(-50%);width:109px;height:31px;border-radius:30px;background:#0b0c11}
  .phone-signal svg{height:15px;width:56px}
