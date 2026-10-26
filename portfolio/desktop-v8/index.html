@@ -12,16 +12,17 @@
   window.va("beforeSend", function (event) {
     try {
       var u = new URL(event.url);
-      // Remove non-attribution query parameters, including user-provided free text.
-      var safe = ["utm_source","utm_medium","utm_campaign","utm_content"];
-      Array.from(u.searchParams.keys()).forEach(function (key) {
-        if (!safe.includes(key)) u.searchParams.delete(key);
-      });
+      // Never forward arbitrary query parameters, including deep-link IDs,
+      // names, application tokens, or free-form campaign strings.
+      if (new URLSearchParams(location.search).has("no_analytics")) return null;
+      u.search = "";
+      u.hash = "";
       return Object.assign({}, event, { url: u.toString() });
     } catch (err) { return event; }
   });
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/analytics.js"></script>
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <link rel="stylesheet" href="./style.css"></head>
 <body>
