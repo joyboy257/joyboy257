@@ -1,247 +1,147 @@
-<p align="center">
-  <img src="assets/github-hero.png" width="100%" alt="Black RWB-style Porsche 964 among Roman ruins — original concept artwork" />
-</p>
-
 <div align="center">
 
 # Deon Quek
 
-### Building autonomous AI systems, research infrastructure, and production-grade software
+### AI Systems Engineer · Applied AI · Backend Engineering
 
-Singapore · Computer Science (AI/ML) · Applied AI / Software Engineering
+**I build AI software that works beyond the demo.**
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/joyboy257)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/deonquek)
-[![Mirai](https://img.shields.io/badge/Mirai-usemirai.app-111827?style=flat-square)](https://usemirai.app)
+I turn LLMs, agents, APIs, and business workflows into systems that can take real actions, handle failures, and be tested and operated responsibly.
+
+**Singapore** · Interested in **AI Engineering, Software Engineering & Forward-Deployed Engineering** roles
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/deonquek)
+[![Mirai](https://img.shields.io/badge/Mirai-Product%20site-24292f?style=flat-square)](https://usemirai.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Explore%20code-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/joyboy257?tab=repositories)
 
 </div>
 
 ---
 
-## Featured engineering case studies
+## Featured engineering work
 
-<p align="center">
-  <a href="https://github.com/joyboy257/mirai-showcase">
-    <img src="https://raw.githubusercontent.com/joyboy257/mirai-showcase/main/assets/hero.svg" width="100%" alt="Mirai engineering showcase" />
-  </a>
-</p>
+Three projects show how I approach **AI systems engineering, real-world delivery, and software reliability**. Each has a public case study; proprietary production code stays private.
 
-**[Explore the public Mirai engineering showcase →](https://github.com/joyboy257/mirai-showcase)**
-
-A recruiter-facing product and architecture case study covering the chat-first workspace, persistent business agents, Atlas developer platform, governed execution, multi-tenant security, evaluation engineering, and selected internal certification evidence.
-
-`500/500 evaluation iterations` · `37 → 92/100 quality score` · `49 governed tools` · `201/201 active safety cases`
-
-The production monorepo remains private; the showcase exposes the engineering decisions and proof without publishing sensitive implementation or operational material.
-
-<p align="center">
-  <a href="https://github.com/joyboy257/amethyst-showcase">
-    <img src="https://raw.githubusercontent.com/joyboy257/amethyst-showcase/main/assets/hero.svg" width="100%" alt="Amethyst engineering showcase" />
-  </a>
-</p>
-
-**[Explore the Amethyst engineering showcase →](https://github.com/joyboy257/amethyst-showcase)**
-
-A recruiter-facing case study for governed company intelligence: evidence, point-in-time context, policy-enforced approvals, explicit learning writeback, lifecycle controls, and evidence-gated deployment.
-
-`CBR-PROD-00–07 complete` · `200/200 health and readiness` · `40-second rollback` · `external pilot deliberately disabled`
-
-<p align="center">
-  <a href="https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot">
-    <img src="https://raw.githubusercontent.com/joyboy257/joyboy257/main/showcases/amelia-bot/assets/hero.svg" width="100%" alt="Amelia Bot production workflow showcase" />
-  </a>
-</p>
-
-**[Explore the Amelia Bot production workflow showcase →](https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot)**
-
-A confidential-client-safe case study of a staff-used Telegram and n8n intake workflow, Google Drive finalisation, AI enrichment, operational tracking, and PostgreSQL KB records—plus the evidence-led hardening programme that followed. The current Main workflow remains authoritative; the first PostgreSQL-centred replacement slice is test-verified but inactive.
-
-`live staff adoption` · `production n8n workflow` · `summary slice test-verified` · `production cutover not claimed`
-
----
-
-## What I build
-
-I build systems that let software **reason, act, verify, and improve** across real workflows.
-
-My current work sits at the intersection of:
-
-- autonomous and multi-agent engineering
-- production AI architecture and evaluation
-- deterministic testing and replayable systems
-- quantitative research infrastructure
-- knowledge systems and workflow automation
-- backend-heavy product engineering
-
-I care most about software that survives contact with reality: observable, reproducible, testable, and useful to the people operating it.
-
----
-
-## Current systems
+### 01 · Mirai — AI agents for real business operations
 
 <table>
 <tr>
-<td width="50%" valign="top">
-
-### [Mirai](https://github.com/joyboy257/mirai-showcase)
-
-**Chat-first AI workspace and autonomous engineering system.**
-
-Built around agent orchestration, worker handoffs, persistent operational context, evaluation gates, and production workflows. The goal is not another chatbot; it is an interface through which people and agents can operate software systems together.
-
-**Focus:** multi-agent coordination, tool use, human escalation, durable workflows, verification, agent UX
-
+<td width="47%" valign="top">
+<a href="https://github.com/joyboy257/mirai-showcase"><img src="https://raw.githubusercontent.com/joyboy257/mirai-showcase/main/assets/operator-home.png" alt="Mirai chat-first operator workspace" width="100%" /></a>
 </td>
-<td width="50%" valign="top">
+<td valign="top">
 
-### Trading Desk
+**The problem:** AI agents are useful only if they can act on business systems without bypassing permissions, losing work, or silently changing important data.
 
-**Laptop-first autonomous quantitative research platform.**
+**What I built:** A multi-tenant, chat-first business platform with persistent agents, customer conversations, knowledge, tool execution, developer interfaces, and operational workflows.
 
-A research system for falsifiable market hypotheses, deterministic backtesting, temporal-graph evidence, replayable simulations, and model-independent verification. Current research includes liquidation dynamics, forced market participants, market microstructure, and systematic setup discovery.
+**My contribution:** Founder and lead engineer — product design, backend architecture, agent runtime, integrations, security boundaries, evaluation, and delivery.
 
-**Focus:** Python, event replay, evidence ledgers, backtesting, causal research, deterministic simulation
+**Engineering evidence:** A July 2026 internal evaluation completed **500/500 iterations**, with **201/201 active safety cases** passing and **49 governed tools** in the registry. These are internal test results, not customer-outcome metrics.
 
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-### [Amelia Bot](https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot)
-
-**Staff-used production workflow and controlled architecture-hardening programme for a private professional-services client.**
-
-The live system uses Telegram and n8n for intake, working state, file staging, Google Drive finalisation, AI-assisted enrichment, tracking, and PostgreSQL KB records. I later led the deterministic source, shadow, rollback, and PostgreSQL-centred refactor work without presenting inactive candidates as a completed production cutover.
-
-**Focus:** workflow reliability, production debugging, n8n provenance, PostgreSQL transactions, shadow parity, rollback, and evidence-bounded claims
-
-</td>
-<td width="50%" valign="top">
-
-### [DreamCraft](https://github.com/joyboy257/dreamcraft)
-
-**Natural language to playable 3D worlds.**
-
-A browser-based generative game system that turns dream descriptions into explorable voxel environments with procedural entities, structures, physics profiles, dialogue, quests, and runtime-created game modes.
-
-**Focus:** generative systems, procedural worlds, agent orchestration, WebGL, game systems
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-### [Amethyst](https://github.com/joyboy257/amethyst-showcase)
-
-**Governed company intelligence for AI-assisted work.**
-
-Company Brain turns source evidence into approved claims, policies, metrics, entities, and point-in-time context packets. It adds two-phase learning writeback, policy-enforced approvals, immutable receipts, kill switches, recovery controls, and evidence-gated production deployment.
-
-**Focus:** applied AI, human-in-the-loop governance, context engineering, idempotency, audit, observability, backup and rollback
-
-</td>
-<td width="50%" valign="top">
-
-### Agentic Product Infrastructure
-
-**Systems for agents to build and operate software safely.**
-
-Across my projects, I design evidence ledgers, phase gates, independent review loops, reproducible builds, worker orchestration, and explicit authorization boundaries so autonomous engineering can move quickly without becoming unverifiable.
-
-**Focus:** agentic engineering, governance, evals, CI, release gates, reproducibility
+**[Case study & architecture](https://github.com/joyboy257/mirai-showcase)** · **[Product walkthrough](https://usemirai.app/demo)** · **[Website](https://usemirai.app)**
 
 </td>
 </tr>
 </table>
 
----
+### 02 · Amelia Bot — AI automation used by real staff
 
-## Selected public projects
+<table>
+<tr>
+<td width="47%" valign="top">
+<a href="https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot"><img src="https://raw.githubusercontent.com/joyboy257/joyboy257/main/showcases/amelia-bot/assets/operator-workflow.svg" alt="Sanitized Telegram, n8n, Google Drive and PostgreSQL workflow" width="100%" /></a>
+</td>
+<td valign="top">
 
-- **[Mirai Showcase](https://github.com/joyboy257/mirai-showcase)** — public product, architecture, and engineering case study for Mirai
-- **[Amethyst Showcase](https://github.com/joyboy257/amethyst-showcase)** — governed AI context, approvals, learning writeback, recovery, and production controls
-- **[Amelia Bot Showcase](https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot)** — staff-used production workflow, current-versus-target architecture, shadow evidence, and a test-verified inactive replacement slice
-- **[DreamCraft](https://github.com/joyboy257/dreamcraft)** — generative browser-based 3D world engine
-- **[Mototiam](https://github.com/joyboy257/mototiam)** — motorcycle listing intelligence, scoring, and alerts for Singapore
-- **[AMI — AWHL Market Intelligence](https://github.com/joyboy257/ami-awhl)** — evidence-backed competitive intelligence platform
-- **[PokerAI](https://github.com/joyboy257/pokerai-public)** — reinforcement-learning research for No-Limit Texas Hold'em
+**The problem:** Staff at a professional-services client needed a practical way to manage intake, files, follow-ups, and document processing without juggling disconnected manual steps.
 
----
+**What I delivered:** A **staff-used production workflow** built around Telegram, n8n, Google Drive, Google Sheets, AI enrichment, and PostgreSQL knowledge records.
 
-## Engineering principles
+**My contribution:** Workflow discovery, integration engineering, operational debugging, data design, and a staged reliability-hardening programme.
 
-```text
-Evidence over assumptions.
-Deterministic systems over fragile demos.
-Verification before expansion.
-Clear contracts over hidden magic.
-Automation by default, judgment by design.
-```
+**Engineering evidence:** A **69-case shadow replay** achieved zero unexpected differences; a PostgreSQL replacement slice is test-verified but **not cut over**. The original n8n production flow remains authoritative.
 
-I treat specifications, tests, evals, replay artifacts, security boundaries, and deployment evidence as part of the product—not paperwork added after the build.
+**[Client-safe case study](https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot)** · **[Technical evidence](https://github.com/joyboy257/joyboy257/blob/main/showcases/amelia-bot/engineering-evidence.md)**
 
----
+</td>
+</tr>
+</table>
 
-## Technology
+### 03 · Amethyst — trusted company context for AI
 
-**Languages**  
-Python · TypeScript · JavaScript · SQL · C++ · Rust
+<table>
+<tr>
+<td width="47%" valign="top">
+<a href="https://github.com/joyboy257/amethyst-showcase"><img src="https://raw.githubusercontent.com/joyboy257/amethyst-showcase/main/assets/company-brain-overview.svg" alt="Sanitized Amethyst company-intelligence interface" width="100%" /></a>
+</td>
+<td valign="top">
 
-**AI and research**  
-LLM systems · agent orchestration · MCP · RAG · embeddings · evaluation systems · PyTorch · scikit-learn · reinforcement learning
+**The problem:** An agent shouldn't act on a company fact simply because an LLM generated it. Business decisions need evidence, freshness, permission checks, approval, and recovery.
 
-**Backend and data**  
-FastAPI · NestJS · Node.js · PostgreSQL · Redis · Prisma · Supabase · REST APIs · event-driven workflows
+**What I built:** A governed company-intelligence system that packages evidence-backed context for AI-assisted work, with explicit approval flows, audit records, controlled learning, and rollback.
 
-**Frontend and product**  
-Next.js · React · Tailwind CSS · shadcn/ui · Three.js · WebGL
+**My contribution:** Product and backend architecture, data and policy contracts, evaluation, deployment and recovery controls.
 
-**Infrastructure and automation**  
-Docker · GitHub Actions · Linux · Vercel · DigitalOcean · n8n · CI/CD · contract testing · browser QA
+**Engineering evidence:** Protected **internal production** with documented readiness checks and rollback proof. **External customer pilots and live provider writes remain disabled**.
 
----
+**[Case study & product visuals](https://github.com/joyboy257/amethyst-showcase)** · **[Architecture](https://github.com/joyboy257/amethyst-showcase/blob/main/docs/architecture.md)**
 
-## Currently researching
+</td>
+</tr>
+</table>
 
-- agentic engineering and multi-agent coordination
-- LLM evaluation and reliability
-- temporal and provenance-aware knowledge graphs
-- quantitative market structure and forced participant behaviour
-- deterministic simulation and replay systems
-- integration-first knowledge products
-- production architecture for autonomous software teams
+> **How to read these case studies:** I distinguish implemented code, local tests, internal deployment, customer use, and future work. Client details and private production artifacts are excluded intentionally. Reconstructed visuals are identified as such in their source case studies.
 
 ---
 
-## Shipping activity
+## Explore the code
+
+The projects above emphasize architecture and delivery. These **public repositories** make it easier to inspect how I write and structure software.
+
+| Project | What it demonstrates | Status |
+| --- | --- | --- |
+| **[AgentOS](https://github.com/joyboy257/agentos)** | Full-stack AI coworker canvas, orchestration concepts, runtime contracts, permissions, and product UX. **Next.js, TypeScript, PostgreSQL, Redis.** | Active prototype; not a hosted production system |
+| **[DreamCraft](https://github.com/joyboy257/dreamcraft)** | Natural-language-to-3D worlds, procedural generation, browser game systems, and evaluation. **TypeScript, WebGL, generative AI.** | Locally playable; live-provider and deployment gates remain |
+| **[Atlas](https://github.com/joyboy257/atlas)** | Developer-focused agent runtime with typed contracts, policy checks, local simulator, and execution receipts. **TypeScript, CLI, MCP.** | Public alpha; local-first, no published npm package yet |
+| **[RustyIndex](https://github.com/joyboy257/rustyindex)** | Evidence-based retrieval with tenant boundaries, document extraction, traces and graph traversal. **Rust, Python, PostgreSQL.** | Research prototype in maintenance mode |
+| **[PokerAI](https://github.com/joyboy257/pokerai-public)** | Reinforcement-learning experiments with DQN agents, opponent baselines, and evaluation tools. **Python, TensorFlow.** | Educational research prototype |
+
+## Currently building
+
+**Heidi — agent-mediated commerce and coordination for Southeast Asia.**
+
+I am exploring a network where personal agents can discover merchants, negotiate offers, and coordinate transactions through explicit permissions and user approval. Work is in the **specification and early implementation stage**, not a claim of launched consumer adoption. The engineering repository is private.
+
+This work lets me connect **AI product thinking** with protocol design, privacy, human control, and the economics of agent actions.
+
+---
+
+## How I engineer
+
+- **Agents propose; systems enforce.** Authentication, permissions, policy, approvals, and canonical data stay outside probabilistic model output.
+- **Failures are first-class.** Idempotency, retry handling, durable state, observability, and rollback are designed in—not bolted on.
+- **Evaluation must reflect the task.** I use deterministic tests, integration proofs, replay, tool-use evaluations, and explicit release gates.
+- **Shipping means proving what actually works.** A demo, a passing test, a live integration, and customer adoption are different claims.
+
+### Tools I work with
+
+**Languages:** Python · TypeScript · JavaScript · SQL · Rust · C++
+
+**AI & agents:** LLM orchestration · tool calling · MCP · retrieval/RAG · evaluation harnesses · PyTorch · TensorFlow · scikit-learn
+
+**Backend & infrastructure:** Node.js · NestJS · FastAPI · PostgreSQL · Redis · Docker · CI/CD · GitHub Actions · n8n
+
+**Product engineering:** React · Next.js · REST APIs · event-driven workflows · testing and observability
+
+---
 
 <div align="center">
 
-[![Deon's GitHub activity graph](https://github-readme-activity-graph.vercel.app/graph?username=joyboy257&theme=github-compact&hide_border=true&area=true)](https://github.com/joyboy257)
+**Building AI software people can rely on.**
 
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=joyboy257&theme=github_dark" width="100%" alt="Deon's GitHub contribution summary" />
+[Connect on LinkedIn](https://www.linkedin.com/in/deonquek) · [Browse public repositories](https://github.com/joyboy257?tab=repositories)
 
-<p>
-  <img src="https://streak-stats.demolab.com?user=joyboy257&theme=github-dark-blue&hide_border=true" height="165" alt="GitHub contribution streak" />
-  <img src="https://github-readme-stats.vercel.app/api?username=joyboy257&show_icons=true&hide_border=true&rank_icon=github&include_all_commits=true&theme=github_dark" height="165" alt="GitHub statistics" />
-</p>
-
-</div>
-
-> Public GitHub activity is only part of the work: several production, client, and research systems are developed in private repositories.
-
----
-
-## Roles
-
-I am interested in graduate and early-career opportunities in **Applied AI, AI/ML Engineering, Software Engineering, and Forward-Deployed Engineering** in Singapore or remotely.
-
-The best fit is a team solving difficult operational problems with strong engineering discipline—not simply wrapping an API around a prompt.
-
----
-
-<div align="center">
-
-**Build systems that make the next system easier to build.**
+<sub>Most client and production systems are private. Public case studies prioritize truthful engineering boundaries over invented commercial metrics.</sub>
 
 </div>
