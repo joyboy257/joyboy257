@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d9e6e8">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<meta name="description" content="Deon Quek — Applied AI & Software Engineer. Explore real engineering work as an interactive desktop: AI platforms, client delivery, native software, developer tools, and research.">
+<meta property="og:title" content="Deon Quek / Desktop Portfolio">
+<meta property="og:description" content="An interactive engineering desktop, not another project-card website. Explore code, hard decisions and real project evidence.">
+<title>DeonOS — Deon Quek · AI & Software Engineer</title>
+<!-- Native San Francisco on Apple devices; system sans elsewhere. No third-party font download. -->
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./polish.css">
+<link rel="stylesheet" href="./experience.css">
+<link rel="stylesheet" href="./ios.css">
+</head>
+<body>
+<a href="#finder-projects" class="skip-link">Skip to projects</a>
+<div id="desktop" class="desktop">
+
+  <!-- Frvky-inspired interaction, independently designed and written. -->
+  <section id="lockscreen" class="lockscreen" aria-label="Welcome to Deon's desktop">
+    <div class="lock-wallpaper" aria-hidden="true">
+      <div class="lock-halo"></div><div class="lock-ridge ridge-1"></div><div class="lock-ridge ridge-2"></div><div class="lock-ridge ridge-3"></div><div class="lock-grain"></div>
+    </div>
+    <div class="lock-ui">
+      <div class="lock-top"><span class="lock-top-brand">DEON<span class="lock-mark">OS</span></span><span class="lock-top-right"><span class="lock-online-dot"></span> SINGAPORE · PORTFOLIO EDITION</span></div>
+      <div class="lock-header"><div id="lock-date" class="lock-date">Monday, 26 October</div><div id="lock-clock" class="lock-clock">15:20</div><h1>Deon Quek<span>.</span></h1><p>Applied AI &amp; Software Engineer</p></div>
+      <div class="lock-notifications" aria-label="Portfolio highlights">
+        <button class="lock-note" type="button" data-unlock-project="mirai"><span class="lock-note-icon">M</span><span class="lock-note-body"><span class="lock-note-head">MIRAI <em>now</em></span><strong>Take a look at what I built.</strong><span>Multi-tenant AI platform · governed tools · real architecture</span></span></button>
+        <button class="lock-note" type="button" data-unlock-project="amelia"><span class="lock-note-icon note-coral">A</span><span class="lock-note-body"><span class="lock-note-head">AMELIA BOT <em>portfolio</em></span><strong>Software used by client staff.</strong><span>Real automation, operational constraints, and 69 shadow tests</span></span></button>
+        <button class="lock-note" type="button" data-unlock-app="brief"><span class="lock-note-icon note-green">✓</span><span class="lock-note-body"><span class="lock-note-head">HIRING NOTES <em>1 min</em></span><strong>Here's why you should interview me.</strong><span>Read the 60-second recruiter brief</span></span></button>
+      </div>
+      <div class="lock-bottom"><button id="unlock-button" type="button" class="unlock-button"><span class="unlock-chevron" aria-hidden="true">⌃</span><span>Swipe up or click to explore</span></button><span class="lock-privacy">No login. No tracking. Just my work.</span></div>
+    </div>
+  </section>
+
+
+  <section id="ios-shell" class="ios-shell" aria-label="iPhone-inspired DeonOS portfolio">
+    <div class="ios-wallpaper" aria-hidden="true"><div class="ios-wallpaper-orb"></div></div>
+    <header class="ios-statusbar">
+      <span id="ios-clock">15:20</span>
+      <div class="ios-dynamic-island" aria-hidden="true"></div>
+      <button id="ios-control-trigger" type="button" aria-label="Open Control Center" title="Control Center">
+        <svg viewBox="0 0 50 18" aria-hidden="true"><g fill="currentColor"><rect x="0" y="8" width="3" height="7" rx="1"/><rect x="5" y="5" width="3" height="10" rx="1"/><rect x="10" y="2" width="3" height="13" rx="1"/><rect x="15" y="0" width="3" height="15" rx="1"/><path d="M25 6Q32-1 39 6L32 14Z"/><rect x="41" y="4" width="8" height="11" rx="2"/></g></svg>
+      </button>
+    </header>
+    <main class="ios-springboard" id="ios-home">
+      <div class="ios-home-header"><span class="ios-home-eyebrow">PERSONAL WORKSPACE</span><h2>DeonOS<span>.</span></h2><p>Engineering, with the covers off.</p></div>
+      <div class="ios-widgets">
+        <button class="ios-widget ios-widget-feature" type="button" data-ios-app="project" data-project="mirai" aria-label="Open Mirai case study">
+          <span class="ios-widget-top"><span class="ios-widget-app">M</span><span>FEATURED WORK</span></span><strong>Mirai</strong><span class="ios-widget-desc">Multi-tenant AI platform. Governed agents. Real system design.</span><span class="ios-widget-foot">OPEN THE ENGINEERING <span>↗</span></span>
+        </button>
+        <button class="ios-widget ios-widget-info" type="button" data-ios-app="brief" aria-label="Open recruiter brief">
+          <span class="ios-mini-calendar"><span id="ios-weekday">MON</span><strong id="ios-day">26</strong></span>
+          <span class="ios-widget-secondary-title">Recruiter brief</span><strong>60-sec</strong><small>What I've built and why it matters.</small>
+        </button>
+      </div>
+      <p class="ios-section-label">APPS</p>
+      <div class="ios-app-grid" aria-label="iPhone portfolio applications">
+        <button type="button" class="ios-app-icon-button" data-ios-app="projects"><span class="ios-app-glyph ios-glyph-finder"><svg aria-hidden="true"><use href="./icons.svg#finder"></use></svg></span><span>Projects</span></button>
+        <button type="button" class="ios-app-icon-button" data-ios-app="photos"><span class="ios-app-glyph ios-glyph-photos"><svg aria-hidden="true"><use href="./icons.svg#photos"></use></svg></span><span>Photos</span></button>
+        <button type="button" class="ios-app-icon-button" data-ios-app="about"><span class="ios-app-glyph ios-glyph-about"><svg aria-hidden="true"><use href="./icons.svg#about"></use></svg></span><span>About Me</span></button>
+        <button type="button" class="ios-app-icon-button" data-ios-app="notes"><span class="ios-app-glyph ios-glyph-notes"><svg aria-hidden="true"><use href="./icons.svg#notes"></use></svg></span><span>Notes</span></button>
+        <button type="button" class="ios-app-icon-button" data-ios-app="links"><span class="ios-app-glyph ios-glyph-safari"><svg aria-hidden="true"><use href="./icons.svg#safari"></use></svg></span><span>Safari</span></button>
+        <button type="button" class="ios-app-icon-button" data-ios-app="brief"><span class="ios-app-glyph ios-glyph-brief"><svg aria-hidden="true"><use href="./icons.svg#document"></use></svg></span><span>Recruiter</span></button>
+        <button type="button" class="ios-app-icon-button" data-ios-app="contact"><span class="ios-app-glyph ios-glyph-contact"><svg aria-hidden="true"><use href="./icons.svg#linkedin"></use></svg></span><span>Contact</span></button>
+        <button type="button" class="ios-app-icon-button" data-ios-app="projects" data-role="fde"><span class="ios-app-glyph ios-glyph-code"><svg aria-hidden="true"><use href="./icons.svg#terminal"></use></svg></span><span>Engineering</span></button>
+      </div>
+      <p class="ios-home-caption">21 projects · Real code and engineering decisions</p>
+    </main>
+    <nav class="ios-dock" aria-label="iPhone favorite apps">
+      <button type="button" data-ios-app="projects" aria-label="Projects"><svg aria-hidden="true"><use href="./icons.svg#finder"></use></svg></button>
+      <button type="button" data-ios-app="project" data-project="mirai" aria-label="Mirai"><span class="ios-dock-mirai">M</span></button>
+      <button type="button" data-ios-app="links" aria-label="Safari bookmarks"><svg aria-hidden="true"><use href="./icons.svg#safari"></use></svg></button>
+      <button type="button" data-ios-app="contact" aria-label="Contact"><svg aria-hidden="true"><use href="./icons.svg#linkedin"></use></svg></button>
+    </nav>
+    <section id="ios-app-screen" class="ios-app-screen" aria-label="Open portfolio app" hidden>
+      <header class="ios-app-navigation">
+        <button id="ios-app-back" type="button" aria-label="Go back"><span>‹</span> Back</button>
+        <strong id="ios-app-nav-title">Projects</strong>
+        <button id="ios-app-close" type="button" aria-label="Return to Home Screen">Done</button>
+      </header>
+      <div id="ios-app-content" class="ios-app-content"></div>
+    </section>
+    <section id="ios-control-sheet" class="ios-control-sheet" role="dialog" aria-label="DeonOS Control Center" aria-modal="true" hidden>
+      <div class="ios-control-head"><span>Control Center</span><button id="ios-control-close" aria-label="Close Control Center" type="button">Done</button></div>
+      <div class="ios-control-grid">
+        <div class="ios-control-tile"><strong>DeonOS</strong><small>Portfolio mode · Online</small></div>
+        <button type="button" class="ios-control-tile" data-ios-app="brief">Recruiter brief <small>Open hiring notes</small></button>
+        <button type="button" class="ios-control-tile" data-ios-app="links">Safari <small>Open product links</small></button>
+        <button type="button" class="ios-control-tile" data-ios-action="lock">Lock Screen <small>Return to welcome</small></button>
+      </div>
+    </section>
+    <button id="ios-home-indicator" class="ios-home-indicator" type="button" aria-label="Swipe up or tap to return Home"><span></span></button>
+  </section>
+
+  <header class="menubar" aria-label="Desktop menu">
+    <div class="menu-left">
+      <button type="button" class="menu-logo" data-app="about" aria-label="About Deon">◈</button>
+      <span class="menu-app">DeonOS</span>
+      <button type="button" data-app="finder">Projects</button>
+      <button type="button" data-app="about">About</button>
+      <button type="button" data-app="terminal">Terminal</button>
+      <button type="button" data-app="photos">Photos</button>
+      <button type="button" id="lock-again" title="Return to lock screen">Lock</button>
+      <button type="button" data-app="brief">Recruiter brief</button>
+    </div>
+    <div class="menu-right"><button type="button" id="spotlight-toggle" title="Search (⌘K)" aria-label="Search projects">⌕ <span>Search</span></button><span class="menu-online"><i></i> OPEN TO OPPORTUNITIES</span><time id="desktop-time">MON 26 OCT</time></div>
+  </header>
+  <main id="home" class="desktop-main">
+    <div class="wallpaper-wordmark" aria-hidden="true"><span>DEON</span><span>QUEK.</span></div>
+    <section class="desktop-intro" aria-labelledby="desktop-heading">
+      <p class="intro-index">Personal workspace · 2026</p>
+      <h1 id="desktop-heading">I build the software<br>behind ambitious AI.</h1>
+      <p>Founder and lead engineer of a multi-tenant AI platform. Builder of automation used by client staff. Engineering across Swift/Metal, Rust, Python and TypeScript.</p>
+      <div class="intro-actions"><button type="button" class="intro-start" data-start-project="mirai">START WITH MY STRONGEST WORK <span>↗</span></button><button type="button" class="intro-brief" data-app="brief">60-SECOND HIRING BRIEF</button></div>
+      <p class="intro-help">Open Finder, browse projects in Photos, or search with <kbd>⌘K</kbd>.</p>
+    </section>
+    <div class="desktop-icons" id="desktop-icons" aria-label="Desktop folders">
+      <button type="button" class="desktop-icon desktop-app-item" data-app="photos"><span class="desktop-photo-icon"><svg class="vector-icon" aria-hidden="true"><use href="./icons.svg#photos"></use></svg></span><span>Photos</span></button>
+      <button type="button" class="desktop-icon" data-folder="featured"><span class="folder-art mint"></span><span>Selected Work</span></button>
+      <button type="button" class="desktop-icon" data-folder="delivery"><span class="folder-art blush"></span><span>Client Delivery</span></button>
+      <button type="button" class="desktop-icon" data-folder="ai"><span class="folder-art blue"></span><span>AI Systems</span></button>
+      <button type="button" class="desktop-icon" data-folder="products"><span class="folder-art lilac"></span><span>Products</span></button>
+      <button type="button" class="desktop-icon" data-folder="research"><span class="folder-art gold"></span><span>Research</span></button>
+      <button type="button" class="desktop-icon" data-app="brief"><span class="file-art"><b>PDF</b><small>CV</small></span><span>Recruiter Brief</span></button>
+    </div>
+    <div class="wallpaper-footnote">DESIGNED & BUILT BY DEON · CASE STUDIES SHOW REAL ENGINEERING AND ITS LIMITS</div>
+  </main>
+
+  <section class="os-window finder-window active-window" id="finder-window" aria-label="Project explorer" data-window="finder">
+    <header class="window-titlebar" data-drag="finder">
+      <div class="traffic"><button type="button" class="traffic-close" data-window-action="close" data-target="finder" aria-label="Close projects"></button><button type="button" class="traffic-min" data-window-action="minimize" data-target="finder" aria-label="Minimize projects"></button><button type="button" class="traffic-max" data-window-action="maximize" data-target="finder" aria-label="Maximize projects"></button></div>
+      <span class="window-caption">Projects <span class="window-title-muted">· 21 case files</span></span><span class="window-tools"><button type="button" id="finder-search" title="Search projects">⌕</button><span>List View</span></span>
+    </header>
+    <div class="finder-shell" id="finder-projects">
+      <aside class="finder-sidebar" aria-label="Project categories">
+        <div class="sidebar-heading">FAVORITES</div>
+        <button type="button" class="side-item selected" data-folder="featured"><span class="side-folder mint"></span> Selected work <span>6</span></button>
+        <button type="button" class="side-item" data-folder="delivery"><span class="side-folder blush"></span> Real delivery</button>
+        <div class="sidebar-heading second">COLLECTIONS</div>
+        <button type="button" class="side-item" data-folder="ai"><span class="side-folder blue"></span> AI systems</button>
+        <button type="button" class="side-item" data-folder="products"><span class="side-folder lilac"></span> Products</button>
+        <button type="button" class="side-item" data-folder="research"><span class="side-folder gold"></span> Research</button>
+        <button type="button" class="side-item" data-folder="all"><span class="side-folder grey"></span> All projects</button>
+        <div class="sidebar-divider"></div><div class="sidebar-heading">SHORTCUTS</div>
+        <button type="button" class="side-item" data-app="about">◎ &nbsp; About me</button>
+        <button type="button" class="side-item" data-app="brief">▤ &nbsp; Recruiter brief</button>
+        <button type="button" class="side-item" data-app="terminal">&gt;_ &nbsp; Terminal</button>
+        <div class="sidebar-bottom">LOCAL SIMULATION<br>NO DATA LEAVES THIS SITE</div>
+      </aside>
+      <div class="finder-content">
+        <div class="finder-breadcrumb"><span id="folder-breadcrumb">HOME / SELECTED WORK</span><div class="finder-filter"><button type="button" class="lens active" data-lens="all">ALL</button><button type="button" class="lens" data-lens="ai">AI</button><button type="button" class="lens" data-lens="fde">FDE</button><button type="button" class="lens" data-lens="swe">SWE</button></div></div>
+        <div class="finder-body"><div class="file-list-pane"><div class="list-colheads"><span>PROJECTS</span><span>SELECT TO VIEW</span></div><div class="file-list" id="project-list" role="listbox" aria-label="Projects"></div><div class="file-list-foot" id="list-count">6 ITEMS / SELECT A FILE</div></div>
+          <article class="preview-pane" id="preview-pane" aria-live="polite">
+            <div class="preview-visual" id="project-visual"></div>
+            <div class="preview-scroll">
+              <div class="preview-kicker" id="project-kicker">CASE FILE</div>
+              <h2 id="project-title">Mirai</h2><p class="project-deck" id="project-deck"></p>
+              <div class="proof-ribbon" id="project-facts"></div>
+              <div class="file-tabs" role="tablist" aria-label="Project detail tabs">
+                <button type="button" class="file-tab on" role="tab" aria-selected="true" data-tab="overview">THE CASE</button>
+                <button type="button" class="file-tab" role="tab" aria-selected="false" data-tab="engineering">ENGINEERING</button>
+                <button type="button" class="file-tab" role="tab" aria-selected="false" data-tab="evidence">PROOF + LIMITS</button>
+              </div>
+              <div id="tab-content" class="tab-content" role="tabpanel"></div>
+            </div>
+            <footer class="preview-actions"><a id="project-website" href="https://usemirai.app/" target="_blank" rel="noopener noreferrer" hidden>PRODUCT WEBSITE ↗</a><a id="project-demo" href="https://usemirai.app/demo" target="_blank" rel="noopener noreferrer" hidden>INTERACTIVE DEMO ↗</a><a id="project-primary" href="#" target="_blank" rel="noopener noreferrer">OPEN EVIDENCE ↗</a><button type="button" id="copy-project">COPY PROJECT SUMMARY</button></footer>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="os-window utility-window" id="about-window" aria-label="About Deon" hidden data-window="about"><header class="window-titlebar" data-drag="about"><div class="traffic"><button type="button" class="traffic-close" data-window-action="close" data-target="about" aria-label="Close about"></button><button type="button" class="traffic-min" data-window-action="minimize" data-target="about" aria-label="Minimize about"></button><button type="button" class="traffic-max" data-window-action="maximize" data-target="about" aria-label="Maximize about"></button></div><span class="window-caption">About Deon</span></header>
+    <div class="utility-content about-layout"><div class="avatar-block"><span>DQ<span>.</span></span><small>PERSONAL WORKSTATION<br>SINGAPORE · 2026</small></div><div><p class="window-overline">DEON QUEK / APPLIED AI & SOFTWARE ENGINEER</p><h2>Builder of systems.<br><em>Not just demos.</em></h2><p>I've founded and engineered a multi-tenant AI platform, delivered automation into a real client workflow, and built across Swift/Metal, Rust, Python, TypeScript and full-stack product systems. I care about evidence, permissions, reliability and the last mile of making software useful.</p><div class="about-pills"><span>PYTHON</span><span>TYPESCRIPT</span><span>POSTGRESQL</span><span>REACT</span><span>RUST</span><span>SWIFT / METAL</span><span>AGENTS + MCP</span></div><div class="about-actions"><a href="https://github.com/joyboy257" target="_blank" rel="noopener noreferrer">GITHUB ↗</a><a href="https://www.linkedin.com/in/deonquek" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a><button type="button" data-app="brief">RECRUITER BRIEF ↗</button></div></div></div>
+  </section>
+  <section class="os-window utility-window brief-window" id="brief-window" aria-label="Recruiter brief" hidden data-window="brief"><header class="window-titlebar" data-drag="brief"><div class="traffic"><button type="button" class="traffic-close" data-window-action="close" data-target="brief" aria-label="Close brief"></button><button type="button" class="traffic-min" data-window-action="minimize" data-target="brief" aria-label="Minimize brief"></button><button type="button" class="traffic-max" data-window-action="maximize" data-target="brief" aria-label="Maximize brief"></button></div><span class="window-caption">Read Me First</span></header>
+    <div class="utility-content brief-content"><div class="note-head">HIRING NOTES / 1 OF 1 <span>READ TIME / 60 SEC</span></div><h2>Why interview Deon?</h2><p><strong>AI systems:</strong> Founder and lead engineer of Mirai, a multi-tenant AI business platform with governed execution and documented internal evaluations.</p><p><strong>Client delivery:</strong> Built Amelia Bot, a Telegram/document workflow used by staff; investigated reliability and produced a 69-case shadow replay.</p><p><strong>Engineering range:</strong> Native Metal rendering and StoreKit in Soleil; Rust/SQLite memory in WorkOS; deterministic Singapore compliance rules in Corpa; public developer tools and generative software.</p><p><strong>How I work:</strong> Take ownership of architecture, integration, testing, verification and recovery—while clearly separating experiments, internal gates and real production.</p><div class="brief-links"><button id="copy-brief" type="button">COPY THIS BRIEF</button><a href="https://github.com/joyboy257/mirai-showcase" target="_blank" rel="noopener noreferrer">MIRAI PROOF ↗</a><a href="https://www.linkedin.com/in/deonquek" target="_blank" rel="noopener noreferrer">CONTACT ↗</a></div></div>
+  </section>
+  <section class="os-window utility-window terminal-window" id="terminal-window" aria-label="Interactive portfolio terminal" hidden data-window="terminal"><header class="window-titlebar" data-drag="terminal"><div class="traffic"><button type="button" class="traffic-close" data-window-action="close" data-target="terminal" aria-label="Close terminal"></button><button type="button" class="traffic-min" data-window-action="minimize" data-target="terminal" aria-label="Minimize terminal"></button><button type="button" class="traffic-max" data-window-action="maximize" data-target="terminal" aria-label="Maximize terminal"></button></div><span class="window-caption">Terminal — portfolio simulation</span></header><div class="terminal-body" id="terminal-output"><p>deon@portfolio — this is a simulated portfolio terminal, not a real shell.</p><p>Type <b>help</b> for commands, or <b>open mirai</b> to inspect a project.</p></div><form id="terminal-form" class="terminal-input"><label for="terminal-command">deon@portfolio %</label><input id="terminal-command" autocomplete="off" spellcheck="false" aria-label="Terminal command" /></form></section>
+  
+  <section class="os-window utility-window photos-window" id="photos-window" aria-label="Project photo gallery" hidden data-window="photos">
+    <header class="window-titlebar" data-drag="photos"><div class="traffic"><button type="button" class="traffic-close" data-window-action="close" data-target="photos" aria-label="Close Photos"></button><button type="button" class="traffic-min" data-window-action="minimize" data-target="photos" aria-label="Minimize Photos"></button><button type="button" class="traffic-max" data-window-action="maximize" data-target="photos" aria-label="Maximize Photos"></button></div><span class="window-caption">Photos <span class="window-title-muted">· Engineering snapshots</span></span></header>
+    <div class="photos-app-content"><div class="photo-app-intro"><span>LIBRARY / ENGINEERING GALLERY</span><h2>Proof in pixels.</h2><p>Selected product interfaces and safe project diagrams. Click an image to inspect the corresponding engineering case file.</p></div>
+      <div class="photo-grid">
+        <button data-gallery-project="mirai" class="photo-tile"><img src="https://raw.githubusercontent.com/joyboy257/mirai-showcase/main/assets/operator-home.png" alt="Mirai operator dashboard" loading="lazy"><span>Mirai <small>AI product</small></span></button>
+        <button data-gallery-project="amelia" class="photo-tile"><img src="https://raw.githubusercontent.com/joyboy257/joyboy257/main/showcases/amelia-bot/assets/operator-workflow.svg" alt="Amelia Bot client-safe workflow diagram" loading="lazy"><span>Amelia Bot <small>Client delivery</small></span></button>
+        <button data-gallery-project="amethyst" class="photo-tile"><img src="https://raw.githubusercontent.com/joyboy257/amethyst-showcase/main/assets/company-brain-overview.svg" alt="Amethyst internal company intelligence reconstruction" loading="lazy"><span>Amethyst <small>Governed intelligence</small></span></button>
+        <button data-gallery-project="agentos" class="photo-tile"><img src="https://raw.githubusercontent.com/joyboy257/agentos/main/docs/assets/readme/canvas.png" alt="AgentOS canvas interface" loading="lazy"><span>AgentOS <small>Visual agent workspace</small></span></button>
+        <button data-gallery-project="dreamcraft" class="photo-tile"><img src="https://raw.githubusercontent.com/joyboy257/dreamcraft/main/output/playwright/g7-3-family-final.png" alt="DreamCraft local browser voxel world" loading="lazy"><span>DreamCraft <small>Interactive software</small></span></button>
+      </div><p class="photo-disclaimer">Screenshots are linked to public case-study assets. Some private-system visuals are sanitized or reconstructed.</p>
+    </div>
+  </section>
+  <section class="os-window utility-window safari-window" id="safari-window" aria-label="Browser shortcuts to Deon's work" hidden data-window="safari">
+    <header class="window-titlebar" data-drag="safari"><div class="traffic"><button type="button" class="traffic-close" data-window-action="close" data-target="safari" aria-label="Close Safari"></button><button type="button" class="traffic-min" data-window-action="minimize" data-target="safari" aria-label="Minimize Safari"></button><button type="button" class="traffic-max" data-window-action="maximize" data-target="safari" aria-label="Maximize Safari"></button></div><span class="window-caption">Safari <span class="window-title-muted">· Bookmarks</span></span></header>
+    <div class="safari-app-content"><div class="safari-search-bar"><svg class="vector-icon" aria-hidden="true"><use href="./icons.svg#search"></use></svg><span>Favorite engineering destinations</span></div><div class="safari-hero"><span>DEON / BOOKMARKS</span><h2>Explore the real thing.</h2><p>Open live websites, public demos, source code, and my contact details. External links open in a new tab.</p></div><div class="safari-bookmarks">
+      <a href="https://usemirai.app/" target="_blank" rel="noopener noreferrer"><span class="bookmark-badge badge-mirai">M</span><strong>Mirai</strong><small>Product website</small></a>
+      <a href="https://usemirai.app/demo" target="_blank" rel="noopener noreferrer"><span class="bookmark-badge badge-demo">▶</span><strong>Mirai demo</strong><small>Product walkthrough</small></a>
+      <a href="https://github.com/joyboy257/mirai-showcase" target="_blank" rel="noopener noreferrer"><span class="bookmark-badge badge-code">⌘</span><strong>Architecture</strong><small>Engineering case</small></a>
+      <a href="https://github.com/joyboy257" target="_blank" rel="noopener noreferrer"><span class="bookmark-badge badge-gh">G</span><strong>GitHub</strong><small>Open-source code</small></a>
+      <a href="https://www.linkedin.com/in/deonquek" target="_blank" rel="noopener noreferrer"><span class="bookmark-badge badge-social">in</span><strong>LinkedIn</strong><small>Get in touch</small></a>
+    </div></div>
+  </section>
+  <section class="os-window utility-window notebook-window" id="notes-window" aria-label="Notes about engineering" hidden data-window="notes">
+    <header class="window-titlebar" data-drag="notes"><div class="traffic"><button type="button" class="traffic-close" data-window-action="close" data-target="notes" aria-label="Close Notes"></button><button type="button" class="traffic-min" data-window-action="minimize" data-target="notes" aria-label="Minimize Notes"></button><button type="button" class="traffic-max" data-window-action="maximize" data-target="notes" aria-label="Maximize Notes"></button></div><span class="window-caption">Notes <span class="window-title-muted">· Why I build</span></span></header>
+    <div class="notebook-content"><time>ENGINEERING NOTES · OCTOBER 2026</time><h2>The work behind the work.</h2><p>A few things I've learned from building systems that act, integrate, and sometimes fail:</p><p><strong>Model output is not business truth.</strong> Let AI propose; let deterministic systems authorize and commit.</p><p><strong>Shipping is a verification problem.</strong> A convincing UI or green test isn't the same as a complete operating workflow.</p><p><strong>The user is the real specification.</strong> Business processes are messy. Learn the real workflow before rebuilding it.</p><p><strong>Make failure observable.</strong> Permissions, idempotency, retries, provenance, and rollback deserve first-class design.</p><p class="note-signature">— Deon</p></div>
+  </section>
+
+  <div id="spotlight" class="spotlight-overlay" hidden><section class="spotlight-box" role="dialog" aria-modal="true" aria-labelledby="spotlight-title"><div class="spotlight-heading"><label id="spotlight-title" for="spotlight-input">⌕ &nbsp; QUICK FIND</label><span>ESC TO CLOSE</span></div><input id="spotlight-input" type="search" autocomplete="off" placeholder="Search projects, languages, skills…" aria-label="Search portfolio"><div class="spotlight-results" id="spotlight-results"></div></section></div>
+  <nav class="dock" aria-label="Desktop applications"><button type="button" data-app="photos" title="Photos" aria-label="Photos"><span class="dock-icon dock-photos">Photos</span><small>Photos</small></button><button type="button" data-app="safari" title="Safari" aria-label="Safari"><span class="dock-icon dock-safari">Safari</span><small>Safari</small></button><button type="button" data-app="notes" title="Notes" aria-label="Notes"><span class="dock-icon dock-notes">Notes</span><small>Notes</small></button><button type="button" data-app="finder" aria-label="Projects Finder" title="Finder"><span class="dock-icon dock-finder">◧</span><small>Finder</small></button><button type="button" data-app="brief" aria-label="Recruiter brief" title="Recruiter brief"><span class="dock-icon dock-brief">▤</span><small>Brief</small></button><button type="button" data-app="about" aria-label="About Deon" title="About Deon"><span class="dock-icon dock-about">DQ</span><small>About</small></button><button type="button" data-app="terminal" aria-label="Terminal" title="Terminal"><span class="dock-icon dock-terminal">&gt;_</span><small>Terminal</small></button><span class="dock-sep"></span><a href="https://github.com/joyboy257" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub"><span class="dock-icon dock-github">GH</span><small>GitHub</small></a><a href="https://www.linkedin.com/in/deonquek" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn"><span class="dock-icon dock-linkedin">in</span><small>LinkedIn</small></a></nav>
+  <div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
+</div>
+<script src="./icons.js" defer></script>
+<script src="./app.js" defer></script>
+<script src="./experience.js" defer></script>
+<script src="./ios.js" defer></script>
+</body></html>
