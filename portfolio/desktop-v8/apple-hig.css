@@ -38,7 +38,7 @@ body{font-family:var(--font);-webkit-font-smoothing:antialiased}
   font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
  }
  .ios-wallpaper{
-  position:absolute;inset:-4%;filter:none;saturate:1.03;
+  position:absolute;inset:-4%;filter:none;
   background:
    radial-gradient(ellipse 80% 59% at 18% -3%,rgba(44,83,145,.85),transparent 72%),
    radial-gradient(ellipse 77% 78% at 108% 72%,rgba(102,184,202,.76),transparent 75%),
@@ -298,4 +298,22 @@ body{font-family:var(--font);-webkit-font-smoothing:antialiased}
 }
 @media (prefers-reduced-motion: reduce){
  .ios-app-screen,.ios-widget,.ios-app-icon-button,.ios-dock button{animation:none!important;transition:none!important}
+}
+
+@media(max-width:720px){
+  .ios-tabs button,.ios-filter-strip button{min-height:44px}
+  .ios-home-indicator{min-height:43px;bottom:max(-10px,calc(env(safe-area-inset-bottom) - 16px))}
+  .ios-app-navigation button:focus-visible,.ios-list-row:focus-visible,.ios-action-link:focus-visible,
+  .ios-widget:focus-visible,.ios-dock button:focus-visible,.ios-app-icon-button:focus-visible{
+    outline:3px solid #0a84ff;outline-offset:3px;
+  }
+}
+/* Small landscape orientations should expose scrollable content rather than squeezing it. */
+@media(max-width:720px) and (orientation:landscape){
+ .ios-springboard{padding-top:8px;overflow-y:auto}
+ .ios-home-header{margin-bottom:12px}
+ .ios-widgets{margin-bottom:13px}
+ .ios-widget{aspect-ratio:auto;min-height:132px}
+ .ios-dock{height:65px;bottom:8px}
+ .ios-dock button,.ios-dock button svg{width:46px;height:46px}
 }
