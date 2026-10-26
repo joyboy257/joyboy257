@@ -116,11 +116,11 @@ button { -webkit-tap-highlight-color: transparent; }
 .folder-art.grey .folder-vector,.side-folder.grey .sidebar-folder-vector{filter:grayscale(.85)}
 /* Finder window positioning & chrome */
 .finder-window:not(.maximized){
-  top:clamp(93px,11vh,120px)!important;
-  left:clamp(370px,29.5vw,485px)!important;
-  width:calc(100vw - clamp(370px,29.5vw,485px) - 30px)!important;
+  top:clamp(93px,11vh,120px);
+  left:clamp(370px,29.5vw,485px);
+  width:calc(100vw - clamp(370px,29.5vw,485px) - 30px);
   max-width:1190px;
-  height:calc(100dvh - 205px)!important;
+  height:calc(100dvh - 205px);
   min-height:520px;resize:both;
 }
 .os-window{
@@ -277,7 +277,7 @@ button { -webkit-tap-highlight-color: transparent; }
   .desktop-intro>p:not(.intro-index):not(.intro-help){font-size:12px;}
   .desktop-icons{left:18px;top:clamp(405px,51vh,460px);grid-template-columns:repeat(2,minmax(96px,114px));gap:8px;}
   .desktop-icon{font-size:10px;min-height:79px;}
-  .finder-window:not(.maximized){left:clamp(260px,27vw,320px)!important;width:calc(100vw - clamp(260px,27vw,320px) - 16px)!important;}
+  .finder-window:not(.maximized){left:clamp(260px,27vw,320px);width:calc(100vw - clamp(260px,27vw,320px) - 16px);}
   .finder-shell{grid-template-columns:137px minmax(0,1fr);}
   .finder-body{grid-template-columns:165px minmax(0,1fr);}
   .finder-sidebar{padding:19px 6px;}
@@ -348,7 +348,7 @@ button { -webkit-tap-highlight-color: transparent; }
 @media (max-height:740px) and (min-width:721px) {
   .desktop-intro{top:75px}
   .desktop-icons{top:360px;gap:0}
-  .finder-window:not(.maximized){top:70px!important;height:calc(100dvh - 153px)!important;min-height:460px}
+  .finder-window:not(.maximized){top:70px;height:calc(100dvh - 153px);min-height:460px}
   .preview-visual{height:120px}
 }
 @media (prefers-reduced-motion: reduce){
