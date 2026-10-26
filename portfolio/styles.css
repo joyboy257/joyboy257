@@ -57,3 +57,57 @@
 @media(max-width:770px){.hero-v2 h1{font-size:clamp(48px,10.5vw,85px)}.hero-v2 .hero-title-wrap{padding-top:40px}.hero-v2 .hero-bottom{grid-template-columns:1fr}.hero-v2 .hero-diagram{display:none}.proof-strip{padding-top:35px;padding-bottom:32px}.proof-trio{gap:0}.range-grid{grid-template-columns:1fr}.founder-intro h2{font-size:clamp(65px,14vw,110px)}.result-grid small{font-size:29px}.result-grid span{font-size:9px}}
 @media(max-width:500px){.hero-v2 h1{font-size:clamp(46px,11.4vw,68px)}.hero-v2 .hero-description p{font-size:19px}.hero-actions{align-items:stretch}.primary-cta{display:block}.range-card{min-height:290px}.feature-copy .result-grid{gap:4px}.result-grid small{font-size:24px}}
 
+
+
+/* Recruiter v4: prioritize role fit, credible results and technical decisions. */
+.recruiter-hero .hero-title-wrap{padding-top:clamp(30px,5.8vh,70px);padding-bottom:29px}
+.recruiter-hero h1{font-size:clamp(63px,8.8vw,148px);line-height:.9;letter-spacing:-.089em}
+.recruiter-hero .hero-bottom{grid-template-columns:1.13fr .87fr;gap:clamp(24px,5vw,92px);align-items:stretch}
+.recruiter-hero .hero-description{display:flex;flex-direction:column;align-items:flex-start;max-width:780px}
+.recruiter-hero .hero-description>p:not(.hero-disclosure){font-size:clamp(20px,1.8vw,28px);line-height:1.36;max-width:770px}
+.recruiter-hero .hero-description strong{color:var(--ink);font-weight:650}
+.recruiter-hero .hero-disclosure{font:11px/1.6 var(--mono);color:var(--sub);max-width:600px;margin-top:25px}
+.recruiter-hero .hero-credentials{border:1px solid #4d5948;background:#151a13;padding:0 clamp(22px,2.2vw,39px);display:flex;flex-direction:column;justify-content:center}
+.credential{padding:24px 0;border-bottom:1px solid #3d453b}
+.credential:last-child{border-bottom:0}
+.credential .mono{display:block;font:10px var(--mono);letter-spacing:.08em;color:var(--acid);margin-bottom:12px}
+.credential strong{font-size:clamp(23px,2.45vw,35px);line-height:1.15;letter-spacing:-.05em;display:block}
+.credential p{font-size:13px;line-height:1.48;color:#a5b4a0;max-width:380px;margin:6px 0 0}
+.hero-scroll a{color:var(--acid);font-size:11px;text-decoration:none}
+.role-fit{border-top:1px solid #58604e;border-bottom:1px solid #50584a;display:grid;grid-template-columns:.78fr 1.22fr;gap:clamp(35px,6vw,100px);background:#e8e9dd;color:#172018}
+.role-fit .eyebrow{color:#55742c}
+.role-fit h2{font-size:clamp(40px,4.75vw,82px);font-weight:700;letter-spacing:-.085em;line-height:.96;margin:24px 0 28px}
+.role-fit h2 em{font-style:normal;color:#617c30}
+.role-fit-intro p{font-size:17px;line-height:1.58;color:#556150;max-width:420px}
+.role-fit-content{min-width:0}
+.role-switcher{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid #a8b3a2;padding-bottom:16px}
+.role-tab{border:1px solid #9ba996;color:#3a473b;background:transparent;padding:13px 14px;font:10px var(--mono);font-weight:500;letter-spacing:.01em;cursor:pointer;transition:all .2s}
+.role-tab:hover{border-color:#647f32}
+.role-tab.is-active{background:#172219;color:#e4ffaa;border-color:#172219}
+.role-tab:focus-visible{outline:2px solid #547b27;outline-offset:3px}
+.role-panel{min-height:328px;padding:26px 0 0}
+.role-kicker{color:#627d34;font-size:10px;letter-spacing:.08em}
+.role-panel h3{font-size:clamp(27px,2.7vw,44px);line-height:1.12;letter-spacing:-.055em;margin:13px 0 15px;font-weight:650}
+.role-panel>p{color:#415044;font-size:16px;line-height:1.53;max-width:700px}
+.role-proof-list{display:grid;grid-template-columns:1fr;gap:7px;margin:23px 0}
+.role-proof-list span{display:block;border-left:3px solid #729139;padding:7px 11px;background:#dfe4d6;font-size:13px;color:#384d32}
+.role-cta{display:inline-flex;padding-bottom:8px;border-bottom:1px solid #597b34;color:#2d4d22;font:11px var(--mono);font-weight:500}
+.decisions-section{border-top:1px solid var(--line);background:#1a1d18}
+.decision-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#414c3d;border:1px solid #414c3d}
+.decision-card{background:#181d17;display:flex;flex-direction:column;padding:clamp(23px,2.7vw,44px);min-height:450px}
+.decision-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:10px;color:var(--acid);letter-spacing:.06em}
+.decision-top span:last-child{color:#7b9776}
+.decision-card h3{font-size:clamp(25px,2.5vw,40px);line-height:1.12;letter-spacing:-.055em;margin:45px 0 22px;font-weight:600}
+.decision-card p{font-size:15px;line-height:1.55;color:#aeb9aa;margin:0 0 35px}
+.decision-card p strong{color:#dfebd5}
+.decision-foot{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:auto;border-top:1px solid #4c5e42;padding-top:20px}
+.decision-foot span{color:#899e86;font:10px var(--mono)}
+.decision-foot a{color:var(--acid);font:11px var(--mono);border-bottom:1px solid #627743;padding-bottom:7px}
+.decision-integrity{margin:22px 0 35px;color:#a3b2a2;font-size:14px;line-height:1.6;max-width:1050px}
+.tech-rail{border-top:1px solid #47533d;padding-top:27px;display:grid;grid-template-columns:200px 1fr;gap:23px;align-items:start}
+.tech-rail>.mono{color:var(--acid);font-size:11px}
+.tech-rail div{display:flex;flex-wrap:wrap;gap:9px}
+.tech-rail div span{font:11px var(--mono);border:1px solid #4c5f45;color:#cad8bd;padding:10px 11px}
+@media (max-width:1030px){.role-fit{grid-template-columns:1fr}.role-fit-intro{max-width:800px}.role-fit h2{font-size:clamp(44px,7vw,85px)}.decision-grid{grid-template-columns:1fr}.decision-card{min-height:unset}.decision-card h3{margin-top:24px}.decision-card p{max-width:850px;margin-bottom:30px}}
+@media (max-width:770px){.recruiter-hero .hero-bottom{grid-template-columns:1fr}.recruiter-hero h1{font-size:clamp(49px,10.2vw,77px)}.recruiter-hero .hero-credentials{margin-top:24px;padding:4px 21px}.credential{padding:15px 0}.credential strong{font-size:27px}.credential p{font-size:12px}.role-fit{gap:26px}.role-switcher{gap:7px}.role-tab{font-size:10px;padding:10px 11px}.role-panel{min-height:0}.tech-rail{grid-template-columns:1fr}.recruiter-hero .hero-disclosure{font-size:10px}}
+@media (max-width:460px){.recruiter-hero h1{font-size:clamp(42px,11.2vw,58px)}.recruiter-hero .hero-description>p:not(.hero-disclosure){font-size:18px}.role-fit h2{font-size:44px}.decision-card h3{font-size:29px}.hero-scroll a{font-size:9px}}
