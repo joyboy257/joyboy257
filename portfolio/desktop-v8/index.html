@@ -1,18 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#d9e6e8">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e8ecf4">
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <meta name="description" content="Deon Quek — Applied AI & Software Engineer. Explore real engineering work as an interactive desktop: AI platforms, client delivery, native software, developer tools, and research.">
 <meta property="og:title" content="Deon Quek / Desktop Portfolio">
 <meta property="og:description" content="An interactive engineering desktop, not another project-card website. Explore code, hard decisions and real project evidence.">
-<title>DeonOS — Deon Quek · AI & Software Engineer</title>
+<title>DeonOS · Deon Quek, Applied AI Engineer</title>
 <!-- Native San Francisco on Apple devices; system sans elsewhere. No third-party font download. -->
 <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="./polish.css">
 <link rel="stylesheet" href="./experience.css">
 <link rel="stylesheet" href="./ios.css">
+<link rel="stylesheet" href="./apple-hig.css">
 </head>
 <body>
 <a href="#finder-projects" class="skip-link">Skip to projects</a>
@@ -24,7 +25,7 @@
       <div class="lock-halo"></div><div class="lock-ridge ridge-1"></div><div class="lock-ridge ridge-2"></div><div class="lock-ridge ridge-3"></div><div class="lock-grain"></div>
     </div>
     <div class="lock-ui">
-      <div class="lock-top"><span class="lock-top-brand">DEON<span class="lock-mark">OS</span></span><span class="lock-top-right"><span class="lock-online-dot"></span> SINGAPORE · PORTFOLIO EDITION</span></div>
+      <div class="lock-top"><span class="lock-top-brand">DEON<span class="lock-mark">OS</span></span><span class="lock-top-right"><span class="lock-online-dot"></span> SINGAPORE</span></div>
       <div class="lock-header"><div id="lock-date" class="lock-date">Monday, 26 October</div><div id="lock-clock" class="lock-clock">15:20</div><h1>Deon Quek<span>.</span></h1><p>Applied AI &amp; Software Engineer</p></div>
       <div class="lock-notifications" aria-label="Portfolio highlights">
         <button class="lock-note" type="button" data-unlock-project="mirai"><span class="lock-note-icon">M</span><span class="lock-note-body"><span class="lock-note-head">MIRAI <em>now</em></span><strong>Take a look at what I built.</strong><span>Multi-tenant AI platform · governed tools · real architecture</span></span></button>
@@ -46,40 +47,40 @@
       </button>
     </header>
     <main class="ios-springboard" id="ios-home">
-      <div class="ios-home-header"><span class="ios-home-eyebrow">PERSONAL WORKSPACE</span><h2>DeonOS<span>.</span></h2><p>Engineering, with the covers off.</p></div>
+      <div class="ios-home-header"><span class="ios-home-eyebrow">DEON QUEK</span><h2>Good to see you<span>.</span></h2><p>Applied AI &amp; Software Engineer</p></div>
       <div class="ios-widgets">
         <button class="ios-widget ios-widget-feature" type="button" data-ios-app="project" data-project="mirai" aria-label="Open Mirai case study">
-          <span class="ios-widget-top"><span class="ios-widget-app">M</span><span>FEATURED WORK</span></span><strong>Mirai</strong><span class="ios-widget-desc">Multi-tenant AI platform. Governed agents. Real system design.</span><span class="ios-widget-foot">OPEN THE ENGINEERING <span>↗</span></span>
+          <span class="ios-widget-top"><svg class="ios-widget-mirai-mark" aria-hidden="true"><use href="./icons.svg#mirai-app"></use></svg><span>SELECTED WORK</span></span><strong>Mirai</strong><span class="ios-widget-desc">AI that can take action.<br>Engineering that keeps it accountable.</span><span class="ios-widget-foot">Explore case study <span aria-hidden="true">↗</span></span>
         </button>
         <button class="ios-widget ios-widget-info" type="button" data-ios-app="brief" aria-label="Open recruiter brief">
           <span class="ios-mini-calendar"><span id="ios-weekday">MON</span><strong id="ios-day">26</strong></span>
-          <span class="ios-widget-secondary-title">Recruiter brief</span><strong>60-sec</strong><small>What I've built and why it matters.</small>
+          <span class="ios-widget-secondary-title">Recruiter brief</span><strong>60 seconds</strong><small>A quick look at the work behind the code.</small>
         </button>
       </div>
-      <p class="ios-section-label">APPS</p>
+      
       <div class="ios-app-grid" aria-label="iPhone portfolio applications">
-        <button type="button" class="ios-app-icon-button" data-ios-app="projects"><span class="ios-app-glyph ios-glyph-finder"><svg aria-hidden="true"><use href="./icons.svg#finder"></use></svg></span><span>Projects</span></button>
+        <button type="button" class="ios-app-icon-button" data-ios-app="projects"><span class="ios-app-glyph ios-glyph-finder"><svg aria-hidden="true"><use href="./icons.svg#files-app"></use></svg></span><span>Projects</span></button>
         <button type="button" class="ios-app-icon-button" data-ios-app="photos"><span class="ios-app-glyph ios-glyph-photos"><svg aria-hidden="true"><use href="./icons.svg#photos"></use></svg></span><span>Photos</span></button>
-        <button type="button" class="ios-app-icon-button" data-ios-app="about"><span class="ios-app-glyph ios-glyph-about"><svg aria-hidden="true"><use href="./icons.svg#about"></use></svg></span><span>About Me</span></button>
+        <button type="button" class="ios-app-icon-button" data-ios-app="about"><span class="ios-app-glyph ios-glyph-about"><svg aria-hidden="true"><use href="./icons.svg#about-app"></use></svg></span><span>About Me</span></button>
         <button type="button" class="ios-app-icon-button" data-ios-app="notes"><span class="ios-app-glyph ios-glyph-notes"><svg aria-hidden="true"><use href="./icons.svg#notes"></use></svg></span><span>Notes</span></button>
         <button type="button" class="ios-app-icon-button" data-ios-app="links"><span class="ios-app-glyph ios-glyph-safari"><svg aria-hidden="true"><use href="./icons.svg#safari"></use></svg></span><span>Safari</span></button>
-        <button type="button" class="ios-app-icon-button" data-ios-app="brief"><span class="ios-app-glyph ios-glyph-brief"><svg aria-hidden="true"><use href="./icons.svg#document"></use></svg></span><span>Recruiter</span></button>
-        <button type="button" class="ios-app-icon-button" data-ios-app="contact"><span class="ios-app-glyph ios-glyph-contact"><svg aria-hidden="true"><use href="./icons.svg#linkedin"></use></svg></span><span>Contact</span></button>
-        <button type="button" class="ios-app-icon-button" data-ios-app="projects" data-role="fde"><span class="ios-app-glyph ios-glyph-code"><svg aria-hidden="true"><use href="./icons.svg#terminal"></use></svg></span><span>Engineering</span></button>
+        <button type="button" class="ios-app-icon-button" data-ios-app="brief"><span class="ios-app-glyph ios-glyph-brief"><svg aria-hidden="true"><use href="./icons.svg#brief-app"></use></svg></span><span>Recruiter</span></button>
+        <button type="button" class="ios-app-icon-button" data-ios-app="contact"><span class="ios-app-glyph ios-glyph-contact"><svg aria-hidden="true"><use href="./icons.svg#contact-app"></use></svg></span><span>Contact</span></button>
+        <button type="button" class="ios-app-icon-button" data-ios-app="projects" data-role="fde"><span class="ios-app-glyph ios-glyph-code"><svg aria-hidden="true"><use href="./icons.svg#engineering-app"></use></svg></span><span>Engineering</span></button>
       </div>
-      <p class="ios-home-caption">21 projects · Real code and engineering decisions</p>
+      <div class="ios-search-pill" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="m14.5 14.5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Search</span></div>
     </main>
     <nav class="ios-dock" aria-label="iPhone favorite apps">
-      <button type="button" data-ios-app="projects" aria-label="Projects"><svg aria-hidden="true"><use href="./icons.svg#finder"></use></svg></button>
-      <button type="button" data-ios-app="project" data-project="mirai" aria-label="Mirai"><span class="ios-dock-mirai">M</span></button>
+      <button type="button" data-ios-app="projects" aria-label="Projects"><svg aria-hidden="true"><use href="./icons.svg#files-app"></use></svg></button>
+      <button type="button" data-ios-app="project" data-project="mirai" aria-label="Mirai"><svg aria-hidden="true"><use href="./icons.svg#mirai-app"></use></svg></button>
       <button type="button" data-ios-app="links" aria-label="Safari bookmarks"><svg aria-hidden="true"><use href="./icons.svg#safari"></use></svg></button>
-      <button type="button" data-ios-app="contact" aria-label="Contact"><svg aria-hidden="true"><use href="./icons.svg#linkedin"></use></svg></button>
+      <button type="button" data-ios-app="contact" aria-label="Contact"><svg aria-hidden="true"><use href="./icons.svg#contact-app"></use></svg></button>
     </nav>
     <section id="ios-app-screen" class="ios-app-screen" aria-label="Open portfolio app" hidden>
       <header class="ios-app-navigation">
         <button id="ios-app-back" type="button" aria-label="Go back"><span>‹</span> Back</button>
         <strong id="ios-app-nav-title">Projects</strong>
-        <button id="ios-app-close" type="button" aria-label="Return to Home Screen">Done</button>
+        <button id="ios-app-close" type="button" aria-label="Return to Home Screen">Home</button>
       </header>
       <div id="ios-app-content" class="ios-app-content"></div>
     </section>
