@@ -3,3 +3,15 @@
 @media(min-width:1001px){.finder-window:not(.maximized){left:clamp(20px,6vw,115px);width:min(1080px,74vw);resize:both}.desktop-icons{right:25px;z-index:5}}
 @media(min-width:721px) and (max-width:1000px){.finder-window:not(.maximized){left:3vw;width:78vw;resize:both}.desktop-icons{z-index:5}}
 @media(max-width:720px){.finder-window{resize:none}}
+
+/* Mirai and future flagship projects can show both product and engineering evidence. */
+.preview-actions{flex-wrap:wrap;justify-content:flex-start;gap:8px}
+.preview-actions #project-website{background:#235a59;color:#f7fcf6}
+.preview-actions #project-demo{background:#e7eee9;color:#285b56;border:1px solid #aac8bf}
+.preview-actions #copy-project{margin-left:auto}
+.desktop-intro{pointer-events:auto}
+.intro-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.intro-actions button{border:1px solid #406573;border-radius:6px;padding:12px 14px;font:500 10px var(--mono)}
+.intro-start{background:#294a57;color:white}.intro-brief{background:#e7f0efb3;color:#294a57}
+.intro-help{font:10px/1.6 var(--mono)!important;color:#4b6970!important;margin-top:16px}
+@media(max-width:720px){.preview-actions{gap:6px}.preview-actions a{font-size:8px}.intro-actions{margin-top:14px}}
