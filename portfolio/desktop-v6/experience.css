@@ -129,3 +129,12 @@
  .lock-note,.unlock-button,#lockscreen,.photo-tile{transition:none}
  .unlock-chevron{animation:none}
 }
+
+@media(max-width:720px){#lockscreen{position:fixed;inset:0;height:100dvh;width:100vw}}
+@media(max-width:420px){
+ .dock{gap:1px;padding:5px 4px}
+ .dock button,.dock a{width:30px}
+ .dock-icon.has-vector-icon,.dock-icon .dock-vector{width:29px;height:29px}
+ .dock-sep{margin:0 1px;height:28px}
+ .lock-note-body>span:last-child{white-space:normal;line-height:1.2}
+}
