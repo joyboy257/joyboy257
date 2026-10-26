@@ -272,18 +272,70 @@ function browser(){const destinations=[["https://usemirai.app/","Mirai","Product
 function about(){return documentView("ABOUT THIS MAC / OWNER","Deon Quek",'<p>AI and software engineer based in Singapore. I work across systems design, product engineering, agents, native apps, and real integrations.</p><p>Founder and lead engineer of Mirai, plus production client automation, research software, and developer tools.</p><p>Python · TypeScript · PostgreSQL · React · Rust · Swift · Metal · Redis · Docker · MCP.</p><p class="private-note">Wallpaper image: Luca Bravo / Unsplash.</p>')+'<div class="case-links">'+link("https://www.linkedin.com/in/deonquek","LinkedIn")+link("https://github.com/joyboy257","GitHub")+'</div>'}
 function content(){if(state.app==="finder")return finder();if(state.app==="project")return caseView(byID[state.project]);if(state.app==="notes")return notes();if(state.app==="photos")return photos();if(state.app==="browser")return browser();if(state.app==="calendar")return readme();if(state.app==="about")return about();if(state.app==="contact")return documentView("CONTACT / SINGAPORE","Let us talk.",'<p>Interested in Applied AI, Forward-Deployed Engineering, and Software Engineering.</p>')+'<div class="case-links">'+link("https://www.linkedin.com/in/deonquek","Connect")+'</div>';if(state.app==="terminal")return '<div class="terminal-panel"><p>deon@macbook ~ % whoami</p><p class="term-green">Deon Quek · Applied AI & Software Engineer</p><p>Try opening a project through Finder or Spotlight (⌘K).</p></div>';return finder()}
 const title=()=>({finder:"Finder",project:byID[state.project]?.name,notes:"Notes",photos:"Photos",browser:"Safari",calendar:"Calendar",about:"About",contact:"Contact",terminal:"Terminal"})[state.app]||"Finder";
-function render(){if(mobile()){const pane=$("#phone-app");pane.hidden=false;$("#phone-app-name").textContent=title();$("#phone-app-body").innerHTML=content();$("#phone-app-body").scrollTop=0;}else{const w=$("#mac-window");w.hidden=false;w.classList.remove("minimized");$("#mac-window-name").textContent=title();$("#active-app-name").textContent=title();$("#mac-window-content").innerHTML=content();}}
+function updateDockState(){
+ $(".mac-dock [data-app]").forEach(b=>{const active=b.dataset.app===state.app||(state.app==="project"&&b.dataset.app==="finder");b.classList.toggle("running",active);b.setAttribute("aria-pressed",String(active));});
+}
+function render(){updateDockState();if(mobile()){const pane=$("#phone-app");pane.hidden=false;$("#phone-app-name").textContent=title();$("#phone-app-body").innerHTML=content();$("#phone-app-body").scrollTop=0;}else{const w=$("#mac-window");w.hidden=false;w.classList.remove("minimized");$("#mac-window-name").textContent=title();$("#active-app-name").textContent=title();$("#mac-window-content").innerHTML=content();}}
 function open(app,id){if(state.locked){unlock({app,id});return;}if(mobile()&&!$("#phone-app").hidden)state.stack.push([state.app,state.project]);state.app=app;state.project=id||state.project;state.tab="case";render();if(id&&byID[id]){const url=new URL(location.href);url.searchParams.set("project",id);history.replaceState(null,"",url);}}
-function close(){state.app="";state.stack=[];$("#phone-app").hidden=true;$("#mac-window").hidden=true;$("#mac-window").classList.remove("minimized");const url=new URL(location.href);url.searchParams.delete("project");history.replaceState(null,"",url);}
+function close(){state.app="";state.stack=[];updateDockState();$("#phone-app").hidden=true;$("#mac-window").hidden=true;$("#mac-window").classList.remove("minimized");const url=new URL(location.href);url.searchParams.delete("project");history.replaceState(null,"",url);}
 function back(){if(state.stack.length){const [app,id]=state.stack.pop();state.app=app;state.project=id;state.tab="case";render()}else close()}
 const matches=q=>projects.filter(p=>[p.name,p.summary,p.scope,p.tags.join(" ")].join(" ").toLowerCase().includes(q.toLowerCase())).slice(0,12);
 function searching(q){$("#search-results").innerHTML=matches(q).map(p=>'<button class="search-result" data-project="'+p.id+'"><svg viewBox="0 0 64 64"><use href="./icons.svg#document"></use></svg><span><strong>'+esc(p.name)+'</strong><small>'+esc(p.summary.slice(0,90))+'</small></span></button>').join("")||'<p>No results.</p>'}
 function search(){if(state.locked)return;$("#spotlight").hidden=false;$("#spotlight-input").value="";searching("");$("#spotlight-input").focus()}
 function endSearch(){$("#spotlight").hidden=true}
 $("#desktop-search").addEventListener("click",search);
+$("#phone-search").addEventListener("click",search);
 $("#spotlight-input").addEventListener("input",e=>searching(e.target.value));
 $("#spotlight-close").addEventListener("click",endSearch);
 $("#spotlight").addEventListener("click",e=>{if(e.target===$("#spotlight"))endSearch()});
+
+/* Native-looking menu commands, rather than decorative links that open Finder. */
+const menuEl=$("#mac-dropdown");
+const menuItems={
+ File:[["New Finder Window","finder"],["Open Read Me First","calendar"],["Open Safari","browser"],["Close Window","close"]],
+ Edit:[["Search Projects…","search"],["Copy Portfolio Link","copy"],["Read Me First","calendar"]],
+ View:[["Favorites","favorites"],["All Projects","all"],["Client Delivery","delivery"],["AI Systems","ai"]],
+ Go:[["Projects","finder"],["About Me","about"],["Photos","photos"]],
+ Window:[["Minimize","minimize"],["Zoom","maximize"],["Bring Finder Forward","finder"]],
+ Help:[["About Deon","about"],["Recruiter Brief","calendar"],["View GitHub","github"]]
+};
+function dismissMenu(){
+ menuEl.hidden=true;
+ $("[data-menu]").forEach(b=>{b.setAttribute("aria-expanded","false");b.classList.remove("active-menu")});
+}
+function showMenu(trigger){
+ if(!menuEl.hidden&&trigger.getAttribute("aria-expanded")==="true"){dismissMenu();return;}
+ const label=trigger.dataset.menu,actions=menuItems[label]||[];
+ $("[data-menu]").forEach(b=>{b.setAttribute("aria-expanded",String(b===trigger));b.classList.toggle("active-menu",b===trigger)});
+ const rect=trigger.getBoundingClientRect();
+ menuEl.style.left=Math.max(8,Math.min(innerWidth-250,rect.left-10))+"px";
+ menuEl.innerHTML=actions.map(([name,action],i)=>'<button type="button" role="menuitem" data-command="'+esc(action)+'" tabindex="'+(i===0?0:-1)+'"><span>'+esc(name)+'</span>'+(action==="search"?'<kbd>⌘K</kbd>':'')+'</button>').join("");
+ menuEl.hidden=false;menuEl.querySelector("button")?.focus({preventScroll:true});
+}
+function performCommand(c){
+ dismissMenu();
+ if(c==="close"){close();return}
+ if(c==="search"){search();return}
+ if(c==="copy"){navigator.clipboard?.writeText(location.origin+location.pathname).catch(()=>{});return}
+ if(c==="github"){window.open("https://github.com/joyboy257","_blank","noopener");return}
+ if(c==="minimize"){if(!$("#mac-window").hidden)$("#mac-window").classList.add("minimized");return}
+ if(c==="maximize"){if(!$("#mac-window").hidden)$("#mac-window").classList.toggle("maximized");return}
+ if(["favorites","all","delivery","ai"].includes(c)){state.group=c==="favorites"?"featured":c;state.project=sets[state.group][0];open("finder");return}
+ open(c);
+}
+document.addEventListener("click",e=>{
+ const trigger=e.target.closest("[data-menu]");
+ if(trigger){showMenu(trigger);return}
+ const cmd=e.target.closest("[data-command]");
+ if(cmd){performCommand(cmd.dataset.command);return}
+ if(!e.target.closest("#mac-dropdown"))dismissMenu();
+});
+menuEl.addEventListener("keydown",e=>{
+ const buttons=$("#mac-dropdown button");const n=buttons.indexOf(document.activeElement);
+ if(e.key==="Escape"){e.preventDefault();dismissMenu();return}
+ if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();buttons[(n+(e.key==="ArrowDown"?1:-1)+buttons.length)%buttons.length]?.focus()}
+});
+
 $("#mac-close").addEventListener("click",close);
 $("#mac-min").addEventListener("click",()=>$("#mac-window").classList.add("minimized"));
 $("#mac-full").addEventListener("click",()=>$("#mac-window").classList.toggle("maximized"));
@@ -293,7 +345,7 @@ $("#home-indicator").addEventListener("click",close);
 document.addEventListener("click",e=>{
  const t=e.target.closest("[data-tab]");if(t){state.tab=t.dataset.tab;render();return}
  const g=e.target.closest("[data-group]");if(g){state.group=g.dataset.group;state.project=sets[state.group][0];render();return}
- const p=e.target.closest("[data-project]");if(p){endSearch();open("project",p.dataset.project);return}
+ const p=e.target.closest("[data-project]");if(p){endSearch();if(!mobile()&&state.app==="finder"&&p.closest(".finder-list")){state.project=p.dataset.project;state.tab="case";render()}else open("project",p.dataset.project);return}
  const a=e.target.closest("[data-app]");if(a){open(a.dataset.app,a.dataset.project);return}
 });
 document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();search();return}if(e.key==="Escape"){if(!$("#spotlight").hidden)endSearch();else if(mobile())back();else close()}if(state.locked&&["ArrowUp","PageUp"].includes(e.key)){e.preventDefault();unlock()}});
@@ -308,6 +360,7 @@ $("#mac-window-drag").addEventListener("pointercancel",()=>state.drag=null);
 /* Mobile home swipe and edge-back */
 $("#iphone-shell").addEventListener("touchstart",e=>{if(state.locked)return;const t=e.changedTouches[0];state.phoneGesture=t?{x:t.clientX,y:t.clientY,mode:t.clientX<22?"back":t.clientY>innerHeight-58?"home":""}:null},{passive:true});
 $("#iphone-shell").addEventListener("touchend",e=>{const g=state.phoneGesture,t=e.changedTouches[0];state.phoneGesture=null;if(!g||!t)return;if(g.mode==="back"&&t.clientX-g.x>70&&Math.abs(t.clientY-g.y)<75)back();if(g.mode==="home"&&g.y-t.clientY>55)close()},{passive:true});
+updateDockState();
 const request=new URLSearchParams(location.search).get("project");
 let seen=false;try{seen=sessionStorage.getItem("deon-unlocked")==="yes"}catch{}
 if(seen||request&&byID[request]){setLock(false);if(request&&byID[request])open("project",request)}else setLock(true);
