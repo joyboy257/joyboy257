@@ -5,7 +5,14 @@
 <linearGradient id="app-note" x1="0" x2=".8" y1="0" y2="1"><stop offset="0" stop-color="#FFF4C5"/><stop offset="1" stop-color="#E6BA66"/></linearGradient>
 <symbol id="folder" viewBox="0 0 64 64"><path d="M5 16c0-4 2.5-7 7-7h13l5 5h22c4 0 7 3 7 7v28c0 3.6-3 6-6 6H12c-4 0-7-3-7-7z" fill="#548FC2" stroke="#4382B5" stroke-width="1"/><path d="M7 22h50a4 4 0 0 1 4 4l-4 23a6 6 0 0 1-6 5H13c-3 0-5-2-6-5L3 26c-.4-2.3 1-4 4-4Z" fill="url(#folder-base)"/><path d="M5 26a4 4 0 0 1 3-4h49c2 0 3 2 3 4v4H5Z" fill="#DBEFFF" fill-opacity=".6"/><path d="M12 49h39" stroke="#4F8EBE" stroke-opacity=".4" stroke-width="1.5" stroke-linecap="round"/></symbol>
 <symbol id="finder" viewBox="0 0 64 64"><rect x="5" y="5" width="54" height="54" rx="13" fill="url(#finder-base)"/><path d="M32 5h14c7 0 13 6 13 13v28c0 7-6 13-13 13H32Z" fill="#DDF2FA"/><path d="M32 5v54" stroke="#4685B9" stroke-opacity=".5"/><path d="M21 26v7m24-7v7" stroke="#1B5885" stroke-width="2.7" stroke-linecap="round"/><path d="M17 43c9 8 22 8 30 0" fill="none" stroke="#1F6896" stroke-width="2.4" stroke-linecap="round"/><path d="M32 5c0 7-1 13-5 25" fill="none" stroke="#2F6A9A" stroke-width="2" stroke-linecap="round"/></symbol>
-<symbol id="notes" viewBox="0 0 64 64"><rect x="6" y="5" width="52" height="54" rx="11" fill="#F9F9F5" stroke="#E5E7E4"/><path d="M6 16C6 9 11 5 18 5h28c7 0 12 5 12 11v8H6Z" fill="url(#app-note)"/><path d="M17 34h29M17 42h29M17 50h19" stroke="#B5C3C4" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="notes" viewBox="0 0 64 64">
+ <defs><linearGradient id="notes-sheet" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#F8F8F5"/></linearGradient><linearGradient id="notes-yellow" x1="0" y1="0" x2=".4" y2="1"><stop stop-color="#FFE995"/><stop offset="1" stop-color="#F4C74C"/></linearGradient></defs>
+ <rect x="3" y="3" width="58" height="58" rx="14" fill="url(#notes-sheet)" stroke="#F3F1EB" stroke-width=".6"/>
+ <path d="M3 17c0-8 6-14 14-14h30c8 0 14 6 14 14v9H3Z" fill="url(#notes-yellow)"/>
+ <path d="M3 25h58" stroke="#E7BE52" stroke-opacity=".7"/>
+ <path d="M14 35h36M14 43h36M14 51h26" stroke="#B8C0C3" stroke-width="2" stroke-linecap="round"/>
+ <rect x="3.5" y="3.5" width="57" height="57" rx="13.5" fill="none" stroke="#FFFFFF" stroke-opacity=".7"/>
+</symbol>
 <symbol id="terminal" viewBox="0 0 64 64"><rect x="5" y="5" width="54" height="54" rx="13" fill="#293D45"/><rect x="9" y="9" width="46" height="46" rx="9" fill="#17272D"/><path d="m19 23 10 9-10 9m17 0h11" stroke="#ECF8F4" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="15" r="2" fill="#8BADA8"/></symbol>
 <symbol id="about" viewBox="0 0 64 64"><rect x="5" y="5" width="54" height="54" rx="13" fill="#91B8B2"/><circle cx="32" cy="24" r="10" fill="#F0F9F7"/><path d="M14 49c1.2-9 9-15 18-15s17 6 18 15" fill="#F0F9F7"/><circle cx="32" cy="32" r="25" stroke="#FFF" stroke-opacity=".4" stroke-width="1.6" fill="none"/></symbol>
 <symbol id="github" viewBox="0 0 64 64"><rect x="5" y="5" width="54" height="54" rx="13" fill="#243440"/><g transform="translate(14 14) scale(1.5)"><path fill="#FFF" d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.31-1.25-1.66-1.25-1.66-1.03-.71.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.74 2.65 1.24 3.3.95.1-.73.39-1.24.71-1.52-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.29-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.65 0c2.15-1.45 3.09-1.15 3.09-1.15.62 1.55.24 2.69.12 2.98.73.79 1.16 1.79 1.16 3.02 0 4.33-2.63 5.28-5.14 5.56.4.35.75 1.04.75 2.1v3.1c0 .3.2.65.78.54A11.26 11.26 0 0 0 12 .75Z"/></g></symbol>
@@ -16,15 +23,25 @@
 <symbol id="person" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"><circle cx="12" cy="8" r="3.3"/><path d="M4.5 21v-1a7.5 7.5 0 0 1 15 0v1"/></g></symbol>
 <symbol id="code" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="m8 7-5 5 5 5m8-10 5 5-5 5"/></g></symbol>
 <symbol id="photos" viewBox="0 0 64 64"><rect x="5" y="5" width="54" height="54" rx="13" fill="#FBFAF7"/><g transform="translate(32 32)"><ellipse ry="16" rx="7" cy="-9" fill="#EF7581"/><ellipse ry="16" rx="7" cy="-9" fill="#E9B85F" transform="rotate(45)"/><ellipse ry="16" rx="7" cy="-9" fill="#B2CF6C" transform="rotate(90)"/><ellipse ry="16" rx="7" cy="-9" fill="#65C6AE" transform="rotate(135)"/><ellipse ry="16" rx="7" cy="-9" fill="#6CB6E1" transform="rotate(180)"/><ellipse ry="16" rx="7" cy="-9" fill="#8997D5" transform="rotate(225)"/><ellipse ry="16" rx="7" cy="-9" fill="#C6A4D9" transform="rotate(270)"/><ellipse ry="16" rx="7" cy="-9" fill="#EA8AB1" transform="rotate(315)"/><circle r="5.7" fill="#F2F1D4"/></g></symbol>
-<symbol id="safari" viewBox="0 0 64 64"><rect x="5" y="5" width="54" height="54" rx="13" fill="#4B9EE5"/><circle cx="32" cy="32" r="22" fill="#E6F6FC"/><circle cx="32" cy="32" r="19" fill="#72B9ED"/><circle cx="32" cy="32" r="17" fill="none" stroke="#D7EFFB" stroke-width="1.5"/><path d="m27 38 18-22-9 26-10 5z" fill="#E75267"/><path d="m27 38 18-22-14 16-5 15z" fill="#FFFFFF"/><circle cx="32" cy="32" r="3" fill="#F7FEFF"/></symbol>
+<symbol id="safari" viewBox="0 0 64 64">
+ <defs><radialGradient id="safari-sea" cx=".22" cy=".1" r="1"><stop stop-color="#7CD7FF"/><stop offset=".62" stop-color="#2A9DED"/><stop offset="1" stop-color="#1176C9"/></radialGradient></defs>
+ <rect x="3" y="3" width="58" height="58" rx="14" fill="#F8FAFC"/>
+ <circle cx="32" cy="32" r="25" fill="url(#safari-sea)" stroke="#E7EFF5" stroke-width="1.2"/>
+ <circle cx="32" cy="32" r="22.3" fill="none" stroke="#B9EAFF" stroke-opacity=".78" stroke-width="1.4"/>
+ <path d="M32 11v4M32 49v4M11 32h4M49 32h4M18 18l2.3 2.3M43.7 43.7 46 46M46 18l-2.3 2.3M18 46l2.3-2.3" stroke="#E8FBFF" stroke-opacity=".9" stroke-width="1.1" stroke-linecap="round"/>
+ <path d="m25 39 19-24-7 25-16 9z" fill="#EF5360" stroke="#C23246" stroke-width=".5" stroke-linejoin="round"/>
+ <path d="m25 39 19-24-12 19-11 15z" fill="#FFFFFF" stroke="#DDECF6" stroke-width=".35" stroke-linejoin="round"/>
+ <circle cx="32" cy="32" r="2.5" fill="#FFFFFF"/>
+</symbol>
 
 <symbol id="files-app" viewBox="0 0 64 64">
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="#318BE3"/>
-  <path d="M7 9h50v46H7z" fill="#3D9DEE" opacity=".38"/>
-  <path d="M9 21a4 4 0 0 1 4-4h12l5 5h21a4 4 0 0 1 4 4v22a5 5 0 0 1-5 5H14a5 5 0 0 1-5-5Z" fill="#E7F6FF"/>
-  <path d="M9 29a5 5 0 0 1 5-5h36a5 5 0 0 1 5 5v19a5 5 0 0 1-5 5H14a5 5 0 0 1-5-5Z" fill="#CDEBFF"/>
-  <path d="M13 30h38" stroke="#FFFFFF" stroke-width="2" opacity=".85"/>
-  <rect x="2.5" y="2.5" width="59" height="59" rx="13.5" fill="none" stroke="#FFFFFF" stroke-opacity=".28"/>
+ <defs><linearGradient id="files-bg" x1=".05" y1="0" x2=".95" y2="1"><stop stop-color="#FAFDFF"/><stop offset="1" stop-color="#D9ECFF"/></linearGradient><linearGradient id="files-folder" x1="0" y1="0" x2=".3" y2="1"><stop stop-color="#67B9FC"/><stop offset=".68" stop-color="#1684E5"/><stop offset="1" stop-color="#0873D1"/></linearGradient></defs>
+ <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#files-bg)"/>
+ <path d="M8 23c0-3 2-5 5-5h12l4 4h20c3 0 5 2 5 5v20c0 3-2 5-5 5H13c-3 0-5-2-5-5Z" fill="#2F9CF5"/>
+ <path d="M10 27h44c2 0 3 2 2.5 4L53 49c-.5 2.5-2.5 4-5 4H16c-3.2 0-4.8-1.6-5.4-4L7.5 31c-.4-2.4.2-4 2.5-4Z" fill="url(#files-folder)"/>
+ <path d="M11 29h43" stroke="#B8E8FF" stroke-width="1.8" stroke-opacity=".76"/>
+ <path d="M14 49h36" stroke="#0C67B8" stroke-opacity=".2" stroke-width="1.2" stroke-linecap="round"/>
+ <rect x="2.6" y="2.6" width="58.8" height="58.8" rx="13.4" fill="none" stroke="#FFFFFF" stroke-opacity=".45"/>
 </symbol>
 <symbol id="brief-app" viewBox="0 0 64 64">
   <rect x="2" y="2" width="60" height="60" rx="14" fill="#F6F4EC"/>
@@ -46,10 +63,12 @@
   <path d="M7 55h50" stroke="#FEFEFE" opacity=".7"/>
 </symbol>
 <symbol id="contact-app" viewBox="0 0 64 64">
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="#3E9EDB"/>
-  <rect x="11" y="18" width="42" height="30" rx="5" fill="#F6FCFF"/>
-  <path d="m12 20 20 14 20-14" fill="none" stroke="#74BDE6" stroke-width="3"/>
-  <path d="M11 45 27 33m26 12L37 33" fill="none" stroke="#B7DBF4" stroke-width="2.5"/>
+ <defs><linearGradient id="mail-blue" x1=".1" y1="0" x2=".9" y2="1"><stop stop-color="#6FC9FF"/><stop offset=".55" stop-color="#219CE9"/><stop offset="1" stop-color="#0876D1"/></linearGradient></defs>
+ <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#mail-blue)"/>
+ <rect x="10.5" y="18" width="43" height="30" rx="5.5" fill="#FFFFFF" stroke="#E8F2FF" stroke-width="1"/>
+ <path d="M11.5 21 32 35.7 52.5 21" fill="none" stroke="#7AC1F4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+ <path d="m12.5 46 13.7-12M51.5 46 37.8 34" fill="none" stroke="#C8E8FE" stroke-width="1.8"/>
+ <rect x="2.5" y="2.5" width="59" height="59" rx="13.5" fill="none" stroke="#FFFFFF" stroke-opacity=".25"/>
 </symbol>
 <symbol id="mirai-app" viewBox="0 0 64 64">
   <rect x="2" y="2" width="60" height="60" rx="14" fill="#173B44"/>
