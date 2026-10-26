@@ -39,7 +39,7 @@ svg{display:block}
 .menu-left,.menu-right{display:flex;align-items:center;gap:23px}
 .mac-menubar button{border:0;background:none;color:inherit;font-size:13px;padding:4px 0;border-radius:3px}
 .mac-menubar strong{font-size:13px;font-weight:670;letter-spacing:-.008em}
-.menu-left{gap:23px}.menu-left button:not(.apple-mark):hover,.menu-right button:hover{opacity:.62}
+.menu-left{gap:19px}.menu-left button:not(.apple-mark):hover,.menu-right button:hover{opacity:.62}
 .mac-menubar .apple-mark{width:17px;padding:0}
 .apple-mark svg{width:16px;height:16px}
 .menu-right{gap:19px;font-size:12px;white-space:nowrap}
@@ -53,6 +53,7 @@ svg{display:block}
 .desktop-item svg{width:60px;height:60px;filter:drop-shadow(0 5px 3px #394a563c)}
 .desktop-credit{position:absolute;bottom:19px;right:30px;color:#ffffffa8;font-size:10px;font-weight:550;letter-spacing:.1em;text-shadow:0 1px 6px #28424e66}
 .desktop-credit span{margin:0 5px}
+/* A compact macOS dock with app markers and native hover labels. */
 .mac-dock{
  position:absolute;left:50%;bottom:12px;z-index:180;transform:translateX(-50%);
  height:73px;padding:6px 9px;display:flex;align-items:center;gap:7px;
@@ -71,7 +72,7 @@ svg{display:block}
  transform:translate(-50%,-53%);
  display:flex;flex-direction:column;overflow:hidden;
  background:#fafafa;border:1px solid #ffffffbf;border-radius:12px;
- box-shadow:0 34px 95px #1b3e4c68,0 2px 12px #24404d30;
+ box-shadow:0 30px 78px #122b3e50,0 2px 12px #24404d26;
  resize:both;
 }
 .mac-window.maximized{inset:39px 12px 96px!important;width:auto!important;height:auto!important;transform:none!important}
@@ -98,7 +99,7 @@ svg{display:block}
 .finder-side-button span:last-child{margin-left:auto;font-size:11px;color:#8a98a5}
 .finder-main{display:flex;flex-direction:column;min-width:0}
 .finder-top{height:56px;flex:0 0 56px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid #eceef1}
-.finder-top h2{font-size:20px;letter-spacing:-.035em;margin:0;font-weight:700}
+.finder-top h2{font-size:20px;letter-spacing:-.018em;margin:0;font-weight:700}
 .finder-top span{font-size:12px;color:#999aa2}
 .finder-split{display:grid;grid-template-columns:270px minmax(0,1fr);flex:1;min-height:0}
 .finder-list{overflow-y:auto;border-right:1px solid #e6e7eb;padding:9px}
@@ -110,7 +111,7 @@ svg{display:block}
 .file-row small{display:block;font-size:11px;color:#8e949c;line-height:1.3;margin-top:3px}
 .case-pane{overflow-y:auto;padding:28px 30px 60px;min-width:0}
 .case-overline{font-size:11px;font-weight:650;letter-spacing:.065em;text-transform:uppercase;color:#758894}
-.case-pane h2,.app-doc h2{font-size:32px;letter-spacing:-.055em;font-weight:730;line-height:1.1;margin:10px 0}
+.case-pane h2,.app-doc h2{font-size:32px;letter-spacing:-.028em;font-weight:730;line-height:1.1;margin:10px 0}
 .case-pane .case-lede{font-size:14px;line-height:1.6;color:#67747d;margin:0 0 21px}
 .case-hero{height:150px;border-radius:11px;background:linear-gradient(120deg,#275c6f,#a2c2c4);overflow:hidden;position:relative;display:flex;align-items:flex-end;margin-bottom:17px}
 .case-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -176,7 +177,7 @@ svg{display:block}
 .notice-content{min-width:0;display:flex;flex-direction:column;gap:3px;flex:1}
 .notice-top{display:flex;justify-content:space-between;font-size:10px;font-weight:730;letter-spacing:.035em}
 .notice-top small{font-size:10px;font-weight:400;opacity:.8;letter-spacing:0}
-.notice-content strong{font-size:13px;font-weight:630;letter-spacing:-.01em;line-height:1.2}
+.notice-content strong{font-size:13px;font-weight:620;letter-spacing:-.005em;line-height:1.2}
 .notice-content>span:last-child{font-size:11px;opacity:.84;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
 .lock-bottom{position:absolute;bottom:clamp(20px,4vh,44px);left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:4px}
 .unlock{color:#fff;background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:0;min-width:180px;min-height:55px;padding:4px;font-size:14px}
@@ -224,10 +225,10 @@ svg{display:block}
  .phone-widgets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-bottom:34px}
  .ios-widget{border:0;aspect-ratio:1;min-height:140px;border-radius:22px;display:flex;flex-direction:column;text-align:left;position:relative;overflow:hidden;padding:14px;color:inherit;box-shadow:0 5px 14px #27435d22}
  .ios-widget:active{transform:scale(.96)}
- .project-widget{background:linear-gradient(135deg,#224d5c,#296c7e);color:#fff}
+ .project-widget{background:linear-gradient(145deg,#213a55,#2b6683);color:#fff}
  .project-widget:after{content:"";position:absolute;right:-43px;top:-18px;width:140px;height:140px;border:1px solid #ffffff19;border-radius:50%}
- .widget-kicker{font-size:10px;font-weight:630;opacity:.8}
- .widget-project-title{font-size:30px;font-weight:710;letter-spacing:-.06em;margin-top:auto}
+ .widget-kicker{font-size:10px;font-weight:560;opacity:.87;display:flex;align-items:center;gap:8px}
+ .widget-project-title{font-size:23px;line-height:1.08;font-weight:690;letter-spacing:-.035em;margin-top:auto;text-wrap:balance}
  .widget-project-desc{font-size:11px;line-height:1.26;opacity:.86;margin:3px 0}
  .widget-footer{font-size:10px;font-weight:550;opacity:.86;margin-top:6px}
  .date-widget{background:#f3f4f3;color:#242629}
@@ -235,15 +236,15 @@ svg{display:block}
  .calendar-icon span{display:block;width:100%;height:18px;background:#f16b6b;color:white;text-align:center;font-size:10px;font-weight:700;padding-top:4px}
  .calendar-icon b{font-size:31px;font-weight:610;line-height:1.25}
  .date-label{font-size:11px;color:#79838c;margin-top:auto}
- .date-title{font-size:21px;font-weight:690;letter-spacing:-.035em}
+ .date-title{font-size:19px;line-height:1.13;font-weight:670;letter-spacing:-.027em}
  .date-foot{font-size:10px;color:#81858b;margin-top:3px}
  .app-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));row-gap:21px;column-gap:11px}
  .app-item{border:0;background:none;padding:0;color:white;min-height:89px;display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center}
- .app-icon{display:block;width:clamp(54px,15.5vw,69px);height:clamp(54px,15.5vw,69px);border-radius:16px;overflow:hidden;filter:drop-shadow(0 3px 5px #1e3c5430)}
+ .app-icon{display:block;width:clamp(54px,15.5vw,69px);height:clamp(54px,15.5vw,69px);border-radius:14px;overflow:hidden;filter:drop-shadow(0 3px 5px #1e3c5430)}
  .app-icon svg{height:100%;width:100%}
  .app-item>span:last-child{font-size:11.5px;font-weight:500;white-space:nowrap;letter-spacing:-.01em;text-shadow:0 1px 4px #152d487a}
  .app-item:active{transform:scale(.95)}
- .search-capsule{background:#ffffff29;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);height:25px;width:79px;border-radius:20px;margin:23px auto 0;font-size:11px;display:flex;align-items:center;justify-content:center}
+ .search-capsule{border:1px solid #ffffff26;color:white;background:#ffffff29;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);height:25px;width:79px;border-radius:20px;margin:23px auto 0;font-size:11px;display:flex;align-items:center;justify-content:center}
  .phone-dock{position:absolute;z-index:5;left:14px;right:14px;bottom:calc(17px + var(--safe-bottom));height:84px;border-radius:26px;background:#e4f1f148;display:flex;align-items:center;justify-content:space-evenly;padding:7px;backdrop-filter:blur(26px) saturate(145%);-webkit-backdrop-filter:blur(26px) saturate(145%);border:1px solid #ffffff3b}
  .phone-dock button{border:0;background:none;padding:0;width:clamp(52px,15.3vw,63px);height:clamp(52px,15.3vw,63px)}
  .phone-dock svg{width:100%;height:100%}
@@ -314,3 +315,68 @@ svg{display:block}
  .ios-widget{aspect-ratio:auto;min-height:120px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+
+/* Purposeful macOS microinteractions. */
+.mac-dropdown{
+ position:absolute;top:30px;left:60px;z-index:230;
+ min-width:224px;padding:5px;overflow:hidden;border-radius:9px;
+ color:#242934;background:rgba(246,247,251,.86);
+ border:1px solid rgba(255,255,255,.82);
+ box-shadow:0 16px 36px rgba(25,43,56,.28),inset 0 1px rgba(255,255,255,.7);
+ -webkit-backdrop-filter:blur(28px) saturate(165%);backdrop-filter:blur(28px) saturate(165%);
+}
+.mac-dropdown button{display:flex;width:100%;min-height:29px;align-items:center;justify-content:space-between;text-align:left;border:0;border-radius:5px;padding:5px 11px;background:none;color:inherit;font-size:13px;font-weight:450}
+.mac-dropdown button:hover,.mac-dropdown button:focus-visible{background:#2882cc;color:#fff;outline:none}
+.mac-dropdown kbd{font:11px ui-monospace,Menlo,monospace;opacity:.64}
+.mac-menubar button.active-menu{background:rgba(255,255,255,.4);border-radius:4px}
+.mac-system-icons{display:flex;align-items:center}
+.mac-system-icons svg{width:32px;height:18px;opacity:.86}
+.mac-dock button,.mac-dock a{position:relative}
+.mac-dock button[data-app]::before{
+ content:"";position:absolute;bottom:-7px;left:50%;height:3.5px;width:3.5px;border-radius:50%;
+ transform:translateX(-50%);background:rgba(40,53,61,.75);opacity:0;transition:opacity .14s;
+}
+.mac-dock button.running::before{opacity:1}
+.mac-dock button[title]::after,.mac-dock a[title]::after{
+ content:attr(title);position:absolute;left:50%;bottom:calc(100% + 13px);transform:translate(-50%,4px);
+ pointer-events:none;white-space:nowrap;background:rgba(245,248,251,.91);color:#313c45;
+ font-size:12px;font-weight:500;line-height:1.2;padding:6px 11px;border:1px solid #fff9;border-radius:7px;
+ box-shadow:0 5px 17px #203f5428;backdrop-filter:blur(13px);opacity:0;
+ transition:transform .15s,opacity .15s;
+}
+.mac-dock button:hover::after,.mac-dock a:hover::after,.mac-dock button:focus-visible::after,.mac-dock a:focus-visible::after{opacity:1;transform:translate(-50%,0)}
+.mac-window:not(.maximized){border-radius:11px}
+.traffic-controls button{position:relative}
+.traffic-controls:hover .red:after{content:"×";position:absolute;inset:0;display:grid;place-items:center;color:#96332d;font:600 10px Arial}
+.traffic-controls:hover .yellow:after{content:"−";position:absolute;inset:0;display:grid;place-items:center;color:#9b6f21;font:600 10px Arial}
+.traffic-controls:hover .green:after{content:"+";position:absolute;inset:0;display:grid;place-items:center;color:#286d34;font:600 10px Arial}
+.mac-window-toolbar{height:52px;flex-basis:52px}
+.case-links a:hover,.app-links a:hover{filter:brightness(.965);transform:translateY(-1px)}
+/* Native iPhone icon and widget rhythm: layers, not giant emoji. */
+.widget-kicker svg{width:25px;height:25px;flex:0 0 25px;border-radius:6px}
+.widget-kicker span{font-size:11px;font-weight:570}
+.widget-project-desc{line-height:1.35}
+.search-capsule{gap:5px;font-weight:490;letter-spacing:0;padding:0;min-width:84px}
+.search-capsule svg{height:12px;width:12px}
+.search-capsule:active{background:#ffffff3f}
+.phone-dock{box-shadow:0 6px 22px rgba(20,40,60,.1),inset 0 1px rgba(255,255,255,.12)}
+.phone-dock button{display:grid;place-items:center;transition:transform .17s cubic-bezier(.2,.8,.2,1)}
+.phone-dock button:active{transform:scale(.89)}
+.app-item{touch-action:manipulation}
+.app-item:focus-visible,.phone-dock button:focus-visible,.ios-widget:focus-visible{outline:2px solid #fff;outline-offset:4px;border-radius:17px}
+@media(max-width:720px) {
+ .mac-dropdown{display:none}
+ .phone-widgets{align-items:stretch}
+ .ios-widget{height:auto}
+ .phone-app-nav button{padding:9px 4px}
+ .phone-app-body{font-size:15px}
+ .phone-app-body .case-text,.phone-app-body .app-paper p{font-size:15px;line-height:1.58}
+ .phone-app-body .case-pane h2,.phone-app-body .app-doc h2{font-weight:710;letter-spacing:-.025em}
+ .phone-dock{border-color:rgba(255,255,255,.28)}
+}
+@media(max-width:390px) {
+ .widget-project-title{font-size:21px}
+ .date-title{font-size:17px}
+ .widget-project-desc{font-size:10.5px}
+}
