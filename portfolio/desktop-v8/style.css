@@ -1,6 +1,6 @@
 /* DeonOS — one visual system. No CSS layer overrides or downloaded Apple fonts. */
 :root{
- --sf:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+ --sf:-apple-system,BlinkMacSystemFont,system-ui,"Helvetica Neue",Arial,sans-serif;
  --blue:#007aff;--ink:#1d1d1f;--muted:#86868b;--hair:#e5e5ea;
  --safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
 }
