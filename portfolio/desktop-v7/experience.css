@@ -138,3 +138,25 @@
  .dock-sep{margin:0 1px;height:28px}
  .lock-note-body>span:last-child{white-space:normal;line-height:1.2}
 }
+
+/* V7 interaction: disable native panning only on the welcome overlay.
+   Otherwise Mobile Safari cancels upward gestures to scroll the document. */
+#lockscreen{touch-action:none;overscroll-behavior:contain}
+#lockscreen .lock-ui{
+ transform:translate3d(0,var(--swipe-offset,0px),0);
+ opacity:var(--swipe-opacity,1);
+ transition:transform .23s ease-out,opacity .23s ease-out;
+ will-change:transform;
+}
+#lockscreen.is-dragging .lock-ui{transition:none}
+#lockscreen.is-dragging .lock-wallpaper{filter:brightness(1.05)}
+#lockscreen .unlock-button{min-height:54px;min-width:160px}
+@media(max-width:720px){
+ #lockscreen{position:fixed;inset:0;height:100dvh;width:100vw;overscroll-behavior:none}
+ #lockscreen .lock-top{padding-top:calc(18px + env(safe-area-inset-top))}
+ #lockscreen .lock-bottom{padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+ .lock-note{touch-action:none}
+}
+@media(prefers-reduced-motion:reduce){
+ #lockscreen .lock-ui{transition:none}
+}
