@@ -27,7 +27,7 @@
   function afterUnlock({project,app}={}){
     if(project){openProject(project);if(matchMedia("(max-width:720px)").matches)finder.scrollIntoView({behavior:"smooth",block:"start"});}
     else if(app){openApp(app);}
-    else if(!state.unlockedOnce){openApp("about");}
+    else if(!state.unlockedOnce){appToast("Welcome to DeonOS. Open an app or browse the folders.");}
     state.unlockedOnce=true;
   }
   function unlock(destination={}){
@@ -57,6 +57,7 @@
     setHiddenForDesktop(true);
     try{sessionStorage.removeItem("deonos-unlocked");}catch{}
     updateClock();
+    if(matchMedia("(max-width:720px)").matches)window.scrollTo({top:0,behavior:"instant"});
     $("#unlock-button").focus({preventScroll:true});
   }
   // The Frvky reference uses a gesture. Support swipe on touch, wheel,
