@@ -111,7 +111,7 @@ The projects above emphasize architecture and delivery. These **public repositor
 
 **Heidi — agent-mediated commerce and coordination for Southeast Asia.**
 
-I am exploring a network where personal agents can discover merchants, negotiate offers, and coordinate transactions through explicit permissions and user approval. Work is in the **specification and early implementation stage**, not a claim of launched consumer adoption. The engineering repository is private.
+I am exploring a network where personal agents can discover merchants, negotiate offers, and coordinate transactions through explicit permissions and user approval. Work is in **product specification and staged MVP development**, not a claim of launched consumer adoption. The engineering repository is private.
 
 This work lets me connect **AI product thinking** with protocol design, privacy, human control, and the economics of agent actions.
 
