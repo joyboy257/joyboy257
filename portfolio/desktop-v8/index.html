@@ -4,6 +4,24 @@
 <meta name="theme-color" content="#e8e8ed"><meta name="description" content="Deon Quek — applied AI and software engineer. An interactive Mac and iPhone-inspired portfolio of working systems, product delivery, and engineering evidence.">
 <meta property="og:title" content="Deon Quek — Engineering Portfolio"><meta property="og:description" content="Open my workspace. Explore Mirai, real client delivery, native software, and engineering case files.">
 <title>Deon Quek — Desktop</title>
+<!-- Attribute CV/job-application visits by first-party URL path; keep assets rooted at /. -->
+<base href="/">
+<!-- Vercel Web Analytics: anonymous, no third-party analytics cookies. Enable Analytics on the existing Vercel project. -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  window.va("beforeSend", function (event) {
+    try {
+      var u = new URL(event.url);
+      // Remove non-attribution query parameters, including user-provided free text.
+      var safe = ["utm_source","utm_medium","utm_campaign","utm_content"];
+      Array.from(u.searchParams.keys()).forEach(function (key) {
+        if (!safe.includes(key)) u.searchParams.delete(key);
+      });
+      return Object.assign({}, event, { url: u.toString() });
+    } catch (err) { return event; }
+  });
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <link rel="stylesheet" href="./style.css"></head>
 <body>
