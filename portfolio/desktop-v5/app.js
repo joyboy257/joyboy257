@@ -246,7 +246,7 @@ function renderFolder(name){
  $$(".side-item[data-folder]").forEach(b=>b.classList.toggle("selected",b.dataset.folder===currentFolder));
  $("#folder-breadcrumb").textContent="DESKTOP / "+folder.label;
  const items=folder.list.map(id=>byId[id]).filter(Boolean).filter(p=>currentLens==="all"||p.flags.includes(currentLens));
- $("#list-count").textContent=items.length+" ITEMS / CLICK TO INSPECT";
+ $("#list-count").textContent=items.length+" PROJECTS / OPEN TO INSPECT";
  $("#project-list").innerHTML=items.map(p=>'<button role="option" aria-selected="'+String(p.id===currentProject)+'" class="file-row '+(p.id===currentProject?'selected':'')+'" data-project="'+p.id+'"><span class="file-glyph '+(p.tone||'')+'">'+escapeHtml(p.glyph)+'</span><span class="file-row-copy"><strong>'+escapeHtml(p.name)+'</strong><small>'+escapeHtml(p.scope)+' · '+escapeHtml(p.stage.split(" / ")[0])+'</small></span></button>').join('');
  if(!items.some(p=>p.id===currentProject)){if(items[0])currentProject=items[0].id;}
  if(!items.length){$("#project-list").innerHTML='<p class="spotlight-empty">No projects in this category for this role.</p>';return;}
@@ -259,6 +259,7 @@ function renderProject(id){
  $("#project-title").textContent=p.name;
  $("#project-deck").textContent=p.summary;
  $("#project-facts").innerHTML=p.facts.map(s=>"<span>"+escapeHtml(s)+"</span>").join("");
+ const url=new URL(window.location.href);url.searchParams.set("project",id);history.replaceState(null,"",url.pathname+url.search+url.hash);
  const visual=$("#project-visual");visual.innerHTML="";
  const fallback=document.createElement("div");fallback.className="visual-fallback";fallback.textContent=p.name.toUpperCase();visual.append(fallback);
  const tag=document.createElement("span");tag.className="visual-tag";tag.textContent=p.stage;visual.append(tag);
@@ -333,7 +334,8 @@ function installDrag(){
 document.addEventListener("click",e=>{
  const action=e.target.closest("[data-window-action]");if(action){performAction(action.dataset.windowAction,action.dataset.target);return;}
  const app=e.target.closest("[data-app]");if(app){openApp(app.dataset.app);return;}
- const folder=e.target.closest("[data-folder]");if(folder){showWindow("finder");currentProject=folders[folder.dataset.folder]?.list[0]||"mirai";currentTab="overview";renderFolder(folder.dataset.folder);return;}
+ const start=e.target.closest("[data-start-project]");if(start){openProject(start.dataset.startProject);if(matchMedia("(max-width:720px)").matches)$("#finder-window").scrollIntoView({behavior:"smooth",block:"start"});return;}
+ const folder=e.target.closest("[data-folder]");if(folder){showWindow("finder");currentProject=folders[folder.dataset.folder]?.list[0]||"mirai";currentTab="overview";renderFolder(folder.dataset.folder);if(matchMedia("(max-width:720px)").matches)$("#finder-window").scrollIntoView({behavior:"smooth",block:"start"});return;}
  const project=e.target.closest("[data-project]");if(project){currentTab="overview";renderProject(project.dataset.project);return;}
  const tab=e.target.closest("[data-tab]");if(tab){currentTab=tab.dataset.tab;renderTab();return;}
  const lens=e.target.closest("[data-lens]");if(lens){selectLens(lens.dataset.lens);return;}
