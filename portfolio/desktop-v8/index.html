@@ -21,7 +21,8 @@
     <div class="lock-bottom"><button id="unlock" type="button" class="unlock" aria-label="Swipe up or click to unlock"><span class="unlock-arrow" aria-hidden="true">⌃</span><span>Swipe up to unlock</span></button><span class="lock-subnote">or click to explore</span></div>
   </section>
   <div class="mac-shell" id="mac-shell">
-    <header class="mac-menubar"><div class="menu-left"><button class="apple-mark" data-app="about" title="About Deon" aria-label="About Deon"><svg viewBox="0 0 24 24"><use href="./icons.svg#command"></use></svg></button><strong id="active-app-name">Finder</strong><button data-app="finder">File</button><button data-app="finder">Edit</button><button data-app="finder">View</button><button data-app="finder">Go</button><button data-app="finder">Window</button><button data-app="about">Help</button></div><div class="menu-right"><button id="desktop-search" aria-label="Search projects" title="Search (Command K)"><svg viewBox="0 0 24 24"><use href="./icons.svg#search"></use></svg></button><span class="online-state"><i></i>Available for opportunities</span><time id="mac-time">Mon 26 Oct 16:24</time></div></header>
+    <header class="mac-menubar"><div class="menu-left"><button class="apple-mark" data-app="about" title="About Deon" aria-label="About Deon"><svg viewBox="0 0 24 24"><use href="./icons.svg#command"></use></svg></button><strong id="active-app-name">Finder</strong><button data-menu="File" aria-expanded="false">File</button><button data-menu="Edit" aria-expanded="false">Edit</button><button data-menu="View" aria-expanded="false">View</button><button data-menu="Go" aria-expanded="false">Go</button><button data-menu="Window" aria-expanded="false">Window</button><button data-menu="Help" aria-expanded="false">Help</button></div><div class="menu-right"><button id="desktop-search" aria-label="Search projects" title="Search (Command K)"><svg viewBox="0 0 24 24"><use href="./icons.svg#search"></use></svg></button><span class="mac-system-icons" aria-label="Wi-Fi and battery"><svg viewBox="0 0 32 18" aria-hidden="true"><path d="M1 6Q8-1 15 6M4 9Q8 5 12 9M8 13h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="19.3" y="4.1" width="10" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="21" y="5.6" width="6.8" height="5.9" rx="1" fill="currentColor"/><path d="M30 6.3v4.5" stroke="currentColor" stroke-width="1.5"/></svg></span><time id="mac-time">Mon 26 Oct 16:24</time></div></header>
+    <div id="mac-dropdown" class="mac-dropdown" role="menu" hidden aria-label="Application menu"></div>
     <main class="mac-desktop" id="os-main">
       <div class="desktop-items">
         <button class="desktop-item" data-app="finder"><svg viewBox="0 0 64 64"><use href="./icons.svg#folder"></use></svg><span>Projects</span></button>
@@ -29,7 +30,7 @@
         <button class="desktop-item" data-app="photos"><svg viewBox="0 0 64 64"><use href="./icons.svg#photos"></use></svg><span>Photos</span></button>
         <button class="desktop-item" data-app="browser"><svg viewBox="0 0 64 64"><use href="./icons.svg#safari"></use></svg><span>Links</span></button>
       </div>
-      <div class="desktop-credit">DEON'S MACBOOK PRO <span>·</span> ENGINEERING WORKSPACE</div>
+      
     </main>
     <section id="mac-window" class="mac-window" hidden aria-label="Portfolio application" role="dialog" aria-modal="false">
       <div class="mac-window-toolbar" id="mac-window-drag"><div class="traffic-controls"><button type="button" id="mac-close" class="red" aria-label="Close window"></button><button type="button" id="mac-min" class="yellow" aria-label="Minimize window"></button><button type="button" id="mac-full" class="green" aria-label="Maximize window"></button></div><span id="mac-window-name">Finder</span><span class="mac-toolbar-right">Deon Quek</span></div>
@@ -51,8 +52,8 @@
     <div class="phone-status"><span id="phone-time">9:41</span><span class="dynamic-island" aria-hidden="true"></span><span class="phone-signal" aria-label="Signal and battery"><svg viewBox="0 0 57 17" aria-hidden="true"><path d="M1 13h3v3H1zm5-3h3v6H6zm5-4h3v10h-3zm5-4h3v14h-3zM29 7q6-7 12 0l-6 8zM46 3h8v12h-8z" fill="currentColor"/></svg></span></div>
     <main class="springboard">
       <div class="phone-widgets">
-        <button class="ios-widget project-widget" data-app="project" data-project="mirai"><span class="widget-kicker">SELECTED WORK</span><span class="widget-project-title">Mirai</span><span class="widget-project-desc">AI systems that act, with safeguards that matter.</span><span class="widget-footer">Explore engineering ↗</span></button>
-        <button class="ios-widget date-widget" data-app="calendar"><span class="calendar-icon"><span id="phone-weekday">MON</span><b id="phone-day">26</b></span><span class="date-label">My work</span><span class="date-title">21 projects</span><span class="date-foot">Built · Designed · Tested</span></button>
+        <button class="ios-widget project-widget" data-app="project" data-project="mirai"><span class="widget-kicker"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="./icons.svg#mirai-app"></use></svg> <span>Mirai</span></span><span class="widget-project-title">AI, with guardrails.</span><span class="widget-project-desc">A real operating system for service businesses.</span><span class="widget-footer">View project ›</span></button>
+        <button class="ios-widget date-widget" data-app="calendar"><span class="calendar-icon"><span id="phone-weekday">MON</span><b id="phone-day">26</b></span><span class="date-label">Today</span><span class="date-title">Make things work.</span><span class="date-foot">21 project files</span></button>
       </div>
       <div class="app-grid">
         <button class="app-item" data-app="finder"><span class="app-icon"><svg viewBox="0 0 64 64"><use href="./icons.svg#files-app"></use></svg></span><span>Files</span></button>
@@ -64,7 +65,7 @@
         <button class="app-item" data-app="terminal"><span class="app-icon"><svg viewBox="0 0 64 64"><use href="./icons.svg#engineering-app"></use></svg></span><span>Terminal</span></button>
         <button class="app-item" data-app="contact"><span class="app-icon"><svg viewBox="0 0 64 64"><use href="./icons.svg#contact-app"></use></svg></span><span>Contact</span></button>
       </div>
-      <div class="search-capsule" aria-hidden="true">⌕ &nbsp;Search</div>
+      <button id="phone-search" class="search-capsule" type="button" aria-label="Search projects"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="./icons.svg#search"></use></svg><span>Search</span></button>
     </main>
     <nav class="phone-dock" aria-label="Favorite applications">
       <button data-app="finder" aria-label="Files"><svg viewBox="0 0 64 64"><use href="./icons.svg#files-app"></use></svg></button>
