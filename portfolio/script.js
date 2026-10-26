@@ -1,5 +1,69 @@
 
 'use strict';
+
+/* Recruiter-first role lens: three ways to inspect the same verified project history. */
+const roleViews = {
+  ai: {
+    kicker: 'AGENT ORCHESTRATION / RELIABLE BACKENDS / LLM EVALUATIONS',
+    headline: 'I build the systems around intelligent models.',
+    description: "An LLM is one component. I've designed and engineered tool execution, durable agent workflows, retrieval, multi-tenant services and evaluation harnesses that make AI usable within real software.",
+    proof: ['Mirai: governed agent platform and dated evaluation evidence', 'Amethyst: company context, provenance and approvals', 'Atlas: a public, local-first agent runtime'],
+    label: "EXPLORE MIRAI'S ENGINEERING ↗",
+    link: 'https://github.com/joyboy257/mirai-showcase'
+  },
+  fde: {
+    kicker: 'CUSTOMER PROBLEMS / REST APIS / WORKFLOW RELIABILITY',
+    headline: 'I can turn a messy operational problem into software people use.',
+    description: 'At a professional-services client I delivered a staff-used Telegram document workflow and worked through provider integrations, workflow state, failures and a staged refactor. I connect users, requirements, implementation and production realities.',
+    proof: ['Amelia Bot: genuine staff adoption in production', '69-case shadow replay before any migration cutover', 'Mirai: business-facing integrations and governed operations'],
+    label: 'EXAMINE THE CLIENT CASE STUDY ↗',
+    link: 'https://github.com/joyboy257/joyboy257/tree/main/showcases/amelia-bot'
+  },
+  swe: {
+    kicker: 'API DESIGN / DATA MODELS / FULL-STACK DELIVERY',
+    headline: 'I approach AI products as serious software systems.',
+    description: "I've worked across TypeScript, Python, SQL, Redis, React/Next.js, async workers and service contracts. I care about idempotency, authorization, tests, observability and debugging the system underneath the interface.",
+    proof: ['Mirai: API, multi-tenancy, worker and database boundaries', 'AgentOS: public full-stack TypeScript implementation', 'PropFrame: async media pipelines, object storage and credit accounting'],
+    label: 'INSPECT PUBLIC AGENTOS SOURCE ↗',
+    link: 'https://github.com/joyboy257/agentos'
+  }
+};
+const roleButtons = Array.from(document.querySelectorAll('.role-tab'));
+const rolePanel = document.getElementById('role-panel');
+function selectRole(key, updateUrl = true) {
+  const view = roleViews[key]; if (!view || !rolePanel) return;
+  roleButtons.forEach(button => {
+    const selected = button.dataset.role === key;
+    button.classList.toggle('is-active',selected);
+    button.setAttribute('aria-selected',String(selected));
+    button.tabIndex = selected ? 0 : -1;
+  });
+  document.getElementById('role-kicker').textContent=view.kicker;
+  document.getElementById('role-headline').textContent=view.headline;
+  document.getElementById('role-description').textContent=view.description;
+  const container=document.getElementById('role-proof');
+  container.replaceChildren(...view.proof.map(item => {const el=document.createElement('span');el.textContent=item;return el;}));
+  const link=document.getElementById('role-link');link.textContent=view.label;link.href=view.link;
+  rolePanel.setAttribute('aria-labelledby','role-tab-'+key);
+  if (updateUrl) {
+    const url=new URL(window.location.href);
+    if(key==='ai')url.searchParams.delete('role'); else url.searchParams.set('role',key);
+    history.replaceState(null,'',url.pathname+url.search+url.hash);
+  }
+}
+roleButtons.forEach((button,index) => {
+  button.addEventListener('click',()=>selectRole(button.dataset.role));
+  button.addEventListener('keydown',event => {
+    const keys=['ArrowRight','ArrowLeft','Home','End'];
+    if(!keys.includes(event.key))return;
+    event.preventDefault();
+    const nextIndex=event.key==='Home'?0:event.key==='End'?roleButtons.length-1:(index+(event.key==='ArrowRight'?1:-1)+roleButtons.length)%roleButtons.length;
+    roleButtons[nextIndex].focus();selectRole(roleButtons[nextIndex].dataset.role);
+  });
+});
+const initialRole=new URLSearchParams(window.location.search).get('role');
+if(initialRole&&Object.prototype.hasOwnProperty.call(roleViews,initialRole))selectRole(initialRole,false);
+
 // Claims and status labels below are intentionally conservative. Private source code is not embedded.
 const projects = [
   { name:'Slate', initials:'SL', category:['product','ai'], kind:'AI-NATIVE PROJECT MANAGEMENT', status:'PRIVATE · ACTIVE DEVELOPMENT', colors:['#2d3731','#101812','#d9ff67'], image:null, summary:'An AI-native project manager designed around founders and their coding agents—not a generic task board.', challenge:'Project management assumes humans are the only workers. AI builders need assignable agents, real context, evidence, approvals, and durable review.', contribution:'Product direction, agent-oriented workflows, system contracts, programme design and implementation orchestration.', evidence:'Private, actively developed. The repository documents operator workflows, agent integrations and reproducible engineering packages. Not described as a generally available service.', stack:['AI agents','Product design','TypeScript','Workflows'], link:null },
