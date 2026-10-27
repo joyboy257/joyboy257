@@ -228,8 +228,9 @@ const mobile=()=>matchMedia("(max-width:720px)").matches;
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const link=(url,label)=>url&&/^https:\/\/(github\.com|usemirai\.app|www\.linkedin\.com)\//.test(url)?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(label)+' ↗</a>':"";
 function clock(){const d=new Date();const hm=new Intl.DateTimeFormat("en-SG",{hour:"2-digit",minute:"2-digit",hour12:false}).format(d);
- $("#lock-time").textContent=hm;$("#lock-status-time").textContent=hm;$("#phone-time").textContent=hm;
- $("#lock-date").textContent=new Intl.DateTimeFormat("en-SG",{weekday:"long",day:"numeric",month:"long"}).format(d);
+ const lockHm=new Intl.DateTimeFormat("en-US",{hour:"numeric",minute:"2-digit",hour12:true}).format(d);
+ $("#lock-time").textContent=lockHm;$("#lock-status-time").textContent=hm;$("#phone-time").textContent=hm;
+ $("#lock-date").textContent=new Intl.DateTimeFormat("en-US",{weekday:"long",month:"long",day:"numeric"}).format(d);
  $("#phone-weekday").textContent=new Intl.DateTimeFormat("en-SG",{weekday:"short"}).format(d).toUpperCase();$("#phone-day").textContent=d.getDate();
  $("#mac-time").textContent=new Intl.DateTimeFormat("en-SG",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit",hour12:false}).format(d);
 }
