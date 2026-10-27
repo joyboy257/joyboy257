@@ -1,0 +1,32 @@
+name: DeonOS G1 one-time dependency lock
+on:
+  push:
+    branches:
+      - programme/deonos-g1-foundation-2026-10-27
+    paths:
+      - .github/workflows/deonos-g1-lockfile.yml
+permissions:
+  contents: write
+jobs:
+  save-lockfile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Resolve pinned dependencies without installing app runtime
+        working-directory: portfolio/desktop-v8
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Commit resolved lockfile only to isolated G1 branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add portfolio/desktop-v8/package-lock.json
+          if ! git diff --cached --quiet; then
+            git commit -m "build(deonos): pin reproducible Vite and TypeScript dependencies [skip ci]"
+            git push origin HEAD:refs/heads/programme/deonos-g1-foundation-2026-10-27
+          fi
