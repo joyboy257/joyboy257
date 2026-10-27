@@ -274,7 +274,7 @@ function about(){return documentView("ABOUT THIS MAC / OWNER","Deon Quek",'<p>AI
 function content(){if(state.app==="finder")return finder();if(state.app==="project")return caseView(byID[state.project]);if(state.app==="notes")return notes();if(state.app==="photos")return photos();if(state.app==="browser")return browser();if(state.app==="calendar")return readme();if(state.app==="about")return about();if(state.app==="contact")return documentView("CONTACT / SINGAPORE","Let us talk.",'<p>Interested in Applied AI, Forward-Deployed Engineering, and Software Engineering.</p>')+'<div class="case-links">'+link("https://www.linkedin.com/in/deonquek","Connect")+'</div>';if(state.app==="terminal")return '<div class="terminal-panel"><p>deon@macbook ~ % whoami</p><p class="term-green">Deon Quek · Applied AI & Software Engineer</p><p>Try opening a project through Finder or Spotlight (⌘K).</p></div>';return finder()}
 const title=()=>({finder:"Finder",project:byID[state.project]?.name,notes:"Notes",photos:"Photos",browser:"Safari",calendar:"Read Me",about:"About",contact:"Contact",terminal:"Terminal"})[state.app]||"Finder";
 function updateDockState(){
- $(".mac-dock [data-app]").forEach(b=>{const active=b.dataset.app===state.app||(state.app==="project"&&b.dataset.app==="finder");b.classList.toggle("running",active);b.setAttribute("aria-pressed",String(active));});
+ $$(".mac-dock [data-app]").forEach(b=>{const active=b.dataset.app===state.app||(state.app==="project"&&b.dataset.app==="finder");b.classList.toggle("running",active);b.setAttribute("aria-pressed",String(active));});
 }
 function render(){updateDockState();if(mobile()){const pane=$("#phone-app");pane.hidden=false;$("#phone-app-name").textContent=title();$("#phone-app-body").innerHTML=content();$("#phone-app-body").scrollTop=0;}else{const w=$("#mac-window");w.hidden=false;w.classList.remove("minimized");$("#mac-window-name").textContent=title();$("#active-app-name").textContent=title();$("#mac-window-content").innerHTML=content();}}
 function open(app,id){if(state.locked){unlock({app,id});return;}if(mobile()&&!$("#phone-app").hidden)state.stack.push([state.app,state.project]);state.app=app;state.project=id||state.project;state.tab="case";render();if(app==="project"&&id&&byID[id])window.PortfolioAnalytics?.project(id);else window.PortfolioAnalytics?.app(app);if(id&&byID[id]){const url=new URL(location.href);url.searchParams.set("project",id);history.replaceState(null,"",url);}}
@@ -302,12 +302,12 @@ const menuItems={
 };
 function dismissMenu(){
  menuEl.hidden=true;
- $("[data-menu]").forEach(b=>{b.setAttribute("aria-expanded","false");b.classList.remove("active-menu")});
+ $$("[data-menu]").forEach(b=>{b.setAttribute("aria-expanded","false");b.classList.remove("active-menu")});
 }
 function showMenu(trigger){
  if(!menuEl.hidden&&trigger.getAttribute("aria-expanded")==="true"){dismissMenu();return;}
  const label=trigger.dataset.menu,actions=menuItems[label]||[];
- $("[data-menu]").forEach(b=>{b.setAttribute("aria-expanded",String(b===trigger));b.classList.toggle("active-menu",b===trigger)});
+ $$("[data-menu]").forEach(b=>{b.setAttribute("aria-expanded",String(b===trigger));b.classList.toggle("active-menu",b===trigger)});
  const rect=trigger.getBoundingClientRect();
  menuEl.style.left=Math.max(8,Math.min(innerWidth-250,rect.left-10))+"px";
  menuEl.innerHTML=actions.map(([name,action],i)=>'<button type="button" role="menuitem" data-command="'+esc(action)+'" tabindex="'+(i===0?0:-1)+'"><span>'+esc(name)+'</span>'+(action==="search"?'<kbd>⌘K</kbd>':'')+'</button>').join("");
