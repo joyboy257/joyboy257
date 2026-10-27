@@ -80,6 +80,8 @@ jobs:
             --lighthouse
       - name: Check history routing in built desktop/mobile app
         run: python scripts/route-e2e.py
+      - name: Enforce cold first-view bytes and correct responsive wallpaper
+        run: python scripts/check-asset-budget.py
       - name: Enforce interaction and Lighthouse compatibility
         run: |
           python - <<'PY'
