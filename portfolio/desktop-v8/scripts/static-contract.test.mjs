@@ -12,7 +12,7 @@ test('active source keeps the same 21 case studies and lock on refresh', () => {
   const ids = [...src.matchAll(/\bid:"([^"]+)",name:"/g)].map(m => m[1]);
   assert.equal(ids.length, 21);
   assert.equal(new Set(ids).size, 21);
-  assert.match(src, /setLock\(true\)/);
+  assert.match(entry, /setLock\(true\)/);
   assert.doesNotMatch(entry, /sessionStorage/);
   assert.match(html, /id="lock-screen"/);
   assert.match(html, /src="\.\/src\/main\.ts"/);
