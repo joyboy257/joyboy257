@@ -449,3 +449,143 @@ svg{display:block}
  .phone-app-body .finder-list .file-row strong{font-size:15px;font-weight:560}
  .phone-app-nav{color:#1c1c1e}
 }
+
+/* macOS 11 Big Sur chrome — authored from scratch against browser screenshots of
+   Giant Sur (1440×900). Icons are original SVGs; the wallpaper below is a
+   locally authored vector approximation, not an asset extracted from a clone.
+   iPhone is a separate iOS springboard. */
+
+:root{--mac-ui:-apple-system,BlinkMacSystemFont,system-ui,"Helvetica Neue",sans-serif}
+.mac-shell{
+ background-color:#7d42a7;
+ background-image:url("./bigsur-wallpaper.svg");
+ background-size:cover;
+ background-position:center center;
+}
+.mac-shell:before,.mac-shell:after{content:none}
+.mac-menubar{
+ height:25px;
+ padding:0 14px 0 15px;
+ color:rgba(255,255,255,.97);
+ background:rgba(34,31,47,.18);
+ border-bottom:1px solid rgba(255,255,255,.1);
+ box-shadow:none;
+ -webkit-backdrop-filter:blur(28px) saturate(135%);
+ backdrop-filter:blur(28px) saturate(135%);
+}
+.menu-left{gap:19px}
+.menu-right{gap:16px}
+.mac-menubar button{color:inherit;font:500 12px/1 var(--mac-ui);padding:5px 0}
+.mac-menubar strong{font:650 12px/1 var(--mac-ui);letter-spacing:-.014em}
+.mac-menubar .apple-mark{width:15px}
+.mac-menubar .apple-mark svg{width:15px;height:17px;fill:currentColor}
+.menu-right time{color:#fff;font:500 11px/1 var(--mac-ui)}
+.mac-system-icons svg,.menu-right button svg{color:white}
+.mac-dropdown{top:25px}
+.mac-dropdown button{font-size:13px}
+.mac-desktop{inset:25px 0 0}
+.desktop-items{right:24px;top:14px;width:103px;gap:5px}
+.desktop-item{
+ min-height:91px;width:97px;
+ padding:6px 5px 5px;gap:4px;
+ font-size:12px;font-weight:520;letter-spacing:-.01em;
+ text-shadow:0 1px 4px #251b3c76;
+}
+.desktop-item svg{width:57px;height:58px;filter:drop-shadow(0 4px 4px #14133b38)}
+.desktop-item:hover,.desktop-item:focus-visible{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.17)}
+.mac-dock{
+ bottom:8px;height:73px;
+ border-radius:18px;
+ padding:7px 8px;
+ gap:5px;
+ background:rgba(117,107,150,.35);
+ border:1px solid rgba(255,255,255,.27);
+ box-shadow:0 7px 22px rgba(36,26,65,.16),inset 0 1px 0 rgba(255,255,255,.2);
+ -webkit-backdrop-filter:blur(32px) saturate(138%);
+ backdrop-filter:blur(32px) saturate(138%);
+}
+.mac-dock button,.mac-dock a{width:57px;height:57px}
+.mac-dock svg{width:57px;height:57px;filter:drop-shadow(0 1px 2px rgba(5,15,30,.15))}
+.mac-dock button:hover,.mac-dock a:hover{transform:translateY(-11px) scale(1.16)}
+.mac-dock button[data-app]::before{bottom:-6px;background:rgba(255,255,255,.82)}
+.dock-divider{height:42px;background:rgba(255,255,255,.35)}
+.mac-window{
+ border-radius:11px;
+ border:1px solid rgba(255,255,255,.67);
+ box-shadow:0 28px 80px rgba(30,20,54,.34),0 2px 12px rgba(24,21,38,.18);
+ background:rgba(253,253,254,.95);
+ width:min(990px,calc(100vw - 170px));
+ height:min(650px,calc(100dvh - 153px));
+}
+.mac-window-toolbar{
+ height:50px;flex-basis:50px;padding:0 17px;
+ background:linear-gradient(180deg,rgba(253,253,254,.96),rgba(246,247,249,.97));
+ border-bottom:1px solid rgba(130,130,140,.18);
+}
+#mac-window-name{font:600 12px var(--mac-ui);color:#393a41}
+.mac-toolbar-right{color:#8b8e97;font-size:11px}
+.traffic-controls{gap:8px}
+.traffic-controls button{width:13px;height:13px}
+.finder-sidebar{
+ background:rgba(235,235,245,.81);
+ border-right:1px solid rgba(135,144,155,.2);
+ padding:18px 11px;
+}
+.finder-group{
+ font:600 11px/1.4 var(--mac-ui);
+ color:rgba(102,110,120,.78);margin:5px 0 8px;padding-left:12px;
+}
+.finder-side-button{
+ border-radius:6px;font:500 12.5px var(--mac-ui);
+ min-height:33px;padding:7px 10px;gap:9px;color:#343941;
+}
+.finder-side-button.selected{background:rgba(0,122,255,.13);color:#2b73bb}
+.finder-top{height:53px;flex-basis:53px}
+.finder-top h2{font:700 19px/1 var(--mac-ui);letter-spacing:-.03em}
+.finder-list{padding:8px}
+.file-row{
+ min-height:59px;padding:8px 10px;gap:10px;border-radius:6px;
+}
+.file-row strong{font:610 12.8px/1.3 var(--mac-ui)}
+.file-row small{font:450 10.5px/1.4 var(--mac-ui);margin-top:2px}
+.file-row.selected{background:rgba(0,122,255,.11)}
+.case-pane{padding:25px 26px 55px}
+.case-pane h2,.app-doc h2{font-weight:700;letter-spacing:-.04em}
+.case-facts span{background:rgba(0,122,255,.075);color:#496d8a}
+.case-tabs button.selected{border-color:#007aff;color:#007aff}
+.case-hero{background:#d6dde7}
+
+/* iPhone 15+/iOS home proportions. Personal app content still replaces native apps. */
+@media(max-width:720px){
+ .iphone-shell{
+   background-color:#5253a3;
+   background-image:linear-gradient(180deg,rgba(26,21,64,.12),rgba(33,15,59,.05) 60%,rgba(25,18,55,.18)),url("./bigsur-wallpaper.svg");
+   background-size:cover;background-position:52% center;
+ }
+ .iphone-shell:before,.iphone-shell:after{content:none}
+ .phone-status{font-family:var(--mac-ui);font-size:15px;font-weight:660}
+ .dynamic-island{width:112px;height:33px}
+ .springboard{padding-top:clamp(57px,9vh,96px)}
+ .phone-widgets{margin-bottom:34px;gap:13px}
+ .ios-widget{border-radius:22px;box-shadow:0 3px 14px rgba(30,20,64,.13)}
+ .project-widget{background:linear-gradient(148deg,#163954,#247088);border:1px solid rgba(255,255,255,.05)}
+ .app-item>span:last-child{font-weight:510;font-size:11.8px;text-shadow:0 1px 3px #24164078}
+ .app-icon{border-radius:14px;filter:drop-shadow(0 2px 4px rgba(13,13,44,.18))}
+ .phone-dock{
+  bottom:calc(14px + var(--safe-bottom));
+  border-radius:26px;height:83px;
+  background:rgba(236,224,247,.3);
+  border:1px solid rgba(255,255,255,.25);
+  box-shadow:0 8px 22px rgba(24,14,47,.13);
+  backdrop-filter:blur(31px) saturate(140%);
+  -webkit-backdrop-filter:blur(31px) saturate(140%);
+ }
+ .phone-app-nav{background:rgba(249,249,252,.92)}
+ .phone-app-nav strong{font-weight:610}
+ .phone-app-body .case-pane h2,.phone-app-body .app-doc h2{letter-spacing:-.035em}
+ .iphone-shell.app-open .phone-status{color:#1c1c1e}
+}
+@media(max-width:390px){
+ .phone-dock{height:76px;bottom:calc(15px + var(--safe-bottom))}
+ .springboard{padding-top:38px}
+}
