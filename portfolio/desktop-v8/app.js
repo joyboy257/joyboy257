@@ -232,14 +232,12 @@ function clock(){const d=new Date();const hm=new Intl.DateTimeFormat("en-SG",{ho
  $("#lock-time").textContent=lockHm;$("#lock-status-time").textContent=hm;$("#phone-time").textContent=hm;
  $("#lock-date").textContent=new Intl.DateTimeFormat("en-US",{weekday:"long",month:"long",day:"numeric"}).format(d);
  $("#phone-weekday").textContent=new Intl.DateTimeFormat("en-SG",{weekday:"short"}).format(d).toUpperCase();$("#phone-day").textContent=d.getDate();
- $("#mac-time").textContent=new Intl.DateTimeFormat("en-SG",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit",hour12:false}).format(d);
+ $("#mac-time").textContent=new Intl.DateTimeFormat("en-US",{weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",hour12:true}).format(d);
 }
 clock();setInterval(clock,30000);
 const lockEl=$("#lock-screen");
-function setLock(value){state.locked=value;lockEl.hidden=!value;$("#mac-shell").inert=value;$("#iphone-shell").inert=value;
- try{if(value)sessionStorage.removeItem("deon-unlocked");else sessionStorage.setItem("deon-unlocked","yes")}catch{}
-}
-function unlock(dest){if(!state.locked)return;lockEl.classList.add("unlocking");setTimeout(()=>{lockEl.classList.remove("unlocking");lockEl.style.removeProperty("--drag-y");lockEl.style.removeProperty("--drag-opacity");setLock(false);window.PortfolioAnalytics?.unlock();if(dest)open(dest.app,dest.id);},410)}
+function setLock(value){state.locked=value;lockEl.hidden=!value;$("#mac-shell").inert=value;$("#iphone-shell").inert=value;}
+function unlock(dest){if(!state.locked)return;lockEl.classList.add("unlocking");setTimeout(()=>{lockEl.classList.remove("unlocking");lockEl.style.removeProperty("--drag-y");lockEl.style.removeProperty("--drag-opacity");setLock(false);window.PortfolioAnalytics?.unlock();if(dest)open(dest.app,dest.id);else if(state.pendingProject){const id=state.pendingProject;state.pendingProject=null;open("project",id);}},410)}
 $("#unlock").addEventListener("click",()=>unlock());
 $$("[data-unlock-app],[data-unlock-project]").forEach(b=>b.addEventListener("click",()=>{if(Date.now()-state.preventClick>520)unlock({app:b.dataset.unlockProject?"project":b.dataset.unlockApp,id:b.dataset.unlockProject})}));
 const start=(x,y,kind)=>{if(state.locked)state.gesture={x,y,kind,at:performance.now()}};
@@ -332,7 +330,7 @@ document.addEventListener("click",e=>{
  if(!e.target.closest("#mac-dropdown"))dismissMenu();
 });
 menuEl.addEventListener("keydown",e=>{
- const buttons=$("#mac-dropdown button");const n=buttons.indexOf(document.activeElement);
+ const buttons=$$("#mac-dropdown button");const n=buttons.indexOf(document.activeElement);
  if(e.key==="Escape"){e.preventDefault();dismissMenu();return}
  if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();buttons[(n+(e.key==="ArrowDown"?1:-1)+buttons.length)%buttons.length]?.focus()}
 });
@@ -363,5 +361,7 @@ $("#iphone-shell").addEventListener("touchstart",e=>{if(state.locked)return;cons
 $("#iphone-shell").addEventListener("touchend",e=>{const g=state.phoneGesture,t=e.changedTouches[0];state.phoneGesture=null;if(!g||!t)return;if(g.mode==="back"&&t.clientX-g.x>70&&Math.abs(t.clientY-g.y)<75)back();if(g.mode==="home"&&g.y-t.clientY>55)close()},{passive:true});
 updateDockState();
 const request=new URLSearchParams(location.search).get("project");
-let seen=false;try{seen=sessionStorage.getItem("deon-unlocked")==="yes"}catch{}
-if(seen||request&&byID[request]){setLock(false);if(request&&byID[request])open("project",request)}else setLock(true);
+// Deliberately do not persist an unlocked state. Reloading the homepage must lock.
+// Every page load shows the lock; open a shared case only after unlock.
+state.pendingProject=request&&byID[request]?request:null;
+setLock(true);
