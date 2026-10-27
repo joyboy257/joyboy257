@@ -219,4 +219,4 @@ proof:"Reviewed private repository README and feature/test documentation.",
 limits:"Not proof of current always-on scraper reliability or commercial adoption. Source remains private.",
 link:null,image:null,mood:"MARKETPLACE / DATA"
 }
-;
+];
