@@ -35,8 +35,10 @@ with sync_playwright() as playwright:
             case=scope.locator(".case-pane")
             require(kind+" curated Mirai image explanation exists",case.locator("[data-media-note]").count()==1)
             image=case.locator("img[data-project-media]")
-            image.scroll_into_view_if_needed()
-            image.evaluate("(img)=>img.loading='eager'")
+            # Aborted images can already be hidden before Playwright reaches them.
+            # Never try to scroll an element that the site has correctly hidden.
+            if image.is_visible():
+                image.evaluate("(img)=>img.loading='eager'")
             image.wait_for(state="hidden",timeout=12000)
             require(kind+" failed image shows meaningful facts",case.locator(".case-hero.media-unavailable .snapshot-fact").count()>=1)
             require(kind+" image note admits error","could not load" in case.locator("[data-media-note]").inner_text())
