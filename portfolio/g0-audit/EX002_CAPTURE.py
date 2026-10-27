@@ -165,27 +165,57 @@ def test_profile(browser, root: str, out: Path, name: str, profile: dict, result
 
 
 def lighthouse(root: str, out: Path, results):
+    """Require three *successful* samples per device; retry transient CI timeouts.
+
+    A failed/expired attempt is preserved in lighthouse_errors and never counted
+    as a passing run. Scores and thresholds remain unchanged.
+    """
     for form in ("mobile", "desktop"):
-        for i in range(1,4):
-            dest=out/f"lighthouse-{form}-{i}.json"
-            cmd=["npx","--no-install","lighthouse",root,"--quiet","--output=json",f"--output-path={dest}",
-                 "--chrome-flags=--headless --no-sandbox", "--only-categories=performance", "--throttling-method=simulate"]
-            if form=="desktop":cmd.append("--preset=desktop")
+        completed = 0
+        attempt = 0
+        while completed < 3 and attempt < 5:
+            attempt += 1
+            run_number = completed + 1
+            dest = out / f"lighthouse-{form}-{run_number}.json"
+            # Avoid accepting an incomplete JSON left by a killed Lighthouse.
+            dest.unlink(missing_ok=True)
+            cmd = ["npx", "--no-install", "lighthouse", root, "--quiet",
+                   "--output=json", f"--output-path={dest}",
+                   "--chrome-flags=--headless --no-sandbox",
+                   "--only-categories=performance", "--throttling-method=simulate"]
+            if form == "desktop":
+                cmd.append("--preset=desktop")
             try:
-                run=subprocess.run(cmd,capture_output=True,text=True,timeout=180)
-                if run.returncode!=0 or not dest.exists():
-                    results["lighthouse_errors"].append({"form":form,"run":i,"returncode":run.returncode,"stderr":run.stderr[-1400:]})
+                run = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+                if run.returncode != 0 or not dest.exists():
+                    results["lighthouse_errors"].append({
+                        "form": form, "attempt": attempt, "returncode": run.returncode,
+                        "stderr": run.stderr[-1400:]})
                     continue
-                j=json.loads(dest.read_text())
-                score=j.get("categories",{}).get("performance",{}).get("score")
-                a=j.get("audits",{})
-                metrics={k:a.get(k,{}).get("numericValue") for k in ("largest-contentful-paint","total-blocking-time","cumulative-layout-shift","first-contentful-paint","speed-index")}
-                results["lighthouse"].append({"form":form,"run":i,"file":dest.name,"score":score,"metrics":metrics})
-            except Exception as e:
-                results["lighthouse_errors"].append({"form":form,"run":i,"error":str(e)})
-    for form in ("mobile","desktop"):
-        scores=[x["score"]*100 for x in results["lighthouse"] if x["form"]==form and x["score"] is not None]
-        results["lighthouse_median"][form]=statistics.median(scores) if len(scores)==3 else None
+                j = json.loads(dest.read_text())
+                score = j.get("categories", {}).get("performance", {}).get("score")
+                if not isinstance(score, (int, float)) or not 0 <= score <= 1:
+                    results["lighthouse_errors"].append({
+                        "form": form, "attempt": attempt, "error": "missing performance score"})
+                    continue
+                audits = j.get("audits", {})
+                metrics = {key: audits.get(key, {}).get("numericValue")
+                           for key in ("largest-contentful-paint", "total-blocking-time",
+                                       "cumulative-layout-shift", "first-contentful-paint",
+                                       "speed-index")}
+                completed += 1
+                results["lighthouse"].append({
+                    "form": form, "run": completed, "attempt": attempt,
+                    "file": dest.name, "score": score, "metrics": metrics})
+            except Exception as exc:
+                results["lighthouse_errors"].append({
+                    "form": form, "attempt": attempt, "error": str(exc)})
+        if completed < 3:
+            results["lighthouse_errors"].append({
+                "form": form, "error": f"Only {completed}/3 completed samples after {attempt} attempts"})
+        scores = [item["score"] * 100 for item in results["lighthouse"]
+                  if item["form"] == form and item["score"] is not None]
+        results["lighthouse_median"][form] = statistics.median(scores) if len(scores) == 3 else None
 
 
 def main():
