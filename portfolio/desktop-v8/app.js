@@ -3,6 +3,7 @@
 import { projects } from './src/content/projects.ts';
 import { projectFromUrl, urlForProject, readPortfolioHistory } from './src/core/router.ts';
 import { mediaItems } from './src/content/media-manifest.ts';
+import { visualInsights } from './src/content/visual-insights.ts';
 
 
 const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
@@ -40,8 +41,8 @@ let wheel=0,wheelAt=0;lockEl.addEventListener("wheel",e=>{if(e.cancelable)e.prev
 
 /* Public images illustrate interfaces and workflows, not shipping readiness. */
 function engineeringSnapshot(p){
- const insight=p.engineering[0]||p.challenge;
- return '<div class="case-graphic-snapshot" aria-hidden="true"><small class="snapshot-kicker">HOW IT WORKS</small><strong>'+esc(p.name)+'</strong><p class="snapshot-insight">'+esc(insight)+'</p></div>';
+ const insight=visualInsights[p.id]||p.challenge;
+ return '<div class="case-graphic-snapshot" aria-hidden="true"><small class="snapshot-kicker">TECHNICAL FOCUS</small><strong>'+esc(p.name)+'</strong><p class="snapshot-insight">'+esc(insight)+'</p></div>';
 }
 function caseMedia(p){
  const media=mediaByID[p.id],snapshot=engineeringSnapshot(p);

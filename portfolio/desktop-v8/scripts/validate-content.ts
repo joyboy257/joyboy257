@@ -1,6 +1,7 @@
 import { projects } from '../src/content/projects.ts';
 import { evidenceItems, evidenceStatuses } from '../src/content/evidence-manifest.ts';
 import { mediaItems } from '../src/content/media-manifest.ts';
+import { visualInsights } from '../src/content/visual-insights.ts';
 import type { ProjectId } from '../src/content/project.schema.ts';
 
 const fail = (detail: string): never => { throw new Error(`Content validation: ${detail}`); };
@@ -8,6 +9,11 @@ const ids = new Set<ProjectId>();
 const allowed = new Set(['github.com', 'usemirai.app', 'www.usemirai.app']);
 
 if (projects.length !== 21) fail(`expected 21 cases, found ${projects.length}`);
+if (Object.keys(visualInsights).length !== 21) fail('every case needs a media-free engineering focus');
+for (const project of projects) {
+  const summary = visualInsights[project.id];
+  if (!summary || summary.trim().length < 24 || summary.length > 82) fail(`bad technical focus for ${project.id}`);
+}
 
 for (const [index, project] of projects.entries()) {
   if (!project.id || !project.name || !project.summary ||
