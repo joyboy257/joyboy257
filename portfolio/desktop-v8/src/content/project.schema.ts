@@ -65,10 +65,15 @@ export type PortfolioProject = {
   mood: string;
 };
 
+export type MediaKind = 'interface_capture' | 'sanitized_workflow_diagram' |
+  'sanitized_product_diagram' | 'prototype_interface' | 'demo_scene';
 export type MediaItem = {
   projectId: ProjectId;
   url: string;
   alt: string;
+  kind: MediaKind;
+  label: string;
+  context: string;
   provenance: 'public_repo_asset';
   rightsVerified: false;
 };

@@ -2,10 +2,12 @@
 /* Deon's Desktop — static portfolio. No analytics, backends or credentials. */
 import { projects } from './src/content/projects.ts';
 import { projectFromUrl, urlForProject, readPortfolioHistory } from './src/core/router.ts';
+import { mediaItems } from './src/content/media-manifest.ts';
 
 
 const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
 const byID=Object.fromEntries(projects.map(p=>[p.id,p]));
+const mediaByID=Object.fromEntries(mediaItems.map(item=>[item.projectId,item]));
 const sets={featured:["mirai","amelia","soleil","slate","workos","corpa"],delivery:["amelia","ami","corpa","mototiam"],ai:["mirai","amethyst","verticals","agentos","atlas","workos","heidi","rustyindex","sole","openbrain"],products:["soleil","slate","corpa","workos","dreamcraft","propframe","singnote","openbrain"],research:["heidi","rustyindex","pokerai","tradedesk"],all:projects.map(p=>p.id)};
 const state={locked:true,app:"",group:"featured",project:"mirai",tab:"case",stack:[],gesture:null,phoneGesture:null,drag:null,dragged:false,preventClick:0};
 const mobile=()=>matchMedia("(max-width:720px)").matches;
@@ -35,11 +37,37 @@ lockEl.addEventListener("touchmove",e=>{const t=e.changedTouches[0];if(t&&state.
 window.addEventListener("touchend",e=>{const t=e.changedTouches[0];if(t&&state.gesture?.kind==="touch")finish(t.clientX,t.clientY)},true);
 window.addEventListener("touchcancel",()=>{state.gesture=null;lockEl.style.removeProperty("--drag-y")},true);
 let wheel=0,wheelAt=0;lockEl.addEventListener("wheel",e=>{if(e.cancelable)e.preventDefault();if(performance.now()-wheelAt>400)wheel=0;wheelAt=performance.now();wheel=Math.max(0,wheel+e.deltaY);if(wheel>100){wheel=0;unlock()}},{passive:false});
+
+/* Public images illustrate interfaces and workflows, not shipping readiness. */
+function engineeringSnapshot(p){
+ const facts=p.facts.slice(0,2).map(v=>'<span class="snapshot-fact">'+esc(v)+'</span>').join('');
+ return '<div class="case-graphic-snapshot" aria-hidden="true"><small class="snapshot-kicker">ENGINEERING SNAPSHOT</small><strong>'+esc(p.name)+'</strong><div class="snapshot-facts">'+facts+'</div></div>';
+}
+function caseMedia(p){
+ const media=mediaByID[p.id],snapshot=engineeringSnapshot(p);
+ if(!media)return '<div class="case-hero case-hero-snapshot">'+snapshot+'</div><p class="case-asset-note">Engineering summary from the case study. No public screenshot is claimed.</p>';
+ return '<div class="case-hero case-hero-curated" data-media-project="'+esc(p.id)+'">'+snapshot+'<img data-project-media src="'+esc(media.url)+'" alt="'+esc(media.alt)+'" loading="lazy" decoding="async"><span class="case-hero-title" aria-hidden="true">'+esc(p.name)+'</span></div><p class="case-asset-note" data-media-note><strong>'+esc(media.label)+'.</strong> '+esc(media.context)+'</p>';
+}
+function galleryTile(item){
+ const p=byID[item.projectId];
+ if(!p)return '';
+ return '<button data-project="'+esc(p.id)+'" class="photo-tile"><div class="photo-tile-visual"><div class="photo-evidence-backup" aria-hidden="true"><span>'+esc(p.glyph)+'</span><small>PROJECT EVIDENCE</small></div><img data-gallery-media src="'+esc(item.url)+'" alt="'+esc(item.alt)+'" loading="lazy" decoding="async"></div><span class="photo-tile-title">'+esc(p.name)+'</span><small class="photo-tile-type">'+esc(item.label)+'</small></button>';
+}
+document.addEventListener('error',event=>{
+ const img=event.target;
+ if(!(img instanceof HTMLImageElement)||!img.matches('img[data-project-media],img[data-gallery-media]'))return;
+ img.hidden=true;
+ const hero=img.closest('.case-hero');
+ if(hero){hero.classList.add('media-unavailable');const note=hero.nextElementSibling;
+  if(note?.matches('[data-media-note]'))note.textContent='Public image could not load. Engineering summary above and case details below remain available.';}
+ const tile=img.closest('.photo-tile');
+ if(tile)tile.classList.add('media-unavailable');
+},true);
 const tabs=()=>[["case","The Case"],["engineering","Engineering"],["proof","Proof + Limits"]].map(([k,v])=>'<button data-tab="'+k+'" class="'+(state.tab===k?'selected':'')+'">'+v+'</button>').join("");
 function caseView(p){if(!p)return "<p>Not found.</p>";
  const body=state.tab==="case"?'<h3>THE PROBLEM</h3><p>'+esc(p.challenge)+'</p><h3>MY CONTRIBUTION</h3><p>'+esc(p.contribution)+'</p>':state.tab==="engineering"?'<h3>IMPLEMENTATION</h3><ul>'+p.engineering.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul>':'<h3>VERIFIED EVIDENCE</h3><p>'+esc(p.proof)+'</p><h3>LIMITS AND READINESS</h3><p>'+esc(p.limits)+'</p>';
  const urls=link(p.website,"Product website")+link(p.demo,"Interactive demo")+link(p.link,p.linkLabel||"Engineering case");
- return '<article class="case-pane"><span class="case-overline">'+esc(p.scope)+' / '+esc(p.stage)+'</span><h2>'+esc(p.name)+'</h2><p class="case-lede">'+esc(p.summary)+'</p><div class="case-hero">'+(p.image?'<img src="'+esc(p.image)+'" alt="'+esc(p.name)+' public illustration" onerror="this.remove()" loading="lazy">':'')+'<span>'+esc(p.name)+'</span></div><div class="case-facts">'+p.facts.map(x=>'<span>'+esc(x)+'</span>').join("")+'</div><nav class="case-tabs">'+tabs()+'</nav><div class="case-text">'+body+'</div>'+(urls?'<div class="case-links">'+urls+'</div>':'<p class="private-note">Private source · No public code link available</p>')+'</article>';
+ return '<article class="case-pane"><span class="case-overline">'+esc(p.scope)+' / '+esc(p.stage)+'</span><h2>'+esc(p.name)+'</h2><p class="case-lede">'+esc(p.summary)+'</p>'+caseMedia(p)+'<div class="case-facts">'+p.facts.map(x=>'<span>'+esc(x)+'</span>').join("")+'</div><nav class="case-tabs">'+tabs()+'</nav><div class="case-text">'+body+'</div>'+(urls?'<div class="case-links">'+urls+'</div>':'<p class="private-note">Private source · No public code link available</p>')+'</article>';
 }
 function fileRows(ids){return ids.map(id=>byID[id]).filter(Boolean).map(p=>'<button data-project="'+p.id+'" class="file-row '+(state.project===p.id?'selected':'')+'"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="./icons.svg#document"></use></svg><span><strong>'+esc(p.name)+'</strong><small>'+esc(p.scope)+' · '+esc(p.stage.split(" / ")[0])+'</small></span></button>').join("")}
 function finder(){
@@ -50,7 +78,7 @@ function finder(){
 function documentView(name,heading,content){return '<div class="app-doc"><span class="overline">'+name+'</span><h2>'+heading+'</h2><div class="app-paper">'+content+'</div></div>'}
 function notes(){return documentView("NOTES / MY APPROACH","Notes to self.",'<p><strong>Models propose. Systems authorize.</strong> Business state needs deterministic boundaries.</p><p><strong>The difficult part begins beyond the demo.</strong> Error handling, permissions, retries, and integrations are product features.</p><p><strong>Keep the receipts.</strong> Idempotency, provenance, evaluation, and rollback should be inspectable.</p><p><strong>Make it useful.</strong> Software matters when people can actually use it.</p><p>— Deon</p>')}
 function readme(){return documentView("READ ME FIRST / RECRUITERS","Hey, I am Deon.",'<p><strong>Applied AI and Software Engineer in Singapore.</strong> I build systems beyond model prompts.</p><p><strong>Mirai:</strong> Founder and lead engineer of a multi-tenant AI operating platform, with governed tools, services and evaluations.</p><p><strong>Amelia Bot:</strong> Real client staff use the Telegram/document workflow. The new version is staged behind 69 shadow tests, not falsely claimed deployed.</p><p><strong>Engineering range:</strong> Swift and Metal, Rust local-first memory, Python, TypeScript, PostgreSQL, Redis, React, and developer tooling.</p><p>My case studies distinguish what is shipped, internally evaluated, and experimental.</p>')+'<div class="case-links">'+link("https://www.linkedin.com/in/deonquek","Get in touch")+link("https://github.com/joyboy257","View code")+'</div>'}
-function photos(){return '<div class="app-doc"><span class="overline">PHOTOS / SELECTED WORK</span><h2>Work, in pictures.</h2><p>Public project imagery and sanitized systems diagrams.</p><div class="photo-grid">'+projects.filter(p=>p.image).slice(0,11).map(p=>'<button data-project="'+p.id+'"><img src="'+esc(p.image)+'" alt="'+esc(p.name)+' screenshot" loading="lazy" onerror="this.style.display=\'none\'"><span>'+esc(p.name)+'</span></button>').join("")+'</div></div>'}
+function photos(){return '<div class="app-doc"><span class="overline">PHOTOS / ENGINEERING EVIDENCE</span><h2>Work, in context.</h2><p>Public product screens and safe diagrams, labeled by what each image shows. Pictures do not establish deployment or performance.</p><div class="photo-grid">'+mediaItems.map(galleryTile).join('')+'</div></div>'}
 function browser(){const destinations=[["https://usemirai.app/","Mirai","Product website"],["https://usemirai.app/demo","Mirai demo","Product demo"],["https://github.com/joyboy257/mirai-showcase","Architecture","Engineering case"],["https://github.com/joyboy257","GitHub","Public code"],["https://www.linkedin.com/in/deonquek","LinkedIn","Get in touch"]];return '<div class="app-doc"><span class="overline">SAFARI / FAVORITES</span><h2>Favorites</h2><p>Explore the products and engineering evidence.</p><div class="app-links">'+destinations.map(([u,n,d])=>'<a target="_blank" rel="noopener noreferrer" href="'+u+'">'+n+' ↗<span>'+d+'</span></a>').join("")+'</div></div>'}
 function about(){return documentView("ABOUT THIS MAC / OWNER","Deon Quek",'<p>AI and software engineer based in Singapore. I work across systems design, product engineering, agents, native apps, and real integrations.</p><p>Founder and lead engineer of Mirai, plus production client automation, research software, and developer tools.</p><p>Python · TypeScript · PostgreSQL · React · Rust · Swift · Metal · Redis · Docker · MCP.</p><p>Privacy: this portfolio uses anonymous, cookie-free Vercel Web Analytics to count visits and aggregate engagement. It does not identify individual recruiters or record search text.</p><p class="private-note">Lock-screen photograph: Jackie Alexander / Unsplash. Desktop photograph: Luca Bravo / Unsplash.</p>')+'<div class="case-links">'+link("https://www.linkedin.com/in/deonquek","LinkedIn")+link("https://github.com/joyboy257","GitHub")+'</div>'}
 function content(){if(state.app==="finder")return finder();if(state.app==="project")return caseView(byID[state.project]);if(state.app==="notes")return notes();if(state.app==="photos")return photos();if(state.app==="browser")return browser();if(state.app==="calendar")return readme();if(state.app==="about")return about();if(state.app==="contact")return documentView("CONTACT / SINGAPORE","Let us talk.",'<p>Interested in Applied AI, Forward-Deployed Engineering, and Software Engineering.</p>')+'<div class="case-links">'+link("https://www.linkedin.com/in/deonquek","Connect")+'</div>';if(state.app==="terminal")return '<div class="terminal-panel"><p>deon@macbook ~ % whoami</p><p class="term-green">Deon Quek · Applied AI & Software Engineer</p><p>Try opening a project through Finder or Spotlight (⌘K).</p></div>';return finder()}
