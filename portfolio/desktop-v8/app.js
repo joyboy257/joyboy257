@@ -40,8 +40,8 @@ let wheel=0,wheelAt=0;lockEl.addEventListener("wheel",e=>{if(e.cancelable)e.prev
 
 /* Public images illustrate interfaces and workflows, not shipping readiness. */
 function engineeringSnapshot(p){
- const facts=p.facts.slice(0,2).map(v=>'<span class="snapshot-fact">'+esc(v)+'</span>').join('');
- return '<div class="case-graphic-snapshot" aria-hidden="true"><small class="snapshot-kicker">ENGINEERING SNAPSHOT</small><strong>'+esc(p.name)+'</strong><div class="snapshot-facts">'+facts+'</div></div>';
+ const insight=p.engineering[0]||p.challenge;
+ return '<div class="case-graphic-snapshot" aria-hidden="true"><small class="snapshot-kicker">HOW IT WORKS</small><strong>'+esc(p.name)+'</strong><p class="snapshot-insight">'+esc(insight)+'</p></div>';
 }
 function caseMedia(p){
  const media=mediaByID[p.id],snapshot=engineeringSnapshot(p);

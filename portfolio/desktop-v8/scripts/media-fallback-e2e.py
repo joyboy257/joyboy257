@@ -40,7 +40,7 @@ with sync_playwright() as playwright:
             if image.is_visible():
                 image.evaluate("(img)=>img.loading='eager'")
             image.wait_for(state="hidden",timeout=12000)
-            require(kind+" failed image shows meaningful facts",case.locator(".case-hero.media-unavailable .snapshot-fact").count()>=1)
+            require(kind+" failed image shows meaningful facts",case.locator(".case-hero.media-unavailable .snapshot-insight").count()>=1)
             require(kind+" image note admits error","could not load" in case.locator("[data-media-note]").inner_text())
             page.screenshot(path=str(out/(kind+"-image-unavailable.png")))
             if is_mobile:
@@ -51,7 +51,7 @@ with sync_playwright() as playwright:
                 page.locator("#mac-window [data-group='all']").click()
                 page.locator("#mac-window .finder-list [data-project='soleil']").click()
                 case=page.locator("#mac-window .case-pane")
-            require(kind+" private project shows engineering snapshot",case.locator(".case-hero-snapshot .snapshot-fact").count()>=1)
+            require(kind+" private project shows engineering snapshot",case.locator(".case-hero-snapshot .snapshot-insight").count()>=1)
             require(kind+" private project invents no screenshot",case.locator("img[data-project-media]").count()==0)
             page.screenshot(path=str(out/(kind+"-private-case.png")))
             context.close()

@@ -22,3 +22,8 @@
 .photo-grid .photo-tile-title{padding:9px 11px 1px;font-weight:650}
 .photo-grid .photo-tile-type{display:block;padding:0 11px 10px;font-size:10px;line-height:1.4;color:#627887}
 @media(max-width:720px){.phone-app-body .photo-tile-visual{height:125px}.case-asset-note{font-size:11px}}
+
+/* Engineering insight is different from the verified counts beneath each case. */
+.case-graphic-snapshot .snapshot-insight{margin:0;max-width:94%;color:#e1f2f4;
+  font-size:11.5px;font-weight:470;line-height:1.35;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
