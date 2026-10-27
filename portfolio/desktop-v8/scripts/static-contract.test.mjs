@@ -46,3 +46,14 @@ test('built static output includes all dynamic public assets, without React', ()
   assert.match(files, /Amelia Bot/);
   assert.doesNotMatch(html, /react-dom|next\//i);
 });
+
+test('the modular styles produce one CSS file and no leftover Unsplash dependency', () => {
+  const outputs = readdirSync('dist/assets');
+  const cssFiles = outputs.filter(path => path.endsWith('.css'));
+  assert.equal(cssFiles.length, 1, 'Vite must bundle styles as one stylesheet');
+  const result = read(join('dist/assets', cssFiles[0]));
+  assert.match(result, /lock-mobile/);
+  assert.match(result, /lock-desktop/);
+  assert.doesNotMatch(result, /images\.unsplash\.com/);
+  assert.equal(existsSync('dist/style.css'), false, 'obsolete standalone CSS must not ship');
+});
