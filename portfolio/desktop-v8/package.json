@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
-    "test": "node --test scripts/*.test.mjs"
+    "test": "npm run validate:content && node --test scripts/*.test.mjs",
+    "validate:content": "node --experimental-strip-types scripts/validate-content.ts"
   },
   "devDependencies": {
     "@types/node": "22.16.5",

@@ -6,13 +6,14 @@ import { join } from 'node:path';
 const read = path => readFileSync(path, 'utf8');
 
 test('active source keeps the same 21 case studies and lock on refresh', () => {
-  const src = read('app.js');
+  const src = read('src/content/projects.ts');
+  const entry = read('app.js');
   const html = read('index.html');
   const ids = [...src.matchAll(/\bid:"([^"]+)",name:"/g)].map(m => m[1]);
   assert.equal(ids.length, 21);
   assert.equal(new Set(ids).size, 21);
   assert.match(src, /setLock\(true\)/);
-  assert.doesNotMatch(src, /sessionStorage/);
+  assert.doesNotMatch(entry, /sessionStorage/);
   assert.match(html, /id="lock-screen"/);
   assert.match(html, /src="\.\/src\/main\.ts"/);
   assert.match(html, /data-unlock-project="mirai"/);
