@@ -380,3 +380,54 @@ svg{display:block}
  .date-title{font-size:17px}
  .widget-project-desc{font-size:10.5px}
 }
+
+
+/* Measured against frvky.online's live 1440x900 and 390x844 lock screen.
+   Typography and spatial rhythm are intentionally simpler than a generic OS mock-up. */
+.lock-screen .lock-art {
+ inset:0;
+ background-color:#101010;
+ background-image:linear-gradient(180deg,rgba(0,0,0,.48),rgba(0,0,0,.10) 34%,rgba(0,0,0,.28) 65%,rgba(0,0,0,.53)),url("https://images.unsplash.com/photo-1687575635446-092e15df323e?auto=format&fit=crop&w=2200&q=84");
+ background-size:cover;
+ background-position:center 52%;
+ filter:grayscale(1) contrast(1.18);
+}
+.lock-art .lock-sun,.lock-art .lock-mountain{display:none!important}
+.lock-meta{display:none}
+.lock-heading{
+ top:99px;
+ font-family:Arial,Helvetica,sans-serif;
+ text-shadow:0 2px 14px rgba(0,0,0,.16);
+}
+.lock-heading>p:first-child{
+ font-size:18px;font-weight:500;letter-spacing:0;line-height:28px;margin:0;
+}
+#lock-time{
+ font:600 88px/88px Arial,Helvetica,sans-serif;
+ letter-spacing:0;
+ font-variant-numeric:tabular-nums;
+}
+.lock-identity{display:none}
+.lock-notices{top:53%;max-width:435px}
+.lock-notices>.notice:not(:first-child){display:none}
+.notice{background:rgba(48,48,48,.41);border:1px solid rgba(255,255,255,.1);
+ backdrop-filter:blur(15px) saturate(80%);-webkit-backdrop-filter:blur(15px) saturate(80%);
+ box-shadow:0 6px 18px rgba(0,0,0,.14);min-height:62px;padding:9px 12px;
+}
+.notice-content strong{font-size:12px;font-weight:530}
+.notice-content>span:last-child{font-size:10px;opacity:.76}
+.lock-bottom{bottom:31px}
+.unlock{font:500 13px/1.5 Arial,Helvetica,sans-serif;min-height:50px;gap:4px}
+.unlock-arrow{font-size:23px;line-height:1;font-weight:400}
+.lock-subnote{display:none}
+@media(max-width:720px){
+ .lock-screen .lock-art{background-position:center 52%}
+ .lock-meta{display:none}
+ .lock-heading{top:93px}
+ .lock-heading>p:first-child{font-size:18px;font-weight:500;line-height:28px;letter-spacing:0}
+ #lock-time{font:600 88px/88px Arial,Helvetica,sans-serif;letter-spacing:0;white-space:nowrap}
+ .lock-notices{display:none}
+ .lock-bottom{bottom:calc(26px + var(--safe-bottom))}
+ .unlock{font-size:13px}
+}
+@media(max-width:390px){#lock-time{font-size:88px}}
