@@ -57,3 +57,18 @@ test('the modular styles produce one CSS file and no leftover Unsplash dependenc
   assert.doesNotMatch(result, /images\.unsplash\.com/);
   assert.equal(existsSync('dist/style.css'), false, 'obsolete standalone CSS must not ship');
 });
+
+test('case images always explain their purpose and fall back safely', () => {
+  const app = read('app.js');
+  const manifest = read('src/content/media-manifest.ts');
+  const css = read('src/styles/70-evidence-media.css');
+  assert.match(app, /function engineeringSnapshot/);
+  assert.match(app, /data-project-media/);
+  assert.match(app, /data-gallery-media/);
+  assert.match(app, /addEventListener\('error'/);
+  assert.doesNotMatch(app, /onerror="/);
+  for (const label of ['Operator workspace', 'Sanitized workflow diagram', 'Prototype interface', 'Browser demo scene']) {
+    assert.ok(manifest.includes(label), `missing meaningful image type: ${label}`);
+  }
+  assert.match(css, /media-unavailable/);
+});

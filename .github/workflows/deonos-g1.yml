@@ -82,6 +82,8 @@ jobs:
         run: python scripts/route-e2e.py
       - name: Enforce cold first-view bytes and correct responsive wallpaper
         run: python scripts/check-asset-budget.py
+      - name: Test purposeful media and broken-image fallbacks
+        run: python scripts/media-fallback-e2e.py
       - name: Enforce interaction and Lighthouse compatibility
         run: |
           python - <<'PY'

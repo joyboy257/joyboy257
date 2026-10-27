@@ -40,11 +40,12 @@ for (const item of evidenceItems) {
 }
 if (mediaItems.length !== 5) fail('expected 5 public media references');
 for (const item of mediaItems) {
-  if (!ids.has(item.projectId) || !item.alt.trim()) fail(`invalid media ${item.projectId}`);
+  if (!ids.has(item.projectId) || !item.alt.trim() || !item.label.trim() || !item.context.trim()) fail(`invalid media ${item.projectId}`);
   const image = new URL(item.url);
   if (image.protocol !== 'https:' || image.hostname !== 'raw.githubusercontent.com') {
     fail(`unapproved media origin: ${item.projectId}`);
   }
   if (item.rightsVerified) fail(`image rights unsupported: ${item.projectId}`);
+  if (!['interface_capture','sanitized_workflow_diagram','sanitized_product_diagram','prototype_interface','demo_scene'].includes(item.kind)) fail(`missing media purpose: ${item.projectId}`);
 }
 console.log('Verified 21 unique case records, 11 public links and 5 rights-pending images.');
