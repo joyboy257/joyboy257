@@ -78,6 +78,8 @@ jobs:
             --url http://127.0.0.1:4173/ \
             --output ../../g1-evidence/browser \
             --lighthouse
+      - name: Check history routing in built desktop/mobile app
+        run: python scripts/route-e2e.py
       - name: Enforce interaction and Lighthouse compatibility
         run: |
           python - <<'PY'

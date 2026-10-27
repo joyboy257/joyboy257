@@ -1,6 +1,7 @@
 "use strict";
 /* Deon's Desktop — static portfolio. No analytics, backends or credentials. */
 import { projects } from './src/content/projects.ts';
+import { projectFromUrl, urlForProject, readPortfolioHistory } from './src/core/router.ts';
 
 
 const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
@@ -20,7 +21,7 @@ function clock(){const d=new Date();const hm=new Intl.DateTimeFormat("en-SG",{ho
 clock();setInterval(clock,30000);
 const lockEl=$("#lock-screen");
 function setLock(value){state.locked=value;lockEl.hidden=!value;$("#mac-shell").inert=value;$("#iphone-shell").inert=value;}
-function unlock(dest){if(!state.locked)return;lockEl.classList.add("unlocking");setTimeout(()=>{lockEl.classList.remove("unlocking");lockEl.style.removeProperty("--drag-y");lockEl.style.removeProperty("--drag-opacity");setLock(false);window.PortfolioAnalytics?.unlock();if(dest)open(dest.app,dest.id);else if(state.pendingProject){const id=state.pendingProject;state.pendingProject=null;open("project",id);}},410)}
+function unlock(dest){if(!state.locked)return;lockEl.classList.add("unlocking");setTimeout(()=>{lockEl.classList.remove("unlocking");lockEl.style.removeProperty("--drag-y");lockEl.style.removeProperty("--drag-opacity");setLock(false);history.replaceState(navigationSnapshot(),"",location.href);window.PortfolioAnalytics?.unlock();if(dest)open(dest.app,dest.id);else if(state.pendingProject){const id=state.pendingProject;state.pendingProject=null;open("project",id,"replace");}},410)}
 $("#unlock").addEventListener("click",()=>unlock());
 $$("[data-unlock-app],[data-unlock-project]").forEach(b=>b.addEventListener("click",()=>{if(Date.now()-state.preventClick>520)unlock({app:b.dataset.unlockProject?"project":b.dataset.unlockApp,id:b.dataset.unlockProject})}));
 const start=(x,y,kind)=>{if(state.locked)state.gesture={x,y,kind,at:performance.now()}};
@@ -58,9 +59,12 @@ function updateDockState(){
  $$(".mac-dock [data-app]").forEach(b=>{const active=b.dataset.app===state.app||(state.app==="project"&&b.dataset.app==="finder");b.classList.toggle("running",active);b.setAttribute("aria-pressed",String(active));});
 }
 function render(){updateDockState();if(mobile()){const pane=$("#phone-app");pane.hidden=false;$("#iphone-shell").classList.add("app-open");$("#phone-app-name").textContent=state.app==="finder"?"Files":title();$("#phone-back").textContent=state.stack.length?"‹ Back":"‹ Home";$("#phone-app-body").innerHTML=content();$("#phone-app-body").scrollTop=0;}else{const w=$("#mac-window");w.hidden=false;w.classList.remove("minimized");$("#mac-window-name").textContent=title();$("#active-app-name").textContent=title();$("#mac-window-content").innerHTML=content();}}
-function open(app,id){if(state.locked){unlock({app,id});return;}if(mobile()&&!$("#phone-app").hidden)state.stack.push([state.app,state.project]);state.app=app;state.project=id||state.project;state.tab="case";render();if(app==="project"&&id&&byID[id])window.PortfolioAnalytics?.project(id);else window.PortfolioAnalytics?.app(app);if(id&&byID[id]){const url=new URL(location.href);url.searchParams.set("project",id);history.replaceState(null,"",url);}}
-function close(){state.app="";state.stack=[];$("#active-app-name").textContent="Finder";updateDockState();$("#iphone-shell").classList.remove("app-open");$("#phone-app").hidden=true;$("#mac-window").hidden=true;$("#mac-window").classList.remove("minimized");const url=new URL(location.href);url.searchParams.delete("project");history.replaceState(null,"",url);}
-function back(){if(state.stack.length){const [app,id]=state.stack.pop();state.app=app;state.project=id;state.tab="case";render()}else close()}
+function navigationSnapshot(){return {deonos:1,app:state.app,project:state.project,group:state.group,tab:state.tab,stack:state.stack.map(pair=>pair.slice())}}
+function writeNavigation(mode,projectId){const url=urlForProject(location.href,projectId);if(mode==="replace")history.replaceState(navigationSnapshot(),"",url);else if(mode!=="none")history.pushState(navigationSnapshot(),"",url)}
+function renderClosed(){$("#active-app-name").textContent="Finder";updateDockState();$("#iphone-shell").classList.remove("app-open");$("#phone-app").hidden=true;$("#mac-window").hidden=true;$("#mac-window").classList.remove("minimized")}
+function open(app,id,routeMode="push"){if(state.locked){unlock({app,id});return;}if(app==="project"&&(!id||!byID[id]))return;if(mobile()&&!$("#phone-app").hidden)state.stack.push([state.app,state.project]);state.app=app;state.project=id||state.project;state.tab="case";render();if(app==="project"&&id&&byID[id])window.PortfolioAnalytics?.project(id);else window.PortfolioAnalytics?.app(app);writeNavigation(routeMode,id&&byID[id]?id:null);}
+function close(routeMode="push"){if(!state.app&&routeMode==="push")return;state.app="";state.stack=[];renderClosed();writeNavigation(routeMode,null);}
+function back(){if(state.stack.length){const [app,id]=state.stack.pop();state.app=app;state.project=id;state.tab="case";render();writeNavigation("push",app==="project"?id:null)}else close()}
 const matches=q=>projects.filter(p=>[p.name,p.summary,p.scope,p.tags.join(" ")].join(" ").toLowerCase().includes(q.toLowerCase())).slice(0,12);
 function searching(q){$("#search-results").innerHTML=matches(q).map(p=>'<button class="search-result" data-project="'+p.id+'"><svg viewBox="0 0 64 64"><use href="./icons.svg#document"></use></svg><span><strong>'+esc(p.name)+'</strong><small>'+esc(p.summary.slice(0,90))+'</small></span></button>').join("")||'<p>No results.</p>'}
 function search(){if(state.locked)return;$("#spotlight").hidden=false;window.PortfolioAnalytics?.search();$("#spotlight-input").value="";searching("");$("#spotlight-input").focus()}
@@ -127,7 +131,7 @@ $("#home-indicator").addEventListener("click",close);
 document.addEventListener("click",e=>{
  const t=e.target.closest("[data-tab]");if(t){state.tab=t.dataset.tab;render();return}
  const g=e.target.closest("[data-group]");if(g){state.group=g.dataset.group;state.project=sets[state.group][0];render();return}
- const p=e.target.closest("[data-project]");if(p){endSearch();if(!mobile()&&state.app==="finder"&&p.closest(".finder-list")){state.project=p.dataset.project;state.tab="case";render();window.PortfolioAnalytics?.project(state.project)}else open("project",p.dataset.project);return}
+ const p=e.target.closest("[data-project]");if(p){endSearch();if(!mobile()&&state.app==="finder"&&p.closest(".finder-list")){state.project=p.dataset.project;state.tab="case";render();window.PortfolioAnalytics?.project(state.project);writeNavigation("push",state.project)}else open("project",p.dataset.project);return}
  const a=e.target.closest("[data-app]");if(a){open(a.dataset.app,a.dataset.project);return}
 });
 document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();search();return}if(e.key==="Escape"){if(!$("#spotlight").hidden)endSearch();else if(mobile())back();else close()}if(state.locked&&["ArrowUp","PageUp"].includes(e.key)){e.preventDefault();unlock()}});
@@ -143,7 +147,20 @@ $("#mac-window-drag").addEventListener("pointercancel",()=>state.drag=null);
 $("#iphone-shell").addEventListener("touchstart",e=>{if(state.locked)return;const t=e.changedTouches[0];state.phoneGesture=t?{x:t.clientX,y:t.clientY,mode:t.clientX<22?"back":t.clientY>innerHeight-58?"home":""}:null},{passive:true});
 $("#iphone-shell").addEventListener("touchend",e=>{const g=state.phoneGesture,t=e.changedTouches[0];state.phoneGesture=null;if(!g||!t)return;if(g.mode==="back"&&t.clientX-g.x>70&&Math.abs(t.clientY-g.y)<75)back();if(g.mode==="home"&&g.y-t.clientY>55)close()},{passive:true});
 updateDockState();
-const request=new URLSearchParams(location.search).get("project");
+window.addEventListener("popstate",event=>{
+ if(state.locked){state.pendingProject=projectFromUrl(location.href,Object.keys(byID));return;}
+ const saved=readPortfolioHistory(event.state,Object.keys(byID));
+ if(saved){
+   state.app=saved.app;state.project=saved.project||state.project;
+   state.group=saved.group;state.tab=saved.tab;
+   state.stack=saved.stack;
+ }else{
+   const project=projectFromUrl(location.href,Object.keys(byID));
+   state.app=project?"project":"";state.project=project||state.project;state.stack=[];state.tab="case";
+ }
+ if(state.app)render();else renderClosed();
+});
+const request=projectFromUrl(location.href,Object.keys(byID));
 // Deliberately do not persist an unlocked state. Reloading the homepage must lock.
 // Every page load shows the lock; open a shared case only after unlock.
 state.pendingProject=request&&byID[request]?request:null;
