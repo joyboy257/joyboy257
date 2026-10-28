@@ -79,7 +79,7 @@ const featuredRoles={
 function featuredVisual(p){
  const media=mediaByID[p.id];
  if(!media)return '<div class="featured-visual featured-visual-concept" aria-label="Architecture illustration, not a product screenshot"><span class="featured-visual-kicker">ENGINEERING ILLUSTRATION</span><div class="featured-orb" aria-hidden="true"></div><small>Native Metal renderer · In development</small></div>';
- return '<div class="featured-visual featured-visual-public" data-media-project="'+esc(p.id)+'><span class="featured-visual-kicker">'+esc(media.label)+'</span><div class="featured-visual-backup"><strong>'+esc(p.name)+'</strong><span>'+esc(visualInsights[p.id])+'</span></div><img data-feature-media src="'+esc(media.url)+'" alt="'+esc(media.alt)+'" loading="lazy" decoding="async"></div>';
+ return '<div class="featured-visual featured-visual-public" data-media-project="'+esc(p.id)+'"><span class="featured-visual-kicker">'+esc(media.label)+'</span><div class="featured-visual-backup"><strong>'+esc(p.name)+'</strong><span>'+esc(visualInsights[p.id])+'</span></div><img data-feature-media src="'+esc(media.url)+'" alt="'+esc(media.alt)+'" loading="lazy" decoding="async"></div>';
 }
 function featuredCard(id,compact=false){
  const p=byID[id];if(!p)return '';
