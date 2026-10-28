@@ -1,0 +1,63 @@
+name: DeonOS Recruiter UX CI
+on:
+  push:
+    branches: [feature/deonos-recruiter-entry-001]
+    paths:
+      - portfolio/desktop-v8/**
+      - .github/workflows/deonos-recruiter-ux.yml
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  recruiter-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    defaults:
+      run:
+        working-directory: portfolio/desktop-v8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build, typecheck, test
+        run: |
+          npm ci --no-audit --no-fund
+          npm run typecheck
+          npm run build
+          npm test
+      - name: Check resume PDF is selectable and one page
+        run: |
+          python -m pip install --disable-pip-version-check pymupdf==1.26.5
+          python - <<'PY'
+          import fitz
+          d=fitz.open('dist/resume/Deon-Quek-Resume.pdf')
+          text='\n'.join(page.get_text() for page in d)
+          assert len(d)==1, f"PDF length {len(d)}"
+          assert all(x in text for x in ('Deon Quek','Splendify','Mirai','Heidi','Republic Polytechnic'))
+          print({'pages':len(d),'text_characters':len(text)})
+          PY
+      - name: Install Chromium and WebKit
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.55.0
+          python -m playwright install --with-deps chromium webkit
+      - name: Exercise recruiter experience and save screenshots
+        run: |
+          npm run preview -- --port 4173 > /tmp/deonos-recruiter.log 2>&1 &
+          python scripts/recruiter-e2e.py
+      - name: Run Lighthouse performance (three mobile & desktop)
+        run: |
+          npm install --no-save --no-audit --no-fund lighthouse@12.8.2
+          export CHROME_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python ../../portfolio/g0-audit/EX002_CAPTURE.py --url http://127.0.0.1:4173/ --output ../../recruiter-evidence/g0-parity --lighthouse
+        continue-on-error: true
+      - name: Publish evidence on success/failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deonos-recruiter-ux-${{ github.run_id }}
+          path: recruiter-evidence/
+          retention-days: 30
+          if-no-files-found: warn
