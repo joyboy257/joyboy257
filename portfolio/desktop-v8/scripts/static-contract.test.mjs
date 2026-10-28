@@ -47,14 +47,18 @@ test('built static output includes all dynamic public assets, without React', ()
   assert.doesNotMatch(html, /react-dom|next\//i);
 });
 
-test('the modular styles produce one CSS file and no leftover Unsplash dependency', () => {
+test('desktop styles remain one bundle; resume styles are loaded only on the resume page', () => {
   const outputs = readdirSync('dist/assets');
   const cssFiles = outputs.filter(path => path.endsWith('.css'));
-  assert.equal(cssFiles.length, 1, 'Vite must bundle styles as one stylesheet');
-  const result = read(join('dist/assets', cssFiles[0]));
-  assert.match(result, /lock-mobile/);
-  assert.match(result, /lock-desktop/);
-  assert.doesNotMatch(result, /images\.unsplash\.com/);
+  const desktop = cssFiles.filter(file => read(join('dist/assets',file)).includes('lock-mobile'));
+  const resume = cssFiles.filter(file => !read(join('dist/assets',file)).includes('lock-mobile'));
+  assert.equal(desktop.length, 1, 'desktop must have one stylesheet');
+  assert.equal(resume.length, 1, 'resume must have one separate stylesheet');
+  const desktopCss = read(join('dist/assets',desktop[0]));
+  assert.match(desktopCss,/lock-desktop/);
+  assert.doesNotMatch(desktopCss,/images\.unsplash\.com/);
+  const home = read('dist/index.html');
+  assert.ok(!home.includes(resume[0]), 'resume CSS must not slow first lock screen');
   assert.equal(existsSync('dist/style.css'), false, 'obsolete standalone CSS must not ship');
 });
 
@@ -95,4 +99,17 @@ test('decorative status icons have no broken ARIA labels', () => {
   const html = read('index.html');
   assert.match(html, /class="mac-system-icons" aria-hidden="true"/);
   assert.match(html, /class="phone-signal" aria-hidden="true"/);
+});
+
+test('recruiter actions exist before unlock and resume is separate from desktop JS', () => {
+  const html = read('index.html');
+  const resume = read('resume.html');
+  const app = read('app.js');
+  assert.match(html, /class="lock-resume-link" href="\/resume\.html"/);
+  assert.match(html, /data-unlock-app="welcome"/);
+  assert.match(html, /recruiter-widget/);
+  assert.match(app, /function welcome\(\)/);
+  assert.match(resume, /Deon Quek/);
+  assert.match(resume, /name="viewport"/);
+  assert.equal(existsSync('dist/resume.html'), true);
 });

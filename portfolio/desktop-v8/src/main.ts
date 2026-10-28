@@ -14,4 +14,5 @@ import './styles/50-bigsur.css';
 import './styles/60-ios-refinements.css';
 import './styles/70-evidence-media.css';
 import './styles/80-accessibility.css';
+import './styles/90-recruiter.css';
 import './legacy-runtime';

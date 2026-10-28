@@ -1,0 +1,38 @@
+name: DeonOS Recruiter — deployed preview verification
+on:
+  push:
+    branches: [feature/deonos-recruiter-entry-001]
+    paths: [.github/workflows/deonos-recruiter-release.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  actual-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    defaults:
+      run:
+        working-directory: portfolio/desktop-v8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install independent browsers and axe accessibility checks
+        run: |
+          npm ci --no-audit --no-fund
+          npm install --no-save --no-audit --no-fund axe-core@4.10.3
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium webkit
+      # Keep narrowly matched WebKit preview navigation warnings visible in report.
+      - name: Verify published preview and produce screenshots
+        env:
+          RECRUITER_PUBLIC_PREVIEW: https://deon-desktop-portfolio-pgkgbdw38-deonaqwx-9156s-projects.vercel.app
+        run: python scripts/recruiter-release-e2e.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deonos-recruiter-preview-${{ github.run_id }}
+          path: recruiter-release-evidence/
+          retention-days: 30
+          if-no-files-found: warn

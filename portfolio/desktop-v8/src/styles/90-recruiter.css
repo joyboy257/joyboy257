@@ -1,0 +1,55 @@
+/* EX-UX-001: compact recruiter affordances over the existing OS. */
+.lock-recruiter-links{position:absolute;z-index:2;left:50%;bottom:clamp(102px,13vh,138px);transform:translateX(-50%);display:flex;gap:10px;align-items:center;justify-content:center;width:min(410px,calc(100% - 30px));}
+.lock-recruiter-links a,.lock-recruiter-links button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:43px;padding:10px 16px;border-radius:13px;font:650 13px/1.1 var(--mac-ui,-apple-system,system-ui,sans-serif);white-space:nowrap;text-decoration:none;box-shadow:0 8px 23px #0002;-webkit-tap-highlight-color:transparent}
+.lock-resume-link{color:#1d2833;background:#f7f9fdf4;border:1px solid #ffffffea}
+.lock-resume-link svg{width:18px;height:18px;fill:#365973}
+.lock-explore-link{color:#fff;background:#27323a80;border:1px solid #ffffff81;backdrop-filter:blur(19px);-webkit-backdrop-filter:blur(19px)}
+.lock-recruiter-links a:focus-visible,.lock-recruiter-links button:focus-visible{outline:3px solid #9bd7ff;outline-offset:3px}
+.desktop-resume{color:#fff;text-decoration:none;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.mac-dock a[href="/resume.html"]{display:flex;align-items:center;justify-content:center}
+.recruiter-widget{color:#222;text-decoration:none;background:linear-gradient(147deg,#fdfefe,#e5edf4);text-align:left;align-items:flex-start}
+.recruiter-widget-label{display:block;color:#527187;font-size:10px;font-weight:780;letter-spacing:.11em}
+.recruiter-widget-symbol{width:43px;height:46px;display:flex;align-items:center;justify-content:center;margin:3px 0 7px;background:#fff;box-shadow:0 5px 15px #0002;border-radius:10px}
+.recruiter-widget-symbol svg{width:30px;height:30px}
+.recruiter-widget .date-label{font-size:12px;font-weight:500;color:#617480}
+.recruiter-widget .date-title{font-size:25px;letter-spacing:-.055em;line-height:1.1;margin-top:4px;color:#172738;font-weight:750}
+.recruiter-widget .date-foot{font-size:11px;color:#375d77;margin-top:auto}
+.app-grid a.app-item{display:flex;align-items:center;flex-direction:column;text-decoration:none;color:inherit}
+.welcome-pane{padding:29px 34px 45px;max-height:100%;height:100%;overflow:auto;color:#1d2734;background:linear-gradient(180deg,#fff,#f8fafd 70%);font-family:var(--mac-ui,-apple-system,BlinkMacSystemFont,system-ui,sans-serif)}
+.welcome-kicker{color:#527a9b;font-size:10px;letter-spacing:.14em;font-weight:750;margin:0 0 8px}
+.welcome-pane h1{font-size:34px;line-height:1.1;letter-spacing:-.05em;font-weight:740;margin:0}
+.welcome-intro{max-width:620px;font-size:14px;line-height:1.56;color:#607081;margin:10px 0 24px}
+.welcome-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.welcome-action{display:flex;align-items:center;gap:11px;border:1px solid #dde4eb;border-radius:14px;background:#fff;padding:14px;text-align:left;min-width:0;color:#24374a;text-decoration:none;box-shadow:0 3px 14px #213e5810;cursor:pointer;font:inherit}
+.welcome-action:hover,.welcome-action:focus-visible,.welcome-feature:hover,.welcome-feature:focus-visible{background:#edf5ff;border-color:#81b8fb;outline:none}
+.welcome-action-icon{display:flex;align-items:center;justify-content:center;width:36px;height:36px;flex:0 0 36px;background:#e7effa;border-radius:9px;font-size:21px;color:#2767a3}
+.welcome-action>span:nth-child(2){min-width:0;flex:1;display:flex;flex-direction:column;gap:4px}
+.welcome-action strong{font-size:13px;font-weight:700}
+.welcome-action small{font-size:10px;color:#546776;line-height:1.35}
+.welcome-primary{background:#eff6ff;border-color:#9cc6fa}
+.welcome-pane h2{margin:26px 0 11px;font-size:16px;letter-spacing:-.025em}
+.welcome-featured{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.welcome-feature{display:flex;flex-direction:column;gap:9px;align-items:flex-start;text-align:left;padding:14px;min-height:119px;border:1px solid #d9e3ee;border-radius:12px;background:#f1f5f9;color:#243449}
+.welcome-feature strong{font-size:13px}
+.welcome-feature span{font-size:11px;line-height:1.4;color:#566c7f;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.welcome-feature small{margin-top:auto;color:#1b6ac1;font-weight:680}
+.welcome-footnote{font-size:11px;color:#728392;margin:18px 0 0}
+@media(max-width:720px){
+ .lock-recruiter-links{bottom:calc(101px + var(--safe-bottom));gap:8px}
+ .lock-recruiter-links a,.lock-recruiter-links button{font-size:12px;min-height:45px;padding:10px 12px}
+ .phone-app-body .welcome-pane{height:auto;max-height:none;margin:0 -16px;padding:24px 18px 80px}
+ .welcome-pane h1{font-size:30px}
+ .welcome-intro{font-size:13px}
+ .welcome-actions{grid-template-columns:1fr 1fr}
+ .welcome-action{padding:11px;gap:7px;align-items:flex-start}
+ .welcome-action-icon{width:27px;height:30px;flex-basis:27px;font-size:17px}
+ .welcome-action strong{font-size:12px}
+ .welcome-action small{font-size:10px}
+ .welcome-featured{grid-template-columns:1fr}
+ .welcome-feature{min-height:64px}
+ .welcome-feature span{-webkit-line-clamp:2}
+}
+@media(max-width:390px){
+ .lock-recruiter-links{bottom:calc(95px + var(--safe-bottom));gap:6px}
+ .lock-recruiter-links a,.lock-recruiter-links button{font-size:11px;padding:10px}
+}

@@ -37,6 +37,7 @@
       <button type="button" class="notice" data-unlock-project="amelia"><span class="notice-icon client-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="./icons.svg#notes"></use></svg></span><span class="notice-content"><span class="notice-top">CLIENT DELIVERY <small>now</small></span><strong>Software that people actually use.</strong><span>Amelia Bot · Production staff workflow.</span></span></button>
       <button type="button" class="notice" data-unlock-app="notes"><span class="notice-icon note-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="./icons.svg#brief-app"></use></svg></span><span class="notice-content"><span class="notice-top">NOTES <small>1 min</small></span><strong>A quick note for recruiters.</strong><span>Who I am, what I build, where I fit.</span></span></button>
     </div>
+    <nav class="lock-recruiter-links" aria-label="Quick portfolio access"><a class="lock-resume-link" href="/resume.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="./icons.svg#document"></use></svg>View Résumé</a><button type="button" class="lock-explore-link" data-unlock-app="welcome">Explore my work</button></nav>
     <div class="lock-bottom"><button id="unlock" type="button" class="unlock" aria-label="Swipe up or click to unlock"><span class="unlock-arrow" aria-hidden="true">⌃</span><span>Swipe up to unlock</span></button><span class="lock-subnote">or click to explore</span></div>
   </section>
   <div class="mac-shell" id="mac-shell">
@@ -44,6 +45,7 @@
     <div id="mac-dropdown" class="mac-dropdown" role="menu" hidden aria-label="Application menu"></div>
     <main class="mac-desktop" id="os-main">
       <div class="desktop-items">
+        <a class="desktop-item desktop-resume" href="/resume.html" aria-label="View résumé"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="./icons.svg#document"></use></svg><span>Résumé</span></a>
         <button class="desktop-item" data-app="finder"><svg viewBox="0 0 64 64"><use href="./icons.svg#folder"></use></svg><span>Projects</span></button>
         <button class="desktop-item" data-app="about"><svg viewBox="0 0 64 64"><use href="./icons.svg#document"></use></svg><span>About Me</span></button>
         <button class="desktop-item" data-app="photos"><svg viewBox="0 0 64 64"><use href="./icons.svg#photos"></use></svg><span>Photos</span></button>
@@ -57,7 +59,7 @@
     </section>
     <nav class="mac-dock" aria-label="Dock">
       <button data-app="finder" title="Finder" aria-label="Finder"><svg viewBox="0 0 64 64"><use href="./icons.svg#finder"></use></svg></button>
-      <button data-app="calendar" title="Read Me" aria-label="Read Me"><svg viewBox="0 0 64 64"><use href="./icons.svg#brief-app"></use></svg></button>
+      <a href="/resume.html" title="View Résumé" aria-label="View résumé"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="./icons.svg#document"></use></svg></a>
       <button data-app="photos" title="Photos" aria-label="Photos"><svg viewBox="0 0 64 64"><use href="./icons.svg#photos"></use></svg></button>
       <button data-app="browser" title="Safari" aria-label="Safari"><svg viewBox="0 0 64 64"><use href="./icons.svg#safari"></use></svg></button>
       <button data-app="notes" title="Notes" aria-label="Notes"><svg viewBox="0 0 64 64"><use href="./icons.svg#notes"></use></svg></button>
@@ -72,12 +74,12 @@
     <main class="springboard">
       <div class="phone-widgets">
         <button class="ios-widget project-widget" data-app="project" data-project="mirai"><span class="widget-kicker"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="./icons.svg#mirai-app"></use></svg> <span>Mirai</span></span><span class="widget-project-title">AI, with guardrails.</span><span class="widget-project-desc">A real operating system for service businesses.</span><span class="widget-footer">View project ›</span></button>
-        <button class="ios-widget date-widget" data-app="calendar"><span class="calendar-icon"><span id="phone-weekday">MON</span><b id="phone-day">26</b></span><span class="date-label">Today</span><span class="date-title">Make things work.</span><span class="date-foot">21 project files</span></button>
+        <a class="ios-widget date-widget recruiter-widget" href="/resume.html"><span class="recruiter-widget-label">START HERE</span><span class="recruiter-widget-symbol" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="./icons.svg#document"></use></svg></span><span class="date-label">Deon Quek</span><span class="date-title">My résumé.</span><span class="date-foot">Experience &amp; skills ›</span></a>
       </div>
       <div class="app-grid">
         <button class="app-item" data-app="finder"><span class="app-icon"><svg viewBox="0 0 64 64"><use href="./icons.svg#files-app"></use></svg></span><span>Files</span></button>
         <button class="app-item" data-app="photos"><span class="app-icon"><svg viewBox="0 0 64 64"><use href="./icons.svg#photos"></use></svg></span><span>Photos</span></button>
-        <button class="app-item" data-app="notes"><span class="app-icon"><svg viewBox="0 0 64 64"><use href="./icons.svg#notes"></use></svg></span><span>Notes</span></button>
+        <a class="app-item" href="/resume.html" aria-label="View résumé"><span class="app-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="./icons.svg#document"></use></svg></span><span>Résumé</span></a>
         <button class="app-item" data-app="browser"><span class="app-icon"><svg viewBox="0 0 64 64"><use href="./icons.svg#safari"></use></svg></span><span>Safari</span></button>
         <button class="app-item" data-app="about"><span class="app-icon"><svg viewBox="0 0 64 64"><use href="./icons.svg#about-app"></use></svg></span><span>About Me</span></button>
         <button class="app-item" data-app="calendar"><span class="app-icon"><svg viewBox="0 0 64 64"><use href="./icons.svg#brief-app"></use></svg></span><span>Read Me</span></button>
@@ -89,7 +91,7 @@
     <nav class="phone-dock" aria-label="Favorite applications">
       <button data-app="finder" aria-label="Files"><svg viewBox="0 0 64 64"><use href="./icons.svg#files-app"></use></svg></button>
       <button data-app="project" data-project="mirai" aria-label="Mirai"><svg viewBox="0 0 64 64"><use href="./icons.svg#mirai-app"></use></svg></button>
-      <button data-app="browser" aria-label="Safari"><svg viewBox="0 0 64 64"><use href="./icons.svg#safari"></use></svg></button>
+      <a href="/resume.html" aria-label="View résumé"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="./icons.svg#document"></use></svg></a>
       <button data-app="contact" aria-label="Contact"><svg viewBox="0 0 64 64"><use href="./icons.svg#contact-app"></use></svg></button>
     </nav>
     <section class="phone-app" id="phone-app" hidden aria-label="Portfolio app"><div class="phone-app-nav"><button id="phone-back" type="button">‹ Back</button><strong id="phone-app-name">Files</strong><button id="phone-home" type="button">Done</button></div><div class="phone-app-body" id="phone-app-body"></div></section>

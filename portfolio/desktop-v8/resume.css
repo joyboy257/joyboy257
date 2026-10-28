@@ -1,0 +1,43 @@
+:root{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-synthesis:none;color:#1b283d;background:#e9ebef}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0}
+a{color:#086baa;text-decoration:none}a:hover{text-decoration:underline}
+.skip{position:absolute;left:-9999px}.skip:focus{left:10px;top:12px;z-index:10;padding:10px;background:#fff}
+.preview-toolbar{position:sticky;z-index:4;top:0;min-height:58px;background:#f8f9fbee;backdrop-filter:blur(24px);border-bottom:1px solid #d3d7de;display:flex;align-items:center;gap:20px;justify-content:space-between;padding:10px max(15px,calc((100vw - 880px)/2))}
+.traffic{display:flex;gap:7px}.traffic span{width:11px;height:11px;border-radius:50%;background:#ff605a}.traffic span:nth-child(2){background:#ffbd2e}.traffic span:nth-child(3){background:#2aca48}
+.preview-toolbar strong{font-size:12px;font-weight:600;flex:1;text-align:center;color:#3b4554}
+.preview-toolbar nav{display:flex;align-items:center;gap:15px}.preview-toolbar nav a{font-size:12px;white-space:nowrap}
+.preview-toolbar nav .toolbar-download{background:#1674d2;color:#fff;padding:9px 13px;border-radius:9px;font-weight:650}
+.paper{background:#fff;max-width:794px;margin:27px auto 46px;padding:45px 50px 28px;box-shadow:0 8px 45px #152c4620;min-height:1120px}
+.resume-heading{margin-bottom:18px}.resume-heading h1{font-size:31px;line-height:1.05;letter-spacing:-.045em;margin:0;color:#1d2a40}
+.job-title{margin:8px 0;font-size:15px;color:#0472bb;font-weight:670}.details{font-size:10.7px;line-height:1.5;color:#394a60}
+.details a{color:#1c6698}.details span{margin:0 2px}
+section{margin-top:14px;break-inside:avoid-page}
+section>h2{font-size:12px;letter-spacing:.065em;text-transform:uppercase;border-bottom:1px solid #cfd9e5;padding:0 0 5px;margin:0 0 8px;color:#233149}
+section>p{font-size:11.2px;line-height:1.42;margin:0}
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:3px 14px}
+.skills p{font-size:10.2px;line-height:1.36;margin:0}
+.skills b{font-weight:700}
+.role{margin-bottom:10px;break-inside:avoid-page}
+.role-heading{display:flex;align-items:baseline;justify-content:space-between;gap:13px;margin-top:8px}
+.role-heading h3{font-size:11.4px;line-height:1.2;margin:0;font-weight:740;color:#1a293f}
+.role-heading time{white-space:nowrap;font-size:10px;color:#67788b}
+ul{padding-left:15px;margin:5px 0 0}li{font-size:10.4px;line-height:1.36;margin:3px 0;padding-left:1px}
+.education-detail{font-size:10.4px;margin:4px 0 7px;color:#536579}
+footer{display:flex;justify-content:space-between;gap:10px;font-size:9px;border-top:1px solid #d9e0e7;padding-top:8px;color:#536475;margin-top:18px}
+@media(max-width:820px){.paper{margin:0;padding:26px 19px 42px;min-height:0}.preview-toolbar{gap:8px;flex-wrap:wrap;padding:12px 15px}.preview-toolbar strong{order:-1;text-align:left;width:100%;flex:auto}.traffic{display:none}.preview-toolbar nav{width:100%;justify-content:space-between;gap:9px}.preview-toolbar nav a{font-size:11px}.resume-heading h1{font-size:27px}.details{font-size:10px}.skills{grid-template-columns:1fr}.role-heading{display:block}.role-heading time{display:block;margin-top:4px}ul li{font-size:11.2px;line-height:1.48}section>p{font-size:11.2px}.role-heading h3{font-size:12px}}
+@page{size:A4;margin:11mm}
+@media print{
+:root{background:white}body{background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.preview-toolbar,.skip{display:none!important}
+.paper{margin:0;padding:0;box-shadow:none;min-height:0;width:auto;max-width:none}
+.resume-heading{margin-bottom:12px}.resume-heading h1{font-size:26px}
+.job-title{font-size:13px}.details{font-size:9px}
+section{margin-top:9px}section>h2{font-size:10.4px;margin-bottom:5px}
+section>p{font-size:9.1px;line-height:1.3}
+.skills{grid-template-columns:1fr 1fr;gap:2px 10px}.skills p{font-size:8.8px}
+.role{margin-bottom:6px}.role-heading{display:flex;margin-top:6px}
+.role-heading h3{font-size:10px}.role-heading time{font-size:8.8px}
+ul{margin-top:3px;padding-left:14px}li{font-size:9.05px;line-height:1.27;margin:2px 0}
+.education-detail{font-size:9px;margin:2px 0 5px}
+footer{margin-top:9px}
+}
