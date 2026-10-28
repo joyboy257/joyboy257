@@ -29,7 +29,7 @@ jobs:
           python -m playwright install --with-deps chromium webkit
       - name: Test actual deployed preview on Chromium and WebKit
         env:
-          DEONOS_PREVIEW_URL: https://deon-desktop-portfolio-kxi42448h-deonaqwx-9156s-projects.vercel.app
+          DEONOS_PREVIEW_URL: https://deon-desktop-portfolio-owsfgs9ow-deonaqwx-9156s-projects.vercel.app
           DEONOS_RELEASE_EVIDENCE: ../../release-evidence
         run: python scripts/release-qa.py
       - if: always()
