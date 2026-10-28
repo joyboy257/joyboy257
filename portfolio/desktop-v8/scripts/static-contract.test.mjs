@@ -96,3 +96,16 @@ test('decorative status icons have no broken ARIA labels', () => {
   assert.match(html, /class="mac-system-icons" aria-hidden="true"/);
   assert.match(html, /class="phone-signal" aria-hidden="true"/);
 });
+
+test('recruiter actions exist before unlock and resume is separate from desktop JS', () => {
+  const html = read('index.html');
+  const resume = read('resume.html');
+  const app = read('app.js');
+  assert.match(html, /class="lock-resume-link" href="\/resume\.html"/);
+  assert.match(html, /data-unlock-app="welcome"/);
+  assert.match(html, /recruiter-widget/);
+  assert.match(app, /function welcome\(\)/);
+  assert.match(resume, /Deon Quek/);
+  assert.match(resume, /name="viewport"/);
+  assert.equal(existsSync('dist/resume.html'), true);
+});

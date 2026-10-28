@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath, URL } from 'node:url';
+import { resolve } from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 
 // These paths are requested dynamically by the existing DOM and HTML.
@@ -29,6 +30,7 @@ export default defineConfig({
     minify: 'esbuild',
     sourcemap: false,
     cssCodeSplit: true,
+    rollupOptions: { input: { desktop: resolve(import.meta.dirname,'index.html'), resume: resolve(import.meta.dirname,'resume.html') } },
   },
   plugins: [preserveLegacyPublicAssets()],
 });
