@@ -19,7 +19,7 @@ function clock(){const d=new Date();const hm=new Intl.DateTimeFormat("en-SG",{ho
  const lockHm=new Intl.DateTimeFormat("en-US",{hour:"numeric",minute:"2-digit",hour12:true}).format(d);
  $("#lock-time").textContent=lockHm;$("#lock-status-time").textContent=hm;$("#phone-time").textContent=hm;
  $("#lock-date").textContent=new Intl.DateTimeFormat("en-US",{weekday:"long",month:"long",day:"numeric"}).format(d);
- $("#phone-weekday").textContent=new Intl.DateTimeFormat("en-SG",{weekday:"short"}).format(d).toUpperCase();$("#phone-day").textContent=d.getDate();
+ // The recruiter résumé widget replaces the old calendar tile; no stale DOM writes.
  $("#mac-time").textContent=new Intl.DateTimeFormat("en-US",{weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",hour12:true}).format(d);
 }
 clock();setInterval(clock,30000);
