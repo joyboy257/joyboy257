@@ -79,3 +79,14 @@ test('menu closing uses a collection, not one button', () => {
   assert.match(dismiss, /document\.querySelectorAll\("\[data-menu\]"\)\.forEach/);
   assert.doesNotMatch(dismiss, /\$\("\[data-menu\]"\)\.forEach/);
 });
+
+test('retired G0-era scripts and styles never enter the build', () => {
+  const obsolete = ["apple-hig.css","experience.css","experience.js","icons.js","ios.css","ios.js","polish.css"];
+  const entry = read('index.html');
+  for (const file of obsolete) {
+    assert.equal(existsSync(file), false, `obsolete source still exists: ${file}`);
+    assert.equal(existsSync(join('dist', file)), false, `obsolete asset unexpectedly shipped: ${file}`);
+    assert.ok(!entry.includes('src="./'+file+'"'), `HTML references obsolete JS: ${file}`);
+    assert.ok(!entry.includes('href="./'+file+'"'), `HTML references obsolete CSS: ${file}`);
+  }
+});
