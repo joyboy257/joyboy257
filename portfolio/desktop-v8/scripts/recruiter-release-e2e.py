@@ -65,6 +65,7 @@ with sync_playwright() as playwright:
                     run_axe(page,surface+"-welcome")
                     page.screenshot(path=str(OUT/(surface+"-welcome.png")))
                 appErrors=[e for e in errors if ".well-known/vercel/jwe" not in e]
+                if appErrors:print(json.dumps({"surface":surface,"unclassified_page_errors":appErrors}))
                 check(surface+" no application errors",not appErrors)
                 ctx.close()
         finally:browser.close()
