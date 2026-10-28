@@ -26,7 +26,7 @@ jobs:
           python -m playwright install --with-deps chromium webkit
       - name: Verify published preview and produce screenshots
         env:
-          RECRUITER_PUBLIC_PREVIEW: https://deon-desktop-portfolio-9d4ihr4gm-deonaqwx-9156s-projects.vercel.app
+          RECRUITER_PUBLIC_PREVIEW: https://deon-desktop-portfolio-pgkgbdw38-deonaqwx-9156s-projects.vercel.app
         run: python scripts/recruiter-release-e2e.py
       - uses: actions/upload-artifact@v4
         if: always()
