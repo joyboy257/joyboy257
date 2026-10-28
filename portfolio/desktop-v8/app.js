@@ -10,7 +10,8 @@ const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(
 const byID=Object.fromEntries(projects.map(p=>[p.id,p]));
 const mediaByID=Object.fromEntries(mediaItems.map(item=>[item.projectId,item]));
 const sets={featured:["mirai","amelia","soleil","slate","workos","corpa"],delivery:["amelia","ami","corpa","mototiam"],ai:["mirai","amethyst","verticals","agentos","atlas","workos","heidi","rustyindex","sole","openbrain"],products:["soleil","slate","corpa","workos","dreamcraft","propframe","singnote","openbrain"],research:["heidi","rustyindex","pokerai","tradedesk"],all:projects.map(p=>p.id)};
-const state={locked:true,app:"",group:"featured",project:"mirai",tab:"case",stack:[],gesture:null,phoneGesture:null,drag:null,dragged:false,preventClick:0};
+const state={locked:true,app:"",group:"featured",project:"mirai",tab:"case",stack:[],gesture:null,phoneGesture:null,drag:null,dragged:false,preventClick:0,windowMode:"normal"};
+let searchFocusReturn=null,menuFocusReturn=null;
 const mobile=()=>matchMedia("(max-width:720px)").matches;
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const link=(url,label)=>url&&/^https:\/\/(github\.com|usemirai\.app|www\.linkedin\.com)\//.test(url)?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(label)+' ↗</a>':"";
@@ -87,17 +88,17 @@ const title=()=>({finder:"Finder",project:byID[state.project]?.name,notes:"Notes
 function updateDockState(){
  $$(".mac-dock [data-app]").forEach(b=>{const active=b.dataset.app===state.app||(state.app==="project"&&b.dataset.app==="finder");b.classList.toggle("running",active);b.setAttribute("aria-pressed",String(active));});
 }
-function render(){updateDockState();if(mobile()){const pane=$("#phone-app");pane.hidden=false;$("#iphone-shell").classList.add("app-open");$("#phone-app-name").textContent=state.app==="finder"?"Files":title();$("#phone-back").textContent=state.stack.length?"‹ Back":"‹ Home";$("#phone-app-body").innerHTML=content();$("#phone-app-body").scrollTop=0;}else{const w=$("#mac-window");w.hidden=false;w.classList.remove("minimized");$("#mac-window-name").textContent=title();$("#active-app-name").textContent=title();$("#mac-window-content").innerHTML=content();}}
+function render(){updateDockState();if(mobile()){const pane=$("#phone-app");pane.hidden=false;$("#iphone-shell").classList.add("app-open");$("#phone-app-name").textContent=state.app==="finder"?"Files":title();$("#phone-back").textContent=state.stack.length?"‹ Back":"‹ Home";$("#phone-app-body").innerHTML=content();$("#phone-app-body").scrollTop=0;}else{const w=$("#mac-window");w.hidden=false;w.classList.remove("minimized");if(state.windowMode==="minimized")state.windowMode="normal";$("#mac-window-name").textContent=title();$("#active-app-name").textContent=title();$("#mac-window-content").innerHTML=content();}}
 function navigationSnapshot(){return {deonos:1,app:state.app,project:state.project,group:state.group,tab:state.tab,stack:state.stack.map(pair=>pair.slice())}}
 function writeNavigation(mode,projectId){const url=urlForProject(location.href,projectId);if(mode==="replace")history.replaceState(navigationSnapshot(),"",url);else if(mode!=="none")history.pushState(navigationSnapshot(),"",url)}
-function renderClosed(){$("#active-app-name").textContent="Finder";updateDockState();$("#iphone-shell").classList.remove("app-open");$("#phone-app").hidden=true;$("#mac-window").hidden=true;$("#mac-window").classList.remove("minimized")}
+function renderClosed(){$("#active-app-name").textContent="Finder";updateDockState();$("#iphone-shell").classList.remove("app-open");$("#phone-app").hidden=true;const w=$("#mac-window");w.hidden=true;w.classList.remove("minimized","maximized");state.windowMode="normal";w.style.removeProperty("left");w.style.removeProperty("top");w.style.removeProperty("transform");state.drag=null;}
 function open(app,id,routeMode="push"){if(state.locked){unlock({app,id});return;}if(app==="project"&&(!id||!byID[id]))return;if(mobile()&&!$("#phone-app").hidden)state.stack.push([state.app,state.project]);state.app=app;state.project=id||state.project;state.tab="case";render();if(app==="project"&&id&&byID[id])window.PortfolioAnalytics?.project(id);else window.PortfolioAnalytics?.app(app);writeNavigation(routeMode,id&&byID[id]?id:null);}
-function close(routeMode="push"){if(!state.app&&routeMode==="push")return;state.app="";state.stack=[];renderClosed();writeNavigation(routeMode,null);}
+function close(routeMode="push"){if(!state.app&&routeMode==="push")return;const previous=state.app;state.app="";state.stack=[];renderClosed();writeNavigation(routeMode,null);if(routeMode!=="none"&&!mobile()){const dockApp=previous==="project"?"finder":previous;document.querySelector('.mac-dock [data-app="'+dockApp+'"]')?.focus({preventScroll:true});}}
 function back(){if(state.stack.length){const [app,id]=state.stack.pop();state.app=app;state.project=id;state.tab="case";render();writeNavigation("push",app==="project"?id:null)}else close()}
 const matches=q=>projects.filter(p=>[p.name,p.summary,p.scope,p.tags.join(" ")].join(" ").toLowerCase().includes(q.toLowerCase())).slice(0,12);
 function searching(q){$("#search-results").innerHTML=matches(q).map(p=>'<button class="search-result" data-project="'+p.id+'"><svg viewBox="0 0 64 64"><use href="./icons.svg#document"></use></svg><span><strong>'+esc(p.name)+'</strong><small>'+esc(p.summary.slice(0,90))+'</small></span></button>').join("")||'<p>No results.</p>'}
-function search(){if(state.locked)return;$("#spotlight").hidden=false;window.PortfolioAnalytics?.search();$("#spotlight-input").value="";searching("");$("#spotlight-input").focus()}
-function endSearch(){$("#spotlight").hidden=true}
+function search(){if(state.locked)return;const spot=$("#spotlight");if(spot.hidden)searchFocusReturn=document.activeElement instanceof HTMLElement?document.activeElement:null;spot.hidden=false;window.PortfolioAnalytics?.search();$("#spotlight-input").value="";searching("");$("#spotlight-input").focus();}
+function endSearch(restoreFocus=true){if($("#spotlight").hidden)return;$("#spotlight").hidden=true;if(restoreFocus&&searchFocusReturn?.isConnected&&!searchFocusReturn.closest("[hidden]"))searchFocusReturn.focus({preventScroll:true});searchFocusReturn=null;}
 $("#desktop-search").addEventListener("click",search);
 $("#phone-search").addEventListener("click",search);
 $("#spotlight-input").addEventListener("input",e=>searching(e.target.value));
@@ -114,12 +115,15 @@ const menuItems={
  Window:[["Minimize","minimize"],["Zoom","maximize"],["Bring Finder Forward","finder"]],
  Help:[["About Deon","about"],["Recruiter Brief","calendar"],["View GitHub","github"]]
 };
-function dismissMenu(){
+function dismissMenu(restoreFocus=false){
  menuEl.hidden=true;
- $$("[data-menu]").forEach(b=>{b.setAttribute("aria-expanded","false");b.classList.remove("active-menu")});
+ $("[data-menu]").forEach(b=>{b.setAttribute("aria-expanded","false");b.classList.remove("active-menu")});
+ if(restoreFocus&&menuFocusReturn?.isConnected)menuFocusReturn.focus({preventScroll:true});
+ menuFocusReturn=null;
 }
 function showMenu(trigger){
- if(!menuEl.hidden&&trigger.getAttribute("aria-expanded")==="true"){dismissMenu();return;}
+ if(!menuEl.hidden&&trigger.getAttribute("aria-expanded")==="true"){dismissMenu(true);return;}
+ menuFocusReturn=trigger;
  const label=trigger.dataset.menu,actions=menuItems[label]||[];
  $$("[data-menu]").forEach(b=>{b.setAttribute("aria-expanded",String(b===trigger));b.classList.toggle("active-menu",b===trigger)});
  const rect=trigger.getBoundingClientRect();
@@ -127,14 +131,18 @@ function showMenu(trigger){
  menuEl.innerHTML=actions.map(([name,action],i)=>'<button type="button" role="menuitem" data-command="'+esc(action)+'" tabindex="'+(i===0?0:-1)+'"><span>'+esc(name)+'</span>'+(action==="search"?'<kbd>⌘K</kbd>':'')+'</button>').join("");
  menuEl.hidden=false;menuEl.querySelector("button")?.focus({preventScroll:true});
 }
+function setWindowMode(action){
+ const w=$("#mac-window");if(mobile()||w.hidden)return;
+ if(action==="minimize"){state.windowMode="minimized";w.classList.remove("maximized");w.classList.add("minimized");const active=state.app==="project"?"finder":state.app;document.querySelector('.mac-dock [data-app="'+active+'"]')?.focus({preventScroll:true});return;}
+ if(action==="maximize"){const enlarged=w.classList.toggle("maximized");state.windowMode=enlarged?"maximized":"normal";w.classList.remove("minimized");$("#mac-full").focus({preventScroll:true});}
+}
 function performCommand(c){
  dismissMenu();
  if(c==="close"){close();return}
  if(c==="search"){search();return}
  if(c==="copy"){navigator.clipboard?.writeText(location.origin+location.pathname).catch(()=>{});return}
  if(c==="github"){window.open("https://github.com/joyboy257","_blank","noopener");return}
- if(c==="minimize"){if(!$("#mac-window").hidden)$("#mac-window").classList.add("minimized");return}
- if(c==="maximize"){if(!$("#mac-window").hidden)$("#mac-window").classList.toggle("maximized");return}
+ if(c==="minimize"||c==="maximize"){setWindowMode(c);return}
  if(["favorites","all","delivery","ai"].includes(c)){state.group=c==="favorites"?"featured":c;state.project=sets[state.group][0];open("finder");return}
  open(c);
 }
@@ -147,23 +155,32 @@ document.addEventListener("click",e=>{
 });
 menuEl.addEventListener("keydown",e=>{
  const buttons=$$("#mac-dropdown button");const n=buttons.indexOf(document.activeElement);
- if(e.key==="Escape"){e.preventDefault();dismissMenu();return}
+ if(e.key==="Escape"){e.preventDefault();e.stopPropagation();dismissMenu(true);return}
  if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();buttons[(n+(e.key==="ArrowDown"?1:-1)+buttons.length)%buttons.length]?.focus()}
 });
 
 $("#mac-close").addEventListener("click",close);
-$("#mac-min").addEventListener("click",()=>$("#mac-window").classList.add("minimized"));
-$("#mac-full").addEventListener("click",()=>$("#mac-window").classList.toggle("maximized"));
+$("#mac-min").addEventListener("click",()=>setWindowMode("minimize"));
+$("#mac-full").addEventListener("click",()=>setWindowMode("maximize"));
 $("#phone-back").addEventListener("click",back);
 $("#phone-home").addEventListener("click",close);
 $("#home-indicator").addEventListener("click",close);
 document.addEventListener("click",e=>{
- const t=e.target.closest("[data-tab]");if(t){state.tab=t.dataset.tab;render();return}
- const g=e.target.closest("[data-group]");if(g){state.group=g.dataset.group;state.project=sets[state.group][0];render();return}
- const p=e.target.closest("[data-project]");if(p){endSearch();if(!mobile()&&state.app==="finder"&&p.closest(".finder-list")){state.project=p.dataset.project;state.tab="case";render();window.PortfolioAnalytics?.project(state.project);writeNavigation("push",state.project)}else open("project",p.dataset.project);return}
+ const t=e.target.closest("[data-tab]");if(t){state.tab=t.dataset.tab;render();const target=mobile()?"#phone-app":"#mac-window";document.querySelector(target+' [data-tab="'+state.tab+'"]')?.focus({preventScroll:true});return}
+ const g=e.target.closest("[data-group]");if(g){state.group=g.dataset.group;state.project=sets[state.group][0];render();document.querySelector('#mac-window [data-group="'+state.group+'"]')?.focus({preventScroll:true});return}
+ const p=e.target.closest("[data-project]");if(p){endSearch(false);if(!mobile()&&state.app==="finder"&&p.closest(".finder-list")){state.project=p.dataset.project;state.tab="case";render();window.PortfolioAnalytics?.project(state.project);writeNavigation("push",state.project)}else open("project",p.dataset.project);return}
  const a=e.target.closest("[data-app]");if(a){open(a.dataset.app,a.dataset.project);return}
 });
-document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();search();return}if(e.key==="Escape"){if(!$("#spotlight").hidden)endSearch();else if(mobile())back();else close()}if(state.locked&&["ArrowUp","PageUp"].includes(e.key)){e.preventDefault();unlock()}});
+document.addEventListener("keydown",e=>{
+ if(e.defaultPrevented)return;
+ if(state.locked){if(["ArrowUp","PageUp"].includes(e.key)){e.preventDefault();unlock();}return;}
+ if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();search();return;}
+ if(e.key!=="Escape")return;
+ if(!menuEl.hidden){e.preventDefault();dismissMenu(true);return;}
+ if(!$("#spotlight").hidden){e.preventDefault();endSearch();return;}
+ if(mobile()){if(!$("#phone-app").hidden){e.preventDefault();back();}return;}
+ if(!$("#mac-window").hidden&&!$("#mac-window").classList.contains("minimized")){e.preventDefault();close();}
+});
 /* Desktop draggable title bar */
 $("#mac-window-drag").addEventListener("pointerdown",e=>{
  if(mobile()||e.target.closest("button")||$("#mac-window").classList.contains("maximized"))return;
