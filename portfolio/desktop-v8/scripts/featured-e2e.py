@@ -34,6 +34,10 @@ with sync_playwright() as p:
                 else:
                     check(surface+" opens Welcome",page.locator("#mac-window .welcome-pane").is_visible())
                     check(surface+" preserves three featured teaser actions",page.locator("#mac-window .welcome-feature[data-project]").count()==3)
+                    last_action=page.locator("#mac-window .welcome-feature").last.bounding_box()
+                    frame=page.locator("#mac-window").bounding_box()
+                    check(surface+" welcome actions visible without scrolling",
+                          last_action is not None and frame is not None and last_action["y"]+last_action["height"] < frame["y"]+frame["height"]-3)
                     page.screenshot(path=str(OUT/(surface+"-welcome.png")),animations="disabled")
                     page.locator('#mac-window .welcome-action[data-app="featured"]').click()
                     scope="#mac-window"
@@ -55,6 +59,7 @@ with sync_playwright() as p:
                 check(surface+" opens Mirai",case.locator("h2").first.inner_text()=="Mirai")
                 check(surface+" three engineering chapters",case.locator(".mirai-chapter").count()==3)
                 check(surface+" sourced four-stage architecture flow",case.locator(".mirai-flow li").count()==4)
+                check(surface+" proof figures do not repeat as redundant tags",case.locator(".case-facts").count()==0)
                 check(surface+" source context stated", "July 2026" in case.locator(".mirai-proof").inner_text())
                 check(surface+" honest limits", "not customers" in case.locator(".mirai-proof").inner_text())
                 check(surface+" original case tabs remain",case.locator("[data-tab]").count()==3)

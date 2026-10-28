@@ -118,3 +118,7 @@
 .welcome-feature-card .featured-lead{font-size:11px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .welcome-feature-card .featured-caption{display:none}
 .welcome-feature-card .featured-cta{min-height:32px;padding:7px 8px;margin-top:3px}
+
+/* Visual QA: the case-study action must fit above the opening window fold. */
+.welcome-feature-card .featured-cta{flex-direction:row!important;align-items:center!important;justify-content:space-between!important;white-space:nowrap;min-height:32px;line-height:1.1}
+.welcome-feature-card .featured-cta span{display:inline-block;flex:0 0 auto;padding:0;line-height:1}

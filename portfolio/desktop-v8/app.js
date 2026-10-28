@@ -78,7 +78,7 @@ const featuredRoles={
 };
 function featuredVisual(p){
  const media=mediaByID[p.id];
- if(!media)return '<div class="featured-visual featured-visual-concept" aria-label="Architecture illustration, not a product screenshot"><span class="featured-visual-kicker">ENGINEERING ILLUSTRATION</span><div class="featured-orb" aria-hidden="true"></div><small>Native Metal renderer · In development</small></div>';
+ if(!media)return '<div class="featured-visual featured-visual-concept" role="img" aria-label="Stylized engineering illustration, not a product screenshot"><span class="featured-visual-kicker">ENGINEERING ILLUSTRATION</span><div class="featured-orb" aria-hidden="true"></div><small>Native Metal renderer · In development</small></div>';
  return '<div class="featured-visual featured-visual-public" data-media-project="'+esc(p.id)+'"><span class="featured-visual-kicker">'+esc(media.label)+'</span><div class="featured-visual-backup"><strong>'+esc(p.name)+'</strong><span>'+esc(visualInsights[p.id])+'</span></div><img data-feature-media src="'+esc(media.url)+'" alt="'+esc(media.alt)+'" loading="lazy" decoding="async"></div>';
 }
 function featuredCard(id,compact=false){
@@ -106,7 +106,7 @@ const tabs=()=>[["case","The Case"],["engineering","Engineering"],["proof","Proo
 function caseView(p){if(!p)return "<p>Not found.</p>";
  const body=state.tab==="case"?'<h3>THE PROBLEM</h3><p>'+esc(p.challenge)+'</p><h3>MY CONTRIBUTION</h3><p>'+esc(p.contribution)+'</p>':state.tab==="engineering"?'<h3>IMPLEMENTATION</h3><ul>'+p.engineering.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul>':'<h3>VERIFIED EVIDENCE</h3><p>'+esc(p.proof)+'</p><h3>LIMITS AND READINESS</h3><p>'+esc(p.limits)+'</p>';
  const urls=link(p.website,"Product website")+link(p.demo,"Interactive demo")+link(p.link,p.linkLabel||"Engineering case");
- return '<article class="case-pane"><span class="case-overline">'+esc(p.scope)+' / '+esc(p.stage)+'</span><h2>'+esc(p.name)+'</h2><p class="case-lede">'+esc(p.summary)+'</p>'+(p.id==="mirai"?miraiEvidenceStory(p):caseMedia(p))+'<div class="case-facts">'+p.facts.map(x=>'<span>'+esc(x)+'</span>').join("")+'</div><nav class="case-tabs">'+tabs()+'</nav><div class="case-text">'+body+'</div>'+(urls?'<div class="case-links">'+urls+'</div>':'<p class="private-note">Private source · No public code link available</p>')+'</article>';
+ return '<article class="case-pane"><span class="case-overline">'+esc(p.scope)+' / '+esc(p.stage)+'</span><h2>'+esc(p.name)+'</h2><p class="case-lede">'+esc(p.summary)+'</p>'+(p.id==="mirai"?miraiEvidenceStory(p):caseMedia(p))+(p.id==="mirai"?'':('<div class="case-facts">'+p.facts.map(x=>'<span>'+esc(x)+'</span>').join("")+'</div>'))+'<nav class="case-tabs">'+tabs()+'</nav><div class="case-text">'+body+'</div>'+(urls?'<div class="case-links">'+urls+'</div>':'<p class="private-note">Private source · No public code link available</p>')+'</article>';
 }
 function fileRows(ids){return ids.map(id=>byID[id]).filter(Boolean).map(p=>'<button data-project="'+p.id+'" class="file-row '+(state.project===p.id?'selected':'')+'"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="./icons.svg#document"></use></svg><span><strong>'+esc(p.name)+'</strong><small>'+esc(p.scope)+' · '+esc(p.stage.split(" / ")[0])+'</small></span></button>').join("")}
 function finder(){
