@@ -75,6 +75,7 @@ test('case images always explain their purpose and fall back safely', () => {
 
 test('menu closing uses a collection, not one button', () => {
   const app = read('app.js');
-  assert.match(app, /document\.querySelectorAll\("\[data-menu\]"\)\.forEach/);
-  assert.doesNotMatch(app, /\$\("\[data-menu\]"\)\.forEach/);
+  const dismiss = app.slice(app.indexOf('function dismissMenu('), app.indexOf('function showMenu('));
+  assert.match(dismiss, /document\.querySelectorAll\("\[data-menu\]"\)\.forEach/);
+  assert.doesNotMatch(dismiss, /\$\("\[data-menu\]"\)\.forEach/);
 });
