@@ -15,6 +15,16 @@ assert URL.startswith("https://")
 checks=[]
 violations=[]
 errors=[]
+platform_errors=[]
+def record_browser_exception(surface,exception):
+    message=str(exception)
+    # Vercel injects its preview-feedback toolbar (vercel.live), whose auth
+    # bootstrap can fail in headless WebKit. Do not call this app JS.
+    # Record the exact known toolbar error, but never suppress other errors.
+    if ".well-known/vercel/jwe" in message and "access control checks" in message:
+        platform_errors.append({"surface":surface,"exception":message})
+    else:
+        errors.append({"surface":surface,"exception":message})
 def check(name,valid):
     checks.append({"name":name,"pass":bool(valid)})
     if not valid:print("FAIL",name)
@@ -47,7 +57,7 @@ with sync_playwright() as playwright:
                     reduced_motion="reduce"
                 )
                 page=context.new_page()
-                page.on("pageerror",lambda exc, surface=surface: errors.append({"surface":surface,"exception":str(exc)}))
+                page.on("pageerror",lambda exc, surface=surface: record_browser_exception(surface,exc))
                 response=page.goto(URL+"/",wait_until="load",timeout=40000)
                 check(surface+" homepage HTTP 200",response is not None and response.status==200)
                 check(surface+" lock visible",page.locator("#lock-screen").is_visible())
@@ -88,7 +98,7 @@ with sync_playwright() as playwright:
 
 result={"target":URL,"passed":sum(c["pass"] for c in checks),
         "failed":sum(not c["pass"] for c in checks),
-        "checks":checks,"violations":violations,"page_errors":errors,
+        "checks":checks,"violations":violations,"page_errors":errors,"platform_preview_errors":platform_errors,
         "physical_iphone_safari":False,
         "notes":"WebKit on GitHub Ubuntu is not physical iPhone Safari. Performance Lighthouse in G1 CI separate."}
 (OUT/"RELEASE_QA.json").write_text(json.dumps(result,indent=2)+"\n")

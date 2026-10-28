@@ -27,6 +27,7 @@ jobs:
           npm install --no-save --no-audit --no-fund axe-core@4.10.3
           python -m pip install playwright==1.55.0
           python -m playwright install --with-deps chromium webkit
+      # EX-009 audit distinguishes Vercel-injected preview-toolbar bootstrap failures from website JS errors.
       - name: Test actual deployed preview on Chromium and WebKit
         env:
           DEONOS_PREVIEW_URL: https://deon-desktop-portfolio-owsfgs9ow-deonaqwx-9156s-projects.vercel.app
