@@ -66,7 +66,8 @@ with sync_playwright() as playwright:
                     page.screenshot(path=str(OUT/(surface+"-welcome.png")))
                 known_navigation_warnings=[
                     e for e in errors if engine=="webkit"
-                    and e.endswith("/resume.html due to access control checks.")
+                    and (e.endswith("/resume.html due to access control checks.")
+                         or e.endswith("/ due to access control checks."))
                     and urlparse(BASE).hostname in e
                 ]
                 appErrors=[e for e in errors

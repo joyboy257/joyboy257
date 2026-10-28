@@ -15,4 +15,5 @@ import './styles/60-ios-refinements.css';
 import './styles/70-evidence-media.css';
 import './styles/80-accessibility.css';
 import './styles/90-recruiter.css';
+import './styles/95-featured-work.css';
 import './legacy-runtime';
