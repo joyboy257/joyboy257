@@ -1,0 +1,16 @@
+/* EX-009: WCAG AA contrast corrections, preserving the Big Sur/iOS palette.
+   These colors pass >=4.5:1 in their observed Finder and iPhone backgrounds. */
+.finder-group,.finder-top span,.file-row small{color:#536270}
+.finder-side-button.selected{color:#1658a5}
+.case-overline,.case-pane .case-lede{color:#536270}
+.case-asset-note{color:#536270}
+.case-asset-note strong{color:#4f5d68}
+.case-facts span{color:#325f7c}
+.case-tabs button{color:#536270}
+.case-tabs button.selected{color:#1658a5;border-color:#1658a5}
+.case-text h3{color:#536270}
+#phone-back,#phone-home{color:#1658a5}
+#phone-app .case-tabs button{color:#536270}
+#phone-app .case-tabs button.selected{color:#1658a5;border-color:#1658a5}
+#phone-app .case-overline,#phone-app .case-pane .case-lede,#phone-app .case-asset-note{color:#536270}
+#phone-app .case-facts span{color:#325f7c}

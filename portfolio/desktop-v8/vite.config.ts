@@ -9,7 +9,7 @@ function preserveLegacyPublicAssets(): Plugin {
     name: 'deonos-preserve-public-assets',
     apply: 'build',
     generateBundle() {
-      for (const fileName of ['icons.svg', 'analytics.js', 'vercel.json']) {
+      for (const fileName of ['icons.svg', 'analytics.js', 'vercel.json', 'favicon.svg']) {
         this.emitFile({
           type: 'asset',
           fileName,

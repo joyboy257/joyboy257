@@ -33,7 +33,7 @@ test('source attribution and Vercel headers remain intact', () => {
 
 test('built static output includes all dynamic public assets, without React', () => {
   assert.equal(existsSync('dist/index.html'), true, 'run npm run build first');
-  for (const file of ['analytics.js','icons.svg','vercel.json']) {
+  for (const file of ['analytics.js','icons.svg','vercel.json','favicon.svg']) {
     assert.equal(existsSync(join('dist',file)), true, `missing ${file}`);
   }
   const html = read('dist/index.html');
@@ -89,4 +89,10 @@ test('retired G0-era scripts and styles never enter the build', () => {
     assert.ok(!entry.includes('src="./'+file+'"'), `HTML references obsolete JS: ${file}`);
     assert.ok(!entry.includes('href="./'+file+'"'), `HTML references obsolete CSS: ${file}`);
   }
+});
+
+test('decorative status icons have no broken ARIA labels', () => {
+  const html = read('index.html');
+  assert.match(html, /class="mac-system-icons" aria-hidden="true"/);
+  assert.match(html, /class="phone-signal" aria-hidden="true"/);
 });
