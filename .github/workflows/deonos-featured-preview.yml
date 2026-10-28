@@ -24,6 +24,8 @@ jobs:
           npm install --no-save --no-audit --no-fund axe-core@4.10.3
           python -m pip install --disable-pip-version-check playwright==1.55.0
           python -m playwright install --with-deps chromium webkit
+      # A same-host root navigation warning from headless WebKit is captured
+      # separately; real site exceptions and missing interactions still fail.
       - name: Verify deployed résumé, lock and Welcome
         env:
           RECRUITER_PUBLIC_PREVIEW: https://deon-desktop-portfolio-elh6ntitc-deonaqwx-9156s-projects.vercel.app
