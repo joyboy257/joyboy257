@@ -41,7 +41,11 @@ with sync_playwright() as p:
                 check(surface+" gallery opens",gallery.is_visible())
                 check(surface+" three case cards",gallery.locator(".featured-card").count()==3)
                 check(surface+" five role labels and cards",gallery.locator(".featured-category").count()==3)
-                check(surface+" photo is labeled",gallery.locator('.featured-card').first.locator(".featured-visual-kicker").inner_text()=="Operator workspace")
+                first=gallery.locator('.featured-card').first
+                labels=first.locator(".featured-visual-kicker")
+                print(json.dumps({"debug_surface":surface,"featured_label_count":labels.count(),
+                                  "featured_card_html":first.evaluate("(e)=>e.outerHTML.slice(0,1100)")}))
+                check(surface+" photo has editorial label",labels.count()==1 and labels.text_content().strip()=="Operator workspace")
                 check(surface+" Soleil not passed off as screenshot",gallery.locator('.featured-visual-concept').count()==1)
                 check(surface+" all-projects path",gallery.locator('[data-app="finder"]').count()==1)
                 check(surface+" no horizontal screen overflow",page.evaluate("() => document.documentElement.scrollWidth <= window.innerWidth+2"))
