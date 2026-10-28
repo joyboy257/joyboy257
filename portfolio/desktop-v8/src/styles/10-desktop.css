@@ -1,0 +1,132 @@
+/* Common cinematic wallpaper. Inspired by the calm photo-led Macintosh experience;
+   built from original CSS shapes rather than reference or Apple wallpaper artwork. */
+.mac-shell{
+ background-color:#7991a2;
+ background-image:linear-gradient(120deg,rgba(18,39,58,.16),rgba(34,52,60,.02) 60%,rgba(18,39,58,.15)),url("../../bigsur-wallpaper.svg"),linear-gradient(145deg,#7f9db0,#d7b9a8);
+ background-size:cover;
+ background-position:center 51%;
+}
+.mac-shell:before,.iphone-shell:before{
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background:radial-gradient(ellipse 56% 56% at 53% 45%,#d0e6e4aa,transparent 75%);
+}
+.mac-shell:after{content:none}
+.mac-menubar{
+ position:absolute;top:0;left:0;right:0;height:31px;z-index:140;
+ display:flex;align-items:center;justify-content:space-between;
+ padding:0 22px;background:rgba(244,247,249,.69);
+ border-bottom:1px solid rgba(255,255,255,.59);
+ -webkit-backdrop-filter:blur(28px) saturate(150%);backdrop-filter:blur(28px) saturate(150%);
+ color:#242b32;box-shadow:0 1px 7px rgba(36,53,67,.07)
+}
+.menu-left,.menu-right{display:flex;align-items:center;gap:23px}
+.mac-menubar button{border:0;background:none;color:inherit;font-size:13px;padding:4px 0;border-radius:3px}
+.mac-menubar strong{font-size:13px;font-weight:670;letter-spacing:-.008em}
+.menu-left{gap:19px}.menu-left button:not(.apple-mark):hover,.menu-right button:hover{opacity:.62}
+.mac-menubar .apple-mark{width:17px;padding:0}
+.apple-mark svg{width:16px;height:16px}
+.menu-right{gap:19px;font-size:12px;white-space:nowrap}
+.menu-right svg{height:16px;width:16px}
+.menu-right time{font-size:12px;font-weight:500;font-variant-numeric:tabular-nums}
+.online-state{font-size:11px;color:#445e66}.online-state i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#44a475;margin-right:7px;vertical-align:1px}
+.mac-desktop{position:absolute;inset:31px 0 0}
+.desktop-items{position:absolute;right:25px;top:24px;display:flex;align-items:center;flex-direction:column;gap:11px;width:111px}
+.desktop-item{min-height:91px;width:108px;border:1px solid transparent;border-radius:6px;background:none;display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 6px 7px;color:#fff;text-shadow:0 1px 4px #3a506166;font-size:12px;font-weight:520;line-height:1.1}
+.desktop-item:hover,.desktop-item:focus-visible{background:#c7deee64;border-color:#ffffff80}
+.desktop-item svg{width:60px;height:60px;filter:drop-shadow(0 5px 3px #394a563c)}
+.desktop-credit{position:absolute;bottom:19px;right:30px;color:#ffffffa8;font-size:10px;font-weight:550;letter-spacing:.1em;text-shadow:0 1px 6px #28424e66}
+.desktop-credit span{margin:0 5px}
+/* A compact macOS dock with app markers and native hover labels. */
+.mac-dock{
+ position:absolute;left:50%;bottom:12px;z-index:180;transform:translateX(-50%);
+ height:73px;padding:6px 9px;display:flex;align-items:center;gap:7px;
+ border:1px solid #ffffff85;border-radius:19px;background:#e7f0f282;
+ box-shadow:0 12px 33px #2146543d,inset 0 1px 1px #fff9;
+ backdrop-filter:blur(32px) saturate(160%);-webkit-backdrop-filter:blur(32px) saturate(160%)
+}
+.mac-dock button,.mac-dock a{flex-shrink:0;width:57px;height:57px;padding:0;border:0;background:none;border-radius:12px;transition:transform .16s}
+.mac-dock svg{width:57px;height:57px;filter:drop-shadow(0 2px 2px #35526730)}
+.mac-dock button:hover,.mac-dock a:hover{transform:translateY(-8px) scale(1.08)}
+.dock-divider{width:1px;height:41px;background:#7a9aaa67;margin:0 2px}
+.mac-window{
+ position:absolute;left:50%;top:50%;z-index:150;
+ width:min(990px,calc(100vw - 180px));height:min(650px,calc(100dvh - 155px));
+ min-width:400px;min-height:300px;
+ transform:translate(-50%,-53%);
+ display:flex;flex-direction:column;overflow:hidden;
+ background:#fafafa;border:1px solid #ffffffbf;border-radius:12px;
+ box-shadow:0 30px 78px #122b3e50,0 2px 12px #24404d26;
+ resize:both;
+}
+.mac-window.maximized{inset:39px 12px 96px!important;width:auto!important;height:auto!important;transform:none!important}
+.mac-window.minimized{display:none}
+.mac-window-toolbar{
+ height:50px;flex:0 0 50px;display:flex;align-items:center;justify-content:space-between;
+ padding:0 17px;background:linear-gradient(#fafafa,#f0f1f3);border-bottom:1px solid #d7d8df;cursor:grab;user-select:none;touch-action:none;
+}
+.mac-window-toolbar:active{cursor:grabbing}
+.traffic-controls{display:flex;gap:8px;min-width:72px}
+.traffic-controls button{display:block;width:13px;height:13px;padding:0;border-radius:50%;border:1px solid #29383b2d;box-shadow:inset 0 1px 1px #ffffff88}
+.traffic-controls .red{background:#ff5f57}.traffic-controls .yellow{background:#febc2e}.traffic-controls .green{background:#28c840}
+#mac-window-name{font-size:13px;font-weight:620;color:#45474d}
+.mac-toolbar-right{font-size:11px;color:#98999e;min-width:72px;text-align:right}
+.mac-window-content{flex:1;min-height:0;overflow:hidden;background:#fff}
+/* Finder: an actual file browser, not a card-grid landing page */
+.finder-layout{display:grid;grid-template-columns:205px minmax(0,1fr);height:100%}
+.finder-sidebar{background:#eef1f5;border-right:1px solid #dde1e6;padding:19px 12px;overflow-y:auto}
+.finder-group{font-size:11px;font-weight:620;color:#9297a0;padding:0 10px;margin:7px 0 10px}
+.finder-side-button{display:flex;width:100%;gap:11px;align-items:center;padding:9px 10px;border:0;border-radius:7px;background:none;text-align:left;font-size:13px;color:#464b52;min-height:38px}
+.finder-side-button.selected{background:#d4e2ec;color:#245c85}
+.finder-side-button:hover{background:#e0e6ed}
+.finder-side-button svg{width:18px;height:18px}
+.finder-side-button span:last-child{margin-left:auto;font-size:11px;color:#8a98a5}
+.finder-main{display:flex;flex-direction:column;min-width:0}
+.finder-top{height:56px;flex:0 0 56px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid #eceef1}
+.finder-top h2{font-size:20px;letter-spacing:-.018em;margin:0;font-weight:700}
+.finder-top span{font-size:12px;color:#999aa2}
+.finder-split{display:grid;grid-template-columns:270px minmax(0,1fr);flex:1;min-height:0}
+.finder-list{overflow-y:auto;border-right:1px solid #e6e7eb;padding:9px}
+.file-row{display:flex;gap:12px;align-items:center;text-align:left;width:100%;background:none;border:0;padding:9px;border-radius:7px;min-height:60px;color:#35393f}
+.file-row.selected{background:#dfeaf3}
+.file-row:hover{background:#ecf2f7}
+.file-row svg{width:34px;height:39px;flex-shrink:0}
+.file-row strong{display:block;font-size:13px;font-weight:630}
+.file-row small{display:block;font-size:11px;color:#8e949c;line-height:1.3;margin-top:3px}
+.case-pane{overflow-y:auto;padding:28px 30px 60px;min-width:0}
+.case-overline{font-size:11px;font-weight:650;letter-spacing:.065em;text-transform:uppercase;color:#758894}
+.case-pane h2,.app-doc h2{font-size:32px;letter-spacing:-.028em;font-weight:730;line-height:1.1;margin:10px 0}
+.case-pane .case-lede{font-size:14px;line-height:1.6;color:#67747d;margin:0 0 21px}
+.case-hero{height:150px;border-radius:11px;background:linear-gradient(120deg,#275c6f,#a2c2c4);overflow:hidden;position:relative;display:flex;align-items:flex-end;margin-bottom:17px}
+.case-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.case-hero::after{content:"";position:absolute;inset:34% 0 0;background:linear-gradient(180deg,transparent,rgba(8,23,35,.74));pointer-events:none}
+.case-hero span{position:relative;z-index:1;padding:12px 17px;font-size:29px;font-weight:700;letter-spacing:-.04em;color:white;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.case-facts{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 16px}
+.case-facts span{background:#eaf1f4;color:#4a7481;border-radius:6px;padding:6px 8px;font-size:11px;font-weight:550}
+.case-tabs{display:flex;gap:16px;border-bottom:1px solid #e7e8ed;margin:13px 0 18px}
+.case-tabs button{border:0;background:none;padding:12px 0;font-size:12px;font-weight:620;color:#9299a2;border-bottom:2px solid transparent}
+.case-tabs button.selected{color:#287ca3;border-color:#287ca3}
+.case-text{font-size:14px;line-height:1.68;color:#4b555c}
+.case-text h3{font-size:12px;color:#6b7e86;letter-spacing:.02em;margin:18px 0 7px}
+.case-text p{margin:0 0 15px}.case-text ul{margin:0 0 18px;padding-left:18px}.case-text li{margin:0 0 8px}
+.case-links{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.case-links a,.app-link{padding:10px 14px;border-radius:8px;background:#f0f4f7;color:#27749d;font-size:12px;font-weight:600;border:1px solid #e1ebf0}
+.case-links a:first-child{background:#24759b;color:white;border-color:#24759b}
+.private-note{font-size:12px;color:#9498a0}
+.app-doc{height:100%;overflow-y:auto;padding:30px 37px 65px;color:#30363b}
+.app-doc .overline{font-size:11px;font-weight:650;letter-spacing:.08em;color:#8e989f}
+.app-doc>p{font-size:14px;line-height:1.7;color:#58636c;margin:12px 0}
+.app-doc .app-paper{max-width:780px;background:#fffef9;border:1px solid #f0ede5;border-radius:11px;padding:24px 26px;margin-top:17px}
+.app-paper p{font-size:14px;line-height:1.65;margin:0 0 15px;color:#4b555e}
+.app-paper p:last-child{margin:0}
+.app-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:25px}
+.app-links a{border:1px solid #e6e9ef;border-radius:11px;padding:19px;background:#fafbfe;font-size:13px;font-weight:610;min-height:92px}
+.app-links a span{font-size:11px;color:#8798a6;display:block;margin-top:8px;font-weight:400}
+.photo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:22px}
+.photo-grid button{background:#f4f7f8;border:0;text-align:left;border-radius:9px;overflow:hidden;padding:0}
+.photo-grid img{height:140px;width:100%;object-fit:cover;display:block;background:#dbe7e9}
+.photo-grid span{display:block;padding:12px;font-size:12px;font-weight:600}
+.terminal-panel{background:#20262b;color:#edf6ef;height:100%;overflow:auto;padding:25px;font:13px/1.8 ui-monospace,Menlo,monospace}
+.terminal-panel p{white-space:pre-wrap}
+.terminal-panel .term-green{color:#a9e4c3}
+.terminal-command{display:flex;gap:11px;margin-top:10px}
+.terminal-command input{background:none;border:0;outline:none;color:#fff;font:inherit;flex:1;min-width:0}

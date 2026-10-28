@@ -24,7 +24,7 @@
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/analytics.js"></script>
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-<link rel="stylesheet" href="./style.css"></head>
+<!-- Styles are imported by src/main.ts and bundled as one CSS file. --></head>
 <body>
 <a class="skip" href="#os-main">Skip to portfolio</a>
 <div id="os" class="os">
@@ -40,7 +40,7 @@
     <div class="lock-bottom"><button id="unlock" type="button" class="unlock" aria-label="Swipe up or click to unlock"><span class="unlock-arrow" aria-hidden="true">⌃</span><span>Swipe up to unlock</span></button><span class="lock-subnote">or click to explore</span></div>
   </section>
   <div class="mac-shell" id="mac-shell">
-    <header class="mac-menubar"><div class="menu-left"><button class="apple-mark" data-app="about" title="About Deon" aria-label="About Deon"><svg viewBox="0 0 24 24"><use href="./icons.svg#apple-logo"></use></svg></button><strong id="active-app-name">Finder</strong><button data-menu="File" aria-expanded="false">File</button><button data-menu="Edit" aria-expanded="false">Edit</button><button data-menu="View" aria-expanded="false">View</button><button data-menu="Go" aria-expanded="false">Go</button><button data-menu="Window" aria-expanded="false">Window</button><button data-menu="Help" aria-expanded="false">Help</button></div><div class="menu-right"><button id="desktop-search" aria-label="Search projects" title="Search projects (⌘K)"><svg viewBox="0 0 24 24"><use href="./icons.svg#search"></use></svg></button><span class="mac-system-icons" aria-label="Wi-Fi and battery"><svg viewBox="0 0 32 18" aria-hidden="true"><path d="M1 6Q8-1 15 6M4 9Q8 5 12 9M8 13h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="19.3" y="4.1" width="10" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="21" y="5.6" width="6.8" height="5.9" rx="1" fill="currentColor"/><path d="M30 6.3v4.5" stroke="currentColor" stroke-width="1.5"/></svg></span><time id="mac-time">Mon 26 Oct 16:24</time></div></header>
+    <header class="mac-menubar"><div class="menu-left"><button class="apple-mark" data-app="about" title="About Deon" aria-label="About Deon"><svg viewBox="0 0 24 24"><use href="./icons.svg#apple-logo"></use></svg></button><strong id="active-app-name">Finder</strong><button data-menu="File" aria-expanded="false">File</button><button data-menu="Edit" aria-expanded="false">Edit</button><button data-menu="View" aria-expanded="false">View</button><button data-menu="Go" aria-expanded="false">Go</button><button data-menu="Window" aria-expanded="false">Window</button><button data-menu="Help" aria-expanded="false">Help</button></div><div class="menu-right"><button id="desktop-search" aria-label="Search projects" title="Search projects (⌘K)"><svg viewBox="0 0 24 24"><use href="./icons.svg#search"></use></svg></button><span class="mac-system-icons" aria-hidden="true"><svg viewBox="0 0 32 18" aria-hidden="true"><path d="M1 6Q8-1 15 6M4 9Q8 5 12 9M8 13h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="19.3" y="4.1" width="10" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="21" y="5.6" width="6.8" height="5.9" rx="1" fill="currentColor"/><path d="M30 6.3v4.5" stroke="currentColor" stroke-width="1.5"/></svg></span><time id="mac-time">Mon 26 Oct 16:24</time></div></header>
     <div id="mac-dropdown" class="mac-dropdown" role="menu" hidden aria-label="Application menu"></div>
     <main class="mac-desktop" id="os-main">
       <div class="desktop-items">
@@ -68,7 +68,7 @@
     </nav>
   </div>
   <div class="iphone-shell" id="iphone-shell">
-    <div class="phone-status"><span id="phone-time">9:41</span><span class="dynamic-island" aria-hidden="true"></span><span class="phone-signal" aria-label="Signal and battery"><svg viewBox="0 0 57 17" aria-hidden="true"><path d="M1 13h3v3H1zm5-3h3v6H6zm5-4h3v10h-3zm5-4h3v14h-3zM29 7q6-7 12 0l-6 8zM46 3h8v12h-8z" fill="currentColor"/></svg></span></div>
+    <div class="phone-status"><span id="phone-time">9:41</span><span class="dynamic-island" aria-hidden="true"></span><span class="phone-signal" aria-hidden="true"><svg viewBox="0 0 57 17" aria-hidden="true"><path d="M1 13h3v3H1zm5-3h3v6H6zm5-4h3v10h-3zm5-4h3v14h-3zM29 7q6-7 12 0l-6 8zM46 3h8v12h-8z" fill="currentColor"/></svg></span></div>
     <main class="springboard">
       <div class="phone-widgets">
         <button class="ios-widget project-widget" data-app="project" data-project="mirai"><span class="widget-kicker"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="./icons.svg#mirai-app"></use></svg> <span>Mirai</span></span><span class="widget-project-title">AI, with guardrails.</span><span class="widget-project-desc">A real operating system for service businesses.</span><span class="widget-footer">View project ›</span></button>
@@ -98,5 +98,5 @@
   <div class="spotlight" id="spotlight" hidden><div class="spotlight-card" role="dialog" aria-modal="true" aria-label="Search projects"><div class="search-header"><svg viewBox="0 0 24 24"><use href="./icons.svg#search"></use></svg><input id="spotlight-input" type="search" placeholder="Search projects and skills…" autocomplete="off" aria-label="Search projects"/><button id="spotlight-close" aria-label="Close search">Esc</button></div><div class="search-results" id="search-results"></div></div></div>
   <div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
 </div>
-<script src="./app.js" defer></script>
+<script type="module" src="./src/main.ts"></script>
 </body></html>

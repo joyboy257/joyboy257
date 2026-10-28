@@ -1,0 +1,42 @@
+name: DeonOS G1 EX-009 deployed-preview release QA
+on:
+  push:
+    branches: [programme/deonos-g1-foundation-2026-10-27]
+    paths: [.github/workflows/deonos-g1-release-qa.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    defaults:
+      run:
+        working-directory: portfolio/desktop-v8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser and accessibility audit utilities
+        run: |
+          npm ci --no-audit --no-fund
+          npm install --no-save --no-audit --no-fund axe-core@4.10.3
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium webkit
+      # EX-009 audit distinguishes Vercel-injected preview-toolbar bootstrap failures from website JS errors.
+      - name: Test actual deployed preview on Chromium and WebKit
+        env:
+          DEONOS_PREVIEW_URL: https://deon-desktop-portfolio-owsfgs9ow-deonaqwx-9156s-projects.vercel.app
+          DEONOS_RELEASE_EVIDENCE: ../../release-evidence
+        run: python scripts/release-qa.py
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deonos-g1-ex009-${{ github.run_id }}
+          path: release-evidence/
+          if-no-files-found: warn
+          retention-days: 30

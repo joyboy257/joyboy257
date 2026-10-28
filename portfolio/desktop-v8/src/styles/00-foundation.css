@@ -1,0 +1,17 @@
+/* DeonOS — one visual system. No CSS layer overrides or downloaded Apple fonts. */
+:root{
+ --sf:-apple-system,BlinkMacSystemFont,system-ui,"Helvetica Neue",Arial,sans-serif;
+ --blue:#007aff;--ink:#1d1d1f;--muted:#86868b;--hair:#e5e5ea;
+ --safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:var(--sf);font-size:14px;color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-80px;z-index:6000;background:#fff;padding:11px}
+.skip:focus{top:12px}
+.os{position:relative;height:100dvh;min-height:480px;isolation:isolate;overflow:hidden;background:#b8c8d4}
+svg{display:block}
+.mac-shell,.iphone-shell{height:100%;width:100%}

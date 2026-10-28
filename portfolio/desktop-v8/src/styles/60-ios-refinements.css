@@ -1,0 +1,34 @@
+/* iPhone 15+/iOS home proportions. Personal app content still replaces native apps. */
+@media(max-width:720px){
+ .iphone-shell{
+   background-color:#5253a3;
+   background-image:linear-gradient(180deg,rgba(26,21,64,.12),rgba(33,15,59,.05) 60%,rgba(25,18,55,.18)),url("../../bigsur-wallpaper.svg");
+   background-size:cover;background-position:52% center;
+ }
+ .iphone-shell:before,.iphone-shell:after{content:none}
+ .phone-status{font-family:var(--mac-ui);font-size:15px;font-weight:660}
+ .dynamic-island{width:112px;height:33px}
+ .springboard{padding-top:clamp(57px,9vh,96px)}
+ .phone-widgets{margin-bottom:34px;gap:13px}
+ .ios-widget{border-radius:22px;box-shadow:0 3px 14px rgba(30,20,64,.13)}
+ .project-widget{background:linear-gradient(148deg,#163954,#247088);border:1px solid rgba(255,255,255,.05)}
+ .app-item>span:last-child{font-weight:510;font-size:11.8px;text-shadow:0 1px 3px #24164078}
+ .app-icon{border-radius:14px;filter:drop-shadow(0 2px 4px rgba(13,13,44,.18))}
+ .phone-dock{
+  bottom:calc(14px + var(--safe-bottom));
+  border-radius:26px;height:83px;
+  background:rgba(236,224,247,.3);
+  border:1px solid rgba(255,255,255,.25);
+  box-shadow:0 8px 22px rgba(24,14,47,.13);
+  backdrop-filter:blur(31px) saturate(140%);
+  -webkit-backdrop-filter:blur(31px) saturate(140%);
+ }
+ .phone-app-nav{background:rgba(249,249,252,.92)}
+ .phone-app-nav strong{font-weight:610}
+ .phone-app-body .case-pane h2,.phone-app-body .app-doc h2{letter-spacing:-.035em}
+ .iphone-shell.app-open .phone-status{color:#1c1c1e}
+}
+@media(max-width:390px){
+ .phone-dock{height:76px;bottom:calc(15px + var(--safe-bottom))}
+ .springboard{padding-top:38px}
+}

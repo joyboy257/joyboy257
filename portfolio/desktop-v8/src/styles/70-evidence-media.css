@@ -1,0 +1,29 @@
+/* Meaningful project imagery, with a truthful fallback on missing / failed images.
+   Imported last; Vite still emits exactly one stylesheet. */
+.case-hero.case-hero-snapshot,.case-hero.case-hero-curated{isolation:isolate;background:linear-gradient(132deg,#173c52,#245d6d 60%,#417c83)}
+.case-graphic-snapshot{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;
+  justify-content:space-between;padding:15px 19px;color:#fff;background:radial-gradient(ellipse at 90% 15%,#ffffff14,transparent 65%)}
+.case-graphic-snapshot .snapshot-kicker{padding:0;letter-spacing:.12em;font-size:9px;font-weight:650;color:#c7e5e9;text-shadow:none}
+.case-graphic-snapshot strong{font-size:clamp(22px,3vw,31px);letter-spacing:-.035em;line-height:1.1}
+.snapshot-facts{display:flex;gap:7px;flex-wrap:wrap;max-height:42px;overflow:hidden}
+.case-graphic-snapshot .snapshot-fact{padding:4px 8px;font-size:10px;font-weight:500;border-radius:5px;color:#f1faff;background:#ffffff22;text-shadow:none}
+.case-hero.case-hero-snapshot::after,.case-hero.case-hero-curated.media-unavailable::after{content:none}
+.case-hero.case-hero-curated img{z-index:1}
+.case-hero.case-hero-curated::after{z-index:2}
+.case-hero.case-hero-curated .case-hero-title{z-index:3}
+.case-hero.case-hero-curated.media-unavailable .case-hero-title{display:none}
+.case-asset-note{margin:-8px 1px 14px;font-size:10.5px;line-height:1.45;color:#687a86}
+.case-asset-note strong{font-weight:650;color:#4c6778}
+.photo-tile-visual{position:relative;isolation:isolate;height:140px;background:#dfe8ef}
+.photo-tile-visual img{position:absolute;inset:0;height:100%;width:100%;object-fit:cover}
+.photo-evidence-backup{position:absolute;inset:0;display:flex;flex-direction:column;gap:7px;align-items:center;justify-content:center;color:#e6f3f6;background:linear-gradient(135deg,#173d52,#3c697c)}
+.photo-evidence-backup span{padding:0;font-size:26px;font-weight:700;letter-spacing:-.04em}
+.photo-evidence-backup small{font-size:9px;font-weight:600;letter-spacing:.08em;color:#b9dce4}
+.photo-grid .photo-tile-title{padding:9px 11px 1px;font-weight:650}
+.photo-grid .photo-tile-type{display:block;padding:0 11px 10px;font-size:10px;line-height:1.4;color:#627887}
+@media(max-width:720px){.phone-app-body .photo-tile-visual{height:125px}.case-asset-note{font-size:11px}}
+
+/* Engineering insight is different from the verified counts beneath each case. */
+.case-graphic-snapshot .snapshot-insight{margin:0;max-width:94%;color:#e1f2f4;
+  font-size:11.5px;font-weight:470;line-height:1.35;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}

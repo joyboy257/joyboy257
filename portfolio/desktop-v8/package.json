@@ -1,0 +1,19 @@
+{
+  "name": "deonos-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run validate:content && node --experimental-strip-types --test scripts/*.test.mjs",
+    "validate:content": "node --experimental-strip-types scripts/validate-content.ts"
+  },
+  "devDependencies": {
+    "@types/node": "22.16.5",
+    "typescript": "5.9.3",
+    "vite": "7.1.9"
+  }
+}

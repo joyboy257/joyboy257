@@ -1,0 +1,30 @@
+{
+  "source_url": "https://images.unsplash.com/photo-1687575635446-092e15df323e?auto=format&fit=crop&w=2200&q=84",
+  "source_sha256": "fb1b9dd62e46d8510f48a67311fc2aa69ed1677f4fda7333e4b66fe4e0b62799",
+  "source_pixels": [
+    2200,
+    1467
+  ],
+  "rights": "Unsplash License: https://unsplash.com/license; exact photographer page still needs cross-check",
+  "existing_credit": "Jackie Alexander / Unsplash (preserved, not independently authenticated)",
+  "variants": {
+    "lock-desktop": {
+      "bytes": 164198,
+      "dimensions": [
+        1900,
+        1267
+      ],
+      "quality": 80,
+      "sha256": "d2d7b38f7744cc44b97a6ddac7a133f01fb4da839308a56d01518c0cf6542539"
+    },
+    "lock-mobile": {
+      "bytes": 105018,
+      "dimensions": [
+        1700,
+        1134
+      ],
+      "quality": 78,
+      "sha256": "886c8159130c8263f468a349589df5bcadcf3cc761d44a8d0bacecd43aa1d9c6"
+    }
+  }
+}

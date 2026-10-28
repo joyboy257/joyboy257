@@ -1,0 +1,114 @@
+name: DeonOS G1 EX-004 static build and browser parity
+on:
+  push:
+    branches:
+      - programme/deonos-g1-foundation-2026-10-27
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  static-compatibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 19
+    defaults:
+      run:
+        working-directory: portfolio/desktop-v8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: portfolio/desktop-v8/package-lock.json
+        continue-on-error: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Resolve pinned dependencies and save lockfile
+        run: |
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+          mkdir -p ../../g1-evidence
+          cp package-lock.json ../../g1-evidence/package-lock.json
+      - name: Install clean and build
+        run: |
+          npm ci --no-audit --no-fund
+          npm run typecheck
+          npm run build
+          npm test
+      - name: Check output and compressed transfer budgets
+        run: |
+          python - <<'PY'
+          import json, gzip, os
+          from pathlib import Path
+          source=Path('dist')
+          assets=[]
+          for p in source.rglob('*'):
+              if not p.is_file(): continue
+              raw=p.read_bytes()
+              assets.append({'name':str(p.relative_to(source)),'bytes':len(raw),
+                             'gzip_bytes':len(gzip.compress(raw,9))})
+          root=sum(x['gzip_bytes'] for x in assets if x['name']=='index.html' or x['name'].endswith(('.js','.css')))
+          report={'compressed_html_js_css_bytes':root,'first_load_cap_bytes':100000,'cap_pass':root<=100000,'assets':assets}
+          Path('../../g1-evidence/BUILD_SIZE_REPORT.json').write_text(json.dumps(report,indent=2))
+          print(json.dumps({k:report[k] for k in ('compressed_html_js_css_bytes','cap_pass')}))
+          if not report['cap_pass']: raise SystemExit('Entry JS/CSS budget exceeded')
+          PY
+      - name: Install Chromium and Lighthouse for rendered equivalence checks
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.55.0
+          python -m playwright install --with-deps chromium
+          npm install --no-save --no-audit --no-fund lighthouse@12.8.2
+      - name: Test generated site through local browser
+        run: |
+          npm run preview -- --port 4173 > ../../g1-evidence/preview-server.log 2>&1 &
+          echo $! > ../../g1-evidence/preview-server.pid
+          python - <<'PY'
+          import time, urllib.request
+          for i in range(40):
+              try:
+                  with urllib.request.urlopen('http://127.0.0.1:4173/',timeout=2) as r:
+                      assert r.status==200
+                  break
+              except Exception:
+                  time.sleep(0.5)
+          else: raise SystemExit('Vite preview failed to start')
+          PY
+          export CHROME_PATH="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python ../../portfolio/g0-audit/EX002_CAPTURE.py \
+            --url http://127.0.0.1:4173/ \
+            --output ../../g1-evidence/browser \
+            --lighthouse
+      - name: Check history routing in built desktop/mobile app
+        run: python scripts/route-e2e.py
+      - name: Enforce cold first-view bytes and correct responsive wallpaper
+        run: python scripts/check-asset-budget.py
+      - name: Test keyboard focus and macOS window controls
+        run: python scripts/window-keyboard-e2e.py
+      - name: Test purposeful media and broken-image fallbacks
+        run: python scripts/media-fallback-e2e.py
+      - name: Enforce interaction and Lighthouse compatibility
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('../../g1-evidence/browser/EX002_RUNTIME_RESULTS.json').read_text())
+          s=d['summary']
+          print('G1 browser results:',s)
+          print('Lighthouse medians:',d['lighthouse_median'])
+          for key in ('fail','fatal_errors'):
+              if s[key]: raise SystemExit(f'{key}: {s[key]}')
+          if s['pass'] != 28: raise SystemExit(f'Expected 28 checks, got {s["pass"]}')
+          for surface, minimum in [('desktop',95),('mobile',90)]:
+              v=d['lighthouse_median'].get(surface)
+              if v is None or v < minimum: raise SystemExit(f'{surface} Lighthouse below target: {v}')
+          errors=[e for e in d['page_errors'] if e]
+          if errors: raise SystemExit('Page JS exception: '+str(errors[:2]))
+          PY
+      - name: Keep artifacts even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deonos-g1-ex004-${{ github.run_id }}
+          path: g1-evidence/
+          retention-days: 30
+          if-no-files-found: warn
