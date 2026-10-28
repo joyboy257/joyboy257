@@ -41,7 +41,11 @@ with sync_playwright() as playwright:
                 page.goto(BASE+"/")
                 verify(key+" visiting résumé does not unlock OS",page.locator("#lock-screen").is_visible())
                 page.locator("#unlock").click()
-                page.wait_for_timeout(530)
+                try:
+                    page.wait_for_function("() => document.querySelector('#lock-screen').hidden",timeout=7000)
+                except Exception as error:
+                    print(json.dumps({"unlock_diagnostic":key,"lock_hidden":page.locator("#lock-screen").get_attribute("hidden"),
+                                      "url":page.url,"page_errors":errors,"exception":str(error)}))
                 verify(key+" unlock reveals OS",not page.locator("#lock-screen").is_visible())
                 if mobile:
                     verify(key+" home visible after unlock",page.locator("#phone-app").is_hidden())
