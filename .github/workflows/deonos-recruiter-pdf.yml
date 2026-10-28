@@ -1,0 +1,61 @@
+name: DeonOS recruiter resume PDF (one-time)
+on:
+  push:
+    branches: [feature/deonos-recruiter-entry-001]
+    paths: [.github/workflows/deonos-recruiter-pdf.yml]
+permissions:
+  contents: write
+jobs:
+  create-resume-pdf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install static build and browser PDF generator
+        working-directory: portfolio/desktop-v8
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
+          python -m pip install --disable-pip-version-check playwright==1.55.0 pymupdf==1.26.5
+          python -m playwright install --with-deps chromium
+      - name: Create printable PDF from reviewed v6 résumé web copy
+        working-directory: portfolio/desktop-v8
+        run: |
+          npm run preview -- --port 4173 > /tmp/deonos-resume-preview.log 2>&1 &
+          python - <<'PY'
+          import fitz
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          output=Path('public/resume/Deon-Quek-Resume.pdf')
+          output.parent.mkdir(parents=True,exist_ok=True)
+          with sync_playwright() as p:
+              browser=p.chromium.launch()
+              page=browser.new_page()
+              response=page.goto('http://127.0.0.1:4173/resume.html',wait_until='load')
+              assert response.status == 200
+              page.emulate_media(media='print')
+              page.pdf(path=str(output),format='A4',print_background=True,prefer_css_page_size=True)
+              browser.close()
+          doc=fitz.open(output)
+          text='\n'.join(p.get_text() for p in doc)
+          assert len(doc)==1,f'Expected one page, found {len(doc)}'
+          for required in ('Deon Quek','Mirai','Verticals','Heidi','Splendify','Republic Polytechnic'):
+              assert required in text,required
+          assert 1000<output.stat().st_size<250000,output.stat().st_size
+          print({'pdf_pages':len(doc),'selectable_chars':len(text),'bytes':output.stat().st_size})
+          PY
+      - name: Commit PDF to same development branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add portfolio/desktop-v8/public/resume/Deon-Quek-Resume.pdf
+          git commit -m "docs(deonos): include printable v6 résumé PDF for recruiter access [skip ci]"
+          git push origin HEAD:refs/heads/feature/deonos-recruiter-entry-001
