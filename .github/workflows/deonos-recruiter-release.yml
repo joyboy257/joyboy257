@@ -24,6 +24,7 @@ jobs:
           npm install --no-save --no-audit --no-fund axe-core@4.10.3
           python -m pip install playwright==1.55.0
           python -m playwright install --with-deps chromium webkit
+      # Keep narrowly matched WebKit preview navigation warnings visible in report.
       - name: Verify published preview and produce screenshots
         env:
           RECRUITER_PUBLIC_PREVIEW: https://deon-desktop-portfolio-pgkgbdw38-deonaqwx-9156s-projects.vercel.app
