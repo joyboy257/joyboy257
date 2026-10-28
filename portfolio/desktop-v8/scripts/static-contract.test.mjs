@@ -72,3 +72,9 @@ test('case images always explain their purpose and fall back safely', () => {
   }
   assert.match(css, /media-unavailable/);
 });
+
+test('menu closing uses a collection, not one button', () => {
+  const app = read('app.js');
+  assert.match(app, /document\.querySelectorAll\("\[data-menu\]"\)\.forEach/);
+  assert.doesNotMatch(app, /\$\("\[data-menu\]"\)\.forEach/);
+});

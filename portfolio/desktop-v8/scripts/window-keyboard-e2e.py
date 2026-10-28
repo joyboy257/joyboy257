@@ -15,7 +15,10 @@ with sync_playwright() as p:
     browser=p.chromium.launch()
     try:
         desktop=browser.new_context(viewport={'width':1440,'height':900},reduced_motion='reduce')
-        page=desktop.new_page();page.goto(ROOT)
+        page=desktop.new_page()
+        errors=[]
+        page.on('pageerror',lambda err:errors.append(str(err)))
+        page.goto(ROOT)
         page.keyboard.press('Escape')
         check('Escape on locked page stays locked',page.locator('#lock-screen').is_visible())
         page.keyboard.press('ArrowUp');page.wait_for_timeout(460)
@@ -50,6 +53,7 @@ with sync_playwright() as p:
         check('Escape closes visible Finder',not page.locator('#mac-window').is_visible())
         page.keyboard.press('Escape')
         check('Escape on desktop leaves Finder closed',not page.locator('#mac-window').is_visible())
+        check('No JavaScript exceptions during keyboard workflow',not errors)
         page.screenshot(path=str(out/'desktop-closed.png'))
         desktop.close()
         phone=browser.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True,reduced_motion='reduce')

@@ -117,7 +117,7 @@ const menuItems={
 };
 function dismissMenu(restoreFocus=false){
  menuEl.hidden=true;
- $("[data-menu]").forEach(b=>{b.setAttribute("aria-expanded","false");b.classList.remove("active-menu")});
+ document.querySelectorAll("[data-menu]").forEach(b=>{b.setAttribute("aria-expanded","false");b.classList.remove("active-menu")});
  if(restoreFocus&&menuFocusReturn?.isConnected)menuFocusReturn.focus({preventScroll:true});
  menuFocusReturn=null;
 }
