@@ -1,0 +1,89 @@
+name: DeonOS Featured Work — deployed preview verification
+on:
+  push:
+    branches: [feature/deonos-featured-work-001]
+    paths: [.github/workflows/deonos-featured-preview.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  preview-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    defaults:
+      run:
+        working-directory: portfolio/desktop-v8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install browser and accessibility test tools
+        run: |
+          npm ci --no-audit --no-fund
+          npm install --no-save --no-audit --no-fund axe-core@4.10.3
+          python -m pip install --disable-pip-version-check playwright==1.55.0
+          python -m playwright install --with-deps chromium webkit
+      - name: Verify deployed résumé, lock and Welcome
+        env:
+          RECRUITER_PUBLIC_PREVIEW: https://deon-desktop-portfolio-elh6ntitc-deonaqwx-9156s-projects.vercel.app
+        run: python scripts/recruiter-release-e2e.py
+      - name: Verify real deployed Featured and Mirai case accessibility
+        env:
+          BASE: https://deon-desktop-portfolio-elh6ntitc-deonaqwx-9156s-projects.vercel.app
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          base=os.environ['BASE']
+          out=Path('../../recruiter-release-evidence');out.mkdir(parents=True,exist_ok=True)
+          checks=[];issues=[]
+          def check(name,ok):
+              checks.append((name,bool(ok)))
+              if not ok:raise AssertionError(name)
+          def axe(page,name):
+              page.add_script_tag(path='node_modules/axe-core/axe.min.js')
+              result=page.evaluate("""async () => {
+                const r=await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}});
+                return r.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.slice(0,5).map(n=>n.target)}))
+              }""")
+              issues.append({'surface':name,'violations':result})
+              check(name+' no serious WCAG problems',not any(v['impact'] in ('critical','serious') for v in result))
+          with sync_playwright() as playwright:
+              for engine in ('chromium','webkit'):
+                  browser=getattr(playwright,engine).launch()
+                  try:
+                      for mobile in (False,True):
+                          tag=engine+('-phone' if mobile else '-mac')
+                          ctx=browser.new_context(viewport={'width':390 if mobile else 1440,'height':844 if mobile else 900},
+                                                  is_mobile=mobile,has_touch=mobile,reduced_motion='reduce')
+                          page=ctx.new_page()
+                          response=page.goto(base+'/',wait_until='load',timeout=35000)
+                          check(tag+' homepage status',response.status==200)
+                          check(tag+' locked first',page.locator('#lock-screen').is_visible())
+                          page.locator('#unlock').click()
+                          page.wait_for_function("() => document.querySelector('#lock-screen').hidden")
+                          if mobile:page.locator('.app-item[data-app="featured"]').click();scope='#phone-app'
+                          else:page.locator('.welcome-action[data-app="featured"]').click();scope='#mac-window'
+                          check(tag+' full gallery present',page.locator(scope+' .featured-card').count()==3)
+                          axe(page,tag+' gallery')
+                          page.screenshot(path=str(out/(tag+'-live-gallery.png')),animations='disabled')
+                          page.locator(scope+' .featured-card [data-project="mirai"]').click()
+                          check(tag+' Mirai story present',page.locator(scope+' .mirai-chapter').count()==3)
+                          axe(page,tag+' Mirai')
+                          page.screenshot(path=str(out/(tag+'-live-mirai.png')),animations='disabled')
+                          ctx.close()
+                  finally:browser.close()
+          result={'passed':sum(c[1] for c in checks),'failed':sum(not c[1] for c in checks),'issues':issues,'checks':checks}
+          (out/'FEATURED_PUBLIC_QA.json').write_text(json.dumps(result,indent=2))
+          print('PUBLIC FEATURED QA',json.dumps({'passed':result['passed'],'failed':result['failed'],'issues':issues}))
+          if result['failed']:raise SystemExit('Deployed preview failed a check')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deonos-featured-live-${{ github.run_id }}
+          path: recruiter-release-evidence/
+          if-no-files-found: warn
+          retention-days: 30
